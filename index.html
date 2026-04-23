@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simple Dating App</title>
+
+<style>
+body{
+  margin:0;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:linear-gradient(to right,pink,purple);
+  font-family:Arial;
+}
+
+.card{
+  background:#fff;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+  width:250px;
+}
+
+img{
+  width:100%;
+  border-radius:15px;
+}
+
+button{
+  font-size:22px;
+  margin:10px;
+  padding:10px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <img id="photo">
+  <h2 id="name"></h2>
+  <p id="bio"></p>
+
+  <button onclick="next()">❌</button>
+  <button onclick="next()">❤️</button>
+</div>
+
+<script>
+let users = [
+  {name:"Sara", bio:"Love music 🎵", img:"https://i.pravatar.cc/300?img=1"},
+  {name:"Abel", bio:"Gym 💪", img:"https://i.pravatar.cc/300?img=8"}
+];
+
+let i = 0;
+
+function show(){
+  document.getElementById("name").innerText = users[i].name;
+  document.getElementById("bio").innerText = users[i].bio;
+  document.getElementById("photo").src = users[i].img;
+}
+
+function next(){
+  i++;
+  if(i >= users.length){ i = 0; }
+  show();
+}
+
+show();
+</script>
+
+</body>
+</html>
