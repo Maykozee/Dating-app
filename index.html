@@ -43,8 +43,8 @@ button{
   <h2 id="name"></h2>
   <p id="bio"></p>
 
-  <button onclick="next()">❌</button>
-  <button onclick="next()">❤️</button>
+  <button onclick="dislike()">❌</button>
+  <button onclick="like()">❤️</button>
 </div>
 
 <script>
@@ -60,11 +60,21 @@ function show(){
   document.getElementById("bio").innerText = users[i].bio;
   document.getElementById("photo").src = users[i].img;
 }
-
 function next(){
   i++;
-  if(i >= users.length){ i = 0; }
+  if(i >= users.length){
+    i = 0;
+  }
   show();
+}
+function like(){
+   alert("Liked ❤️ " + users[i].name);
+   setTimeout(next, 200);
+ }
+
+function dislike(){
+  alert("Disliked ❌ " + users[i].name);
+  setTimeout(next, 200);
 }
 
 show();
