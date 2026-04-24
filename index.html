@@ -33,6 +33,18 @@ button{
   margin:10px;
   padding:10px;
 }
+  #toast{
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: black;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 10px;
+  opacity: 0;
+  transition: opacity 0.3s:
+}
 </style>
 </head>
 
@@ -45,8 +57,8 @@ button{
 
   <button onclick="dislike()">❌</button>
   <button onclick="like()">❤️</button>
-</div>
-
+</div> 
+<div id="toast"></div>
 <script>
 let users = [
   {name:"Sara", bio:"Love music 🎵", img:"https://i.pravatar.cc/300?img=1"},
@@ -54,6 +66,15 @@ let users = [
 ];
 
 let i = 0;
+  function showToast(msg){
+  let t = document.getElementById("toast");
+  t.innerText = msg;
+  t.style.opacity = 1;
+
+  setTimeout(()=>{
+    t.style.opacity = 0;
+  }, 500);
+}
 
 function show(){
   document.getElementById("name").innerText = users[i].name;
@@ -68,12 +89,12 @@ function next(){
   show();
 }
 function like(){
-   alert("Liked ❤️ " + users[i].name);
-   setTimeout(next, 200);
- }
+  showToast("Liked " + users[i].name);
+  setTimeout(next, 200);
+}
 
 function dislike(){
-  alert("Disliked ❌ " + users[i].name);
+  showToast("Disliked " + users[i].name);
   setTimeout(next, 200);
 }
 
