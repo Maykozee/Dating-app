@@ -14,7 +14,27 @@ body{
   background:linear-gradient(to right,pink,purple);
   font-family:Arial;
 }
+  <div id="login">
+  <h2>Login</h2>
 
+  <input id="username" placeholder="Your name">
+
+  <br><br>
+
+  <button onclick="login()">Enter</button>
+</div>
+
+  #login{
+  background:white;
+  padding:20px;
+  border-radius:20px;
+  text-align:center;
+}
+
+#app{
+  display:none;
+}
+  
 .card{
   background:#fff;
   padding:20px;
@@ -90,7 +110,7 @@ button{
 
 <body>
 
-<div class="card">
+<div class="card" id="app">
   <img id="photo">
   <h2 id="name"></h2>
   <p id="bio"></p>
@@ -204,6 +224,19 @@ function dislike(){
     m.style.display = "none";
   },1000);
 }
+
+  function login(){
+  let name =
+  document.getElementById("username").value;
+
+  if(name != ""){
+    document.getElementById("login").style.display =
+    "none";
+
+    document.getElementById("app").style.display =
+    "block";
+  }
+
 function openChat(){
   document.getElementById("chat").style.display = "block";
 }
