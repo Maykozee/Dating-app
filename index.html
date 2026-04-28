@@ -92,6 +92,12 @@ button{
   background:#444;
   color:white;
 }
+
+  #status{
+  color:limegreen;
+  font-weight:bold;
+}
+  
   #count{
   font-weight:bold;
 }
@@ -150,6 +156,19 @@ button{
   display:none;
   width:250px;
 }
+
+  #menu{
+  display:none;
+
+  margin-top:10px;
+}
+
+#menu button{
+  display:block;
+
+  width:100%;
+}
+  
 </style>
 </head>
 
@@ -171,12 +190,19 @@ placeholder="Your name">
   <span id="name"></span> ✔️
 </h2>
   <p id="bio"></p>
+  <p id="status">🟢 Online</p>
 
   <button class="dislikeBtn" onclick="dislike()">❌</button>
   <button class="likeBtn" onclick="like()">❤️</button>
+  <button onclick="toggleMenu()">⋮</button>
+
+<div id="menu">
   <button onclick="viewLikes()">📋 Likes</button>
+
   <button onclick="darkMode()">🌙 Dark</button>
+
   <button onclick="openChat()">💬 Chat</button>
+</div>
   
   <p id="count">Likes: 0</p>
   
@@ -311,6 +337,18 @@ function dislike(){
     "block";
    }
   }
+
+  function toggleMenu(){
+  let menu =
+  document.getElementById("menu");
+
+  if(menu.style.display == "block"){
+    menu.style.display = "none";
+  }else{
+    menu.style.display = "block";
+  }
+}
+  
 function openChat(){
   document.getElementById("chat").style.display = "block";
 }
