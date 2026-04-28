@@ -27,12 +27,21 @@ body{
 }
   
 .card{
-  background:#fff;
+  background:rgba(255,255,255,0.2);
+
+  backdrop-filter:blur(10px);
+
   padding:20px;
-  border-radius:20px;
+  border-radius:25px;
+
   text-align:center;
-  width:250px;
-  transition: transform 0.3s;
+  width:260px;
+
+  transition:transform 0.3s;
+
+  box-shadow:0 8px 30px rgba(0,0,0,0.2);
+
+  border:1px solid rgba(255,255,255,0.3);
 }
 
 img{
@@ -57,6 +66,31 @@ button{
   background:white;
 
   box-shadow:0 4px 10px rgba(0,0,0,0.2);
+}
+
+  button:active{
+  transform:scale(0.9);
+}
+
+  input{
+  padding:12px;
+  border-radius:10px;
+  border:none;
+
+  width:80%;
+
+  font-size:18px;
+
+  outline:none;
+}
+.likeBtn{
+  background:#ff4b91;
+  color:white;
+}
+
+.dislikeBtn{
+  background:#444;
+  color:white;
 }
   #count{
   font-weight:bold;
@@ -123,7 +157,8 @@ button{
   <div id="login">
   <h2>Login</h2>
 
-  <input id="username" placeholder="Your name">
+  <input id="username"
+placeholder="Your name">
 
   <br><br>
 
@@ -132,7 +167,9 @@ button{
 
 <div class="card" id="app">
   <img id="photo">
-  <h2 id="name"></h2>
+  <h2>
+  <span id="name"></span> ✔️
+</h2>
   <p id="bio"></p>
 
   <button class="dislikeBtn" onclick="dislike()">❌</button>
