@@ -21,10 +21,13 @@ body{
   border-radius:20px;
   text-align:center;
   width:250px;
+  transition: transform 0.3s;
 }
 
 img{
   width:100%;
+  height:200px;
+  object-fit:cover;
   border-radius:15px;
 }
 
@@ -43,7 +46,7 @@ button{
   padding: 10px 20px;
   border-radius: 10px;
   opacity: 0;
-  transition: opacity 0.3s:
+  transition: opacity 0.3s;
 }
 </style>
 </head>
@@ -62,7 +65,10 @@ button{
 <script>
 let users = [
   {name:"Sara", bio:"Love music 🎵", img:"https://i.pravatar.cc/300?img=1"},
-  {name:"Abel", bio:"Gym 💪", img:"https://i.pravatar.cc/300?img=8"}
+  {name:"Abel", bio:"Gym 💪", img:"https://i.pravatar.cc/300?img=8"},
+  {name:"Liya", bio:"Travel ✈️", img:"https://i.pravatar.cc/300?img=5"},
+  {name:"Dani", bio:"Football ⚽", img:"https://i.pravatar.cc/300?img=12"},
+  {name:"Miki", bio:"Coding 💻", img:"https://i.pravatar.cc/300?img=15"}
 ];
 
 let i = 0;
@@ -89,13 +95,31 @@ function next(){
   show();
 }
 function like(){
+  document.querySelector(".card").style.transform =
+  "translateX(300px) rotate(20deg)";
+
   showToast("Liked " + users[i].name);
-  setTimeout(next, 200);
+
+  setTimeout(()=>{
+    document.querySelector(".card").style.transform =
+    "translateX(0)";
+
+    next();
+  },300);
 }
 
 function dislike(){
+  document.querySelector(".card").style.transform =
+  "translateX(-300px) rotate(-20deg)";
+
   showToast("Disliked " + users[i].name);
-  setTimeout(next, 200);
+
+  setTimeout(()=>{
+    document.querySelector(".card").style.transform =
+    "translateX(0)";
+
+    next();
+  },300);
 }
 
 show();
