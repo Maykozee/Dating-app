@@ -35,6 +35,12 @@ button{
   font-size:22px;
   margin:10px;
   padding:10px;
+  border:none;
+  border-radius:10px;
+  cursor:pointer;
+}
+  #count{
+  font-weight:bold;
 }
   #toast{
   position: fixed;
@@ -61,6 +67,9 @@ button{
   <button onclick="dislike()">❌</button>
   <button onclick="like()">❤️</button>
   <button onclick="viewLikes()">📋 Likes</button>
+
+  <p id="count">Likes: 0</p>
+  
 </div> 
 <div id="toast"></div>
 <script>
@@ -98,6 +107,9 @@ function next(){
 }
 function like(){
   liked.push(users[i]);
+
+  document.getElementById("count").innerText =
+"Likes: " + liked.length;
   
   document.querySelector(".card").style.transform =
   "translateX(300px) rotate(20deg)";
