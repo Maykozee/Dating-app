@@ -14,7 +14,9 @@ body{
   background:linear-gradient(to right,pink,purple);
   font-family:Arial;
 }
-  <div id="login">
+  <body>
+
+<div id="login">
   <h2>Login</h2>
 
   <input id="username" placeholder="Your name">
@@ -23,16 +25,9 @@ body{
 
   <button onclick="login()">Enter</button>
 </div>
-  <div id="login">
-  <h2>Login</h2>
 
-  <input id="username" placeholder="Your name">
-
-  <br><br>
-
-  <button onclick="login()">Enter</button>
-</div>
-
+<div class="card" id="app">
+  
   #login{
   background:white;
   padding:20px;
@@ -244,8 +239,8 @@ function dislike(){
 
     document.getElementById("app").style.display =
     "block";
+   }
   }
-
 function openChat(){
   document.getElementById("chat").style.display = "block";
 }
