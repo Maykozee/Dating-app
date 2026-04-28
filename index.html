@@ -60,6 +60,7 @@ button{
 
   <button onclick="dislike()">❌</button>
   <button onclick="like()">❤️</button>
+  <button onclick="viewLikes()">📋 Likes</button>
 </div> 
 <div id="toast"></div>
 <script>
@@ -72,6 +73,7 @@ let users = [
 ];
 
 let i = 0;
+  let liked = [];
   function showToast(msg){
   let t = document.getElementById("toast");
   t.innerText = msg;
@@ -95,9 +97,11 @@ function next(){
   show();
 }
 function like(){
+  liked.push(users[i]);
+  
   document.querySelector(".card").style.transform =
   "translateX(300px) rotate(20deg)";
-
+  
   showToast("Liked " + users[i].name);
 
   setTimeout(()=>{
@@ -121,7 +125,15 @@ function dislike(){
     next();
   },300);
 }
+function viewLikes(){
+  let names = liked.map(x => x.name).join(", ");
 
+  if(names == ""){
+    alert("No likes yet");
+  }else{
+    alert("Liked people: " + names);
+  }
+}
 show();
 </script>
 
