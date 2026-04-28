@@ -47,8 +47,12 @@ body{
 img{
   width:100%;
   height:200px;
+
   object-fit:cover;
+
   border-radius:15px;
+
+  filter:brightness(0.9);
 }
 
 button{
@@ -96,6 +100,9 @@ button{
   #status{
   color:limegreen;
   font-weight:bold;
+    #distance{
+  color:white;
+  opacity:0.8;
 }
   
   #count{
@@ -191,6 +198,7 @@ placeholder="Your name">
 </h2>
   <p id="bio"></p>
   <p id="status">🟢 Online</p>
+  <p id="distance">📍 2 km away</p>
 
   <button class="dislikeBtn" onclick="dislike()">❌</button>
   <button class="likeBtn" onclick="like()">❤️</button>
@@ -272,6 +280,12 @@ card.addEventListener("touchend", e=>{
 }
 
 function show(){
+  document.querySelector(".card").style.opacity =
+"0";
+  setTimeout(()=>{
+  document.querySelector(".card").style.opacity =
+  "1";
+},100);
   document.getElementById("name").innerText = users[i].name;
   document.getElementById("bio").innerText = users[i].bio;
   document.getElementById("photo").src = users[i].img;
@@ -350,8 +364,25 @@ function dislike(){
 
     document.getElementById("app").style.display =
     "block";
-   }
+
+    let card = document.querySelector(".card");
+
+card.addEventListener("touchstart", e=>{
+  startX = e.touches[0].clientX;
+});
+
+card.addEventListener("touchend", e=>{
+  let endX = e.changedTouches[0].clientX;
+
+  if(endX - startX > 50){
+    like();
   }
+
+  if(startX - endX > 50){
+    dislike();
+  }
+});
+   }
 
   function toggleMenu(){
   let menu =
