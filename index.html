@@ -213,8 +213,23 @@ placeholder="Your name">
 </div>
   <div id="chat">
   <h3>💬 Chat</h3>
-  <p>Hello 👋</p>
-  <button onclick="closeChat()">Close</button>
+
+  <div id="messages">
+    <p>Hello 👋</p>
+  </div>
+
+  <input id="msgInput"
+  placeholder="Type message">
+
+  <br><br>
+
+  <button onclick="sendMessage()">
+    Send
+  </button>
+
+  <button onclick="closeChat()">
+    Close
+  </button>
 </div>
 <script>
 let users = [
@@ -353,6 +368,20 @@ function openChat(){
   document.getElementById("chat").style.display = "block";
 }
 
+ function sendMessage(){
+  let input =
+  document.getElementById("msgInput");
+
+  let messages =
+  document.getElementById("messages");
+
+  if(input.value != ""){
+    messages.innerHTML +=
+    "<p>🧑 " + input.value + "</p>";
+
+    input.value = "";
+  }
+}
 function closeChat(){
   document.getElementById("chat").style.display = "none";
 }
