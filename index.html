@@ -186,24 +186,6 @@ function next(){
   show();
 }
   
-  let card = document.querySelector(".card");
-  card.addEventListener("touchstart", e=>{
-  startX = e.touches[0].clientX;
-});
-  card.addEventListener("touchend", e=>{
-  let endX = e.changedTouches[0].clientX;
-
-  if(endX - startX > 50){
-    like();
-  }
-
-  if(startX - endX > 50){
-    dislike();
-  }
-});
-  
-  show();
-}
 function like(){
   liked.push(users[i]);
 
