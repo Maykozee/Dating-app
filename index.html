@@ -91,8 +91,9 @@ let users = [
   {name:"Miki", bio:"Coding 💻", img:"https://i.pravatar.cc/300?img=15"}
 ];
 
-let i = 0;
+  let i = 0;
   let liked = [];
+  let startX = 0;
   function showToast(msg){
   let t = document.getElementById("toast");
   t.innerText = msg;
@@ -113,7 +114,23 @@ function next(){
   if(i >= users.length){
     i = 0;
   }
+  
+  let card = document.querySelector(".card");
+  card.addEventListener("touchstart", e=>{
+  startX = e.touches[0].clientX;
+});
+  card.addEventListener("touchend", e=>{
+  let endX = e.changedTouches[0].clientX;
 
+  if(endX - startX > 50){
+    like();
+  }
+
+  if(startX - endX > 50){
+    dislike();
+  }
+});
+  
   show();
 }
 function like(){
