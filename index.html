@@ -42,6 +42,15 @@ button{
   #count{
   font-weight:bold;
 }
+  
+  .dark{
+  background:black;
+  color:white;
+}
+.dark .card{
+  background:#222;
+}
+  
   #toast{
   position: fixed;
   bottom: 20px;
@@ -67,7 +76,8 @@ button{
   <button onclick="dislike()">❌</button>
   <button onclick="like()">❤️</button>
   <button onclick="viewLikes()">📋 Likes</button>
-
+  <button onclick="darkMode()">🌙 Dark</button>
+  
   <p id="count">Likes: 0</p>
   
 </div> 
@@ -103,6 +113,7 @@ function next(){
   if(i >= users.length){
     i = 0;
   }
+
   show();
 }
 function like(){
@@ -136,6 +147,9 @@ function dislike(){
 
     next();
   },300);
+}
+  function darkMode(){
+  document.body.classList.toggle("dark");
 }
 function viewLikes(){
   let names = liked.map(x => x.name).join(", ");
