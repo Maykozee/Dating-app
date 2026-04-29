@@ -107,6 +107,10 @@ button{
 
   outline:none;
 }
+#searchInput{
+  margin-bottom:10px;
+}
+  
 .likeBtn{
   background:#ff4b91;
   color:white;
@@ -511,6 +515,13 @@ placeholder="Your name">
 </div>
 
 <div class="card" id="app">
+  
+<input id="searchInput"
+placeholder="Search name">
+
+<button onclick="searchUser()">
+🔍
+</button>
   <img id="photo">
   <h2>
   <span id="name"></span>
@@ -744,6 +755,30 @@ document.getElementById("notify")
 .style.display = "none";
 
 },4000);
+
+  function searchUser(){
+
+let text =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+for(let x=0; x<users.length; x++){
+
+if(users[x].name.toLowerCase()
+.includes(text)){
+
+i = x;
+
+show();
+
+showToast("Found " + users[x].name);
+
+}
+
+}
+
+}
+  
   show();
 }
   
