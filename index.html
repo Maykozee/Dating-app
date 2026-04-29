@@ -6,9 +6,6 @@
 
 <style>
 body{
-  <div id="loading">
-  ❤️ EthioDating
-</div>
   margin:0;
   height:100vh;
   display:flex;
@@ -42,15 +39,15 @@ body{
   max-width:90%;
 
   transition:0.3s;
-  .card:hover{
-  transform:scale(1.02);
-}
-p
   box-shadow:0 8px 30px rgba(0,0,0,0.2);
 
   border:1px solid rgba(255,255,255,0.3);
   overflow:hidden;
 position:relative;
+}
+
+ .card:hover{
+  transform:scale(1.02);
 }
 
 img{
@@ -294,11 +291,34 @@ color:black;
 
   font-size:18px;
 }
+
+  #status{
+  animation:pulse 1s infinite;
+}
+
+@keyframes pulse{
+
+0%{
+  opacity:1;
+}
+
+50%{
+  opacity:0.4;
+}
+
+100%{
+  opacity:1;
+}
+
+}
   
 </style>
 </head>
 
 <body>
+  <div id="loading">
+  ❤️ EthioDating
+</div>
   <audio id="likeSound">
 <source src="https://www.soundjay.com/buttons/sounds/button-3.mp3">
 </audio>
@@ -481,7 +501,13 @@ function next(){
   if(i >= users.length){
     i = 0;
   }
-  
+
+  setTimeout(()=>{
+
+document.getElementById("loading")
+.style.display = "none";
+
+},2000);
   show();
 }
   
