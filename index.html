@@ -203,7 +203,11 @@ color:black;
 }
 
 #menu button{
-  #navbar{
+  display:block;
+  width:100%;
+}
+
+#navbar{
   position:fixed;
 
   bottom:0;
@@ -226,11 +230,7 @@ color:black;
   background:none;
   box-shadow:none;
 
-  font-size:20px;
-}
-  display:block;
-
-  width:100%;
+  font-size:18px;
 }
   
 </style>
@@ -460,6 +460,7 @@ card.addEventListener("touchend", e=>{
   }
 });
    }
+  }
 
   function toggleMenu(){
   let menu =
