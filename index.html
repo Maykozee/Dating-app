@@ -107,6 +107,25 @@ button{
 
   outline:none;
 }
+
+  #searchInput{
+  margin-top:10px;
+
+  background:white;
+
+  color:black;
+
+  box-shadow:0 0 15px rgba(255,255,255,0.5);
+}
+  
+  input:focus{
+  box-shadow:0 0 15px #ff4b91;
+
+  border:2px solid #ff4b91;
+
+  transform:scale(1.03);
+}
+  
 #searchInput{
   margin-bottom:10px;
 }
@@ -538,6 +557,10 @@ placeholder="Search name">
   <p id="liveUsers">
 🔥 120 online now
 </p>
+  
+  <input id="searchInput"
+placeholder="Search name..."
+onkeyup="searchUser()">
 
   <button class="dislikeBtn" onclick="dislike()">❌</button>
   <button class="likeBtn" onclick="like()">❤️</button>
