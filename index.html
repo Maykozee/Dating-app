@@ -48,6 +48,7 @@ position:relative;
 
  .card:hover{
   transform:scale(1.03) rotate(1deg);
+   box-shadow:0 0 40px pink;
 }
 
 img{
@@ -64,6 +65,7 @@ img{
 
   img:hover{
   transform:scale(1.05);
+    box-shadow:0 0 20px white;
 }
 
 button{
@@ -280,7 +282,15 @@ color:black;
   height:45px;
 
   border-radius:50%;
+
+      #menuBtn:hover{
+  transform:rotate(90deg);
+
+  background:#ff4b91;
+
+  color:white;
 }
+      
   #menu{
   display:none;
 
@@ -322,6 +332,10 @@ color:black;
   padding:10px;
 
   z-index:2000;
+#navbar button:hover{
+  transform:translateY(-5px);
+
+  color:#ff4b91;
 }
 
   #loading{
