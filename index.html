@@ -47,7 +47,7 @@ position:relative;
 }
 
  .card:hover{
-  transform:scale(1.02);
+  transform:scale(1.03) rotate(1deg);
 }
 
 img{
@@ -292,10 +292,57 @@ color:black;
   font-size:18px;
 }
 
-  #status{
-  animation:pulse 1s infinite;
+  .me{
+  background:#ff4b91;
+  color:white;
+
+  padding:10px;
+
+  border-radius:15px;
+
+  margin:8px;
+
+  text-align:right;
 }
 
+.them{
+  background:#eee;
+
+  padding:10px;
+
+  border-radius:15px;
+
+  margin:8px;
+
+  text-align:left;
+}
+  
+  #status{
+  animation:pulse 0.7s infinite;
+}
+
+  #loading{
+  position:fixed;
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  background:black;
+
+  color:white;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  font-size:35px;
+
+  z-index:5000;
+}
+  
 @keyframes pulse{
 
 0%{
@@ -568,6 +615,13 @@ setTimeout(()=>{
 },500);
 }
 
+  setTimeout(()=>{
+
+document.getElementById("loading")
+.style.display = "none";
+
+},2000);
+  
   function login(){
   let name =
   document.getElementById("username").value;
