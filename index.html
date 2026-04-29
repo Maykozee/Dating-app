@@ -226,7 +226,7 @@ color:black;
   background:none;
   box-shadow:none;
 
-  font-size:28px;
+  font-size:20px;
 }
   display:block;
 
@@ -424,11 +424,11 @@ function dislike(){
     m.style.opacity = "0";
     m.style.transform =
     "translate(-50%,-50%) scale(0.5)";
-  },800);
+  },300);
 
-  setTimeout(()=>{
-    m.style.display = "none";
-  },1100);
+setTimeout(()=>{
+  m.style.display = "none";
+},500);
 }
 
   function login(){
@@ -460,7 +460,6 @@ card.addEventListener("touchend", e=>{
   }
 });
    }
-    }
 
   function toggleMenu(){
   let menu =
