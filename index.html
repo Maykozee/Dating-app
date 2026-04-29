@@ -120,6 +120,11 @@ button{
 
   #liveUsers{
     #premium{
+      #verified{
+  color:#00bfff;
+
+  text-shadow:0 0 10px #00bfff;
+}
   color:purple;
 
   font-weight:bold;
@@ -290,7 +295,7 @@ color:black;
 
   border-radius:15px;
 
-  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+  box-shadow:0 10px 40px rgba(0,0,0,0.4);
 
   z-index:1000;
 }
@@ -319,6 +324,29 @@ color:black;
   z-index:2000;
 }
 
+  #loading{
+  position:fixed;
+
+  top:0;
+  left:0;
+
+  width:100%;
+  height:100%;
+
+  background:black;
+
+  color:white;
+
+  display:flex;
+
+  justify-content:center;
+  align-items:center;
+
+  font-size:35px;
+
+  z-index:5000;
+}
+  
 #navbar button{
   background:none;
   box-shadow:none;
@@ -375,6 +403,10 @@ color:black;
   font-size:35px;
 
   z-index:5000;
+}
+
+  #typing span{
+  animation:pulse 1s infinite;
 }
   
 @keyframes pulse{
@@ -440,7 +472,9 @@ placeholder="Your name">
   <span id="name"></span>
 
 <span style="color:#00bfff">
+<span id="verified">
 ✔️ Verified
+</span>
 </span>
 </h2>
   <p id="bio"></p>
@@ -518,6 +552,9 @@ Close
   <div id="messages">
     <p id="typing" style="display:none">
 💬 typing...
+<span>.</span>
+<span>.</span>
+<span>.</span>
 </p>
     <p>Hello 👋</p>
   </div>
@@ -537,11 +574,42 @@ Close
 </div>
 <script>
 let users = [
-  {name:"Sara", bio:"Love music 🎵", img:"https://i.pravatar.cc/300?img=1"},
-  {name:"Abel", bio:"Gym 💪", img:"https://i.pravatar.cc/300?img=8"},
-  {name:"Liya", bio:"Travel ✈️", img:"https://i.pravatar.cc/300?img=5"},
-  {name:"Dani", bio:"Football ⚽", img:"https://i.pravatar.cc/300?img=12"},
-  {name:"Miki", bio:"Coding 💻", img:"https://i.pravatar.cc/300?img=15"}
+
+{
+name:"Sara",
+age:22,
+bio:"Love music 🎵",
+img:"https://i.pravatar.cc/300?img=1"
+},
+
+{
+name:"Abel",
+age:25,
+bio:"Gym 💪",
+img:"https://i.pravatar.cc/300?img=8"
+},
+
+{
+name:"Liya",
+age:21,
+bio:"Travel ✈️",
+img:"https://i.pravatar.cc/300?img=5"
+},
+
+{
+name:"Dani",
+age:24,
+bio:"Football ⚽",
+img:"https://i.pravatar.cc/300?img=12"
+},
+
+{
+name:"Miki",
+age:23,
+bio:"Coding 💻",
+img:"https://i.pravatar.cc/300?img=15"
+}
+
 ];
 
   let i = 0;
@@ -582,8 +650,15 @@ function show(){
   document.querySelector(".card").style.opacity =
   "1";
 },100);
-  document.getElementById("name").innerText = users[i].name;
+  document.getElementById("name").innerText =
+users[i].name + ", " + users[i].age;
   document.getElementById("bio").innerText = users[i].bio;
+  let randomKm =
+Math.floor(Math.random()*10)+1;
+
+document.getElementById("distance")
+.innerText =
+"📍 " + randomKm + " km away";
   document.getElementById("photo")
 .style.opacity = "0";
   setTimeout(()=>{
