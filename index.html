@@ -203,6 +203,31 @@ color:black;
 }
 
 #menu button{
+  #navbar{
+  position:fixed;
+
+  bottom:0;
+  left:0;
+
+  width:100%;
+
+  background:white;
+
+  display:flex;
+
+  justify-content:space-around;
+
+  padding:10px;
+
+  z-index:2000;
+}
+
+#navbar button{
+  background:none;
+  box-shadow:none;
+
+  font-size:28px;
+}
   display:block;
 
   width:100%;
@@ -211,6 +236,12 @@ color:black;
 </style>
 </head>
 
+  <div id="navbar">
+  <button>🏠</button>
+  <button>❤️</button>
+  <button>💬</button>
+  <button>👤</button>
+</div>
 <body>
   <div id="login">
   <h2>Login</h2>
@@ -226,7 +257,11 @@ placeholder="Your name">
 <div class="card" id="app">
   <img id="photo">
   <h2>
-  <span id="name"></span> ✔️
+  <span id="name"></span>
+
+<span style="color:#00bfff">
+✔️ Verified
+</span>
 </h2>
   <p id="bio"></p>
   <p id="status">🟢 Online</p>
@@ -256,6 +291,9 @@ onclick="toggleMenu()">⋮</button>
   <h3>💬 Chat</h3>
 
   <div id="messages">
+    <p id="typing" style="display:none">
+💬 typing...
+</p>
     <p>Hello 👋</p>
   </div>
 
@@ -321,6 +359,12 @@ function show(){
 },100);
   document.getElementById("name").innerText = users[i].name;
   document.getElementById("bio").innerText = users[i].bio;
+  document.getElementById("photo")
+.style.opacity = "0";
+  setTimeout(()=>{
+document.getElementById("photo")
+.style.opacity = "1";
+},200);
   document.getElementById("photo").src = users[i].img;
 }
 function next(){
