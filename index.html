@@ -159,6 +159,57 @@ button{
   transition:0.3s;
   z-index:1000;
 }
+
+  #likesPage{
+  display:none;
+
+  position:fixed;
+
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  width:250px;
+
+  z-index:3000;
+
+  text-align:center;
+
+  color:black;
+}
+  
+  #profilePage{
+  display:none;
+
+  position:fixed;
+
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  width:250px;
+
+  z-index:3000;
+
+  text-align:center;
+
+  color:black;
+}
+  
 #chat{
   z-index:2000;
 color:black;
@@ -237,10 +288,23 @@ color:black;
 </head>
 
   <div id="navbar">
-  <button>🏠</button>
-  <button>❤️</button>
-  <button>💬</button>
-  <button>👤</button>
+
+<button onclick="showHome()">
+🏠
+</button>
+
+<button onclick="showLikesPage()">
+❤️
+</button>
+
+<button onclick="openChat()">
+💬
+</button>
+
+<button onclick="showProfile()">
+👤
+</button>
+
 </div>
 <body>
   <div id="login">
@@ -283,9 +347,39 @@ onclick="toggleMenu()">⋮</button>
   <p id="count">Likes: 0</p>
   
 </div> 
+  <div id="likesPage">
+
+<h2>❤️ Liked People</h2>
+
+<p id="likedNames">
+No likes yet
+</p>
+
+<button onclick="closeLikesPage()">
+Close
+</button>
+
+</div>
 <div id="toast"></div>
 <div id="match">
   ❤️ MATCHED ❤️
+</div>
+  <div id="profilePage">
+
+<h2>👤 My Profile</h2>
+
+<p>Name:
+<span id="profileName">
+User
+</span>
+</p>
+
+<p>Premium User 💎</p>
+
+<button onclick="closeProfile()">
+Close
+</button>
+
 </div>
   <div id="chat">
   <h3>💬 Chat</h3>
@@ -498,6 +592,58 @@ function closeChat(){
 function darkMode(){
   document.body.classList.toggle("dark");
 }
+
+  function showLikesPage(){
+
+  document.getElementById("likesPage")
+  .style.display = "block";
+
+  let names = liked.map(x => x.name)
+  .join(", ");
+
+  if(names == ""){
+    names = "No likes yet";
+  }
+
+  document.getElementById("likedNames")
+  .innerText = names;
+}
+
+function closeLikesPage(){
+  document.getElementById("likesPage")
+  .style.display = "none";
+}
+
+function showProfile(){
+
+  document.getElementById("profilePage")
+  .style.display = "block";
+
+  let username =
+  document.getElementById("username")
+  .value;
+
+  document.getElementById("profileName")
+  .innerText = username;
+}
+
+function closeProfile(){
+  document.getElementById("profilePage")
+  .style.display = "none";
+}
+
+function showHome(){
+
+  document.getElementById("profilePage")
+  .style.display = "none";
+
+  document.getElementById("likesPage")
+  .style.display = "none";
+
+  document.getElementById("chat")
+  .style.display = "none";
+}
+  
 function viewLikes(){
   let names = liked.map(x => x.name).join(", ");
 
