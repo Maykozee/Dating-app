@@ -35,13 +35,16 @@ body{
   border-radius:25px;
 
   text-align:center;
-  width:260px;
+  width:320px;
+  max-width:90%;
 
   transition:transform 0.3s;
 
   box-shadow:0 8px 30px rgba(0,0,0,0.2);
 
   border:1px solid rgba(255,255,255,0.3);
+  overflow:hidden;
+position:relative;
 }
 
 img{
@@ -141,7 +144,9 @@ button{
   padding:30px 50px;
   border-radius:30px;
 
-  font-size:35px;
+  font-size:28px;
+  text-align:center;
+  width:260px;
   font-weight:bold;
 
   box-shadow:0 0 30px rgba(0,0,0,0.4);
@@ -153,6 +158,8 @@ button{
   z-index:1000;
 }
 #chat{
+  z-index:2000;
+color:black;
   position:fixed;
   top:50%;
   left:50%;
@@ -164,10 +171,33 @@ button{
   width:250px;
 }
 
+    #menuBtn{
+  position:absolute;
+  top:10px;
+  right:10px;
+
+  width:45px;
+  height:45px;
+
+  border-radius:50%;
+}
   #menu{
   display:none;
 
-  margin-top:10px;
+  position:absolute;
+
+  top:60px;
+  right:10px;
+
+  background:white;
+
+  padding:10px;
+
+  border-radius:15px;
+
+  box-shadow:0 5px 20px rgba(0,0,0,0.2);
+
+  z-index:1000;
 }
 
 #menu button{
@@ -202,7 +232,8 @@ placeholder="Your name">
 
   <button class="dislikeBtn" onclick="dislike()">❌</button>
   <button class="likeBtn" onclick="like()">❤️</button>
-  <button onclick="toggleMenu()">⋮</button>
+  <button id="menuBtn"
+onclick="toggleMenu()">⋮</button>
 
 <div id="menu">
   <button onclick="viewLikes()">📋 Likes</button>
