@@ -25,6 +25,26 @@ body{
 #app{
   display:none;
 }
+
+  #stories{
+  display:flex;
+
+  gap:10px;
+
+  overflow-x:auto;
+
+  margin-bottom:15px;
+}
+
+#stories img{
+  width:60px;
+
+  height:60px;
+
+  border-radius:50%;
+
+  border:3px solid #ff4b91;
+}
   
 .card{
   background:rgba(255,255,255,0.2);
@@ -427,6 +447,8 @@ color:black;
   #loading{
   position:fixed;
 
+  animation:pulse 1s infinite;
+
   top:0;
   left:0;
 
@@ -519,6 +541,24 @@ color:black;
   z-index:5000;
 }
 
+  #gallery{
+  display:flex;
+
+  gap:8px;
+
+  margin-top:10px;
+
+  justify-content:center;
+}
+
+#gallery img{
+  width:70px;
+
+  height:70px;
+
+  border-radius:15px;
+}
+  
   #typing span{
   animation:pulse 1s infinite;
 }
@@ -602,6 +642,19 @@ placeholder="Your name">
 
 <div class="card" id="app">
 
+
+  <div id="stories">
+
+<img src="https://i.pravatar.cc/60?img=20">
+
+<img src="https://i.pravatar.cc/60?img=21">
+
+<img src="https://i.pravatar.cc/60?img=22">
+
+<img src="https://i.pravatar.cc/60?img=23">
+
+</div>
+  
 <input id="searchInput"
 placeholder="Search name..."
 onkeyup="searchUser()">
@@ -611,18 +664,33 @@ onkeyup="searchUser()">
 </button>
 
 <img id="photo">
+  <div id="gallery">
+
+<img src="https://i.pravatar.cc/100?img=30">
+
+<img src="https://i.pravatar.cc/100?img=31">
+
+<img src="https://i.pravatar.cc/100?img=32">
+
+</div>
+  
   <h2>
   <span id="name"></span>
 
 <span style="color:#00bfff">
 <span id="verified">
-✔️ Verified
+
+✔️ Verified Premium
+  
 </span>
 </span>
 </h2>
   <p id="bio"></p>
   <p id="status">🟢 Online</p>
   <p id="distance">📍 2 km away</p>
+  <p id="matchPercent">
+❤️ 92% Match
+</p>
   <p id="liveUsers">
 🔥 120 online now
 </p>
@@ -636,6 +704,11 @@ onkeyup="searchUser()">
   <button onclick="superLike()">
 💙
 </button>
+
+  <button onclick="sendGift()">
+🎁
+</button>
+  
   <button id="menuBtn"
 onclick="toggleMenu()">⋮</button>
 
@@ -649,6 +722,11 @@ onclick="toggleMenu()">⋮</button>
 </button>
 
   <button onclick="openChat()">💬 Chat</button>
+
+  <button onclick="videoCall()">
+📹 Video
+</button>
+  
   <button onclick="openPremium()">
 💎 Premium
 </button>
@@ -784,6 +862,11 @@ Close
   <br><br>
 
   <button onclick="sendMessage()">
+
+    <button onclick="voiceMessage()">
+🎤
+</button>
+    
     Send
   </button>
 
@@ -792,6 +875,9 @@ Close
   </button>
 </div>
 <script>
+
+  <title>EthioDating Pro</title>
+  
 let users = [
 
 {
@@ -878,6 +964,12 @@ Math.floor(Math.random()*10)+1;
 document.getElementById("distance")
 .innerText =
 "📍 " + randomKm + " km away";
+  let percent =
+Math.floor(Math.random()*20)+80;
+
+document.getElementById("matchPercent")
+.innerText =
+"❤️ " + percent + "% Match";
   document.getElementById("photo")
 .style.opacity = "0";
   setTimeout(()=>{
@@ -1123,6 +1215,12 @@ let replies = [
 
 "💌 Tell me more about you"
 
+  "🤖 I think we match well",
+
+"😍 You seem interesting",
+
+"💘 I like your vibe"
+
 ];
 
 let randomReply =
@@ -1208,6 +1306,12 @@ function closeProfile(){
   .style.display = "none";
 }
 
+  function videoCall(){
+
+showToast("Connecting video call... 📹");
+
+}
+  
 function showHome(){
 
   document.getElementById("profilePage")
@@ -1307,6 +1411,12 @@ location.reload();
 
 }
 
+  function sendGift(){
+
+showToast("Gift sent 🎁");
+
+}
+  
 function changeBackground(){
 
 let colors = [
@@ -1326,6 +1436,12 @@ colors[Math.floor(Math.random()*colors.length)];
 
 document.body.style.background =
 randomColor;
+
+}
+
+  function voiceMessage(){
+
+showToast("Voice message sent 🎤");
 
 }
   
