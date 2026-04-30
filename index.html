@@ -576,12 +576,16 @@ placeholder="Your name">
 </div>
 
 <div class="card" id="app">
-  
+
+<input id="searchInput"
+placeholder="Search name..."
+onkeyup="searchUser()">
 
 <button onclick="searchUser()">
-🔍
+🔍 Search
 </button>
-  <img id="photo">
+
+<img id="photo">
   <h2>
   <span id="name"></span>
 
@@ -867,8 +871,6 @@ showToast("User not found");
   
 }
   
-  show();
-}
   
 function like(){
   liked.push(users[i]);
