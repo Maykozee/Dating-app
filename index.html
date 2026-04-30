@@ -40,7 +40,7 @@ body{
   width:320px;
   max-width:90%;
 
-  transition:0.3s;
+  transition:0.5s ease;
   box-shadow:0 8px 30px rgba(0,0,0,0.2);
 
   border:1px solid rgba(255,255,255,0.3);
@@ -305,6 +305,31 @@ button{
   width:250px;
 
   z-index:3000;
+
+  text-align:center;
+
+  color:black;
+}
+
+  #settingsPage{
+  display:none;
+
+  position:fixed;
+
+  top:50%;
+  left:50%;
+
+  transform:translate(-50%,-50%);
+
+  background:white;
+
+  padding:20px;
+
+  border-radius:20px;
+
+  width:260px;
+
+  z-index:4000;
 
   text-align:center;
 
@@ -619,7 +644,15 @@ onclick="toggleMenu()">⋮</button>
 
   <button onclick="darkMode()">🌙 Dark</button>
 
+  <button onclick="openSettings()">
+⚙️ Settings
+</button>
+
   <button onclick="openChat()">💬 Chat</button>
+  <button onclick="openPremium()">
+💎 Premium
+</button>
+  
 </div>
   
   <p id="count">Likes: 0</p>
@@ -645,6 +678,33 @@ Close
 <div id="match">
   ❤️ MATCHED ❤️
 </div>
+
+  <div id="premiumPage">
+
+<h2>💎 Premium</h2>
+
+<p>
+See who liked you ❤️
+</p>
+
+<p>
+Unlimited chat 💬
+</p>
+
+<p>
+Unlimited swipes 🔥
+</p>
+
+<button onclick="buyPremium()">
+Buy Premium
+</button>
+
+<button onclick="closePremium()">
+Close
+</button>
+
+</div>
+  
   <div id="profilePage">
 
 <h2>👤 My Profile</h2>
@@ -682,6 +742,29 @@ Close
 </button>
 
 </div>
+
+  <div id="settingsPage">
+
+<h2>⚙️ Settings</h2>
+
+<button onclick="darkMode()">
+🌙 Dark Mode
+</button>
+
+<button onclick="changeBackground()">
+🎨 Change Background
+</button>
+
+<button onclick="logout()">
+🚪 Logout
+</button>
+
+<button onclick="closeSettings()">
+Close
+</button>
+
+</div>
+  
   <div id="chat">
   <h3>💬 Chat</h3>
 
@@ -906,7 +989,7 @@ function like(){
 "Likes: " + liked.length;
   
   document.querySelector(".card").style.transform =
-  "translateX(300px) rotate(20deg)";
+  "translateX(500px) rotate(30deg)";
   
   showToast("Liked " + users[i].name);
   document.getElementById("likeSound")
@@ -932,7 +1015,7 @@ next();
 }
 function dislike(){
   document.querySelector(".card").style.transform =
-  "translateX(-300px) rotate(-20deg)";
+  "translateX(-500px) rotate(-30deg)";
 
   showToast("Disliked " + users[i].name);
 
@@ -1181,6 +1264,70 @@ document.getElementById("liveUsers")
 "🔥 " + online + " online now";
 
 },4000);
+
+  function openPremium(){
+
+document.getElementById("premiumPage")
+.style.display = "block";
+
+}
+
+function closePremium(){
+
+document.getElementById("premiumPage")
+.style.display = "none";
+
+}
+
+function buyPremium(){
+
+showToast("Premium Activated 💎");
+
+closePremium();
+
+}
+
+  function openSettings(){
+
+document.getElementById("settingsPage")
+.style.display = "block";
+
+}
+
+function closeSettings(){
+
+document.getElementById("settingsPage")
+.style.display = "none";
+
+}
+
+function logout(){
+
+location.reload();
+
+}
+
+function changeBackground(){
+
+let colors = [
+
+"linear-gradient(to right,pink,purple)",
+
+"linear-gradient(to right,#00c6ff,#0072ff)",
+
+"linear-gradient(to right,#ff9966,#ff5e62)",
+
+"linear-gradient(to right,#56ab2f,#a8e063)"
+
+];
+
+let randomColor =
+colors[Math.floor(Math.random()*colors.length)];
+
+document.body.style.background =
+randomColor;
+
+}
   
 show();
 </script>
