@@ -604,6 +604,38 @@ color:black;
   z-index:5000;
 }
 
+  #loaderBox{
+text-align:center;
+}
+
+#loaderBar{
+width:220px;
+height:12px;
+background:#333;
+border-radius:20px;
+overflow:hidden;
+margin-top:20px;
+}
+
+#loaderFill{
+width:0%;
+height:100%;
+background:linear-gradient(to right,#ff4b91,#ff0066);
+animation:loadBar 2s linear forwards;
+}
+
+@keyframes loadBar{
+
+0%{
+width:0%;
+}
+
+100%{
+width:100%;
+}
+
+}
+  
   #gallery{
   display:flex;
 
@@ -662,9 +694,24 @@ color:black;
 </head>
 
 <body>
-  <div id="loading">
-  ❤️ EthioDating
+<div id="loading">
+
+<div id="loaderBox">
+
+<h1>❤️ EthioDating</h1>
+
+<div id="loaderBar">
+
+<div id="loaderFill"></div>
+
 </div>
+
+<p>Connecting people...</p>
+
+</div>
+
+</div>
+  
 <audio id="likeSound">
 <source src="https://www.soundjay.com/buttons/sounds/button-3.mp3">
 </audio>
