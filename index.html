@@ -825,7 +825,34 @@ document.getElementById("notify")
 .style.display = "none";
 
 },4000);
+    
+setInterval(()=>{
 
+let randomUsers = [
+"Betty joined ❤️",
+"New match nearby 🔥",
+"Hana sent a like 💌",
+"Samuel is online 🟢",
+"New people joined ✨"
+];
+
+let randomText =
+randomUsers[Math.floor(Math.random()*randomUsers.length)];
+
+document.getElementById("notify")
+.innerText = randomText;
+
+document.getElementById("notify")
+.style.display = "block";
+
+setTimeout(()=>{
+
+document.getElementById("notify")
+.style.display = "none";
+
+},3000);
+
+},7000);
   show();
 }
 
@@ -1001,8 +1028,25 @@ setTimeout(()=>{
 document.getElementById("typing")
 .style.display = "none";
 
+let replies = [
+
+"❤️ Nice to meet you",
+
+"😍 You look amazing",
+
+"🔥 Wow nice profile",
+
+"😊 How are you?",
+
+"💌 Tell me more about you"
+
+];
+
+let randomReply =
+replies[Math.floor(Math.random()*replies.length)];
+
 messages.innerHTML +=
-"<div class='them'>❤️ Nice to meet you</div>";
+"<div class='them'>" + randomReply + "</div>";
 
 },1000);
   }
@@ -1126,6 +1170,18 @@ reader.readAsDataURL(file);
 }
 
 });
+
+  setInterval(()=>{
+
+let online =
+Math.floor(Math.random()*500)+100;
+
+document.getElementById("liveUsers")
+.innerText =
+"🔥 " + online + " online now";
+
+},4000);
+  
 show();
 </script>
 
