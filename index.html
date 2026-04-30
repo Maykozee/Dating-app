@@ -34,6 +34,8 @@ body{
   padding:20px;
   border-radius:25px;
 
+  animation:cardShow 0.5s;
+  
   text-align:center;
   width:320px;
   max-width:90%;
@@ -128,21 +130,39 @@ button{
   
 #searchInput{
   margin-bottom:10px;
+
+  width:90%;
+
+  background:white;
+
+  padding:14px;
+
+  border-radius:15px;
+
+  font-size:17px;
+
+  box-shadow:0 0 15px rgba(255,255,255,0.4);
 }
-  
-.likeBtn{
+
+  .likeBtn{
   background:#ff4b91;
   color:white;
+
+  box-shadow:0 0 20px #ff4b91;
 }
 
-.dislikeBtn{
+ .dislikeBtn{
   background:#444;
   color:white;
+
+  box-shadow:0 0 15px #444;
 }
 
-  #status{
+ #status{
   color:limegreen;
   font-weight:bold;
+
+  text-shadow:0 0 15px limegreen;
 }
 
 #distance{
@@ -305,6 +325,12 @@ color:black;
   width:250px;
 }
 
+  #messages{
+  max-height:200px;
+
+  overflow-y:auto;
+}
+  
     #menuBtn{
   position:absolute;
   top:10px;
@@ -471,6 +497,22 @@ color:black;
   #typing span{
   animation:pulse 1s infinite;
 }
+
+  @keyframes cardShow{
+
+0%{
+  transform:scale(0.7);
+
+  opacity:0;
+}
+
+100%{
+  transform:scale(1);
+
+  opacity:1;
+}
+
+}
   
 @keyframes pulse{
 
@@ -535,8 +577,6 @@ placeholder="Your name">
 
 <div class="card" id="app">
   
-<input id="searchInput"
-placeholder="Search name">
 
 <button onclick="searchUser()">
 🔍
@@ -759,8 +799,11 @@ document.getElementById("photo")
 },200);
   document.getElementById("photo").src = users[i].img;
 }
-function next(){
+
+  function next(){
+
   i++;
+
   if(i >= users.length){
     i = 0;
   }
@@ -779,17 +822,33 @@ document.getElementById("notify")
 
 },4000);
 
-  function searchUser(){
+  show();
+}
+
+
+function searchUser(){
 
 let text =
 document.getElementById("searchInput")
 .value.toLowerCase();
+
+  if(text == ""){
+
+showToast("Write a name");
+
+return;
+
+}
+
+  let found = false;
 
 for(let x=0; x<users.length; x++){
 
 if(users[x].name.toLowerCase()
 .includes(text)){
 
+  found = true;
+  
 i = x;
 
 show();
@@ -800,6 +859,12 @@ showToast("Found " + users[x].name);
 
 }
 
+  if(found == false){
+
+showToast("User not found");
+
+}
+  
 }
   
   show();
