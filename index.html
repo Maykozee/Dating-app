@@ -415,6 +415,8 @@ button{
   text-align:center;
 
   color:black;
+
+  box-shadow:0 0 30px rgba(0,0,0,0.3);
 }
   
 #chat{
@@ -1202,17 +1204,32 @@ document.getElementById("loading")
 },2000);
   
   function login(){
-  let name =
-  document.getElementById("username").value;
 
-  if(name != ""){
-    document.getElementById("login").style.display =
-    "none";
+let name =
+document.getElementById("username")
+.value.trim();
 
-    document.getElementById("app").style.display =
-    "block";
-   }
-  }
+if(name == ""){
+
+showToast("Enter your name");
+
+return;
+
+}
+
+document.getElementById("login")
+.style.display = "none";
+
+document.getElementById("app")
+.style.display = "block";
+
+showToast("Welcome " + name + " ❤️");
+
+document.getElementById("profileName")
+.innerText = name;
+
+}
+  
   function toggleMenu(){
 
   let menu =
@@ -1402,6 +1419,9 @@ new FileReader();
 reader.onload = function(){
 
 document.getElementById("myPhoto")
+.src = reader.result;
+
+document.getElementById("photo")
 .src = reader.result;
 
 };
