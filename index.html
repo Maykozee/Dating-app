@@ -217,11 +217,47 @@ button{
 }
   
   .dark{
-  background:black;
+  background:linear-gradient(to right,#111,#000);
   color:white;
 }
+
 .dark .card{
+  background:rgba(30,30,30,0.9);
+
+  border:1px solid rgba(255,255,255,0.1);
+
+  box-shadow:0 0 30px rgba(255,255,255,0.1);
+}
+
+.dark button{
   background:#222;
+  color:white;
+}
+
+.dark input{
+  background:#111;
+  color:white;
+}
+
+.dark #navbar{
+  background:#111;
+}
+
+.dark #menu{
+  background:#222;
+}
+
+.dark #chat{
+  background:#222;
+  color:white;
+}
+
+.dark #profilePage,
+.dark #likesPage,
+.dark #settingsPage,
+.dark #premiumPage{
+  background:#222;
+  color:white;
 }
 
   #notify{
@@ -1099,7 +1135,7 @@ function like(){
 "Likes: " + liked.length;
   
   document.querySelector(".card").style.transform =
-  "translateX(500px) rotate(30deg)";
+"translateX(700px) rotate(45deg) scale(0.8)";
   
   showToast("Liked " + users[i].name);
   document.getElementById("likeSound")
@@ -1125,7 +1161,7 @@ next();
 }
 function dislike(){
   document.querySelector(".card").style.transform =
-  "translateX(-500px) rotate(-30deg)";
+"translateX(-700px) rotate(-45deg) scale(0.8)";
 
   showToast("Disliked " + users[i].name);
 
