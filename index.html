@@ -16,7 +16,14 @@ body{
 }
   
   #login{
-  background:white;
+  background:rgba(255,255,255,0.15);
+
+  backdrop-filter:blur(15px);
+
+    border:1px solid rgba(255,255,255,0.2);
+
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+    
   padding:20px;
   border-radius:20px;
   text-align:center;
@@ -284,9 +291,11 @@ button{
   bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
-  background: black;
+  background:rgba(0,0,0,0.8);
+  backdrop-filter:blur(10px);
   color: white;
-  padding: 10px 20px;
+  padding: 14px 24px;
+  font-size:18px;
   border-radius: 10px;
   opacity: 0;
   transition: opacity 0.3s;
@@ -303,7 +312,8 @@ button{
   padding:30px 50px;
   border-radius:30px;
 
-  font-size:28px;
+  font-size:34px;
+  letter-spacing:2px;
   text-align:center;
   width:260px;
   font-weight:bold;
@@ -503,6 +513,12 @@ color:black;
   padding:10px;
 
   z-index:2000;
+
+  backdrop-filter:blur(15px);
+
+border-top:1px solid rgba(0,0,0,0.1);
+
+box-shadow:0 -5px 20px rgba(0,0,0,0.15);
 }
   
 #navbar button:hover{
