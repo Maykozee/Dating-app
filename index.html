@@ -531,6 +531,29 @@ color:black;
 
   z-index:5000;
 }
+
+  .badge{
+position:absolute;
+
+top:5px;
+right:20px;
+
+background:red;
+color:white;
+
+width:20px;
+height:20px;
+
+border-radius:50%;
+
+font-size:12px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+animation:pulse 1s infinite;
+}
   
 #navbar button{
   background:none;
@@ -730,9 +753,17 @@ width:100%;
 ❤️
 </button>
 
+<div style="position:relative">
+
 <button onclick="openChat()">
 💬
 </button>
+
+<div class="badge" id="msgBadge">
+3
+</div>
+
+</div>
 
 <button onclick="showProfile()">
 👤
@@ -1299,7 +1330,13 @@ document.getElementById("profileName")
 }
   
 function openChat(){
-  document.getElementById("chat").style.display = "block";
+
+document.getElementById("chat")
+.style.display = "block";
+
+document.getElementById("msgBadge")
+.style.display = "none";
+
 }
 
  function sendMessage(){
@@ -1356,7 +1393,19 @@ function closeChat(){
 }
   
 function darkMode(){
-  document.body.classList.toggle("dark");
+
+document.body.classList.toggle("dark");
+
+if(document.body.classList.contains("dark")){
+
+localStorage.setItem("theme","dark");
+
+}else{
+
+localStorage.setItem("theme","light");
+
+}
+
 }
 
   function showLikesPage(){
@@ -1583,6 +1632,15 @@ let savedBio = localStorage.getItem("bio");
 if(savedBio){
 document.getElementById("myBio")
 .innerText = savedBio;
+}
+
+  let savedTheme =
+localStorage.getItem("theme");
+
+if(savedTheme == "dark"){
+
+document.body.classList.add("dark");
+
 }
   
 show();
