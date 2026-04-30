@@ -376,7 +376,7 @@ color:black;
   overflow-y:auto;
 }
   
-    #menuBtn{
+   #menuBtn{
   position:absolute;
   top:10px;
   right:10px;
@@ -387,7 +387,7 @@ color:black;
   border-radius:50%;
     }
 
-      #menuBtn:hover{
+   #menuBtn:hover{
   transform:rotate(90deg);
 
   background:#ff4b91;
@@ -694,10 +694,6 @@ onkeyup="searchUser()">
   <p id="liveUsers">
 🔥 120 online now
 </p>
-  
-  <input id="searchInput"
-placeholder="Search name..."
-onkeyup="searchUser()">
 
   <button class="dislikeBtn" onclick="dislike()">❌</button>
   <button class="likeBtn" onclick="like()">❤️</button>
@@ -862,21 +858,18 @@ Close
   <br><br>
 
   <button onclick="sendMessage()">
+Send
+</button>
 
-    <button onclick="voiceMessage()">
+<button onclick="voiceMessage()">
 🎤
 </button>
-    
-    Send
-  </button>
 
   <button onclick="closeChat()">
     Close
   </button>
 </div>
 <script>
-
-  <title>EthioDating Pro</title>
   
 let users = [
 
@@ -1028,6 +1021,7 @@ document.getElementById("notify")
 },3000);
 
 },7000);
+    
   show();
 }
 
@@ -1072,7 +1066,6 @@ showToast("User not found");
 }
   
 }
-  
   
 function like(){
   liked.push(users[i]);
@@ -1213,7 +1206,7 @@ let replies = [
 
 "😊 How are you?",
 
-"💌 Tell me more about you"
+"💌 Tell me more about you",
 
   "🤖 I think we match well",
 
