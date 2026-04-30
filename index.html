@@ -974,7 +974,7 @@ img:"https://i.pravatar.cc/300?img=15"
 ];
 
   let i = 0;
-  let liked = [];
+  let liked = JSON.parse(localStorage.getItem("liked")) || [];
   let startX = 0;
   let card = document.querySelector(".card");
 
@@ -1132,6 +1132,7 @@ showToast("User not found");
   
 function like(){
   liked.push(users[i]);
+  localStorage.setItem("liked", JSON.stringify(liked));
 
   document.getElementById("count").innerText =
 "Likes: " + liked.length;
@@ -1343,6 +1344,8 @@ function showProfile(){
 
   document.getElementById("profileName")
   .innerText = username;
+
+  localStorage.setItem("username", name);
 }
 
   function editProfile(){
@@ -1367,6 +1370,8 @@ if(newBio != ""){
 
 document.getElementById("myBio")
 .innerText = newBio;
+
+  localStorage.setItem("bio", newBio);
 
 }
 
@@ -1517,6 +1522,20 @@ randomColor;
 
 showToast("Voice message sent 🎤");
 
+}
+
+  let savedName = localStorage.getItem("username");
+
+if(savedName){
+document.getElementById("profileName")
+.innerText = savedName;
+}
+
+let savedBio = localStorage.getItem("bio");
+
+if(savedBio){
+document.getElementById("myBio")
+.innerText = savedBio;
 }
   
 show();
