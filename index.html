@@ -1,498 +1,367 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="am">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EthioDating Pro</title>
 
-<title>Maykozee Dating</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
-
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#111;
-color:white;
+background:linear-gradient(135deg,#ff0066,#7b2ff7,#00c6ff);
+min-height:100vh;
 overflow-x:hidden;
-transition:0.3s;
+color:white;
+transition:0.4s;
 }
 
-/* DARK MODE */
-
-body.light{
-background:#f5f5f5;
-color:black;
+body.dark{
+background:#050505;
+color:#fff;
 }
 
-body.light .card,
-body.light .menu,
-body.light .popup,
-body.light .storyViewer,
-body.light .chatBox,
-body.light .profilePage{
-background:white;
-color:black;
+body.dark .card,
+body.dark .popup,
+body.dark .topbar,
+body.dark .bottomBar,
+body.dark .storyBox,
+body.dark .menu{
+background:#121212;
+color:white;
+border:1px solid #222;
 }
-
-body.light input,
-body.light select,
-body.light textarea{
-background:#eee;
-color:black;
-}
-
-/* LOADING */
 
 #loading{
 position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
+inset:0;
 background:black;
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-z-index:9999;
+z-index:99999;
 }
 
 .loader{
-width:80px;
-height:80px;
+width:90px;
+height:90px;
 border-radius:50%;
-border:8px solid #333;
-border-top:8px solid #ff0055;
+border:8px solid #222;
+border-top:8px solid #ff0066;
 animation:spin 1s linear infinite;
 margin-bottom:20px;
 }
 
 @keyframes spin{
-100%{
-transform:rotate(360deg);
-}
+100%{transform:rotate(360deg);}
 }
 
-/* WELCOME */
+.welcomeBg{
+position:fixed;
+inset:0;
+background:url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1200&auto=format&fit=crop') center/cover;
+opacity:0.25;
+z-index:-1;
+filter:blur(3px);
+}
 
-#welcome{
-height:100vh;
-background:url("https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200")
-center/cover;
-display:flex;
-justify-content:center;
-align-items:center;
-position:relative;
+.hero{
 text-align:center;
-}
-
-#welcome::after{
-content:"";
-position:absolute;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.6);
-top:0;
-left:0;
-}
-
-.welcomeBox{
-position:relative;
-z-index:2;
-padding:20px;
-}
-
-.welcomeBox h1{
-font-size:55px;
-margin-bottom:10px;
-}
-
-.welcomeBox p{
-font-size:20px;
-margin-bottom:20px;
-}
-
-.welcomeBox button{
-padding:15px 35px;
-border:none;
-border-radius:40px;
-background:#ff0055;
-color:white;
-font-size:20px;
-cursor:pointer;
-}
-
-#brand{
-position:absolute;
-bottom:20px;
-right:20px;
-font-size:14px;
-opacity:0.8;
-z-index:2;
-}
-
-/* AUTH */
-
-#auth{
-display:none;
-padding:20px;
-min-height:100vh;
-background:#111;
-}
-
-.authBox{
-background:#1e1e1e;
-padding:20px;
-border-radius:20px;
-max-width:500px;
-margin:auto;
-}
-
-.authBox h2{
-margin-bottom:20px;
-text-align:center;
-}
-
-input,
-select,
-textarea{
-width:100%;
-padding:14px;
-margin-bottom:14px;
-border:none;
-border-radius:12px;
-background:#333;
-color:white;
-font-size:16px;
-}
-
-.authBtn{
-width:100%;
-padding:15px;
-border:none;
-border-radius:14px;
-background:#ff0055;
-color:white;
-font-size:18px;
-cursor:pointer;
-}
-
-.optionBox{
-display:flex;
-gap:10px;
-margin-bottom:15px;
-}
-
-.optionBox button{
-flex:1;
-padding:12px;
-border:none;
-border-radius:12px;
-background:#ff0055;
-color:white;
-cursor:pointer;
-}
-
-/* APP */
-
-#app{
-display:none;
-padding-bottom:90px;
-}
-
-.topBar{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:15px;
-position:sticky;
-top:0;
-background:#111;
-z-index:100;
+padding:30px 20px 10px;
 }
 
 .logo{
-font-size:28px;
-font-weight:bold;
-color:#ff0055;
+font-size:42px;
+font-weight:700;
+color:#fff;
+text-shadow:0 0 20px rgba(255,255,255,0.5);
+}
+
+.logo span{
+color:#ffd700;
+}
+
+.hero p{
+margin-top:10px;
+opacity:0.9;
+font-size:15px;
+}
+
+.topbar{
+position:sticky;
+top:0;
+backdrop-filter:blur(15px);
+background:rgba(255,255,255,0.12);
+padding:14px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+z-index:999;
 }
 
 .menuBtn{
-font-size:30px;
+font-size:28px;
+background:none;
+border:none;
+color:white;
 cursor:pointer;
 }
 
-/* STORIES */
+.menu{
+position:fixed;
+top:70px;
+right:15px;
+width:240px;
+display:none;
+background:white;
+color:black;
+padding:15px;
+border-radius:20px;
+box-shadow:0 10px 40px rgba(0,0,0,0.4);
+z-index:9999;
+}
 
-#stories{
+.menu button{
+width:100%;
+margin-top:10px;
+padding:12px;
+border:none;
+border-radius:12px;
+font-weight:600;
+cursor:pointer;
+}
+
+.storyWrap{
 display:flex;
-overflow-x:auto;
 gap:12px;
+overflow-x:auto;
 padding:15px;
 }
 
-.story{
+.storyBox{
+min-width:75px;
 text-align:center;
+background:rgba(255,255,255,0.15);
+padding:8px;
+border-radius:20px;
+backdrop-filter:blur(12px);
 }
 
-.story img{
-width:70px;
-height:70px;
+.storyBox img{
+width:60px;
+height:60px;
 border-radius:50%;
-border:3px solid #ff0055;
+border:3px solid #ff0066;
 object-fit:cover;
 }
 
-.story p{
+.storyBox p{
 font-size:12px;
 margin-top:5px;
 }
 
-/* CARD */
-
-.card{
-background:#1e1e1e;
-margin:15px;
-border-radius:25px;
-overflow:hidden;
-position:relative;
-box-shadow:0 5px 20px rgba(0,0,0,0.5);
-transition:0.3s;
+.main{
+padding:20px;
+display:flex;
+justify-content:center;
 }
 
-.card img{
+.card{
+width:360px;
+max-width:100%;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
+border-radius:30px;
+overflow:hidden;
+box-shadow:0 10px 50px rgba(0,0,0,0.4);
+position:relative;
+transition:0.4s;
+}
+
+.mainPhoto{
 width:100%;
-height:420px;
+height:430px;
 object-fit:cover;
 }
 
-.cardContent{
-padding:15px;
+.badge{
+position:absolute;
+top:15px;
+left:15px;
+background:#00c853;
+padding:8px 14px;
+border-radius:30px;
+font-size:13px;
+font-weight:600;
 }
 
-.cardContent h2{
-margin-bottom:10px;
+.info{
+padding:18px;
 }
 
-.online{
-color:lime;
+.nameRow{
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+.nameRow h2{
+font-size:28px;
+}
+
+.verify{
+color:#00d4ff;
+font-size:18px;
+}
+
+.bio{
+margin-top:10px;
+line-height:1.6;
+opacity:0.95;
+}
+
+.gallery{
+display:flex;
+gap:8px;
+margin-top:14px;
+}
+
+.gallery img{
+width:33%;
+height:90px;
+object-fit:cover;
+border-radius:16px;
+}
+
+.details{
+margin-top:14px;
+line-height:2;
 font-size:14px;
 }
 
-.distance{
-opacity:0.7;
-margin-top:6px;
-}
-
-.buttons{
+.actions{
 display:flex;
 justify-content:center;
-gap:20px;
-margin-top:20px;
+gap:14px;
+padding:20px;
 }
 
-.buttons button{
+.actions button{
 width:70px;
 height:70px;
 border:none;
 border-radius:50%;
 font-size:28px;
 cursor:pointer;
+transition:0.3s;
 }
 
-.like{
-background:#ff0055;
-color:white;
+.actions button:hover{
+transform:scale(1.1);
 }
 
-.dislike{
-background:#444;
-color:white;
-}
+.dislike{background:#222;color:white;}
+.like{background:#ff0066;color:white;}
+.super{background:#00b0ff;color:white;}
 
-.super{
-background:#00bfff;
-color:white;
-}
-
-/* NAVBAR */
-
-#navbar{
+.bottomBar{
 position:fixed;
 bottom:0;
 left:0;
 width:100%;
-background:#1a1a1a;
+background:rgba(255,255,255,0.15);
+backdrop-filter:blur(15px);
 display:flex;
 justify-content:space-around;
 padding:15px;
-z-index:200;
+z-index:999;
 }
 
-#navbar button{
+.bottomBar button{
 background:none;
 border:none;
+font-size:24px;
 color:white;
-font-size:25px;
 cursor:pointer;
 }
-
-/* POPUP */
 
 .popup{
 position:fixed;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
-background:#1e1e1e;
-padding:20px;
-border-radius:20px;
-width:90%;
-max-width:400px;
+width:92%;
+max-width:420px;
+background:white;
+color:black;
+padding:22px;
+border-radius:28px;
 display:none;
-z-index:500;
+z-index:9999;
 max-height:90vh;
 overflow-y:auto;
 }
 
-/* CHAT */
-
-.chatMessages{
-height:250px;
-overflow-y:auto;
+.popup h2{
 margin-bottom:15px;
 }
 
-.me{
-background:#ff0055;
-padding:10px;
-border-radius:10px;
-margin:8px;
-text-align:right;
-}
-
-.them{
-background:#333;
-padding:10px;
-border-radius:10px;
-margin:8px;
-}
-
-/* NOTIFY */
-
-#toast{
-position:fixed;
-bottom:110px;
-left:50%;
-transform:translateX(-50%);
-background:black;
-padding:12px 25px;
-border-radius:30px;
-opacity:0;
-transition:0.3s;
-z-index:999;
-}
-
-/* MATCH */
-
-#match{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-background:#ff0055;
-padding:30px;
-border-radius:25px;
-font-size:35px;
-display:none;
-z-index:999;
-}
-
-/* MENU */
-
-.menu{
-position:fixed;
-top:0;
-right:-300px;
-width:260px;
-height:100%;
-background:#1e1e1e;
-padding:20px;
-transition:0.3s;
-z-index:600;
-}
-
-.menu button{
+.popup input,
+.popup select,
+.popup textarea{
 width:100%;
-padding:15px;
-margin-bottom:10px;
-border:none;
-border-radius:12px;
-background:#ff0055;
-color:white;
-}
-
-/* PREMIUM */
-
-.plan{
-background:#333;
-padding:15px;
-border-radius:15px;
-margin-bottom:15px;
-}
-
-.verify{
-background:limegreen;
-color:black;
-padding:5px 10px;
-border-radius:20px;
-font-size:12px;
-margin-left:10px;
-}
-
-.morePhotos{
-display:flex;
-gap:8px;
+padding:14px;
 margin-top:10px;
+border-radius:14px;
+border:1px solid #ddd;
 }
 
-.morePhotos img{
-width:32%;
-height:90px;
-object-fit:cover;
-border-radius:12px;
-}
-
-/* STORY VIEW */
-
-.storyViewer{
-position:fixed;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-width:90%;
-max-width:400px;
-background:#1e1e1e;
-border-radius:20px;
-overflow:hidden;
-display:none;
-z-index:900;
-}
-
-.storyViewer img{
+.popup button{
+margin-top:15px;
+padding:14px;
 width:100%;
-height:400px;
-object-fit:cover;
+border:none;
+border-radius:14px;
+background:#ff0066;
+color:white;
+font-weight:700;
+cursor:pointer;
 }
 
-.storyActions{
+.notify{
+position:fixed;
+right:15px;
+top:90px;
+background:white;
+color:black;
+padding:14px 18px;
+border-radius:18px;
+display:none;
+z-index:99999;
+box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.coinBox{
+background:rgba(255,255,255,0.12);
 padding:15px;
+border-radius:20px;
+margin-top:18px;
+}
+
+.coinBox h3{
+margin-bottom:10px;
+}
+
+.langBtn{
+background:#222 !important;
 }
 
 </style>
@@ -500,1139 +369,413 @@ padding:15px;
 
 <body>
 
-<!-- LOADING -->
-
 <div id="loading">
-
 <div class="loader"></div>
-
-<h1>❤️ Maykozee</h1>
-
-<p>Connecting Hearts...</p>
-
+<h1>EthioDating</h1>
+<p>Connecting real love...</p>
 </div>
 
-<!-- WELCOME -->
+<div class="welcomeBg"></div>
 
-<section id="welcome">
-
-<div class="welcomeBox">
-
-<h1>Find Real Love ❤️</h1>
-
-<p>
-Professional Ethiopia Dating App
-</p>
-
-<button onclick="openSignup()">
-Get Started
-</button>
-
+<div class="topbar">
+<h2>❤️ EthioDating</h2>
+<button class="menuBtn" onclick="toggleMenu()">☰</button>
 </div>
 
-<div id="brand">
-Maykozee
+<div class="menu" id="menu">
+<button onclick="toggleDarkMode()">🌙 Dark Mode</button>
+<button onclick="setLang('am')">🇪🇹 አማርኛ</button>
+<button onclick="setLang('en')">🇺🇸 English</button>
+<button onclick="openPremium()">💎 Upgrade Pro</button>
+<button onclick="openSupport()">🛠 Support Team</button>
 </div>
 
-</section>
-
-<!-- SIGNUP -->
-
-<section id="auth">
-
-<div class="authBox">
-
-<h2>Create Account</h2>
-
-<div class="optionBox">
-
-<button onclick="showPhone()">
-Phone
-</button>
-
-<button onclick="showEmail()">
-Gmail
-</button>
-
+<div class="hero">
+<div class="logo">Ethio<span>Dating</span></div>
+<p>Find real Ethiopian love ❤️</p>
 </div>
 
-<div id="phoneBox">
-
-<input type="tel"
-placeholder="Phone Number"
-id="phone">
-
-</div>
-
-<div id="emailBox"
-style="display:none">
-
-<input type="email"
-placeholder="Gmail"
-id="email">
-
-</div>
-
-<input type="text"
-placeholder="First Name"
-id="firstName">
-
-<input type="text"
-placeholder="Last Name"
-id="lastName">
-
-<input type="number"
-placeholder="Age"
-id="age">
-
-<select id="gender">
-
-<option value="">
-Gender
-</option>
-
-<option>
-Male
-</option>
-
-<option>
-Female
-</option>
-
-</select>
-
-<select id="looking">
-
-<option value="">
-Looking For
-</option>
-
-<option>
-Male
-</option>
-
-<option>
-Female
-</option>
-
-</select>
-
-<select>
-
-<option>
-Religion
-</option>
-
-<option>
-Orthodox
-</option>
-
-<option>
-Muslim
-</option>
-
-<option>
-Protestant
-</option>
-
-<option>
-Catholic
-</option>
-
-</select>
-
-<select>
-
-<option>
-City
-</option>
-
-<option>
-Addis Ababa
-</option>
-
-<option>
-Adama
-</option>
-
-<option>
-Hawassa
-</option>
-
-<option>
-Bahir Dar
-</option>
-
-<option>
-Dire Dawa
-</option>
-
-</select>
-
-<select>
-
-<option>
-Do you drink?
-</option>
-
-<option>
-No
-</option>
-
-<option>
-Sometimes
-</option>
-
-<option>
-Yes
-</option>
-
-</select>
-
-<select>
-
-<option>
-Do you smoke?
-</option>
-
-<option>
-No
-</option>
-
-<option>
-Sometimes
-</option>
-
-<option>
-Yes
-</option>
-
-</select>
-
-<select>
-
-<option>
-Want kids?
-</option>
-
-<option>
-Yes
-</option>
-
-<option>
-No
-</option>
-
-</select>
-
-<textarea
-placeholder="Tell people about yourself"></textarea>
-
-<button class="authBtn"
-onclick="signup()">
-
-Create Account
-
-</button>
-
-</div>
-
-</section>
-
-<!-- APP -->
-
-<section id="app">
-
-<div class="topBar">
-
-<div class="logo">
-❤️ Maykozee
-</div>
-
-<div class="menuBtn"
-onclick="openMenu()">
-
-☰
-
-</div>
-
-</div>
-
-<!-- STORIES -->
-
-<div id="stories">
-
-<div class="story"
-onclick="viewStory(0)">
-
+<div class="storyWrap">
+<div class="storyBox">
 <img src="https://i.pravatar.cc/150?img=11">
-
 <p>Hana</p>
+</div>
+
+<div class="storyBox">
+<img src="https://i.pravatar.cc/150?img=32">
+<p>Ruth</p>
+</div>
+
+<div class="storyBox">
+<img src="https://i.pravatar.cc/150?img=45">
+<p>Abel</p>
+</div>
+
+<div class="storyBox">
+<img src="https://i.pravatar.cc/150?img=52">
+<p>Betty</p>
+</div>
+</div>
+
+<div class="main">
+<div class="card" id="card">
+
+<div class="badge">🟢 Online • 2km Away</div>
+
+<img class="mainPhoto" id="mainPhoto" src="https://i.pravatar.cc/600?img=32">
+
+<div class="info">
+<div class="nameRow">
+<h2 id="personName">Liya, 24</h2>
+<div class="verify">✔</div>
+</div>
+
+<p class="bio" id="personBio">
+Traveler ✈️ • Coffee Lover ☕ • Looking for serious relationship ❤️
+</p>
+
+<div class="gallery">
+<img src="https://i.pravatar.cc/200?img=31">
+<img src="https://i.pravatar.cc/200?img=33">
+<img src="https://i.pravatar.cc/200?img=34">
+</div>
+
+<div class="details">
+<p>📍 Addis Ababa</p>
+<p>🙏 Orthodox</p>
+<p>🎓 Degree</p>
+<p>💼 Designer</p>
+<p>🚭 Doesn't smoke</p>
+<p>🍷 Sometimes drinks</p>
+<p>👶 Wants children</p>
+</div>
+
+<button onclick="openMoreInfo()" style="margin-top:15px;width:100%;padding:14px;border:none;border-radius:14px;background:#00b0ff;color:white;font-weight:700;">More Info</button>
 
 </div>
 
-<div class="story"
-onclick="viewStory(1)">
-
-<img src="https://i.pravatar.cc/150?img=12">
-
-<p>Sara</p>
-
-</div>
-
-<div class="story"
-onclick="viewStory(2)">
-
-<img src="https://i.pravatar.cc/150?img=13">
-
-<p>Liya</p>
-
+<div class="actions">
+<button class="dislike" onclick="dislike()">❌</button>
+<button class="super" onclick="superLike()">⭐</button>
+<button class="like" onclick="like()">❤️</button>
 </div>
 
 </div>
-
-<!-- CARD -->
-
-<div class="card"
-id="card">
-
-<img id="mainPhoto"
-src="https://i.pravatar.cc/500?img=20">
-
-<div class="cardContent">
-
-<h2 id="name">
-Sara, 23
-<span class="verify">
-Verified
-</span>
-</h2>
-
-<p class="online">
-🟢 Online
-</p>
-
-<p class="distance">
-📍 3 KM Away
-</p>
-
-<p id="bio">
-Love travel and music ❤️
-</p>
-
-<div class="morePhotos">
-
-<img src="https://i.pravatar.cc/200?img=21">
-
-<img src="https://i.pravatar.cc/200?img=22">
-
-<img src="https://i.pravatar.cc/200?img=23">
-
 </div>
 
-<div class="buttons">
-
-<button class="dislike"
-onclick="dislike()">
-
-❌
-
-</button>
-
-<button class="super"
-onclick="superLike()">
-
-⭐
-
-</button>
-
-<button class="like"
-onclick="like()">
-
-❤️
-
-</button>
-
+<div class="bottomBar">
+<button>🏠</button>
+<button onclick="openInbox()">💬</button>
+<button onclick="openSignup()">👤</button>
+<button onclick="openPremium()">💎</button>
 </div>
 
-<button class="authBtn"
-style="margin-top:20px"
-onclick="openProfile()">
-
-More Info
-
-</button>
-
-</div>
-
-</div>
-
-</section>
-
-<!-- NAVBAR -->
-
-<div id="navbar">
-
-<button onclick="showToast('Home')">
-🏠
-</button>
-
-<button onclick="openChat()">
-💬
-</button>
-
-<button onclick="openPremium()">
-💎
-</button>
-
-<button onclick="openProfile()">
-👤
-</button>
-
-</div>
-
-<!-- CHAT -->
-
-<div class="popup"
-id="chatPopup">
-
-<h2>
-Chat 💬
-</h2>
-
-<div class="chatMessages"
-id="messages">
-
-<div class="them">
-Hello ❤️
-</div>
-
-</div>
-
-<input type="text"
-id="messageInput"
-placeholder="Write message">
-
-<button class="authBtn"
-onclick="sendMessage()">
-
-Send
-
-</button>
-
-<button class="authBtn"
-onclick="voiceMessage()">
-
-🎤 Voice Message
-
-</button>
-
-<button class="authBtn"
-onclick="videoCall()">
-
-📹 Video Call
-
-</button>
-
-<button class="authBtn"
-onclick="closeChat()">
-
-Close
-
-</button>
-
-</div>
-
-<!-- PROFILE -->
-
-<div class="popup"
-id="profilePopup">
-
-<h2>
-Profile 👤
-</h2>
-
-<img src="https://i.pravatar.cc/300?img=30"
-style="width:100%;
-border-radius:20px;
-margin-bottom:15px;">
-
-<p>
-Name: Sara
-</p>
-
-<p>
-Age: 23
-</p>
-
-<p>
-Religion: Orthodox
-</p>
-
-<p>
-City: Addis Ababa
-</p>
-
-<p>
-Education: Degree
-</p>
-
-<p>
-Relationship Goal:
-Serious Relationship ❤️
-</p>
-
-<button class="authBtn"
-onclick="openChat()">
-
-Message
-
-</button>
-
-<button class="authBtn"
-onclick="closeProfile()">
-
-Close
-
-</button>
-
-</div>
-
-<!-- PREMIUM -->
-
-<div class="popup"
-id="premiumPopup">
-
-<h2>
-Premium 💎
-</h2>
-
-<div class="plan">
-
-<h3>
-Premium Features
-</h3>
-
-<p>
-✔ Unlimited Likes
-</p>
-
-<p>
-✔ See Who Liked You
-</p>
-
-<p>
-✔ Unlimited Chat
-</p>
-
-<p>
-✔ Priority Match
-</p>
-
-<p>
-✔ Verified Badge
-</p>
-
-</div>
-
-<h3>
-Payment Options
-</h3>
+<div class="popup" id="signupPopup">
+<h2>Signup</h2>
 
 <select>
-
-<option>
-Telebirr
-</option>
-
-<option>
-CBE
-</option>
-
-<option>
-Awash
-</option>
-
-<option>
-Binance Crypto
-</option>
-
+<option>Choose Signup Method</option>
+<option>📧 Gmail</option>
+<option>📱 Phone Number</option>
 </select>
 
-<input type="text"
-placeholder="Transaction ID">
+<input placeholder="Gmail or Phone Number">
+<button onclick="sendCode()">Send Verification Code</button>
 
-<button class="authBtn"
-onclick="buyPremium()">
+<input placeholder="Verification Code">
+<input placeholder="First Name">
+<input placeholder="Last Name">
+<input type="number" placeholder="Age">
 
-Activate Premium
+<p style="margin-top:10px;font-size:13px;color:red;">
+Under 18 users are not allowed.
+</p>
 
-</button>
+<select>
+<option>Gender</option>
+<option>Male</option>
+<option>Female</option>
+</select>
 
-<button class="authBtn"
-onclick="closePremium()">
+<select>
+<option>Interested In</option>
+<option>Male</option>
+<option>Female</option>
+</select>
 
-Close
+<select>
+<option>Country</option>
+<option>Ethiopia</option>
+<option>Kenya</option>
+<option>USA</option>
+</select>
 
-</button>
+<select>
+<option>City</option>
+<option>Addis Ababa</option>
+<option>Adama</option>
+<option>Hawassa</option>
+<option>Bahir Dar</option>
+<option>Mekelle</option>
+<option>Dire Dawa</option>
+<option>Jimma</option>
+<option>Gondar</option>
+<option>Harar</option>
+<option>Dessie</option>
+</select>
 
+<select>
+<option>Religion</option>
+<option>Orthodox</option>
+<option>Muslim</option>
+<option>Protestant</option>
+<option>Catholic</option>
+</select>
+
+<select>
+<option>Education</option>
+<option>High School</option>
+<option>Diploma</option>
+<option>Degree</option>
+<option>Masters</option>
+</select>
+
+<button onclick="finishSignup()">Create Account</button>
+<button onclick="closePopup('signupPopup')">Close</button>
 </div>
 
-<!-- MENU -->
+<div class="popup" id="moreInfoPopup">
+<h2>Profile Details</h2>
 
-<div class="menu"
-id="menu">
+<p><b>Name:</b> Liya</p>
+<p><b>Age:</b> 24</p>
+<p><b>Relationship Goal:</b> Serious Love</p>
+<p><b>Location:</b> Addis Ababa</p>
+<p><b>Religion:</b> Orthodox</p>
+<p><b>Education:</b> Degree</p>
+<p><b>Children:</b> Wants in future</p>
+<p><b>Smoking:</b> No</p>
+<p><b>Drinking:</b> Sometimes</p>
+<p><b>About:</b> Loves honest people and real relationships ❤️</p>
 
-<button onclick="toggleDark()">
-🌙 Dark Mode
-</button>
-
-<button onclick="changeLanguage()">
-🌍 English / አማርኛ
-</button>
-
-<button onclick="requestLocation()">
-📍 Location
-</button>
-
-<button onclick="requestPhoto()">
-📷 Photo Permission
-</button>
-
-<button onclick="supportTeam()">
-🛠 Support Team
-</button>
-
-<button onclick="logout()">
-🚪 Logout
-</button>
-
+<button onclick="openInbox()">Message</button>
+<button onclick="closePopup('moreInfoPopup')">Close</button>
 </div>
 
-<!-- STORY VIEW -->
+<div class="popup" id="inboxPopup">
+<h2>Inbox</h2>
 
-<div class="storyViewer"
-id="storyViewer">
-
-<img id="storyImg"
-src="https://i.pravatar.cc/500?img=11">
-
-<div class="storyActions">
-
-<button class="authBtn"
-onclick="likeStory()">
-
-❤️ Like Story
-
-</button>
-
-<input type="text"
-placeholder="Comment">
-
-<button class="authBtn">
-
-Send Comment
-
-</button>
-
-<button class="authBtn"
-onclick="closeStory()">
-
-Close
-
-</button>
-
+<div style="background:#f1f1f1;padding:12px;border-radius:14px;margin-bottom:10px;color:black;">
+Liya: Hi 👋
 </div>
 
+<textarea placeholder="Write message..."></textarea>
+
+<p style="margin-top:10px;font-size:13px;opacity:0.8;">
+Free users can send only limited messages.
+</p>
+
+<button>Send Message</button>
+<button>🎤 Voice</button>
+<button>📹 Video Call</button>
+<button onclick="closePopup('inboxPopup')">Close</button>
 </div>
 
-<!-- TOAST -->
+<div class="popup" id="premiumPopup">
+<h2>💎 Upgrade Pro</h2>
 
-<div id="toast"></div>
+<p>✔ Unlimited messages</p>
+<p>✔ See who liked you</p>
+<p>✔ Unlimited swipes</p>
+<p>✔ Profile boost</p>
+<p>✔ Online status visibility</p>
+<p>✔ Priority matching</p>
 
-<!-- MATCH -->
-
-<div id="match">
-❤️ MATCH ❤️
+<div class="coinBox">
+<h3>🪙 Bonus Coins</h3>
+<p>Invite friends and earn coins.</p>
+<p>Daily login rewards available.</p>
+<p>Follow social pages to earn bonus.</p>
 </div>
 
-<!-- SOUNDS -->
+<h3 style="margin-top:18px;">Payment Methods</h3>
 
-<audio id="notifySound">
+<button>Telebirr</button>
+<button>CBE</button>
+<button>Abyssinia Bank</button>
+<button>Binance Crypto</button>
 
-<source
-src="https://www.soundjay.com/buttons/sounds/button-3.mp3">
+<button onclick="closePopup('premiumPopup')">Close</button>
+</div>
 
-</audio>
+<div class="popup" id="supportPopup">
+<h2>Support Team</h2>
+<textarea placeholder="Describe your problem..."></textarea>
+<button>Send Feedback</button>
+<button onclick="closePopup('supportPopup')">Close</button>
+</div>
+
+<div class="notify" id="notify"></div>
 
 <script>
 
-/* LOADING */
-
-setTimeout(()=>{
-
-document.getElementById("loading")
-.style.display="none";
-
-},2000);
-
-/* OPEN SIGNUP */
-
-function openSignup(){
-
-document.getElementById("welcome")
-.style.display="none";
-
-document.getElementById("auth")
-.style.display="block";
-
+const users = [
+{
+name:'Liya, 24',
+img:'https://i.pravatar.cc/600?img=32',
+bio:'Traveler ✈️ • Coffee Lover ☕ • Looking for serious relationship ❤️'
+},
+{
+name:'Hana, 23',
+img:'https://i.pravatar.cc/600?img=48',
+bio:'Music 🎵 • Fashion 👗 • Loyal heart ❤️'
+},
+{
+name:'Betty, 25',
+img:'https://i.pravatar.cc/600?img=44',
+bio:'Business woman 💼 • Honest and caring 💕'
 }
-
-/* PHONE */
-
-function showPhone(){
-
-document.getElementById("phoneBox")
-.style.display="block";
-
-document.getElementById("emailBox")
-.style.display="none";
-
-}
-
-/* EMAIL */
-
-function showEmail(){
-
-document.getElementById("emailBox")
-.style.display="block";
-
-document.getElementById("phoneBox")
-.style.display="none";
-
-}
-
-/* SIGNUP */
-
-function signup(){
-
-let age =
-document.getElementById("age").value;
-
-if(age < 18){
-
-alert(
-"Only users above 18 are allowed"
-);
-
-return;
-
-}
-
-let gender =
-document.getElementById("gender").value;
-
-let looking =
-document.getElementById("looking").value;
-
-if(gender == looking){
-
-alert(
-"Same gender matching disabled"
-);
-
-return;
-
-}
-
-alert(
-"Verification code sent ❤️"
-);
-
-document.getElementById("auth")
-.style.display="none";
-
-document.getElementById("app")
-.style.display="block";
-
-requestLocation();
-
-requestPhoto();
-
-}
-
-/* TOAST */
-
-function showToast(text){
-
-let toast =
-document.getElementById("toast");
-
-toast.innerText=text;
-
-toast.style.opacity=1;
-
-document.getElementById("notifySound")
-.play();
-
-setTimeout(()=>{
-
-toast.style.opacity=0;
-
-},2000);
-
-}
-
-/* CHAT */
-
-function openChat(){
-
-document.getElementById("chatPopup")
-.style.display="block";
-
-}
-
-function closeChat(){
-
-document.getElementById("chatPopup")
-.style.display="none";
-
-}
-
-function sendMessage(){
-
-let input =
-document.getElementById("messageInput");
-
-if(input.value=="") return;
-
-let messages =
-document.getElementById("messages");
-
-messages.innerHTML +=
-
-"<div class='me'>"
-+ input.value +
-"</div>";
-
-localStorage.setItem(
-"lastMessage",
-input.value
-);
-
-input.value="";
-
-setTimeout(()=>{
-
-messages.innerHTML +=
-
-"<div class='them'>❤️ Nice to meet you</div>";
-
-showToast(
-"New message received 💬"
-);
-
-},1000);
-
-}
-
-/* VOICE */
-
-function voiceMessage(){
-
-showToast(
-"Voice message sent 🎤"
-);
-
-}
-
-/* VIDEO */
-
-function videoCall(){
-
-showToast(
-"Video call started 📹"
-);
-
-}
-
-/* LIKE */
-
-function like(){
-
-showToast(
-"You liked this profile ❤️"
-);
-
-document.getElementById("match")
-.style.display="block";
-
-setTimeout(()=>{
-
-document.getElementById("match")
-.style.display="none";
-
-},2000);
-
-localStorage.setItem(
-"liked",
-"true"
-);
-
-}
-
-/* DISLIKE */
-
-function dislike(){
-
-showToast(
-"Profile skipped ❌"
-);
-
-}
-
-/* SUPER */
-
-function superLike(){
-
-showToast(
-"Super Like Sent ⭐"
-);
-
-}
-
-/* PROFILE */
-
-function openProfile(){
-
-document.getElementById("profilePopup")
-.style.display="block";
-
-}
-
-function closeProfile(){
-
-document.getElementById("profilePopup")
-.style.display="none";
-
-}
-
-/* PREMIUM */
-
-function openPremium(){
-
-document.getElementById("premiumPopup")
-.style.display="block";
-
-}
-
-function closePremium(){
-
-document.getElementById("premiumPopup")
-.style.display="none";
-
-}
-
-function buyPremium(){
-
-showToast(
-"Premium Activated 💎"
-);
-
-}
-
-/* MENU */
-
-function openMenu(){
-
-document.getElementById("menu")
-.style.right="0";
-
-}
-
-document.body.onclick=function(e){
-
-if(e.target.id!="menu"
-&& e.target.className!="menuBtn"){
-
-document.getElementById("menu")
-.style.right="-300px";
-
-}
-
-}
-
-/* DARK MODE */
-
-function toggleDark(){
-
-document.body.classList.toggle("light");
-
-localStorage.setItem(
-"theme",
-document.body.classList.contains("light")
-? "light"
-: "dark"
-);
-
-}
-
-/* SAVE THEME */
-
-if(localStorage.getItem("theme")
-=="light"){
-
-document.body.classList.add("light");
-
-}
-
-/* LOCATION */
-
-function requestLocation(){
-
-navigator.geolocation
-.getCurrentPosition(()=>{
-
-showToast(
-"Location enabled 📍"
-);
-
-});
-
-}
-
-/* PHOTO */
-
-function requestPhoto(){
-
-showToast(
-"Photo permission granted 📷"
-);
-
-}
-
-/* SUPPORT */
-
-function supportTeam(){
-
-showToast(
-"Support team contacted 🛠"
-);
-
-}
-
-/* LANGUAGE */
-
-function changeLanguage(){
-
-showToast(
-"Language Changed 🌍"
-);
-
-}
-
-/* STORY */
-
-function viewStory(num){
-
-document.getElementById("storyViewer")
-.style.display="block";
-
-let imgs = [
-
-"https://i.pravatar.cc/500?img=11",
-
-"https://i.pravatar.cc/500?img=12",
-
-"https://i.pravatar.cc/500?img=13"
-
 ];
 
-document.getElementById("storyImg")
-.src = imgs[num];
+let current = 0;
 
+setTimeout(()=>{
+document.getElementById('loading').style.display='none';
+},2000);
+
+function toggleMenu(){
+let menu=document.getElementById('menu');
+menu.style.display = menu.style.display==='block' ? 'none':'block';
 }
 
-function closeStory(){
-
-document.getElementById("storyViewer")
-.style.display="none";
-
+function toggleDarkMode(){
+document.body.classList.toggle('dark');
 }
 
-function likeStory(){
-
-showToast(
-"Story liked ❤️"
-);
-
+function setLang(lang){
+if(lang==='am'){
+showNotify('ቋንቋ ወደ አማርኛ ተቀይሯል');
+}else{
+showNotify('Language changed to English');
+}
 }
 
-/* LOGOUT */
-
-function logout(){
-
-location.reload();
-
+function openSignup(){
+document.getElementById('signupPopup').style.display='block';
 }
 
-/* DOUBLE TAP LIKE */
-
-let lastTap = 0;
-
-document.getElementById("mainPhoto")
-.addEventListener("click", function(){
-
-let now = new Date().getTime();
-
-if(now - lastTap < 300){
-
-like();
-
+function openMoreInfo(){
+document.getElementById('moreInfoPopup').style.display='block';
 }
 
-lastTap = now;
+function openInbox(){
+document.getElementById('inboxPopup').style.display='block';
+}
 
+function openPremium(){
+document.getElementById('premiumPopup').style.display='block';
+}
+
+function openSupport(){
+document.getElementById('supportPopup').style.display='block';
+}
+
+function closePopup(id){
+document.getElementById(id).style.display='none';
+}
+
+function showNotify(text){
+const n=document.getElementById('notify');
+n.innerText=text;
+n.style.display='block';
+
+setTimeout(()=>{
+n.style.display='none';
+},3000);
+}
+
+function sendCode(){
+showNotify('Verification code sent successfully');
+}
+
+function finishSignup(){
+showNotify('Account created successfully ❤️');
+closePopup('signupPopup');
+}
+
+function like(){
+showNotify('❤️ You liked this profile');
+nextUser();
+}
+
+function dislike(){
+showNotify('❌ Disliked');
+nextUser();
+}
+
+function superLike(){
+showNotify('⭐ Super Like Sent');
+nextUser();
+}
+
+function nextUser(){
+current++;
+if(current>=users.length){
+current=0;
+}
+
+document.getElementById('personName').innerText=users[current].name;
+document.getElementById('mainPhoto').src=users[current].img;
+document.getElementById('personBio').innerText=users[current].bio;
+}
+
+let startX=0;
+let endX=0;
+const card=document.getElementById('card');
+
+card.addEventListener('touchstart',e=>{
+startX=e.changedTouches[0].screenX;
 });
 
-/* SWIPE */
+card.addEventListener('touchend',e=>{
+endX=e.changedTouches[0].screenX;
+handleSwipe();
+});
 
-let card =
-document.getElementById("card");
-
-let startX = 0;
-
-card.addEventListener(
-"touchstart",
-e=>{
-
-startX =
-e.touches[0].clientX;
-
-}
-);
-
-card.addEventListener(
-"touchend",
-e=>{
-
-let endX =
-e.changedTouches[0].clientX;
-
-if(endX - startX > 80){
-
-like();
-
-}
-
-if(startX - endX > 80){
-
+function handleSwipe(){
+if(endX < startX-50){
 dislike();
-
 }
 
+if(endX > startX+50){
+like();
 }
-);
+}
+
+let tap=0;
+card.addEventListener('click',()=>{
+const now=new Date().getTime();
+if(now-tap<300){
+like();
+}
+tap=now;
+});
+
+setInterval(()=>{
+const texts=[
+'💌 New message received',
+'❤️ Someone liked you',
+'🔥 New match nearby',
+'🎁 Daily bonus coins added'
+];
+
+const random=texts[Math.floor(Math.random()*texts.length)];
+showNotify(random);
+},15000);
+
+navigator.geolocation.getCurrentPosition(()=>{
+showNotify('📍 Location enabled');
+});
 
 </script>
 
