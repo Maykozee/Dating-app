@@ -1,1824 +1,253 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Simple Dating App</title>
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>EthioLove</title>
 
 <style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial;
+}
+
 body{
-  margin:0;
-  height:100vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:linear-gradient(to right,pink,purple);
-  font-family:Arial;
-}
-  
-  #login{
-  background:rgba(255,255,255,0.15);
-
-  backdrop-filter:blur(15px);
-
-    border:1px solid rgba(255,255,255,0.2);
-
-box-shadow:0 10px 30px rgba(0,0,0,0.3);
-    
-  padding:20px;
-  border-radius:20px;
-  text-align:center;
-}
-
-#app{
-  display:none;
-}
-
-  #stories{
-  display:flex;
-
-  gap:10px;
-
-  overflow-x:auto;
-
-  margin-bottom:15px;
-}
-
-#stories img{
-  width:60px;
-
-  height:60px;
-
-  border-radius:50%;
-
-  border:3px solid #ff4b91;
-}
-  
-.card{
-  background:rgba(255,255,255,0.2);
-
-  backdrop-filter:blur(10px);
-
-  padding:20px;
-  border-radius:25px;
-
-  animation:cardShow 0.5s;
-  
-  text-align:center;
-  width:320px;
-  max-width:90%;
-
-  transition:0.5s ease;
-  box-shadow:0 8px 30px rgba(0,0,0,0.2);
-
-  border:1px solid rgba(255,255,255,0.3);
-  overflow:hidden;
-position:relative;
-}
-
- .card:hover{
-  transform:scale(1.03) rotate(1deg);
-   box-shadow:0 0 40px pink;
-   background:rgba(255,255,255,0.3);
-}
-
-img{
-  width:100%;
-  height:200px;
-
-  transition:0.3s;
-  object-fit:cover;
-
-  border-radius:15px;
-
-  filter:brightness(0.9);
-}
-
-  img:hover{
-  transform:scale(1.05);
-    box-shadow:0 0 20px white;
-}
-
-button{
-  font-size:22px;
-  margin:10px;
-  padding:12px 16px;
-
-  border:none;
-  border-radius:15px;
-
-  cursor:pointer;
-
-  transition:0.2s;
-
-  background:white;
-
-  box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
-
-  button:hover{
-  box-shadow:0 0 20px white;
-
-  transform:translateY(-3px);
-}
-  
-  button:active{
-  transform:scale(0.9);
-}
-
-  input{
-  padding:12px;
-  border-radius:10px;
-  border:none;
-
-  width:80%;
-
-  font-size:18px;
-
-  outline:none;
-}
-
-  #searchInput{
-  margin-top:10px;
-
-  background:white;
-
-  color:black;
-
-  box-shadow:0 0 15px rgba(255,255,255,0.5);
-}
-  
-  input:focus{
-  box-shadow:0 0 15px #ff4b91;
-
-  border:2px solid #ff4b91;
-
-  transform:scale(1.03);
-}
-  
-#searchInput{
-  margin-bottom:10px;
-
-  width:90%;
-
-  background:white;
-
-  padding:14px;
-
-  border-radius:15px;
-
-  font-size:17px;
-
-  box-shadow:0 0 15px rgba(255,255,255,0.4);
-}
-
-  .likeBtn{
-  background:#ff4b91;
-  color:white;
-
-  box-shadow:0 0 20px #ff4b91;
-}
-
- .dislikeBtn{
-  background:#444;
-  color:white;
-
-  box-shadow:0 0 15px #444;
-}
-
- #status{
-  color:limegreen;
-  font-weight:bold;
-
-  text-shadow:0 0 15px limegreen;
-}
-
-#distance{
-  color:white;
-  opacity:0.8;
-}
-
-  #verified{
-  color:#00bfff;
-
-  text-shadow:0 0 10px #00bfff;
-}
-
-#premium{
-  color:purple;
-
-  font-weight:bold;
-
-  animation:pulse 1s infinite;
-}
-
-#liveUsers{
-  color:yellow;
-
-  font-weight:bold;
-
-  animation:pulse 1s infinite;
-}
-
-  #clock{
-  color:white;
-  font-weight:bold;
-  animation:pulse 1s infinite;
-}
-  
-  #count{
-  font-weight:bold;
-}
-  
-  .dark{
-  background:linear-gradient(to right,#111,#000);
-  color:white;
-}
-
-.dark .card{
-  background:rgba(30,30,30,0.9);
-
-  border:1px solid rgba(255,255,255,0.1);
-
-  box-shadow:0 0 30px rgba(255,255,255,0.1);
-}
-
-.dark button{
-  background:#222;
-  color:white;
-}
-
-.dark input{
-  background:#111;
-  color:white;
-}
-
-.dark #navbar{
-  background:#111;
-}
-
-.dark #menu{
-  background:#222;
-}
-
-.dark #chat{
-  background:#222;
-  color:white;
-}
-
-.dark #profilePage,
-.dark #likesPage,
-.dark #settingsPage,
-.dark #premiumPage{
-  background:#222;
-  color:white;
-}
-
-  #notify{
-  position:fixed;
-
-  top:20px;
-  right:20px;
-
-  background:white;
-
-  color:black;
-
-  padding:10px 20px;
-
-  border-radius:15px;
-
-  box-shadow:0 5px 15px rgba(0,0,0,0.3);
-
-  animation:pulse 1s infinite;
-}
-  
-  #toast{
-  position: fixed;
-  bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  background:rgba(0,0,0,0.8);
-  backdrop-filter:blur(10px);
-  color: white;
-  padding: 14px 24px;
-  font-size:18px;
-  border-radius: 10px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-  #match{
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%) scale(0.5);
-
-  background:linear-gradient(to right,#ff4b91,#ff0066);
-  color:white;
-
-  padding:30px 50px;
-  border-radius:30px;
-
-  font-size:34px;
-  letter-spacing:2px;
-  text-align:center;
-  width:260px;
-  font-weight:bold;
-
-  box-shadow:0 0 30px rgba(0,0,0,0.4);
-
-  display:none;
-  opacity:0;
-
-  transition:0.3s;
-  z-index:1000;
-}
-
-  #likesPage{
-  display:none;
-
-  position:fixed;
-
-  top:50%;
-  left:50%;
-
-  transform:translate(-50%,-50%);
-
-  background:white;
-
-  padding:20px;
-
-  border-radius:20px;
-
-  width:250px;
-
-  z-index:3000;
-
-  text-align:center;
-
-  color:black;
-}
-  
-  #profilePage{
-  display:none;
-
-  position:fixed;
-
-  top:50%;
-  left:50%;
-
-  transform:translate(-50%,-50%);
-
-  background:white;
-
-  padding:20px;
-
-  border-radius:20px;
-
-  width:250px;
-
-  z-index:3000;
-
-  text-align:center;
-
-  color:black;
-}
-
-  #settingsPage{
-  display:none;
-
-  position:fixed;
-
-  top:50%;
-  left:50%;
-
-  transform:translate(-50%,-50%);
-
-  background:white;
-
-  padding:20px;
-
-  border-radius:20px;
-
-  width:260px;
-
-  z-index:4000;
-
-  text-align:center;
-
-  color:black;
-}
-
-  #premiumPage{
-  display:none;
-
-  position:fixed;
-
-  top:50%;
-  left:50%;
-
-  transform:translate(-50%,-50%);
-
-  background:rgba(255,255,255,0.15);
-
-backdrop-filter:blur(15px);
-
-border:1px solid rgba(255,255,255,0.2);
-
-  padding:20px;
-
-  border-radius:20px;
-
-  width:260px;
-
-  z-index:4000;
-
-  text-align:center;
-
-  color:black;
-
-  box-shadow:0 0 30px rgba(0,0,0,0.3);
-}
-  
-#chat{
-  z-index:2000;
-color:black;
-  position:fixed;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  background:white;
-  padding:20px;
-  border-radius:20px;
-  display:none;
-  width:250px;
-}
-
-  #messages{
-  max-height:200px;
-
-  overflow-y:auto;
-}
-  
-   #menuBtn{
-  position:absolute;
-  top:10px;
-  right:10px;
-
-  width:45px;
-  height:45px;
-
-  border-radius:50%;
-    }
-
-   #menuBtn:hover{
-  transform:rotate(90deg);
-
-  background:#ff4b91;
-
-  color:white;
-}
-      
-  #menu{
-  display:none;
-
-  position:absolute;
-
-  top:60px;
-  right:10px;
-
-  background:white;
-
-  padding:10px;
-
-  border-radius:15px;
-
-  box-shadow:0 10px 40px rgba(0,0,0,0.4);
-
-  z-index:1000;
-}
-
-#menu button{
-  display:block;
-  width:100%;
-}
-
-#navbar{
-  position:fixed;
-
-  bottom:0;
-  left:0;
-
-  width:100%;
-
-  background:white;
-
-  display:flex;
-
-  display:none;
-
-  justify-content:space-around;
-
-  padding:10px;
-
-  z-index:2000;
-
-  backdrop-filter:blur(15px);
-
-border-top:1px solid rgba(0,0,0,0.1);
-
-box-shadow:0 -5px 20px rgba(0,0,0,0.15);
-}
-  
-#navbar button:hover{
-  transform:translateY(-5px);
-
-  color:#ff4b91;
-}
-
-  #loading{
-  position:fixed;
-
-  flex-direction:column;
-  gap:20px;
-
-  animation:pulse 1s infinite;
-
-  top:0;
-  left:0;
-
-  width:100%;
-  height:100%;
-
-  background:black;
-
-  color:white;
-
-  display:flex;
-
-  justify-content:center;
-  align-items:center;
-
-  font-size:35px;
-
-  z-index:5000;
-}
-
-  .badge{
-position:absolute;
-
-top:5px;
-right:20px;
-
-background:red;
-color:white;
-
-width:20px;
-height:20px;
-
-border-radius:50%;
-
-font-size:12px;
-
+background:#ff4458;
+height:100vh;
 display:flex;
 justify-content:center;
 align-items:center;
-
-animation:pulse 1s infinite;
-}
-  
-#navbar button{
-  background:none;
-  box-shadow:none;
-
-  font-size:18px;
-}
-
-  .me{
-  background:#ff4b91;
-  color:white;
-
-  padding:10px;
-
-  border-radius:15px;
-
-  margin:8px;
-
-  text-align:right;
-}
-
-  #myPhoto{
-  width:120px;
-
-  height:120px;
-
-  border-radius:50%;
-
-  object-fit:cover;
-
-  border:4px solid #ff4b91;
-
-  margin-top:10px;
-}
-  
-.them{
-  background:#eee;
-
-  padding:10px;
-
-  border-radius:15px;
-
-  margin:8px;
-
-  text-align:left;
-}
-  
-  #status{
-  animation:pulse 0.7s infinite;
-}
-
-  #loading{
-  position:fixed;
-  top:0;
-  left:0;
-
-  width:100%;
-  height:100%;
-
-  background:black;
-
-  color:white;
-
-  display:flex;
-
-  justify-content:center;
-  align-items:center;
-
-  font-size:35px;
-
-  z-index:5000;
-}
-
-  #loaderBox{
-text-align:center;
-}
-
-#loaderBar{
-width:220px;
-height:12px;
-background:#333;
-border-radius:20px;
 overflow:hidden;
+}
+
+#app{
+width:100%;
+max-width:400px;
+height:100vh;
+background:white;
+position:relative;
+overflow:hidden;
+}
+
+#topBar{
+height:70px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px;
+font-size:25px;
+font-weight:bold;
+color:#ff4458;
+border-bottom:1px solid #eee;
+}
+
+#card{
+width:90%;
+height:520px;
+background:#eee;
+margin:20px auto;
+border-radius:25px;
+overflow:hidden;
+position:relative;
+box-shadow:0 10px 30px rgba(0,0,0,0.2);
+}
+
+#card img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+#info{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:20px;
+background:linear-gradient(
+transparent,
+rgba(0,0,0,0.9)
+);
+color:white;
+}
+
+#buttons{
+display:flex;
+justify-content:center;
+gap:20px;
 margin-top:20px;
 }
 
-  #spinner{
-
+.actionBtn{
 width:70px;
 height:70px;
-
-border:8px solid white;
-
-border-top:8px solid #ff4b91;
-
+border:none;
 border-radius:50%;
-
-animation:spin 1s linear infinite;
-
+font-size:30px;
+cursor:pointer;
+box-shadow:0 5px 20px rgba(0,0,0,0.2);
 }
 
-@keyframes spin{
-
-0%{
-transform:rotate(0deg);
+.nope{
+background:white;
 }
 
-100%{
-transform:rotate(360deg);
+.like{
+background:#ff4458;
+color:white;
 }
 
-}
-  
-#loaderFill{
-width:0%;
-height:100%;
-background:linear-gradient(to right,#ff4b91,#ff0066);
-animation:loadBar 2s linear forwards;
-}
-
-@keyframes loadBar{
-
-0%{
-width:0%;
-}
-
-100%{
+#bottomNav{
+position:absolute;
+bottom:0;
 width:100%;
+height:70px;
+background:white;
+display:flex;
+justify-content:space-around;
+align-items:center;
+border-top:1px solid #eee;
+font-size:28px;
 }
 
-}
-  
-  #gallery{
-  display:flex;
-
-  gap:8px;
-
-  margin-top:10px;
-
-  justify-content:center;
-}
-
-#gallery img{
-  width:70px;
-
-  height:70px;
-
-  border-radius:15px;
-}
-  
-  #typing span{
-  animation:pulse 1s infinite;
-}
-
-  @keyframes cardShow{
-
-0%{
-  transform:scale(0.7);
-
-  opacity:0;
-}
-
-100%{
-  transform:scale(1);
-
-  opacity:1;
-}
-
-}
-  
-@keyframes pulse{
-
-0%{
-  opacity:1;
-}
-
-50%{
-  opacity:0.4;
-}
-
-100%{
-  opacity:1;
-}
-
-}
-  
 </style>
 </head>
 
 <body>
-<div id="loading">
 
-  <div id="spinner"></div>
+<div id="app">
 
-  <p>❤️ EthioDating</p>
+<div id="topBar">
 
-  <div id="loaderBox">
+<div>🔥 EthioLove</div>
 
-    <div id="loaderBar">
-
-      <div id="loaderFill"></div>
-
-    </div>
-
-    <p>Connecting people...</p>
-
-  </div>
+<div>💬</div>
 
 </div>
-  
-<audio id="likeSound">
-<source src="https://www.soundjay.com/buttons/sounds/button-3.mp3">
-</audio>
-  
-<audio id="matchSound">
-<source src="https://www.soundjay.com/buttons/sounds/button-09.mp3">
-</audio>
 
-<div id="navbar">
+<div id="card">
 
-<button onclick="showHome()">
-🏠
+<img id="photo"
+src="https://i.pravatar.cc/500?img=12">
+
+<div id="info">
+
+<h2 id="name">
+Sara, 22
+</h2>
+
+<p id="bio">
+Love music and travel ❤️
+</p>
+
+</div>
+
+</div>
+
+<div id="buttons">
+
+<button class="actionBtn nope"
+onclick="dislike()">
+❌
 </button>
 
-<button onclick="showLikesPage()">
+<button class="actionBtn like"
+onclick="like()">
 ❤️
 </button>
 
-<div style="position:relative">
+</div>
 
-<button onclick="openChat()">
-💬
-</button>
+<div id="bottomNav">
 
-<div class="badge" id="msgBadge">
-3
+<div>🏠</div>
+
+<div>❤️</div>
+
+<div>👤</div>
+
 </div>
 
 </div>
 
-<button onclick="showProfile()">
-👤
-</button>
-
-</div>
-  <div id="login">
-  <h2>Login</h2>
-
-  <input id="username"
-placeholder="Your name">
-
-  <br><br>
-
-  <button onclick="login()">Enter</button>
-</div>
-
-<div class="card" id="app">
-
-
-  <div id="stories">
-
-<img src="https://i.pravatar.cc/60?img=20">
-
-<img src="https://i.pravatar.cc/60?img=21">
-
-<img src="https://i.pravatar.cc/60?img=22">
-
-<img src="https://i.pravatar.cc/60?img=23">
-
-</div>
-  
-<input id="searchInput"
-placeholder="Search name..."
-onkeyup="searchUser()">
-
-<button onclick="searchUser()">
-🔍 Search
-</button>
-
-<img id="photo">
-  <div id="gallery">
-
-<img src="https://i.pravatar.cc/100?img=30">
-
-<img src="https://i.pravatar.cc/100?img=31">
-
-<img src="https://i.pravatar.cc/100?img=32">
-
-</div>
-  
-  <h2>
-  <span id="name"></span>
-
-<span style="color:#00bfff">
-<span id="verified">
-
-✔️ Verified Premium
-  
-</span>
-</span>
-</h2>
-  <p id="bio"></p>
-  <p id="status">🟢 Online</p>
-  <p id="distance">📍 2 km away</p>
-  <p id="matchPercent">
-❤️ 92% Match
-</p>
-  <p id="liveUsers">
-🔥 120 online now
-</p>
-  <p id="clock">
-⏰ 12:00
-</p>
-  <button class="dislikeBtn" onclick="dislike()">❌</button>
-  <button class="likeBtn" onclick="like()">❤️</button>
-  <button onclick="superLike()">
-💙
-</button>
-
-  <button onclick="sendGift()">
-🎁
-</button>
-  
-  <button id="menuBtn"
-onclick="toggleMenu()">⋮</button>
-
-<div id="menu">
-  <button onclick="viewLikes()">📋 Likes</button>
-
-  <button onclick="darkMode()">🌙 Dark</button>
-
-  <button onclick="openSettings()">
-⚙️ Settings
-</button>
-
-  <button onclick="openChat()">💬 Chat</button>
-
-  <button onclick="videoCall()">
-📹 Video
-</button>
-  
-  <button onclick="openPremium()">
-💎 Premium
-</button>
-  
-</div>
-  
-  <p id="count">Likes: 0</p>
-  
-</div> 
-  <div id="likesPage">
-
-<h2>❤️ Liked People</h2>
-
-<p id="likedNames">
-No likes yet
-</p>
-
-<button onclick="closeLikesPage()">
-Close
-</button>
-
-</div>
-<div id="toast"></div>
-  <div id="notify">
-🔔 New people joined
-</div>
-<div id="match">
-  ❤️ MATCHED ❤️
-</div>
-
-  <div id="premiumPage">
-
-<h2>💎 Premium</h2>
-
-<p>
-See who liked you ❤️
-</p>
-
-<p>
-Unlimited chat 💬
-</p>
-
-<p>
-Unlimited swipes 🔥
-</p>
-
-<button onclick="buyPremium()">
-Buy Premium
-</button>
-
-<button onclick="closePremium()">
-Close
-</button>
-
-</div>
-  
-  <div id="profilePage">
-
-<h2>👤 My Profile</h2>
-
-<p>Name:
-<span id="profileName">
-User
-</span>
-</p>
-<p id="myBio">
-I love coding 💻
-</p>
-
-<p id="premium">
-Premium User 💎
-</p>
-
-<img id="myPhoto"
-src="https://i.pravatar.cc/150?img=10">
-
-<br><br>
-
-<input type="file"
-id="uploadPhoto">
-
-<button onclick="editProfile()">
-Edit
-</button>
-<button onclick="editBio()">
-Edit Bio
-</button>
-    
-<button onclick="closeProfile()">
-Close
-</button>
-
-</div>
-
-  <div id="settingsPage">
-
-<h2>⚙️ Settings</h2>
-
-<button onclick="darkMode()">
-🌙 Dark Mode
-</button>
-
-<button onclick="changeBackground()">
-🎨 Change Background
-</button>
-
-<button onclick="logout()">
-🚪 Logout
-</button>
-
-<button onclick="closeSettings()">
-Close
-</button>
-
-</div>
-  
-  <div id="chat">
-  <h3>💬 Chat</h3>
-
-  <div id="messages">
-    <p id="typing" style="display:none">
-💬 typing...
-<span>.</span>
-<span>.</span>
-<span>.</span>
-</p>
-    <p>Hello 👋</p>
-  </div>
-
-  <input id="msgInput"
-  placeholder="Type message">
-
-  <br><br>
-
-  <button onclick="sendMessage()">
-Send
-</button>
-
-<button onclick="voiceMessage()">
-🎤
-</button>
-
-  <button onclick="closeChat()">
-    Close
-  </button>
-</div>
 <script>
-  
+
 let users = [
 
 {
 name:"Sara",
 age:22,
-bio:"Love music 🎵",
-img:"https://i.pravatar.cc/300?img=1"
-},
-
-{
-name:"Abel",
-age:25,
-bio:"Gym 💪",
-img:"https://i.pravatar.cc/300?img=8"
+bio:"Love music ❤️",
+img:"https://i.pravatar.cc/500?img=12"
 },
 
 {
 name:"Liya",
 age:21,
-bio:"Travel ✈️",
-img:"https://i.pravatar.cc/300?img=5"
+bio:"Travel girl ✈️",
+img:"https://i.pravatar.cc/500?img=32"
 },
 
 {
-name:"Dani",
+name:"Betty",
 age:24,
-bio:"Football ⚽",
-img:"https://i.pravatar.cc/300?img=12"
-},
-
-{
-name:"Miki",
-age:23,
-bio:"Coding 💻",
-img:"https://i.pravatar.cc/300?img=15"
+bio:"Coffee addict ☕",
+img:"https://i.pravatar.cc/500?img=45"
 }
 
 ];
 
-  let i = 0;
-  let liked = JSON.parse(localStorage.getItem("liked")) || [];
-  let startX = 0;
-  let moveX = 0;
-  let card = document.querySelector(".card");
+let current = 0;
 
-card.addEventListener("touchstart", e=>{
-  startX = e.touches[0].clientX;
-});
+function showUser(){
 
-  card.addEventListener("touchend", e=>{
+document.getElementById("photo").src =
+users[current].img;
 
-let endX = e.changedTouches[0].clientX;
+document.getElementById("name").innerText =
+users[current].name + ", " +
+users[current].age;
 
-if(endX - startX > 80){
-
-like();
+document.getElementById("bio").innerText =
+users[current].bio;
 
 }
 
-else if(startX - endX > 80){
+function nextUser(){
 
-dislike();
+current++;
 
-}
+if(current >= users.length){
 
-else{
-
-card.style.transform =
-"translateX(0) rotate(0deg)";
+current = 0;
 
 }
 
-});
-
-card.addEventListener("touchmove", e=>{
-
-moveX = e.touches[0].clientX - startX;
-
-card.style.transform =
-"translateX(" + moveX + "px) rotate(" + moveX/12 + "deg)";
-
-});
-  
-card.addEventListener("touchend", e=>{
-  let endX = e.changedTouches[0].clientX;
-
-  if(endX - startX > 50){
-    like();
-  }
-
-  if(startX - endX > 50){
-    dislike();
-  }
-});
-  
-  function showToast(msg){
-  let t = document.getElementById("toast");
-  t.innerText = msg;
-  t.style.opacity = 1;
-
-  setTimeout(()=>{
-    t.style.opacity = 0;
-  }, 500);
-}
-
-function show(){
-  document.querySelector(".card").style.opacity =
-"0";
-  setTimeout(()=>{
-  document.querySelector(".card").style.opacity =
-  "1";
-},100);
-  document.getElementById("name").innerText =
-users[i].name + ", " + users[i].age;
-  document.getElementById("bio").innerText = users[i].bio;
-  let randomKm =
-Math.floor(Math.random()*10)+1;
-
-document.getElementById("distance")
-.innerText =
-"📍 " + randomKm + " km away";
-  let percent =
-Math.floor(Math.random()*20)+80;
-
-document.getElementById("matchPercent")
-.innerText =
-"❤️ " + percent + "% Match";
-  document.getElementById("photo")
-.style.opacity = "0";
-  setTimeout(()=>{
-document.getElementById("photo")
-.style.opacity = "1";
-},200);
-  document.getElementById("photo").src = users[i].img;
-}
-
-  function next(){
-
-  i++;
-
-  if(i >= users.length){
-    i = 0;
-  }
-
-  setTimeout(()=>{
-
-document.getElementById("loading")
-.style.display = "none";
-
-},2000);
-
-  setTimeout(()=>{
-
-document.getElementById("notify")
-.style.display = "none";
-
-},4000);
-    
-setInterval(()=>{
-
-let randomUsers = [
-"Betty joined ❤️",
-"New match nearby 🔥",
-"Hana sent a like 💌",
-"Samuel is online 🟢",
-"New people joined ✨"
-];
-
-let randomText =
-randomUsers[Math.floor(Math.random()*randomUsers.length)];
-
-document.getElementById("notify")
-.innerText = randomText;
-
-document.getElementById("notify")
-.style.display = "block";
-
-setTimeout(()=>{
-
-document.getElementById("notify")
-.style.display = "none";
-
-},3000);
-
-},7000);
-    
-  show();
-}
-
-
-function searchUser(){
-
-let text =
-document.getElementById("searchInput")
-.value.toLowerCase();
-
-  if(text == ""){
-
-showToast("Write a name");
-
-return;
+showUser();
 
 }
 
-  let found = false;
-
-for(let x=0; x<users.length; x++){
-
-if(users[x].name.toLowerCase()
-.includes(text)){
-
-  found = true;
-  
-i = x;
-
-show();
-
-showToast("Found " + users[x].name);
-
-}
-
-}
-
-  if(found == false){
-
-showToast("User not found");
-
-}
-  
-}
-  
 function like(){
-  liked.push(users[i]);
-  localStorage.setItem("liked", JSON.stringify(liked));
 
-  document.getElementById("count").innerText =
-"Likes: " + liked.length;
-  
-  document.querySelector(".card").style.transform =
-"translateX(700px) rotate(45deg) scale(0.8)";
-  
-  showToast("Liked " + users[i].name);
-  document.getElementById("likeSound")
-.play();
-  showMatch();
-  document.getElementById("matchSound")
-.play();
-
-  setTimeout(()=>{
-    document.querySelector(".card").style.transform =
-    "translateX(0)";
-
-    next();
-  },300);
-}
-
-  function superLike(){
-
-showToast("SUPER LIKE 💙");
-
-next();
+nextUser();
 
 }
+
 function dislike(){
-  document.querySelector(".card").style.transform =
-"translateX(-700px) rotate(-45deg) scale(0.8)";
 
-  showToast("Disliked " + users[i].name);
-
-  setTimeout(()=>{
-    document.querySelector(".card").style.transform =
-    "translateX(0)";
-
-    next();
-  },300);
-}
-  function showMatch(){
-  let m = document.getElementById("match");
-
-  m.style.display = "block";
-
-  setTimeout(()=>{
-    m.style.opacity = "1";
-    m.style.transform =
-    "translate(-50%,-50%) scale(1)";
-  },10);
-
-  setTimeout(()=>{
-    m.style.opacity = "0";
-    m.style.transform =
-    "translate(-50%,-50%) scale(0.5)";
-  },300);
-
-setTimeout(()=>{
-  m.style.display = "none";
-},500);
-}
-
-  setTimeout(()=>{
-
-document.getElementById("loading")
-.style.display = "none";
-
-},2000);
-  
-  function login(){
-
-let name =
-document.getElementById("username")
-.value.trim();
-
-if(name == ""){
-
-showToast("Enter your name");
-
-return;
+nextUser();
 
 }
 
-document.getElementById("login")
-.style.display = "none";
+showUser();
 
-document.getElementById("app")
-.style.display = "block";
-
-document.getElementById("navbar")
-.style.display = "flex";
-    
-showToast("Welcome " + name + " ❤️");
-
-document.getElementById("profileName")
-.innerText = name;
-
-}
-  
-  function toggleMenu(){
-
-  let menu =
-  document.getElementById("menu");
-
-  if(menu.style.display == "block"){
-
-    menu.style.display = "none";
-
-  }else{
-
-    menu.style.display = "block";
-
-    setTimeout(()=>{
-      menu.style.display = "none";
-    },3000);
-
-  }
-}
-  
-function openChat(){
-
-document.getElementById("chat")
-.style.display = "block";
-
-document.getElementById("msgBadge")
-.style.display = "none";
-
-}
-
- function sendMessage(){
-  let input =
-  document.getElementById("msgInput");
-
-  let messages =
-  document.getElementById("messages");
-
-  if(input.value != ""){
-    messages.innerHTML +=
-   "<div class='me'>🧑 " + input.value + "</div>";
-
-    input.value = "";
-    document.getElementById("typing")
-.style.display = "block";
-
-setTimeout(()=>{
-
-document.getElementById("typing")
-.style.display = "none";
-
-let replies = [
-
-"❤️ Nice to meet you",
-
-"😍 You look amazing",
-
-"🔥 Wow nice profile",
-
-"😊 How are you?",
-
-"💌 Tell me more about you",
-
-  "🤖 I think we match well",
-
-"😍 You seem interesting",
-
-"💘 I like your vibe"
-
-];
-
-let randomReply =
-replies[Math.floor(Math.random()*replies.length)];
-
-messages.innerHTML +=
-"<div class='them'>" + randomReply + "</div>";
-
-},1000);
-  }
-}
-function closeChat(){
-  document.getElementById("chat").style.display = "none";
-}
-  
-function darkMode(){
-
-document.body.classList.toggle("dark");
-
-if(document.body.classList.contains("dark")){
-
-localStorage.setItem("theme","dark");
-
-}else{
-
-localStorage.setItem("theme","light");
-
-}
-
-}
-
-  function showLikesPage(){
-
-  document.getElementById("likesPage")
-  .style.display = "block";
-
-  let names = liked.map(x => x.name)
-  .join(", ");
-
-  if(names == ""){
-    names = "No likes yet";
-  }
-
-  document.getElementById("likedNames")
-  .innerText = names;
-}
-
-function closeLikesPage(){
-  document.getElementById("likesPage")
-  .style.display = "none";
-}
-
-function showProfile(){
-
-  document.getElementById("profilePage")
-  .style.display = "block";
-
-  let username =
-  document.getElementById("username")
-  .value;
-
-  document.getElementById("profileName")
-  .innerText = username;
-
-  localStorage.setItem("username", name);
-}
-
-  function editProfile(){
-
-let newName = prompt("New name");
-
-if(newName != ""){
-
-document.getElementById("profileName")
-.innerText = newName;
-
-}
-
-}
-
-  function editBio(){
-
-let newBio =
-prompt("New bio");
-
-if(newBio != ""){
-
-document.getElementById("myBio")
-.innerText = newBio;
-
-  localStorage.setItem("bio", newBio);
-
-}
-
-}
-  
-function closeProfile(){
-  document.getElementById("profilePage")
-  .style.display = "none";
-}
-
-  function videoCall(){
-
-showToast("Connecting video call... 📹");
-
-}
-  
-function showHome(){
-
-  document.getElementById("profilePage")
-  .style.display = "none";
-
-  document.getElementById("likesPage")
-  .style.display = "none";
-
-  document.getElementById("chat")
-  .style.display = "none";
-}
-  
-function viewLikes(){
-  let names = liked.map(x => x.name).join(", ");
-
-  if(names == ""){
-    alert("No likes yet");
-  }else{
-    alert("Liked people: " + names);
-  }
-}
-
-  document.getElementById("uploadPhoto")
-.addEventListener("change", function(e){
-
-let file =
-e.target.files[0];
-
-if(file){
-
-let reader =
-new FileReader();
-
-reader.onload = function(){
-
-document.getElementById("myPhoto")
-.src = reader.result;
-
-document.getElementById("photo")
-.src = reader.result;
-
-};
-
-reader.readAsDataURL(file);
-
-}
-
-});
-
-  setInterval(()=>{
-
-let online =
-Math.floor(Math.random()*500)+100;
-
-document.getElementById("liveUsers")
-.innerText =
-"🔥 " + online + " online now";
-
-},4000);
-
-  function openPremium(){
-
-document.getElementById("premiumPage")
-.style.display = "block";
-
-}
-
-function closePremium(){
-
-document.getElementById("premiumPage")
-.style.display = "none";
-
-}
-
-function buyPremium(){
-
-showToast("Premium Activated 💎");
-
-closePremium();
-
-}
-
-  function openSettings(){
-
-document.getElementById("settingsPage")
-.style.display = "block";
-
-}
-
-function closeSettings(){
-
-document.getElementById("settingsPage")
-.style.display = "none";
-
-}
-
-function logout(){
-
-location.reload();
-
-}
-
-  function sendGift(){
-
-showToast("Gift sent 🎁");
-
-}
-  
-function changeBackground(){
-
-let colors = [
-
-"linear-gradient(to right,pink,purple)",
-
-"linear-gradient(to right,#00c6ff,#0072ff)",
-
-"linear-gradient(to right,#ff9966,#ff5e62)",
-
-"linear-gradient(to right,#56ab2f,#a8e063)"
-
-];
-
-let randomColor =
-colors[Math.floor(Math.random()*colors.length)];
-
-document.body.style.background =
-randomColor;
-
-}
-
-  function voiceMessage(){
-
-showToast("Voice message sent 🎤");
-
-}
-
-  let savedName = localStorage.getItem("username");
-
-if(savedName){
-document.getElementById("profileName")
-.innerText = savedName;
-}
-
-let savedBio = localStorage.getItem("bio");
-
-if(savedBio){
-document.getElementById("myBio")
-.innerText = savedBio;
-}
-
-  let savedTheme =
-localStorage.getItem("theme");
-
-if(savedTheme == "dark"){
-
-document.body.classList.add("dark");
-
-}
-
-
-  document.getElementById("msgInput")
-.addEventListener("keypress", function(e){
-
-if(e.key === "Enter"){
-
-sendMessage();
-
-}
-
-});
-
-  let lastTap = 0;
-
-document.getElementById("photo")
-.addEventListener("click", function(){
-
-let now = new Date().getTime();
-
-if(now - lastTap < 300){
-
-showToast("❤️ Double Like");
-
-like();
-
-}
-
-lastTap = now;
-
-});
-
-  setInterval(()=>{
-
-let time = new Date();
-
-let hours = time.getHours();
-
-let minutes = time.getMinutes();
-
-if(minutes < 10){
-
-minutes = "0" + minutes;
-
-}
-
-document.getElementById("clock")
-.innerText =
-"⏰ " + hours + ":" + minutes;
-
-},1000);
-
-  function updateInternetStatus(){
-
-if(navigator.onLine){
-
-document.getElementById("status")
-.innerText = "🟢 Online";
-
-}else{
-
-document.getElementById("status")
-.innerText = "🔴 Offline";
-
-}
-
-}
-
-window.addEventListener("online",
-updateInternetStatus);
-
-window.addEventListener("offline",
-updateInternetStatus);
-
-updateInternetStatus();
-  
-show();
 </script>
 
 </body>
