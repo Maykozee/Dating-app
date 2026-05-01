@@ -514,6 +514,8 @@ color:black;
 
   display:flex;
 
+  display:none;
+
   justify-content:space-around;
 
   padding:10px;
@@ -1146,12 +1148,15 @@ card.style.transform =
 
 });
 
+card.addEventListener("touchmove", e=>{
+
 moveX = e.touches[0].clientX - startX;
 
 card.style.transform =
 "translateX(" + moveX + "px) rotate(" + moveX/12 + "deg)";
 
 });
+  
 card.addEventListener("touchend", e=>{
   let endX = e.changedTouches[0].clientX;
 
@@ -1394,6 +1399,9 @@ document.getElementById("login")
 document.getElementById("app")
 .style.display = "block";
 
+document.getElementById("navbar")
+.style.display = "flex";
+    
 showToast("Welcome " + name + " ❤️");
 
 document.getElementById("profileName")
