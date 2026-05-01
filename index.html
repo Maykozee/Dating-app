@@ -218,6 +218,12 @@ button{
 
   animation:pulse 1s infinite;
 }
+
+  #clock{
+  color:white;
+  font-weight:bold;
+  animation:pulse 1s infinite;
+}
   
   #count{
   font-weight:bold;
@@ -530,6 +536,9 @@ box-shadow:0 -5px 20px rgba(0,0,0,0.15);
   #loading{
   position:fixed;
 
+  flex-direction:column;
+  gap:20px;
+
   animation:pulse 1s infinite;
 
   top:0;
@@ -660,6 +669,33 @@ overflow:hidden;
 margin-top:20px;
 }
 
+  #spinner{
+
+width:70px;
+height:70px;
+
+border:8px solid white;
+
+border-top:8px solid #ff4b91;
+
+border-radius:50%;
+
+animation:spin 1s linear infinite;
+
+}
+
+@keyframes spin{
+
+0%{
+transform:rotate(0deg);
+}
+
+100%{
+transform:rotate(360deg);
+}
+
+}
+  
 #loaderFill{
 width:0%;
 height:100%;
@@ -739,9 +775,15 @@ width:100%;
 <body>
 <div id="loading">
 
-<div id="loaderBox">
+<div id="spinner"></div>
 
-<h1>❤️ EthioDating</h1>
+<p>
+❤️ EthioDating
+</p>
+
+</div>
+
+<div id="loaderBox">
 
 <div id="loaderBar">
 
@@ -855,7 +897,9 @@ onkeyup="searchUser()">
   <p id="liveUsers">
 🔥 120 online now
 </p>
-
+  <p id="clock">
+⏰ 12:00
+</p>
   <button class="dislikeBtn" onclick="dislike()">❌</button>
   <button class="likeBtn" onclick="like()">❤️</button>
   <button onclick="superLike()">
@@ -1074,12 +1118,44 @@ img:"https://i.pravatar.cc/300?img=15"
   let i = 0;
   let liked = JSON.parse(localStorage.getItem("liked")) || [];
   let startX = 0;
+  let moveX = 0;
   let card = document.querySelector(".card");
 
 card.addEventListener("touchstart", e=>{
   startX = e.touches[0].clientX;
 });
 
+  card.addEventListener("touchend", e=>{
+
+let endX = e.changedTouches[0].clientX;
+
+if(endX - startX > 80){
+
+like();
+
+}
+
+else if(startX - endX > 80){
+
+dislike();
+
+}
+
+else{
+
+card.style.transform =
+"translateX(0) rotate(0deg)";
+
+}
+
+});
+
+moveX = e.touches[0].clientX - startX;
+
+card.style.transform =
+"translateX(" + moveX + "px) rotate(" + moveX/12 + "deg)";
+
+});
 card.addEventListener("touchend", e=>{
   let endX = e.changedTouches[0].clientX;
 
@@ -1662,6 +1738,81 @@ if(savedTheme == "dark"){
 document.body.classList.add("dark");
 
 }
+
+
+  document.getElementById("msgInput")
+.addEventListener("keypress", function(e){
+
+if(e.key === "Enter"){
+
+sendMessage();
+
+}
+
+});
+
+  let lastTap = 0;
+
+document.getElementById("photo")
+.addEventListener("click", function(){
+
+let now = new Date().getTime();
+
+if(now - lastTap < 300){
+
+showToast("❤️ Double Like");
+
+like();
+
+}
+
+lastTap = now;
+
+});
+
+  setInterval(()=>{
+
+let time = new Date();
+
+let hours = time.getHours();
+
+let minutes = time.getMinutes();
+
+if(minutes < 10){
+
+minutes = "0" + minutes;
+
+}
+
+document.getElementById("clock")
+.innerText =
+"⏰ " + hours + ":" + minutes;
+
+},1000);
+
+  function updateInternetStatus(){
+
+if(navigator.onLine){
+
+document.getElementById("status")
+.innerText = "🟢 Online";
+
+}else{
+
+document.getElementById("status")
+.innerText = "🔴 Offline";
+
+}
+
+}
+
+window.addEventListener("online",
+updateInternetStatus);
+
+window.addEventListener("offline",
+updateInternetStatus);
+
+updateInternetStatus();
   
 show();
 </script>
