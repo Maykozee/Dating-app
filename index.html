@@ -2,825 +2,584 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>EthioDating Premium</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
 :root{
---bg:#0f0f12;
---card:#18181d;
---card2:#1f1f25;
---text:#ffffff;
---muted:#b5b5c3;
---pink:#ff2e74;
---purple:#8a3dff;
---gradient:linear-gradient(135deg,#ff2e74,#8a3dff);
---border:rgba(255,255,255,.08);
+--bg:#0f0f13;
+--card:#18181f;
+--soft:#242430;
+--text:#fff;
+--pink:#ff2d75;
+--purple:#7d3cff;
+--red:#ff4d67;
+--glass:rgba(255,255,255,.06);
 }
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
-body{
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-transition:.3s;
-}
-body.light{
---bg:#f4f4f8;
---card:#ffffff;
---card2:#ffffff;
---text:#101010;
---muted:#555;
---border:rgba(0,0,0,.08);
-}
-::-webkit-scrollbar{width:0;}
-.hidden{display:none;}
-.center{
-display:flex;
-align-items:center;
-justify-content:center;
-}
-button{
-cursor:pointer;
-border:none;
-outline:none;
-}
-input,select,textarea{
-width:100%;
-padding:15px;
-border-radius:16px;
-border:1px solid var(--border);
-background:var(--card2);
-color:var(--text);
-margin-top:12px;
-}
-.section{
-padding:20px;
-}
-.card{
-background:var(--card);
-border:1px solid var(--border);
-border-radius:28px;
-backdrop-filter:blur(20px);
-}
-.gradientBtn{
-background:var(--gradient);
-color:#fff;
-padding:15px;
-border-radius:18px;
-font-weight:600;
-width:100%;
-margin-top:15px;
-}
-.smallBtn{
-background:var(--card2);
-color:var(--text);
-padding:12px;
-border-radius:14px;
-}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+body{background:linear-gradient(180deg,#09090d,#171720);color:var(--text);overflow-x:hidden}
+.hidden{display:none}
+button{cursor:pointer}
+.page{min-height:100vh}
 #splash{
 position:fixed;
 inset:0;
-background:#000;
-z-index:9999;
+background:#08080b;
+display:flex;
+align-items:center;
+justify-content:center;
 flex-direction:column;
-gap:20px;
+z-index:9999;
 }
 .logoCircle{
 width:110px;
 height:110px;
 border-radius:50%;
-background:var(--gradient);
-animation:pulse 1.5s infinite;
-}
-@keyframes pulse{
-0%{transform:scale(1)}
-50%{transform:scale(1.08)}
-100%{transform:scale(1)}
-}
-.loader{
-width:240px;
-height:8px;
-border-radius:50px;
-background:#222;
-overflow:hidden;
-}
-.loader span{
-display:block;
-height:100%;
-width:50%;
-background:var(--gradient);
-animation:load 2s linear infinite;
-}
-@keyframes load{
-0%{margin-left:-50%;}
-100%{margin-left:100%;}
-}
-#onboarding{
-min-height:100vh;
-padding:25px;
+background:linear-gradient(135deg,var(--pink),var(--purple));
 display:flex;
-flex-direction:column;
-justify-content:space-between;
-background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200') center/cover;
+align-items:center;
+justify-content:center;
+font-size:45px;
+animation:spin 3s linear infinite;
+box-shadow:0 0 40px rgba(255,45,117,.4)
 }
-.hero h1{
-font-size:48px;
-line-height:1.1;
-margin-top:80px;
-}
-.hero p{
-margin-top:18px;
-color:#ddd;
-line-height:1.7;
-}
-.authOptions{
-display:flex;
-flex-direction:column;
-gap:14px;
-margin-top:40px;
-}
-.socialBtn{
-padding:16px;
-border-radius:18px;
-background:rgba(255,255,255,.12);
-backdrop-filter:blur(14px);
-color:#fff;
-font-size:15px;
-}
-#authPage,#setupPage,#mainApp,#adminPanel{
-display:none;
-}
-.authWrap{
-max-width:500px;
-margin:auto;
+@keyframes spin{100%{transform:rotate(360deg)}}
+.brand{font-size:42px;font-weight:700;margin-top:25px}
+.sub{opacity:.7;margin-top:8px}
+.top{
 padding:20px;
-}
-.topTitle{
-font-size:32px;
-font-weight:700;
-margin-bottom:8px;
-}
-.muted{
-color:var(--muted);
-font-size:14px;
-}
-.grid2{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-}
-.progress{
-height:12px;
-background:#222;
-border-radius:30px;
-overflow:hidden;
-margin:20px 0;
-}
-.progress span{
-display:block;
-height:100%;
-width:72%;
-background:var(--gradient);
-}
-.photoGrid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:10px;
-margin-top:15px;
-}
-.photoBox{
-height:110px;
-border-radius:18px;
-background:var(--card2);
-border:1px dashed var(--border);
-}
-.topBar{
-position:sticky;
-top:0;
-z-index:50;
-padding:18px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(15,15,18,.8);
-backdrop-filter:blur(16px);
+position:sticky;
+top:0;
+backdrop-filter:blur(20px);
+background:rgba(0,0,0,.3);
+z-index:10;
 }
-.brand{
-font-size:28px;
-font-weight:700;
-background:var(--gradient);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+.top h1{font-size:30px;background:linear-gradient(90deg,#fff,var(--pink));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.iconBtn{
+width:48px;height:48px;border:none;border-radius:50%;
+background:var(--glass);color:#fff;font-size:22px
 }
-.storyRow{
+.authWrap{padding:25px}
+.card{
+background:var(--card);
+border-radius:30px;
+padding:22px;
+box-shadow:0 10px 40px rgba(0,0,0,.3)
+}
+.hero{
+height:260px;
+border-radius:30px;
+background:url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200&auto=format&fit=crop') center/cover;
+position:relative;
+overflow:hidden;
+margin-bottom:22px;
+}
+.hero::after{
+content:'';
+position:absolute;
+inset:0;
+background:linear-gradient(180deg,transparent,rgba(0,0,0,.75));
+}
+.heroText{
+position:absolute;
+bottom:25px;
+left:20px;
+z-index:2;
+}
+.heroText h2{font-size:34px}
+.input{
+width:100%;
+padding:16px;
+background:#232330;
+color:#fff;
+border:none;
+border-radius:18px;
+margin-top:14px
+}
+.select{width:100%}
+.primary{
+width:100%;
+padding:16px;
+border:none;
+margin-top:16px;
+background:linear-gradient(135deg,var(--pink),var(--purple));
+color:#fff;
+font-size:17px;
+font-weight:600;
+border-radius:18px
+}
+.socials{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.socials button{
+padding:14px;border:none;border-radius:18px;background:#22222d;color:#fff
+}
+#app{padding-bottom:120px}
+.stories{
 display:flex;
 gap:14px;
 overflow:auto;
-padding:15px;
+padding:0 20px 15px
 }
-.story{
-min-width:78px;
-text-align:center;
-}
+.story{text-align:center}
 .story img{
-width:74px;
-height:74px;
-border-radius:50%;
-padding:3px;
-background:var(--gradient);
-object-fit:cover;
+width:75px;height:75px;border-radius:50%;object-fit:cover;
+padding:3px;background:linear-gradient(135deg,var(--pink),var(--purple))
 }
-.story p{
-font-size:12px;
-margin-top:8px;
-}
-.swipeCard{
-margin:18px;
+.story p{font-size:12px;margin-top:6px}
+.swiper{
+padding:0 20px;
 position:relative;
-overflow:hidden;
+height:620px;
 }
-.swipeCard img{
+.profileCard{
+position:absolute;
 width:100%;
-height:540px;
-object-fit:cover;
+background:var(--card);
+border-radius:35px;
+overflow:hidden;
+transition:.3s;
+}
+.profileImage{
+height:470px;
+background-size:cover;
+background-position:center;
+position:relative
 }
 .overlay{
 position:absolute;
 inset:0;
-background:linear-gradient(transparent,rgba(0,0,0,.85));
+background:linear-gradient(180deg,transparent,rgba(0,0,0,.85));
 }
 .profileInfo{
 position:absolute;
-bottom:0;
-left:0;
-width:100%;
-padding:22px;
+bottom:22px;
+left:22px;
+right:22px
 }
-.profileInfo h2{
-font-size:34px;
-}
+.profileInfo h2{font-size:34px}
 .badge{
+background:#2d7dff;
 padding:6px 10px;
-border-radius:20px;
-background:#0f8bff;
+border-radius:30px;
 font-size:12px;
-margin-left:10px;
+margin-left:10px
 }
-.chips{
-display:flex;
-flex-wrap:wrap;
-gap:8px;
-margin-top:12px;
-}
-.chip{
-padding:8px 12px;
-border-radius:20px;
+.tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.tags span{
+padding:8px 14px;
 background:rgba(255,255,255,.14);
-font-size:12px;
+border-radius:30px;
+font-size:12px
 }
-.actionBar{
+.controls{
 display:flex;
 justify-content:center;
-gap:18px;
-margin:20px;
+gap:20px;
+margin-top:20px
 }
-.actionBar button{
-width:70px;
-height:70px;
-border-radius:50%;
-font-size:24px;
+.action{
+width:70px;height:70px;border-radius:50%;border:none;
+font-size:28px;color:#fff
 }
-.nope{background:#2d2d35;color:#fff;}
-.like{background:var(--gradient);color:#fff;}
-.super{background:#2ba7ff;color:#fff;}
-.rewind{background:#ffb400;color:#fff;}
-.boost{background:#9d4dff;color:#fff;}
+.nope{background:#353545}
+.like{background:linear-gradient(135deg,var(--pink),#ff5d5d)}
+.star{background:linear-gradient(135deg,#00bfff,#0077ff)}
+.rewind{background:linear-gradient(135deg,#f9a826,#ffcc00)}
+.boost{background:linear-gradient(135deg,#8b5cf6,#6d28d9)}
 .bottomNav{
 position:fixed;
-bottom:0;
-left:0;
-width:100%;
-background:rgba(15,15,18,.92);
-backdrop-filter:blur(20px);
-padding:14px 10px;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+width:92%;
+background:rgba(25,25,35,.92);
+backdrop-filter:blur(25px);
+border-radius:30px;
+padding:16px;
 display:flex;
 justify-content:space-around;
-z-index:100;
+z-index:100
 }
 .bottomNav button{
-background:none;
-color:var(--text);
-font-size:24px;
+background:none;border:none;color:#fff;font-size:26px
 }
-.popup{
+.modal{
 position:fixed;
 inset:0;
 background:rgba(0,0,0,.7);
 display:none;
 align-items:flex-end;
-z-index:200;
+justify-content:center;
+z-index:999
 }
-.popupContent{
-background:var(--bg);
+.modalContent{
 width:100%;
 max-height:92vh;
 overflow:auto;
-border-radius:30px 30px 0 0;
+background:#15151d;
 padding:24px;
+border-radius:35px 35px 0 0
 }
-.messageArea{
-height:350px;
+.chatArea{
+height:320px;
 overflow:auto;
-margin:20px 0;
-display:flex;
-flex-direction:column;
-gap:10px;
+margin:20px 0
 }
-.me,.them{
-padding:14px;
-max-width:80%;
+.msg{
+padding:14px 16px;
 border-radius:18px;
+margin-bottom:10px;
+max-width:80%
 }
-.me{
-background:var(--gradient);
-align-self:flex-end;
-}
-.them{
-background:var(--card2);
-}
+.me{background:linear-gradient(135deg,var(--pink),var(--purple));margin-left:auto}
+.them{background:#2a2a38}
 .matchPopup{
 position:fixed;
 inset:0;
-background:rgba(0,0,0,.9);
+background:rgba(0,0,0,.88);
 display:none;
-flex-direction:column;
 align-items:center;
 justify-content:center;
-z-index:999;
+flex-direction:column;
+z-index:1000
 }
-.matchPopup h1{
-font-size:54px;
-background:var(--gradient);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-.matchUsers{
-display:flex;
-gap:18px;
-margin:20px 0;
-}
-.matchUsers img{
-width:120px;
-height:120px;
-border-radius:50%;
-object-fit:cover;
-border:4px solid #fff;
-}
-.premiumCards{
+.matchPopup h1{font-size:60px;color:#fff}
+.matchPopup p{margin-top:10px;opacity:.8}
+.gridPhotos{
 display:grid;
-gap:16px;
-margin-top:20px;
+grid-template-columns:1fr 1fr 1fr;
+gap:10px;
+margin-top:16px
 }
-.plan{
-padding:20px;
-border-radius:26px;
-background:var(--card);
-border:1px solid var(--border);
+.gridPhotos img{
+width:100%;height:120px;object-fit:cover;border-radius:20px
 }
-.plan h2{
-margin-bottom:10px;
+.switch{
+width:55px;height:30px;border-radius:30px;background:#333;position:relative
 }
-.stats{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:20px;
+.switch::after{
+content:'';position:absolute;width:24px;height:24px;border-radius:50%;background:#fff;left:3px;top:3px;transition:.3s
 }
-.statBox{
-padding:18px;
-background:var(--card);
-border-radius:20px;
+.light .switch::after{left:28px}
+.light{
+background:#f4f4f8;
+color:#111
 }
-.adminCards{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:14px;
-margin-top:20px;
-}
-canvas{
-background:#fff;
-border-radius:18px;
-padding:10px;
-margin-top:20px;
-}
-.fadeIn{
-animation:fade .5s ease;
-}
-@keyframes fade{
-from{opacity:0;transform:translateY(20px)}
-to{opacity:1;transform:translateY(0)}
-}
+.light .card,
+.light .profileCard,
+.light .modalContent,
+.light .bottomNav,
+.light .top,
+.light .input{background:#fff;color:#111}
+.light .input{border:1px solid #ddd}
 </style>
 </head>
 <body>
-
-<div id="splash" class="center">
-<div class="logoCircle"></div>
+<div id="splash">
+<div class="logoCircle">❤</div>
+<div class="brand">EthioDating</div>
+<div class="sub">Premium Ethiopian Dating Experience</div>
+</div>
+<section id="auth" class="page hidden">
+<div class="top">
 <h1>EthioDating</h1>
-<div class="loader"><span></span></div>
-<p>Premium Ethiopian Dating Experience</p>
+<button class="iconBtn" onclick="toggleTheme()">☾</button>
 </div>
-
-<section id="onboarding">
+<div class="authWrap">
 <div class="hero">
-<h1>Find Real Love In Ethiopia ❤️</h1>
-<p>Modern premium dating experience with smart matching, realtime chat, stories, video profiles, AI recommendations and secure verification.</p>
+<div class="heroText">
+<h2>Find Real Love</h2>
+<p>Modern Ethiopian Dating App</p>
 </div>
-<div>
-<div class="authOptions">
-<button class="socialBtn" onclick="openAuth()">Continue with Phone</button>
-<button class="socialBtn">Continue with Google</button>
-<button class="socialBtn">Continue with Apple</button>
-<button class="socialBtn">Continue with Facebook</button>
 </div>
-<p style="margin-top:25px;font-size:13px;color:#ddd">By continuing you agree to Terms, Privacy Policy, Camera Access, Notification Access and Location Permissions.</p>
+<div class="card">
+<h2>Create Account</h2>
+<div class="socials">
+<button>Google</button>
+<button>Apple</button>
+<button>Facebook</button>
+<button onclick="phoneMode()">Phone</button>
 </div>
-</section>
-
-<section id="authPage" class="section">
-<div class="authWrap card fadeIn">
-<div class="topTitle">Create Account</div>
-<p class="muted">Secure OTP verification and premium profile setup</p>
-<div class="grid2">
-<input placeholder="First Name">
-<input placeholder="Last Name">
-</div>
-<input placeholder="Email Address">
-<input placeholder="Phone Number">
-<input type="password" placeholder="Password">
-<input type="date">
-<select>
+<input class="input" id="email" placeholder="Email or Phone Number">
+<input class="input" placeholder="First Name">
+<input class="input" placeholder="Last Name">
+<input class="input" type="password" placeholder="Password">
+<input class="input" id="age" type="number" placeholder="Age">
+<select class="input select" id="gender">
 <option>Gender</option>
 <option>Male</option>
 <option>Female</option>
 </select>
-<select>
+<select class="input select" id="looking">
 <option>Looking For</option>
 <option>Male</option>
 <option>Female</option>
 </select>
-<button class="gradientBtn" onclick="openSetup()">Verify OTP & Continue</button>
-</div>
-</section>
-
-<section id="setupPage" class="section">
-<div class="card" style="padding:22px">
-<h2>Complete Your Profile</h2>
-<div class="progress"><span></span></div>
-<div class="photoGrid">
-<div class="photoBox"></div>
-<div class="photoBox"></div>
-<div class="photoBox"></div>
-<div class="photoBox"></div>
-<div class="photoBox"></div>
-<div class="photoBox"></div>
-<div class="photoBox"></div>
-<div class="photoBox"></div>
-<div class="photoBox"></div>
-</div>
-<textarea placeholder="Write your bio"></textarea>
-<input placeholder="Interests">
-<input placeholder="Job">
-<input placeholder="School">
-<input placeholder="Education">
-<select>
+<select class="input select">
 <option>Addis Ababa</option>
 <option>Adama</option>
 <option>Hawassa</option>
 <option>Bahir Dar</option>
-<option>Dire Dawa</option>
+<option>Mekelle</option>
 </select>
-<select>
-<option>Relationship Goal</option>
-<option>Serious Relationship</option>
-<option>Friendship</option>
-<option>Marriage</option>
-</select>
-<input placeholder="Languages">
-<input placeholder="Height">
-<select>
-<option>Lifestyle Preference</option>
-<option>Non Smoker</option>
-<option>Social Drinker</option>
-</select>
-<button class="gradientBtn" onclick="openApp()">Launch EthioDating</button>
+<textarea class="input" placeholder="Bio"></textarea>
+<input class="input" type="file" multiple>
+<button class="primary" onclick="register()">Create Premium Account</button>
+</div>
 </div>
 </section>
-
-<section id="mainApp">
-<div class="topBar">
-<div class="brand">EthioDating</div>
-<div style="display:flex;gap:12px">
-<button class="smallBtn" onclick="toggleTheme()">🌙</button>
-<button class="smallBtn" onclick="openPopup('settingsPopup')">⚙️</button>
+<section id="app" class="hidden">
+<div class="top">
+<h1>EthioDating</h1>
+<button class="iconBtn" onclick="openModal('settingsModal')">☰</button>
 </div>
+<div class="stories">
+<div class="story"><img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop"><p>Hana</p></div>
+<div class="story"><img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=800&auto=format&fit=crop"><p>Abel</p></div>
+<div class="story"><img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=800&auto=format&fit=crop"><p>Liya</p></div>
+<div class="story"><img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop"><p>Sara</p></div>
 </div>
-
-<div class="storyRow">
-<div class="story">
-<img src="https://i.pravatar.cc/200?img=21">
-<p>Hana</p>
-</div>
-<div class="story">
-<img src="https://i.pravatar.cc/200?img=32">
-<p>Liya</p>
-</div>
-<div class="story">
-<img src="https://i.pravatar.cc/200?img=45">
-<p>Sara</p>
-</div>
-<div class="story">
-<img src="https://i.pravatar.cc/200?img=56">
-<p>Ruth</p>
-</div>
-</div>
-
-<div class="swipeCard card" id="swipeCard">
-<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200">
+<div class="swiper">
+<div class="profileCard" id="card">
+<div class="profileImage" id="profileImage" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop')">
 <div class="overlay"></div>
 <div class="profileInfo">
-<h2>Selam, 24 <span class="badge">Verified</span></h2>
-<p>📍 3km away • Addis Ababa</p>
-<div class="chips">
-<div class="chip">Travel</div>
-<div class="chip">Coffee</div>
-<div class="chip">Music</div>
-<div class="chip">Serious Relationship</div>
-</div>
-<p style="margin-top:12px">Love deep conversations, sunsets and meaningful relationships ❤️</p>
-</div>
-</div>
-
-<div class="actionBar">
-<button class="rewind" onclick="rewindCard()">⏪</button>
-<button class="nope" onclick="dislikeUser()">❌</button>
-<button class="super" onclick="superLike()">⭐</button>
-<button class="like" onclick="likeUser()">❤️</button>
-<button class="boost" onclick="boostProfile()">🚀</button>
-</div>
-
-<div class="section">
-<div class="stats">
-<div class="statBox">
-<h3>128</h3>
-<p class="muted">Profile Views</p>
-</div>
-<div class="statBox">
-<h3>42</h3>
-<p class="muted">Matches</p>
-</div>
-<div class="statBox">
-<h3>Premium</h3>
-<p class="muted">Subscription</p>
-</div>
-<div class="statBox">
-<h3>92%</h3>
-<p class="muted">Profile Score</p>
+<h2>Sara, 24 <span class="badge">Verified</span></h2>
+<p>3 km away • Online now</p>
+<div class="tags">
+<span>Travel</span>
+<span>Music</span>
+<span>Coffee</span>
+<span>Relationship</span>
 </div>
 </div>
 </div>
-
+<div class="card" style="margin:16px">
+<p>Love deep conversations, coffee dates and honest people ❤</p>
+<div class="gridPhotos">
+<img onclick="changePhoto(0)" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop">
+<img onclick="changePhoto(1)" src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=800&auto=format&fit=crop">
+<img onclick="changePhoto(2)" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop">
+</div>
+<div class="controls">
+<button class="action rewind" onclick="rewindCard()">⟲</button>
+<button class="action nope" onclick="dislike()">✕</button>
+<button class="action star" onclick="superLike()">★</button>
+<button class="action like" onclick="like()">❤</button>
+<button class="action boost" onclick="boost()">⚡</button>
+</div>
+<button class="primary" onclick="openModal('profileModal')">More Info</button>
+</div>
+</div>
+</div>
 <div class="bottomNav">
 <button>🏠</button>
-<button onclick="openPopup('explorePopup')">🔍</button>
-<button onclick="openPopup('chatPopup')">💬</button>
-<button onclick="openPopup('premiumPopup')">💎</button>
-<button onclick="openPopup('profilePopup')">👤</button>
+<button onclick="openModal('chatModal')">💬</button>
+<button onclick="openModal('exploreModal')">🔥</button>
+<button onclick="openModal('premiumModal')">💎</button>
+<button onclick="openModal('profileModal')">👤</button>
 </div>
 </section>
-
-<div class="popup" id="chatPopup">
-<div class="popupContent">
-<h2>Realtime Chat</h2>
-<div class="messageArea" id="chatArea">
-<div class="them">Hey 👋</div>
-<div class="me">Hello ❤️</div>
+<div class="modal" id="chatModal">
+<div class="modalContent">
+<h2>Messages</h2>
+<div class="chatArea" id="chatArea">
+<div class="msg them">Hello ❤</div>
 </div>
-<input placeholder="Type message">
-<div class="grid2">
-<button class="gradientBtn">🎤 Voice</button>
-<button class="gradientBtn">📸 Photo</button>
-</div>
-<button class="gradientBtn" onclick="closePopup('chatPopup')">Close</button>
+<input class="input" id="msgInput" placeholder="Write a message">
+<button class="primary" onclick="sendMessage()">Send Message</button>
+<button class="primary" onclick="voiceNote()">Voice Note</button>
+<button class="primary" onclick="sharePhoto()">Photo Share</button>
+<button class="primary" onclick="closeModal('chatModal')">Close</button>
 </div>
 </div>
-
-<div class="popup" id="premiumPopup">
-<div class="popupContent">
-<h2>Upgrade Premium</h2>
-<div class="premiumCards">
-<div class="plan">
-<h2>Plus</h2>
-<p>Unlimited Likes • Rewind • Passport</p>
-<button class="gradientBtn">Upgrade</button>
+<div class="modal" id="premiumModal">
+<div class="modalContent">
+<h2>Premium Plans</h2>
+<div class="card">
+<h3>Plus</h3>
+<p>Unlimited Likes • Rewind • More Matches</p>
 </div>
-<div class="plan">
-<h2>Gold</h2>
-<p>See Who Likes You • Priority Match</p>
-<button class="gradientBtn">Upgrade</button>
+<div class="card" style="margin-top:14px">
+<h3>Gold</h3>
+<p>See Who Likes You • Priority Boost</p>
 </div>
-<div class="plan">
-<h2>Platinum</h2>
-<p>Message Before Match • Boost Credits</p>
-<button class="gradientBtn">Upgrade</button>
+<div class="card" style="margin-top:14px">
+<h3>Platinum</h3>
+<p>Message Before Match • Passport Mode</p>
 </div>
-</div>
-<select>
+<select class="input">
 <option>Telebirr</option>
+<option>CBE</option>
 <option>Chapa</option>
-<option>Stripe</option>
 <option>PayPal</option>
 <option>Binance</option>
 </select>
-<button class="gradientBtn" onclick="closePopup('premiumPopup')">Close</button>
+<button class="primary" onclick="activatePremium()">Activate Premium</button>
+<button class="primary" onclick="closeModal('premiumModal')">Close</button>
 </div>
 </div>
-
-<div class="popup" id="profilePopup">
-<div class="popupContent">
-<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200" style="width:100%;height:360px;object-fit:cover;border-radius:24px;">
-<h2 style="margin-top:20px">Selam Tesfaye</h2>
-<p class="muted">Verified • Online</p>
-<div class="chips">
-<div class="chip">Orthodox</div>
-<div class="chip">Degree</div>
-<div class="chip">Addis Ababa</div>
-<div class="chip">Gym</div>
+<div class="modal" id="profileModal">
+<div class="modalContent">
+<h2>Your Profile</h2>
+<div class="gridPhotos">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=800&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=800&auto=format&fit=crop">
+<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=800&auto=format&fit=crop">
 </div>
-<button class="gradientBtn">Message</button>
-<button class="gradientBtn">Video Call</button>
-<button class="gradientBtn">Share Profile</button>
-<button class="gradientBtn" onclick="closePopup('profilePopup')">Close</button>
+<div class="card" style="margin-top:16px">
+<p><strong>Profile Completion:</strong> 92%</p>
+<p><strong>Relationship Goal:</strong> Serious Relationship</p>
+<p><strong>Languages:</strong> Amharic, English</p>
+<p><strong>Education:</strong> Degree</p>
+<p><strong>Lifestyle:</strong> Non Smoker</p>
+</div>
+<button class="primary" onclick="openModal('chatModal')">Message</button>
+<button class="primary" onclick="closeModal('profileModal')">Close</button>
 </div>
 </div>
-
-<div class="popup" id="explorePopup">
-<div class="popupContent">
+<div class="modal" id="exploreModal">
+<div class="modalContent">
 <h2>Explore</h2>
-<div class="stats">
-<div class="statBox">🔥 Trending</div>
-<div class="statBox">📍 Nearby</div>
-<div class="statBox">💎 Verified</div>
-<div class="statBox">❤️ Serious</div>
-<div class="statBox">🎉 New Users</div>
-<div class="statBox">👫 Friendship</div>
-</div>
-<button class="gradientBtn" onclick="closePopup('explorePopup')">Close</button>
+<div class="card">Nearby Users</div>
+<div class="card" style="margin-top:12px">Verified Profiles</div>
+<div class="card" style="margin-top:12px">Trending Profiles</div>
+<div class="card" style="margin-top:12px">Serious Relationship Mode</div>
+<div class="card" style="margin-top:12px">AI Smart Picks</div>
+<button class="primary" onclick="closeModal('exploreModal')">Close</button>
 </div>
 </div>
-
-<div class="popup" id="settingsPopup">
-<div class="popupContent">
+<div class="modal" id="settingsModal">
+<div class="modalContent">
 <h2>Settings</h2>
-<button class="gradientBtn">Account Settings</button>
-<button class="gradientBtn">Privacy Settings</button>
-<button class="gradientBtn">Notification Settings</button>
-<button class="gradientBtn">Security Settings</button>
-<button class="gradientBtn">Blocked Users</button>
-<button class="gradientBtn" onclick="toggleTheme()">Dark / Light Mode</button>
-<button class="gradientBtn">Delete Account</button>
-<button class="gradientBtn">Logout</button>
-<button class="gradientBtn" onclick="closePopup('settingsPopup')">Close</button>
+<div class="card">
+<p>Dark Mode</p>
+<div class="switch" onclick="toggleTheme()"></div>
+</div>
+<div class="card" style="margin-top:12px">
+<p>Notifications</p>
+</div>
+<div class="card" style="margin-top:12px">
+<p>Blocked Users</p>
+</div>
+<div class="card" style="margin-top:12px">
+<p>Language: English / አማርኛ</p>
+</div>
+<button class="primary" onclick="closeModal('settingsModal')">Close</button>
 </div>
 </div>
-
-<div class="matchPopup center" id="matchPopup">
-<h1>It's A Match ❤️</h1>
-<div class="matchUsers">
-<img src="https://i.pravatar.cc/200?img=31">
-<img src="https://i.pravatar.cc/200?img=41">
+<div class="matchPopup" id="matchPopup">
+<h1>It's a Match ❤</h1>
+<p>You and Sara liked each other</p>
+<button class="primary" style="width:280px" onclick="startChat()">Start Chat</button>
 </div>
-<button class="gradientBtn" style="width:280px">Start Chatting</button>
-</div>
-
-<section id="adminPanel" class="section">
-<h1>Admin Dashboard</h1>
-<div class="adminCards">
-<div class="statBox"><h2>12,842</h2><p>Users</p></div>
-<div class="statBox"><h2>$18,450</h2><p>Revenue</p></div>
-<div class="statBox"><h2>1,285</h2><p>Matches Today</p></div>
-<div class="statBox"><h2>231</h2><p>Reports</p></div>
-</div>
-<canvas id="chart"></canvas>
-</section>
-
 <script>
 setTimeout(()=>{
 document.getElementById('splash').style.display='none';
+document.getElementById('auth').classList.remove('hidden');
 },2500)
-
-function openAuth(){
-document.getElementById('onboarding').style.display='none';
-document.getElementById('authPage').style.display='block';
+function register(){
+const age=document.getElementById('age').value
+const gender=document.getElementById('gender').value
+const looking=document.getElementById('looking').value
+if(age<18){alert('Only 18+ users allowed');return}
+if(gender===looking){alert('Same gender match disabled');return}
+if(!navigator.geolocation){alert('Location required');return}
+navigator.geolocation.getCurrentPosition(()=>{})
+alert('OTP verification code sent successfully')
+document.getElementById('auth').classList.add('hidden')
+document.getElementById('app').classList.remove('hidden')
 }
-
-function openSetup(){
-document.getElementById('authPage').style.display='none';
-document.getElementById('setupPage').style.display='block';
+function openModal(id){
+document.getElementById(id).style.display='flex'
 }
-
-function openApp(){
-document.getElementById('setupPage').style.display='none';
-document.getElementById('mainApp').style.display='block';
+function closeModal(id){
+document.getElementById(id).style.display='none'
 }
-
-function openPopup(id){
-document.getElementById(id).style.display='flex';
-}
-
-function closePopup(id){
-document.getElementById(id).style.display='none';
-}
-
-function toggleTheme(){
-document.body.classList.toggle('light');
-}
-
-function likeUser(){
-navigator.vibrate(100);
-document.getElementById('matchPopup').style.display='flex';
+function sendMessage(){
+const input=document.getElementById('msgInput')
+if(!input.value)return
+const area=document.getElementById('chatArea')
+area.innerHTML+=`<div class="msg me">${input.value}</div>`
 setTimeout(()=>{
-document.getElementById('matchPopup').style.display='none';
-},3000)
+area.innerHTML+=`<div class="msg them">Nice to meet you ❤</div>`
+area.scrollTop=area.scrollHeight
+},900)
+input.value=''
 }
-
-function dislikeUser(){
-navigator.vibrate(50);
+function like(){
+const card=document.getElementById('card')
+card.style.transform='translateX(500px) rotate(25deg)'
+setTimeout(()=>{
+document.getElementById('matchPopup').style.display='flex'
+card.style.transform='translateX(0) rotate(0deg)'
+},400)
 }
-
+function dislike(){
+const card=document.getElementById('card')
+card.style.transform='translateX(-500px) rotate(-25deg)'
+setTimeout(()=>{
+card.style.transform='translateX(0) rotate(0deg)'
+},400)
+}
 function superLike(){
-alert('Super Like Sent ⭐');
+alert('Super Like Sent')
 }
-
 function rewindCard(){
-alert('Rewind Activated ⏪');
+alert('Last swipe restored')
 }
-
-function boostProfile(){
-alert('Boost Enabled For 30 Minutes 🚀');
+function boost(){
+alert('Boost activated for 30 minutes')
 }
-
-const ctx = document.getElementById('chart');
-new Chart(ctx, {
-type:'line',
-data:{
-labels:['Mon','Tue','Wed','Thu','Fri','Sat'],
-datasets:[{
-label:'Daily Matches',
-data:[12,18,9,24,17,31],
-borderColor:'#ff2e74',
-tension:.4
-}]
+function activatePremium(){
+alert('Premium Activated Successfully')
 }
+function startChat(){
+document.getElementById('matchPopup').style.display='none'
+openModal('chatModal')
+}
+function voiceNote(){
+alert('Voice note sent')
+}
+function sharePhoto(){
+alert('Photo shared successfully')
+}
+function toggleTheme(){
+document.body.classList.toggle('light')
+}
+const photos=[
+'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200&auto=format&fit=crop',
+'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop'
+]
+let current=0
+function changePhoto(index){
+current=index
+const img=document.getElementById('profileImage')
+img.style.backgroundImage=`url(${photos[index]})`
+}
+const card=document.getElementById('card')
+let startX=0
+let startY=0
+card.addEventListener('touchstart',e=>{
+startX=e.touches[0].clientX
+startY=e.touches[0].clientY
 })
-
-const backend = {
-api:{
-auth:'/api/auth',
-users:'/api/users',
-matches:'/api/matches',
-messages:'/api/messages',
-payments:'/api/payments',
-notifications:'/api/notifications'
-},
-database:{
-users:[],
-photos:[],
-matches:[],
-messages:[],
-subscriptions:[],
-likes:[],
-swipes:[],
-reports:[]
-},
-security:{
-jwt:true,
-otp:true,
-rateLimiting:true,
-deviceVerification:true
-},
-realtime:{
-socketio:true,
-liveTyping:true,
-onlineStatus:true
-}
-}
+card.addEventListener('touchend',e=>{
+let endX=e.changedTouches[0].clientX
+let endY=e.changedTouches[0].clientY
+if(endX-startX>80){like()}
+if(startX-endX>80){dislike()}
+if(startY-endY>80){superLike()}
+})
+let tap=0
+card.addEventListener('click',()=>{
+const now=new Date().getTime()
+if(now-tap<300){like()}
+tap=now
+})
 </script>
 </body>
 </html>
