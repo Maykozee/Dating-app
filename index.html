@@ -1,916 +1,826 @@
 <!DOCTYPE html>
-<html lang="am">
+<html lang="en">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>EthioDating</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>EthioDating Premium</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
+:root{
+--bg:#0f0f12;
+--card:#18181d;
+--card2:#1f1f25;
+--text:#ffffff;
+--muted:#b5b5c3;
+--pink:#ff2e74;
+--purple:#8a3dff;
+--gradient:linear-gradient(135deg,#ff2e74,#8a3dff);
+--border:rgba(255,255,255,.08);
+}
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:'Poppins',sans-serif;
 }
-
 body{
-background:#0f0f13;
-color:white;
+background:var(--bg);
+color:var(--text);
 overflow-x:hidden;
+transition:.3s;
 }
-
 body.light{
-background:#f5f5f5;
-color:#111;
+--bg:#f4f4f8;
+--card:#ffffff;
+--card2:#ffffff;
+--text:#101010;
+--muted:#555;
+--border:rgba(0,0,0,.08);
 }
-
-#loadingScreen{
+::-webkit-scrollbar{width:0;}
+.hidden{display:none;}
+.center{
+display:flex;
+align-items:center;
+justify-content:center;
+}
+button{
+cursor:pointer;
+border:none;
+outline:none;
+}
+input,select,textarea{
+width:100%;
+padding:15px;
+border-radius:16px;
+border:1px solid var(--border);
+background:var(--card2);
+color:var(--text);
+margin-top:12px;
+}
+.section{
+padding:20px;
+}
+.card{
+background:var(--card);
+border:1px solid var(--border);
+border-radius:28px;
+backdrop-filter:blur(20px);
+}
+.gradientBtn{
+background:var(--gradient);
+color:#fff;
+padding:15px;
+border-radius:18px;
+font-weight:600;
+width:100%;
+margin-top:15px;
+}
+.smallBtn{
+background:var(--card2);
+color:var(--text);
+padding:12px;
+border-radius:14px;
+}
+#splash{
 position:fixed;
 inset:0;
-background:linear-gradient(180deg,#111,#000);
-display:flex;
-justify-content:center;
-align-items:center;
+background:#000;
+z-index:9999;
 flex-direction:column;
-z-index:99999;
-animation:fadeOut 1s ease forwards;
-animation-delay:2.5s;
+gap:20px;
 }
-
-#loadingScreen img{
-width:120px;
-height:120px;
-object-fit:cover;
-border-radius:30px;
-margin-bottom:20px;
-box-shadow:0 0 30px #ff0050;
-}
-
-.loader{
-width:70px;
-height:70px;
+.logoCircle{
+width:110px;
+height:110px;
 border-radius:50%;
-border:6px solid #333;
-border-top:6px solid #ff0050;
-animation:spin 1s linear infinite;
-margin-bottom:20px;
+background:var(--gradient);
+animation:pulse 1.5s infinite;
 }
-
-@keyframes spin{
-100%{transform:rotate(360deg)}
+@keyframes pulse{
+0%{transform:scale(1)}
+50%{transform:scale(1.08)}
+100%{transform:scale(1)}
 }
-
-@keyframes fadeOut{
-to{
-opacity:0;
-visibility:hidden;
+.loader{
+width:240px;
+height:8px;
+border-radius:50px;
+background:#222;
+overflow:hidden;
 }
+.loader span{
+display:block;
+height:100%;
+width:50%;
+background:var(--gradient);
+animation:load 2s linear infinite;
 }
-
-.topbar{
-position:fixed;
+@keyframes load{
+0%{margin-left:-50%;}
+100%{margin-left:100%;}
+}
+#onboarding{
+min-height:100vh;
+padding:25px;
+display:flex;
+flex-direction:column;
+justify-content:space-between;
+background:linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.8)),url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200') center/cover;
+}
+.hero h1{
+font-size:48px;
+line-height:1.1;
+margin-top:80px;
+}
+.hero p{
+margin-top:18px;
+color:#ddd;
+line-height:1.7;
+}
+.authOptions{
+display:flex;
+flex-direction:column;
+gap:14px;
+margin-top:40px;
+}
+.socialBtn{
+padding:16px;
+border-radius:18px;
+background:rgba(255,255,255,.12);
+backdrop-filter:blur(14px);
+color:#fff;
+font-size:15px;
+}
+#authPage,#setupPage,#mainApp,#adminPanel{
+display:none;
+}
+.authWrap{
+max-width:500px;
+margin:auto;
+padding:20px;
+}
+.topTitle{
+font-size:32px;
+font-weight:700;
+margin-bottom:8px;
+}
+.muted{
+color:var(--muted);
+font-size:14px;
+}
+.grid2{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+}
+.progress{
+height:12px;
+background:#222;
+border-radius:30px;
+overflow:hidden;
+margin:20px 0;
+}
+.progress span{
+display:block;
+height:100%;
+width:72%;
+background:var(--gradient);
+}
+.photoGrid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:10px;
+margin-top:15px;
+}
+.photoBox{
+height:110px;
+border-radius:18px;
+background:var(--card2);
+border:1px dashed var(--border);
+}
+.topBar{
+position:sticky;
 top:0;
-left:0;
-width:100%;
+z-index:50;
 padding:18px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.7);
-backdrop-filter:blur(20px);
-z-index:999;
+background:rgba(15,15,18,.8);
+backdrop-filter:blur(16px);
 }
-
-.logo{
-font-size:30px;
+.brand{
+font-size:28px;
 font-weight:700;
-background:linear-gradient(45deg,#ff0050,#ff8a00);
+background:var(--gradient);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
-
-.logo small{
-display:block;
-font-size:11px;
-color:#999;
--webkit-text-fill-color:#aaa;
-font-weight:400;
-}
-
-.menuBtn{
-width:50px;
-height:50px;
-border-radius:50%;
-border:none;
-background:#1d1d25;
-color:white;
-font-size:22px;
-}
-
-#menu{
-position:fixed;
-top:85px;
-right:15px;
-width:240px;
-background:#18181f;
-border-radius:25px;
-padding:15px;
-display:none;
-z-index:9999;
-box-shadow:0 0 30px rgba(0,0,0,0.5);
-}
-
-#menu button{
-width:100%;
-margin-bottom:10px;
-padding:15px;
-border:none;
-border-radius:16px;
-background:#23232d;
-color:white;
-font-size:15px;
-}
-
-.hero{
-height:320px;
-position:relative;
-overflow:hidden;
-margin-top:80px;
-}
-
-.hero img{
-position:absolute;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:0;
-animation:slideShow 12s infinite;
-}
-
-.hero img:nth-child(2){animation-delay:4s}
-.hero img:nth-child(3){animation-delay:8s}
-
-@keyframes slideShow{
-0%{opacity:0}
-10%{opacity:1}
-30%{opacity:1}
-40%{opacity:0}
-100%{opacity:0}
-}
-
-.overlay{
-position:absolute;
-inset:0;
-background:linear-gradient(to top,#0f0f13,transparent);
-}
-
-.welcomeText{
-position:absolute;
-bottom:30px;
-left:20px;
-z-index:5;
-}
-
-.welcomeText h1{
-font-size:42px;
-font-weight:700;
-}
-
-.welcomeText p{
-color:#ccc;
-margin-top:8px;
-}
-
-.section{
-padding:20px;
-}
-
-.signupCard{
-background:#16161d;
-padding:22px;
-border-radius:30px;
-margin-top:-40px;
-position:relative;
-z-index:5;
-box-shadow:0 0 30px rgba(0,0,0,0.4);
-}
-
-.signupCard h2{
-margin-bottom:20px;
-}
-
-.inputBox{
-margin-bottom:15px;
-}
-
-.inputBox label{
-display:block;
-margin-bottom:8px;
-font-size:14px;
-color:#aaa;
-}
-
-.inputBox input,
-.inputBox select,
-.inputBox textarea{
-width:100%;
-padding:15px;
-border:none;
-border-radius:18px;
-background:#23232d;
-color:white;
-font-size:15px;
-}
-
-.primaryBtn{
-width:100%;
-padding:16px;
-border:none;
-border-radius:18px;
-background:linear-gradient(45deg,#ff0050,#ff8a00);
-color:white;
-font-size:17px;
-font-weight:600;
-margin-top:10px;
-}
-
-.verifyBox{
-background:#1e1e27;
-padding:15px;
-border-radius:20px;
-margin-top:15px;
-}
-
-.verifyBox p{
-font-size:13px;
-line-height:1.7;
-color:#bbb;
-}
-
 .storyRow{
 display:flex;
-gap:12px;
+gap:14px;
 overflow:auto;
-padding-bottom:10px;
-margin-top:20px;
+padding:15px;
 }
-
 .story{
-min-width:85px;
+min-width:78px;
 text-align:center;
 }
-
 .story img{
-width:80px;
-height:80px;
+width:74px;
+height:74px;
 border-radius:50%;
-border:3px solid #ff0050;
+padding:3px;
+background:var(--gradient);
 object-fit:cover;
 }
-
 .story p{
 font-size:12px;
 margin-top:8px;
 }
-
-.cardWrap{
-padding:20px;
-}
-
-.profileCard{
-background:#17171f;
-border-radius:35px;
-overflow:hidden;
+.swipeCard{
+margin:18px;
 position:relative;
-box-shadow:0 0 40px rgba(0,0,0,0.5);
+overflow:hidden;
 }
-
-.profileCard img.mainPhoto{
+.swipeCard img{
 width:100%;
-height:480px;
+height:540px;
 object-fit:cover;
 }
-
-.onlineBadge{
+.overlay{
 position:absolute;
-top:18px;
-right:18px;
-background:#18d26e;
-padding:8px 14px;
-border-radius:50px;
+inset:0;
+background:linear-gradient(transparent,rgba(0,0,0,.85));
+}
+.profileInfo{
+position:absolute;
+bottom:0;
+left:0;
+width:100%;
+padding:22px;
+}
+.profileInfo h2{
+font-size:34px;
+}
+.badge{
+padding:6px 10px;
+border-radius:20px;
+background:#0f8bff;
 font-size:12px;
-font-weight:600;
+margin-left:10px;
 }
-
-.cardInfo{
-padding:20px;
-}
-
-.cardInfo h2{
-font-size:32px;
-margin-bottom:10px;
-}
-
-.distance{
-color:#aaa;
-margin-bottom:10px;
-}
-
-.tags{
+.chips{
 display:flex;
 flex-wrap:wrap;
-gap:10px;
-margin-top:15px;
+gap:8px;
+margin-top:12px;
 }
-
-.tag{
-background:#23232d;
-padding:10px 14px;
-border-radius:50px;
-font-size:13px;
+.chip{
+padding:8px 12px;
+border-radius:20px;
+background:rgba(255,255,255,.14);
+font-size:12px;
 }
-
-.gallery{
-display:flex;
-gap:10px;
-margin-top:20px;
-}
-
-.gallery img{
-width:33%;
-height:110px;
-object-fit:cover;
-border-radius:18px;
-}
-
-.actionRow{
+.actionBar{
 display:flex;
 justify-content:center;
-gap:20px;
-padding:20px;
+gap:18px;
+margin:20px;
 }
-
-.actionBtn{
-width:75px;
-height:75px;
+.actionBar button{
+width:70px;
+height:70px;
 border-radius:50%;
-border:none;
-font-size:28px;
-background:#23232d;
-color:white;
-box-shadow:0 0 25px rgba(0,0,0,0.4);
+font-size:24px;
 }
-
-.likeBtn{
-background:linear-gradient(45deg,#ff0050,#ff8a00);
-}
-
-.infoSection{
-margin-top:20px;
-background:#17171f;
-padding:20px;
-border-radius:25px;
-}
-
-.infoItem{
-display:flex;
-justify-content:space-between;
-padding:14px 0;
-border-bottom:1px solid rgba(255,255,255,0.08);
-}
-
-.messageBtn{
-margin-top:20px;
-}
-
-.proCard{
-margin-top:25px;
-background:linear-gradient(135deg,#1f1f1f,#111);
-padding:25px;
-border-radius:30px;
-}
-
-.proCard h2{
-font-size:30px;
-margin-bottom:15px;
-}
-
-.proList{
-margin-top:15px;
-}
-
-.proList li{
-margin-bottom:12px;
-color:#ddd;
-}
-
-.bankGrid{
-display:grid;
-grid-template-columns:1fr 1fr;
-gap:12px;
-margin-top:20px;
-}
-
-.bank{
-background:#23232d;
-padding:18px;
-border-radius:18px;
-text-align:center;
-}
-
-.footerNote{
-text-align:center;
-padding:30px;
-color:#888;
-font-size:13px;
-}
-
-.notification{
-position:fixed;
-bottom:20px;
-left:50%;
-transform:translateX(-50%);
-background:#ff0050;
-padding:15px 25px;
-border-radius:50px;
-display:none;
-z-index:99999;
-}
-
+.nope{background:#2d2d35;color:#fff;}
+.like{background:var(--gradient);color:#fff;}
+.super{background:#2ba7ff;color:#fff;}
+.rewind{background:#ffb400;color:#fff;}
+.boost{background:#9d4dff;color:#fff;}
 .bottomNav{
 position:fixed;
 bottom:0;
 left:0;
 width:100%;
-background:rgba(0,0,0,0.9);
+background:rgba(15,15,18,.92);
 backdrop-filter:blur(20px);
+padding:14px 10px;
 display:flex;
 justify-content:space-around;
-padding:18px;
-z-index:999;
+z-index:100;
 }
-
 .bottomNav button{
 background:none;
-border:none;
-color:white;
-font-size:25px;
+color:var(--text);
+font-size:24px;
 }
-
-.light .topbar,
-.light .bottomNav,
-.light .signupCard,
-.light .profileCard,
-.light .infoSection,
-.light .proCard,
-.light #menu{
-background:white;
-color:#111;
+.popup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.7);
+display:none;
+align-items:flex-end;
+z-index:200;
 }
-
-.light input,
-.light select,
-.light textarea,
-.light .tag,
-.light .bank,
-.light #menu button,
-.light .actionBtn{
-background:#efefef;
-color:#111;
+.popupContent{
+background:var(--bg);
+width:100%;
+max-height:92vh;
+overflow:auto;
+border-radius:30px 30px 0 0;
+padding:24px;
 }
-
-.light .distance,
-.light .verifyBox p{
-color:#555;
+.messageArea{
+height:350px;
+overflow:auto;
+margin:20px 0;
+display:flex;
+flex-direction:column;
+gap:10px;
 }
-
+.me,.them{
+padding:14px;
+max-width:80%;
+border-radius:18px;
+}
+.me{
+background:var(--gradient);
+align-self:flex-end;
+}
+.them{
+background:var(--card2);
+}
+.matchPopup{
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.9);
+display:none;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+z-index:999;
+}
+.matchPopup h1{
+font-size:54px;
+background:var(--gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+.matchUsers{
+display:flex;
+gap:18px;
+margin:20px 0;
+}
+.matchUsers img{
+width:120px;
+height:120px;
+border-radius:50%;
+object-fit:cover;
+border:4px solid #fff;
+}
+.premiumCards{
+display:grid;
+gap:16px;
+margin-top:20px;
+}
+.plan{
+padding:20px;
+border-radius:26px;
+background:var(--card);
+border:1px solid var(--border);
+}
+.plan h2{
+margin-bottom:10px;
+}
+.stats{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:12px;
+margin-top:20px;
+}
+.statBox{
+padding:18px;
+background:var(--card);
+border-radius:20px;
+}
+.adminCards{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:14px;
+margin-top:20px;
+}
+canvas{
+background:#fff;
+border-radius:18px;
+padding:10px;
+margin-top:20px;
+}
+.fadeIn{
+animation:fade .5s ease;
+}
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
 </style>
 </head>
 <body>
 
-<div id="loadingScreen">
-<div class="loader"></div>
+<div id="splash" class="center">
+<div class="logoCircle"></div>
 <h1>EthioDating</h1>
-<p>Connecting real people...</p>
+<div class="loader"><span></span></div>
+<p>Premium Ethiopian Dating Experience</p>
 </div>
 
-<div class="topbar">
-<div class="logo">
-EthioDating
-<small>by maykozee</small>
-</div>
-<button class="menuBtn" onclick="toggleMenu()">☰</button>
-</div>
-
-<div id="menu">
-<button onclick="toggleTheme()">🌙 Dark Mode</button>
-<button onclick="changeLang()">🌍 አማርኛ / English</button>
-<button onclick="showNotification('Premium opened 💎')">💎 Upgrade Pro</button>
-<button onclick="showNotification('Support opened 📩')">🛟 Support Team</button>
-</div>
-
+<section id="onboarding">
 <div class="hero">
-<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
-<img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200&auto=format&fit=crop">
-<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200&auto=format&fit=crop">
-<div class="overlay"></div>
-
-<div class="welcomeText">
-<h1>Find Real Love ❤️</h1>
-<p>Professional Ethiopian dating experience</p>
+<h1>Find Real Love In Ethiopia ❤️</h1>
+<p>Modern premium dating experience with smart matching, realtime chat, stories, video profiles, AI recommendations and secure verification.</p>
 </div>
+<div>
+<div class="authOptions">
+<button class="socialBtn" onclick="openAuth()">Continue with Phone</button>
+<button class="socialBtn">Continue with Google</button>
+<button class="socialBtn">Continue with Apple</button>
+<button class="socialBtn">Continue with Facebook</button>
 </div>
+<p style="margin-top:25px;font-size:13px;color:#ddd">By continuing you agree to Terms, Privacy Policy, Camera Access, Notification Access and Location Permissions.</p>
+</div>
+</section>
 
-<div class="section">
-<div class="signupCard">
-<h2>Sign Up</h2>
-
-<div class="inputBox">
-<label>Signup Option</label>
+<section id="authPage" class="section">
+<div class="authWrap card fadeIn">
+<div class="topTitle">Create Account</div>
+<p class="muted">Secure OTP verification and premium profile setup</p>
+<div class="grid2">
+<input placeholder="First Name">
+<input placeholder="Last Name">
+</div>
+<input placeholder="Email Address">
+<input placeholder="Phone Number">
+<input type="password" placeholder="Password">
+<input type="date">
 <select>
-<option>Phone Number</option>
-<option>Gmail</option>
-</select>
-</div>
-
-<div class="inputBox">
-<label>Phone or Gmail</label>
-<input type="text" placeholder="Enter phone or gmail">
-</div>
-
-<div class="inputBox">
-<label>Verification Code</label>
-<input type="text" placeholder="Enter code sent to you">
-</div>
-
-<div class="verifyBox">
-<p>
-Face verification and location permission are required to reduce fake accounts and help you find people near you.
-</p>
-</div>
-
-<div class="inputBox">
-<label>First Name</label>
-<input type="text">
-</div>
-
-<div class="inputBox">
-<label>Last Name</label>
-<input type="text">
-</div>
-
-<div class="inputBox">
-<label>Age</label>
-<input type="number">
-</div>
-
-<div class="verifyBox">
-<p>
-Users under 18 are not allowed. This app is for adults only.
-</p>
-</div>
-
-<div class="inputBox">
-<label>Gender</label>
-<select>
+<option>Gender</option>
 <option>Male</option>
 <option>Female</option>
 </select>
-</div>
-
-<div class="inputBox">
-<label>Country</label>
 <select>
-<option>Ethiopia</option>
-<option>Kenya</option>
-<option>USA</option>
-<option>Canada</option>
-<option>Germany</option>
+<option>Looking For</option>
+<option>Male</option>
+<option>Female</option>
 </select>
+<button class="gradientBtn" onclick="openSetup()">Verify OTP & Continue</button>
 </div>
+</section>
 
-<div class="inputBox">
-<label>City</label>
+<section id="setupPage" class="section">
+<div class="card" style="padding:22px">
+<h2>Complete Your Profile</h2>
+<div class="progress"><span></span></div>
+<div class="photoGrid">
+<div class="photoBox"></div>
+<div class="photoBox"></div>
+<div class="photoBox"></div>
+<div class="photoBox"></div>
+<div class="photoBox"></div>
+<div class="photoBox"></div>
+<div class="photoBox"></div>
+<div class="photoBox"></div>
+<div class="photoBox"></div>
+</div>
+<textarea placeholder="Write your bio"></textarea>
+<input placeholder="Interests">
+<input placeholder="Job">
+<input placeholder="School">
+<input placeholder="Education">
 <select>
 <option>Addis Ababa</option>
 <option>Adama</option>
 <option>Hawassa</option>
 <option>Bahir Dar</option>
-<option>Mekelle</option>
 <option>Dire Dawa</option>
-<option>Jimma</option>
-<option>Harar</option>
-<option>Gondar</option>
-<option>Arba Minch</option>
 </select>
-</div>
-
-<div class="inputBox">
-<label>Religion</label>
 <select>
-<option>Orthodox</option>
-<option>Muslim</option>
-<option>Protestant</option>
-<option>Catholic</option>
+<option>Relationship Goal</option>
+<option>Serious Relationship</option>
+<option>Friendship</option>
+<option>Marriage</option>
 </select>
-</div>
-
-<div class="inputBox">
-<label>Education</label>
+<input placeholder="Languages">
+<input placeholder="Height">
 <select>
-<option>High School</option>
-<option>College</option>
-<option>University</option>
-<option>Masters</option>
+<option>Lifestyle Preference</option>
+<option>Non Smoker</option>
+<option>Social Drinker</option>
 </select>
+<button class="gradientBtn" onclick="openApp()">Launch EthioDating</button>
 </div>
+</section>
 
-<div class="inputBox">
-<label>Family Plan</label>
-<select>
-<option>Want Kids</option>
-<option>Don't Want Kids</option>
-<option>Maybe Later</option>
-</select>
+<section id="mainApp">
+<div class="topBar">
+<div class="brand">EthioDating</div>
+<div style="display:flex;gap:12px">
+<button class="smallBtn" onclick="toggleTheme()">🌙</button>
+<button class="smallBtn" onclick="openPopup('settingsPopup')">⚙️</button>
 </div>
-
-<div class="inputBox">
-<label>Drinking</label>
-<select>
-<option>Never</option>
-<option>Sometimes</option>
-<option>Often</option>
-</select>
-</div>
-
-<div class="inputBox">
-<label>Smoking</label>
-<select>
-<option>No</option>
-<option>Sometimes</option>
-<option>Yes</option>
-</select>
-</div>
-
-<div class="inputBox">
-<label>Bio</label>
-<textarea rows="4"></textarea>
-</div>
-
-<button class="primaryBtn" onclick="showNotification('Account Created ❤️')">Create Account</button>
 </div>
 
 <div class="storyRow">
 <div class="story">
-<img src="https://i.pravatar.cc/100?img=21">
+<img src="https://i.pravatar.cc/200?img=21">
 <p>Hana</p>
 </div>
-
 <div class="story">
-<img src="https://i.pravatar.cc/100?img=11">
-<p>Abel</p>
-</div>
-
-<div class="story">
-<img src="https://i.pravatar.cc/100?img=32">
+<img src="https://i.pravatar.cc/200?img=32">
 <p>Liya</p>
 </div>
-
 <div class="story">
-<img src="https://i.pravatar.cc/100?img=45">
-<p>Sami</p>
+<img src="https://i.pravatar.cc/200?img=45">
+<p>Sara</p>
 </div>
-</div>
-</div>
-
-<div class="cardWrap">
-<div class="profileCard" id="swipeCard">
-
-<div class="onlineBadge">🟢 Online</div>
-
-<img class="mainPhoto" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
-
-<div class="cardInfo">
-<h2>Bethel, 24 ✔️</h2>
-<p class="distance">📍 Addis Ababa • 2km away</p>
-<p>
-I love music, coffee and meaningful conversations.
-</p>
-
-<div class="tags">
-<div class="tag">Orthodox</div>
-<div class="tag">Gym</div>
-<div class="tag">Travel</div>
-<div class="tag">University</div>
-</div>
-
-<div class="gallery">
-<img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=600&auto=format&fit=crop">
-<img src="https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=600&auto=format&fit=crop">
-<img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=600&auto=format&fit=crop">
-</div>
+<div class="story">
+<img src="https://i.pravatar.cc/200?img=56">
+<p>Ruth</p>
 </div>
 </div>
 
-<div class="actionRow">
-<button class="actionBtn" onclick="dislike()">❌</button>
-<button class="actionBtn likeBtn" onclick="like()">❤️</button>
-<button class="actionBtn" onclick="showNotification('Super Like Sent 💙')">⭐</button>
+<div class="swipeCard card" id="swipeCard">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200">
+<div class="overlay"></div>
+<div class="profileInfo">
+<h2>Selam, 24 <span class="badge">Verified</span></h2>
+<p>📍 3km away • Addis Ababa</p>
+<div class="chips">
+<div class="chip">Travel</div>
+<div class="chip">Coffee</div>
+<div class="chip">Music</div>
+<div class="chip">Serious Relationship</div>
 </div>
-
-<div class="infoSection">
-<h2>More Info</h2>
-
-<div class="infoItem">
-<span>Relationship Type</span>
-<span>Serious</span>
-</div>
-
-<div class="infoItem">
-<span>Communication Style</span>
-<span>Daily Chat</span>
-</div>
-
-<div class="infoItem">
-<span>Love Style</span>
-<span>Romantic</span>
-</div>
-
-<div class="infoItem">
-<span>Languages</span>
-<span>Amharic, English</span>
-</div>
-
-<div class="infoItem">
-<span>Workout</span>
-<span>4 Times Weekly</span>
-</div>
-
-<button class="primaryBtn messageBtn" onclick="showNotification('Premium required after 3 free chats 💬')">
-Message
-</button>
-</div>
-
-<div class="proCard">
-<h2>Upgrade Pro 💎</h2>
-<p>
-Unlock premium dating features and boost your profile.
-</p>
-
-<ul class="proList">
-<li>✔️ Unlimited Likes</li>
-<li>✔️ See Who Liked You</li>
-<li>✔️ Unlimited Messaging</li>
-<li>✔️ Passport Location Mode</li>
-<li>✔️ Video Call Access</li>
-<li>✔️ Priority Match Boost</li>
-<li>✔️ Profile Analytics</li>
-</ul>
-
-<div class="bankGrid">
-<div class="bank">Telebirr</div>
-<div class="bank">CBE</div>
-<div class="bank">Abyssinia</div>
-<div class="bank">Binance</div>
-</div>
-
-<button class="primaryBtn" onclick="showNotification('Payment page opened 💳')">
-Upgrade Now
-</button>
-</div>
-
-<div class="infoSection">
-<h2>Earn Coins 🪙</h2>
-
-<div class="infoItem">
-<span>Daily Login</span>
-<span>+20 Coins</span>
-</div>
-
-<div class="infoItem">
-<span>Invite Friends</span>
-<span>+100 Coins</span>
-</div>
-
-<div class="infoItem">
-<span>Follow Social Media</span>
-<span>+50 Coins</span>
-</div>
-
-<div class="infoItem">
-<span>Post Story</span>
-<span>+15 Coins</span>
-</div>
+<p style="margin-top:12px">Love deep conversations, sunsets and meaningful relationships ❤️</p>
 </div>
 </div>
 
-<div class="footerNote">
-EthioDating • Designed by maykozee
+<div class="actionBar">
+<button class="rewind" onclick="rewindCard()">⏪</button>
+<button class="nope" onclick="dislikeUser()">❌</button>
+<button class="super" onclick="superLike()">⭐</button>
+<button class="like" onclick="likeUser()">❤️</button>
+<button class="boost" onclick="boostProfile()">🚀</button>
 </div>
 
-<div class="notification" id="notification"></div>
+<div class="section">
+<div class="stats">
+<div class="statBox">
+<h3>128</h3>
+<p class="muted">Profile Views</p>
+</div>
+<div class="statBox">
+<h3>42</h3>
+<p class="muted">Matches</p>
+</div>
+<div class="statBox">
+<h3>Premium</h3>
+<p class="muted">Subscription</p>
+</div>
+<div class="statBox">
+<h3>92%</h3>
+<p class="muted">Profile Score</p>
+</div>
+</div>
+</div>
 
 <div class="bottomNav">
 <button>🏠</button>
-<button>❤️</button>
-<button>💬</button>
-<button>👤</button>
+<button onclick="openPopup('explorePopup')">🔍</button>
+<button onclick="openPopup('chatPopup')">💬</button>
+<button onclick="openPopup('premiumPopup')">💎</button>
+<button onclick="openPopup('profilePopup')">👤</button>
+</div>
+</section>
+
+<div class="popup" id="chatPopup">
+<div class="popupContent">
+<h2>Realtime Chat</h2>
+<div class="messageArea" id="chatArea">
+<div class="them">Hey 👋</div>
+<div class="me">Hello ❤️</div>
+</div>
+<input placeholder="Type message">
+<div class="grid2">
+<button class="gradientBtn">🎤 Voice</button>
+<button class="gradientBtn">📸 Photo</button>
+</div>
+<button class="gradientBtn" onclick="closePopup('chatPopup')">Close</button>
+</div>
 </div>
 
+<div class="popup" id="premiumPopup">
+<div class="popupContent">
+<h2>Upgrade Premium</h2>
+<div class="premiumCards">
+<div class="plan">
+<h2>Plus</h2>
+<p>Unlimited Likes • Rewind • Passport</p>
+<button class="gradientBtn">Upgrade</button>
+</div>
+<div class="plan">
+<h2>Gold</h2>
+<p>See Who Likes You • Priority Match</p>
+<button class="gradientBtn">Upgrade</button>
+</div>
+<div class="plan">
+<h2>Platinum</h2>
+<p>Message Before Match • Boost Credits</p>
+<button class="gradientBtn">Upgrade</button>
+</div>
+</div>
+<select>
+<option>Telebirr</option>
+<option>Chapa</option>
+<option>Stripe</option>
+<option>PayPal</option>
+<option>Binance</option>
+</select>
+<button class="gradientBtn" onclick="closePopup('premiumPopup')">Close</button>
+</div>
+</div>
+
+<div class="popup" id="profilePopup">
+<div class="popupContent">
+<img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200" style="width:100%;height:360px;object-fit:cover;border-radius:24px;">
+<h2 style="margin-top:20px">Selam Tesfaye</h2>
+<p class="muted">Verified • Online</p>
+<div class="chips">
+<div class="chip">Orthodox</div>
+<div class="chip">Degree</div>
+<div class="chip">Addis Ababa</div>
+<div class="chip">Gym</div>
+</div>
+<button class="gradientBtn">Message</button>
+<button class="gradientBtn">Video Call</button>
+<button class="gradientBtn">Share Profile</button>
+<button class="gradientBtn" onclick="closePopup('profilePopup')">Close</button>
+</div>
+</div>
+
+<div class="popup" id="explorePopup">
+<div class="popupContent">
+<h2>Explore</h2>
+<div class="stats">
+<div class="statBox">🔥 Trending</div>
+<div class="statBox">📍 Nearby</div>
+<div class="statBox">💎 Verified</div>
+<div class="statBox">❤️ Serious</div>
+<div class="statBox">🎉 New Users</div>
+<div class="statBox">👫 Friendship</div>
+</div>
+<button class="gradientBtn" onclick="closePopup('explorePopup')">Close</button>
+</div>
+</div>
+
+<div class="popup" id="settingsPopup">
+<div class="popupContent">
+<h2>Settings</h2>
+<button class="gradientBtn">Account Settings</button>
+<button class="gradientBtn">Privacy Settings</button>
+<button class="gradientBtn">Notification Settings</button>
+<button class="gradientBtn">Security Settings</button>
+<button class="gradientBtn">Blocked Users</button>
+<button class="gradientBtn" onclick="toggleTheme()">Dark / Light Mode</button>
+<button class="gradientBtn">Delete Account</button>
+<button class="gradientBtn">Logout</button>
+<button class="gradientBtn" onclick="closePopup('settingsPopup')">Close</button>
+</div>
+</div>
+
+<div class="matchPopup center" id="matchPopup">
+<h1>It's A Match ❤️</h1>
+<div class="matchUsers">
+<img src="https://i.pravatar.cc/200?img=31">
+<img src="https://i.pravatar.cc/200?img=41">
+</div>
+<button class="gradientBtn" style="width:280px">Start Chatting</button>
+</div>
+
+<section id="adminPanel" class="section">
+<h1>Admin Dashboard</h1>
+<div class="adminCards">
+<div class="statBox"><h2>12,842</h2><p>Users</p></div>
+<div class="statBox"><h2>$18,450</h2><p>Revenue</p></div>
+<div class="statBox"><h2>1,285</h2><p>Matches Today</p></div>
+<div class="statBox"><h2>231</h2><p>Reports</p></div>
+</div>
+<canvas id="chart"></canvas>
+</section>
+
 <script>
-function toggleMenu(){
-let menu=document.getElementById('menu');
-
-if(menu.style.display==='block'){
-menu.style.display='none';
-}else{
-menu.style.display='block';
-}
-}
-
-function showNotification(text){
-let n=document.getElementById('notification');
-n.innerText=text;
-n.style.display='block';
-
 setTimeout(()=>{
-n.style.display='none';
-},2500);
+document.getElementById('splash').style.display='none';
+},2500)
+
+function openAuth(){
+document.getElementById('onboarding').style.display='none';
+document.getElementById('authPage').style.display='block';
+}
+
+function openSetup(){
+document.getElementById('authPage').style.display='none';
+document.getElementById('setupPage').style.display='block';
+}
+
+function openApp(){
+document.getElementById('setupPage').style.display='none';
+document.getElementById('mainApp').style.display='block';
+}
+
+function openPopup(id){
+document.getElementById(id).style.display='flex';
+}
+
+function closePopup(id){
+document.getElementById(id).style.display='none';
 }
 
 function toggleTheme(){
 document.body.classList.toggle('light');
-showNotification('Theme Changed 🎨');
 }
 
-function changeLang(){
-showNotification('Language Changed 🌍');
-}
-
-function like(){
-showNotification('Liked ❤️');
-
-let card=document.getElementById('swipeCard');
-card.style.transform='translateX(250px) rotate(15deg)';
-card.style.transition='0.4s';
-
+function likeUser(){
+navigator.vibrate(100);
+document.getElementById('matchPopup').style.display='flex';
 setTimeout(()=>{
-card.style.transform='translateX(0px)';
-},500);
+document.getElementById('matchPopup').style.display='none';
+},3000)
 }
 
-function dislike(){
-showNotification('Disliked ❌');
-
-let card=document.getElementById('swipeCard');
-card.style.transform='translateX(-250px) rotate(-15deg)';
-card.style.transition='0.4s';
-
-setTimeout(()=>{
-card.style.transform='translateX(0px)';
-},500);
+function dislikeUser(){
+navigator.vibrate(50);
 }
 
-let startX=0;
-
-const swipeCard=document.getElementById('swipeCard');
-
-swipeCard.addEventListener('touchstart',e=>{
-startX=e.touches[0].clientX;
-});
-
-swipeCard.addEventListener('touchend',e=>{
-let endX=e.changedTouches[0].clientX;
-
-if(endX-startX>80){
-like();
+function superLike(){
+alert('Super Like Sent ⭐');
 }
 
-if(startX-endX>80){
-dislike();
-}
-});
-
-let lastTap=0;
-
-swipeCard.addEventListener('click',()=>{
-let now=new Date().getTime();
-
-if(now-lastTap<300){
-like();
-showNotification('Double Tap Like ❤️');
+function rewindCard(){
+alert('Rewind Activated ⏪');
 }
 
-lastTap=now;
-});
+function boostProfile(){
+alert('Boost Enabled For 30 Minutes 🚀');
+}
 
-window.onload=()=>{
-showNotification('Welcome to EthioDating ❤️');
+const ctx = document.getElementById('chart');
+new Chart(ctx, {
+type:'line',
+data:{
+labels:['Mon','Tue','Wed','Thu','Fri','Sat'],
+datasets:[{
+label:'Daily Matches',
+data:[12,18,9,24,17,31],
+borderColor:'#ff2e74',
+tension:.4
+}]
+}
+})
+
+const backend = {
+api:{
+auth:'/api/auth',
+users:'/api/users',
+matches:'/api/matches',
+messages:'/api/messages',
+payments:'/api/payments',
+notifications:'/api/notifications'
+},
+database:{
+users:[],
+photos:[],
+matches:[],
+messages:[],
+subscriptions:[],
+likes:[],
+swipes:[],
+reports:[]
+},
+security:{
+jwt:true,
+otp:true,
+rateLimiting:true,
+deviceVerification:true
+},
+realtime:{
+socketio:true,
+liveTyping:true,
+onlineStatus:true
+}
 }
 </script>
-
 </body>
 </html>
