@@ -253,6 +253,7 @@ border-radius:35px;
 overflow:hidden;
 position:relative;
 box-shadow:var(--shadow);
+transition:.35s;
 }
 
 .swipeImage{
@@ -818,6 +819,10 @@ More Info
 
 <div class="popupBox">
 
+  <button class="outlineBtn" onclick="closePopup('chatPopup')">
+← Back
+</button>
+  
 <h2>Messages</h2>
 
 <div class="chatMessages" id="messages">
