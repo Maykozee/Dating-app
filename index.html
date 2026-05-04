@@ -86,13 +86,17 @@ margin-top:25px;
 }
 
 .loader span{
-animation:load 2s infinite linear;
+display:block;
+height:100%;
+width:0;
+background:var(--gradient);
+animation:load 2s ease forwards;
 }
 
 @keyframes load{
 0%{width:0;}
-50%{width:80%;}
-100%{width:0;}
+100%{width:100%;}
+}
 
 display:block;
 height:100%;
@@ -101,25 +105,23 @@ background:var(--gradient);
 animation:load 2.5s forwards;
 }
 
-@keyframes load{
-100%{width:100%;}
-}
-
 .page{
 min-height:100vh;
 padding-bottom:90px;
 }
-
 .hero{
+position:relative;
 height:100vh;
-min-height:100vh;
 width:100%;
 display:flex;
 justify-content:center;
 align-items:center;
-padding:20px;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.8)),
+url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200') center/cover no-repeat;
 }
-  html,body{
+  
+html,body{
 height:100%;
 }
 
@@ -663,10 +665,12 @@ Premium Ethiopian dating experience with modern matching, stories, lifestyle fil
 Continue
 </button>
 
-<button class="outlineBtn" onclick="startPhoneLogin()">
+<button class="outlineBtn" onclick="openPage('authPage')">
+Continue with Phone
+</button>
+
 <button class="outlineBtn" onclick="googleLogin()">
 Continue with Gmail
-</button>
 </button>
 
 <button class="outlineBtn" onclick="startGoogleLogin()">
@@ -842,6 +846,40 @@ Create Account
 
 <textarea class="input" rows="4" placeholder="Bio"></textarea>
 
+
+<select class="input">
+<option>Education</option>
+<option>High School</option>
+<option>Degree</option>
+<option>Masters</option>
+</select>
+
+<select class="input">
+<option>Job</option>
+<option>Student</option>
+<option>Business</option>
+<option>Employee</option>
+</select>
+
+<select class="input">
+<option>Workout</option>
+<option>Gym</option>
+<option>Home</option>
+<option>No</option>
+</select>
+
+<select class="input">
+<option>Hobby</option>
+<option>Music</option>
+<option>Travel</option>
+<option>Sports</option>
+</select>
+
+<select class="input">
+<option>Night Life</option>
+<option>Yes</option>
+<option>No</option>
+</select>
 <button class="mainBtn" onclick="finishSignup()">
 Verify & Continue
 </button>
@@ -1315,31 +1353,38 @@ setTimeout(()=>btn.style.transform="scale(1)",100)
 function startGoogleLogin(){
 alert("Gmail login working (real)")
 }
-
-function startGoogleLogin(){
-toast("Google login coming soon 🚀")
+  
+function googleLogin(){
+toast("Connecting to Gmail...")
+setTimeout(()=>{
+openPage("signupPage")
+},1000)
 }
   
-
 function finishSignup(){
 
 let inputs=document.querySelectorAll("#signupPage input, #signupPage select, #signupPage textarea")
 
 for(let i=0;i<inputs.length;i++){
 if(inputs[i].value.trim()==""){
-alert("All fields required ❗")
+toast("Fill all fields ❗")
 return
 }
 }
 
 let ageInput=document.querySelector('#signupPage input[type="date"]').value
 
+if(!ageInput){
+toast("Select your birth date ❗")
+return
+}
+
 let birthYear=new Date(ageInput).getFullYear()
 let currentYear=new Date().getFullYear()
 let age=currentYear-birthYear
 
 if(age<18){
-alert("You must be 18+ ❗")
+toast("You must be 18+ ❗")
 return
 }
 
@@ -1347,14 +1392,14 @@ let gender=document.querySelectorAll("#signupPage select")[0].value
 let looking=document.querySelectorAll("#signupPage select")[1].value
 
 if(gender===looking){
-alert("Choose opposite gender ❗")
+toast("Choose opposite gender ❗")
 return
 }
 
 openPage("appPage")
 toast("Welcome to EthioDating ❤️")
-
 }
+  
 function openPopup(id){
 document.getElementById(id).style.display="flex"
 }
@@ -1383,9 +1428,11 @@ let user=document.getElementById("loginInput").value
 let pass=document.getElementById("loginPass").value
 
 if(user=="" || pass==""){
-toast("Fill all fields")
+toast("Fill all fields ❗")
 return
 }
+
+localStorage.setItem("user","logged")
 
 openPage("appPage")
 toast("Logged in ✅")
@@ -1396,12 +1443,28 @@ function sendReset(){
 let input=document.getElementById("resetInput").value
 
 if(input==""){
-toast("Enter phone or gmail")
+toast("Enter phone or gmail ❗")
 return
 }
 
-document.getElementById("resetBox").classList.remove("hidden")
 toast("Code sent 📩")
+document.getElementById("resetBox").classList.remove("hidden")
+}
+
+function savePass(){
+
+let pass=document.getElementById("newPass").value
+
+if(pass.length < 4){
+toast("Password too short ❗")
+return
+}
+
+toast("Password updated ✅")
+
+setTimeout(()=>{
+openPage("loginPage")
+},1000)
 }
 
 function savePass(){
