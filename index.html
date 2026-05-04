@@ -616,7 +616,34 @@ Continue with Gmail
 
 </section>
 
-<section id="signupPage" class="page hidden">
+<section id="authPage" class="page hidden">
+
+<div class="authWrap">
+<div class="card">
+
+<div class="title">Welcome</div>
+<div class="sub">Sign up or log in to continue</div>
+
+<input id="phone" class="input" placeholder="Phone Number">
+
+<button class="mainBtn" onclick="sendCode()">
+Continue
+</button>
+
+<div id="codeBox" class="hidden">
+
+<input id="code" class="input" placeholder="Enter Code">
+
+<button class="mainBtn" onclick="verifyCode()">
+Verify
+</button>
+
+</div>
+
+</div>
+</div>
+
+</section>
 
 <div class="authWrap">
 
