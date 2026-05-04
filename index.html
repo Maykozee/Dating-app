@@ -1023,8 +1023,14 @@ let now=new Date().getTime()
 if(now-lastTap<300){  
 like()  
 }  
-  
-  history.pushState({}, "")  
+
+lastTap=now
+
+})
+
+window.onload = function(){
+history.pushState({}, "")
+}
   
 window.onpopstate=function(){  
   
@@ -1045,26 +1051,6 @@ openPage("appPage")
   
 history.pushState({}, "")  
 }  
-  
-  <section id="loginPage" class="page hidden">  
-  
-<div class="authWrap">  
-<div class="card">  
-  
-<div class="title">Login</div>  
-  
-<input id="loginEmail" class="input" placeholder="Gmail">  
-  
-<input id="loginPass" class="input" type="password" placeholder="Password">  
-  
-<button class="mainBtn" onclick="login()">Login</button>  
-  
-<button class="outlineBtn" onclick="forgot()">Forgot Password</button>  
-  
-</div>  
-</div>  
-  
-</section>  
     
 lastTap=now  
   
