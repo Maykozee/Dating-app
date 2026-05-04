@@ -589,26 +589,6 @@ margin-bottom:6px;
 
 <section id="welcomePage" class="page hidden">
 
-<section id="loginPage" class="page hidden">
-
-<div class="authWrap">
-<div class="card">
-
-<div class="title">Login</div>
-
-<input id="loginEmail" class="input" placeholder="Gmail">
-
-<input id="loginPass" class="input" type="password" placeholder="Password">
-
-<button class="mainBtn" onclick="login()">Login</button>
-
-<button class="outlineBtn" onclick="forgot()">Forgot Password</button>
-
-</div>
-</div>
-
-</section>
-
 <div class="hero">
 
 <div class="heroCard">
@@ -763,11 +743,7 @@ Verify & Continue
 <div class="swipeCard" id="swipeCard">
 
 <div class="photoNav" id="photoNav"></div>
-<div class="active"></div>
-<div></div>
-<div></div>
-</div>
-
+  
 <img id="mainImage" class="swipeImage" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200">
 
 <div class="cardInfo">
@@ -1205,12 +1181,7 @@ toast("Account Created ✅")
 
 }
     
-<button class="outlineBtn" onclick="openPage('loginPage')">
-Login
-</button>
-  
 navigator.geolocation.getCurrentPosition(()=>{})
-
 }
 
 function openPopup(id){
@@ -1278,20 +1249,6 @@ toast("New Message 💬")
 },1000)
 
 }
-  
-document.getElementById("messages").appendChild(msg)
-
-input.value=""
-
-setTimeout(()=>{
-
-let reply=document.createElement("div")
-
-reply.className="them"
-
-reply.innerText="Nice to meet you ❤️"
-
-document.getElementById("
 
 function like(){
 
