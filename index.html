@@ -575,7 +575,27 @@ text-align:center;
 font-size:32px;
 margin-bottom:6px;
 }
+.fadeIn{
+animation:fade .8s ease forwards;
+opacity:0;
+}
 
+@keyframes fade{
+to{opacity:1;}
+}
+
+.slideUp{
+animation:up2 .8s ease forwards;
+transform:translateY(40px);
+opacity:0;
+}
+
+@keyframes up2{
+to{
+transform:translateY(0);
+opacity:1;
+}
+}
 </style>
 </head>
 <body>
@@ -588,17 +608,18 @@ margin-bottom:6px;
 
 <section id="welcomePage" class="page hidden">
 
-<div class="hero">
+<div class="heroCard fadeIn">
 
 <div class="heroCard">
 
-<h1>Find Your Perfect Match</h1>
+<h1 class="slideUp">Find Your Perfect Match</h1>
 
-<p>
+<p class="slideUp">
 Premium Ethiopian dating experience with modern matching, stories, lifestyle filters, and realtime connections.
 </p>
 
-<button class="mainBtn" onclick="openPage('authPage')">
+<button class="mainBtn slideUp" 
+onclick="openPage('authPage')">
 Continue
 </button>
 
@@ -1158,9 +1179,15 @@ Send Message
 <script>
 
 setTimeout(()=>{
-document.getElementById("splash").style.display="none";
-document.getElementById("welcomePage").classList.remove("hidden");
-},2500)
+let splash=document.getElementById("splash")
+splash.style.opacity=0
+
+setTimeout(()=>{
+splash.style.display="none"
+document.getElementById("welcomePage").classList.remove("hidden")
+},500)
+
+},2200)
 
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>{
