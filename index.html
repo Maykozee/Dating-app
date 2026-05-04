@@ -598,7 +598,7 @@ margin-bottom:6px;
 Premium Ethiopian dating experience with modern matching, stories, lifestyle filters, and realtime connections.
 </p>
 
-<button class="mainBtn" onclick="openPage('signupPage')">
+<button class="mainBtn" onclick="openPage('authPage')">
 Continue
 </button>
 
@@ -644,6 +644,8 @@ Verify
 </div>
 
 </section>
+
+<section id="signupPage" class="page hidden">
 
 <div class="authWrap">
 
@@ -1168,11 +1170,8 @@ document.getElementById(id).classList.remove("hidden")
 }
 
 function finishSignup(){
-
 navigator.geolocation.getCurrentPosition(()=>{})
-
-openPage("appPage")
-
+openPage("signupPage")
 toast("Welcome to EthioDating ❤️")
 }
 
