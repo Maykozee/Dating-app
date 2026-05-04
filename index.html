@@ -1356,8 +1356,6 @@ if(startX-endX>100){
 dislike()
 }
 
-})
-
 let lastTap=0
 
 document.getElementById("mainImage").addEventListener("click",()=>{
@@ -1368,29 +1366,28 @@ if(now-lastTap<300){
 like()
 }
 
-  history.pushState({}, "")
+  history.pushState({}, "");
 
-window.onpopstate=function(){
+window.onpopstate = function(){
 
-let openPopups = document.querySelectorAll(".popup")
+  let openPopups = document.querySelectorAll(".popup");
 
-let anyOpen=false
+  let anyOpen = false;
 
-openPopups.forEach(p=>{
-if(p.style.display==="flex"){
-p.style.display="none"
-anyOpen=true
-}
-})
+  openPopups.forEach(p=>{
+    if(p.style.display === "flex"){
+      p.style.display = "none";
+      anyOpen = true;
+    }
+  });
 
-if(!anyOpen){
-openPage("appPage")
-}
+  if(!anyOpen){
+    openPage("appPage");
+  }
 
-history.pushState({}, "")
-}
+  history.pushState({}, "");
 
-  <section id="loginPage" class="page hidden">
+};
 
 <div class="authWrap">
 <div class="card">
@@ -1410,10 +1407,20 @@ history.pushState({}, "")
 
 </section>
   
-lastTap=now
 
-})
+let lastTap = 0;
 
+document.getElementById("mainImage").addEventListener("click", () => {
+
+  let now = new Date().getTime();
+
+  if(now - lastTap < 300){
+    like();
+  }
+
+  lastTap = now;
+
+});
 </script>
 
 </body>
