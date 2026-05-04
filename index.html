@@ -166,6 +166,34 @@ padding:20px;
 box-shadow:var(--shadow);
 }
 
+  card.addEventListener("click",e=>{
+
+let img=document.getElementById("mainImage")
+
+let rect=img.getBoundingClientRect()
+
+if(e.clientY > rect.bottom) return
+
+if(e.clientX > window.innerWidth/2){
+
+current++
+if(current>=photos.length){current=0}
+
+}else{
+
+current--
+if(current<0){current=photos.length-1}
+
+}
+
+img.src=photos[current]
+
+document.querySelectorAll(".photoNav div").forEach((d,i)=>{
+d.classList.toggle("active",i===current)
+})
+
+})
+  
 .title{
 font-size:28px;
 font-weight:700;
@@ -1147,6 +1175,68 @@ document.getElementById(id).classList.remove("hidden")
 
 function finishSignup(){
 
+  toast("Verification Code Sent 📩")
+  
+let inputs=document.querySelectorAll("#signupPage .input")
+
+for(let i=0;i<inputs.length;i++){
+if(inputs[i].value.trim()==""){
+toast("Please fill all fields")
+return
+}
+}
+
+let birth=inputs[5].value
+let age=new Date().getFullYear()-new Date(birth).getFullYear()
+
+if(age<18){
+toast("18+ only")
+return
+}
+
+let gender=inputs[6].value
+let looking=inputs[7].value
+
+if(gender===looking){
+toast("Same gender not allowed")
+return
+}
+
+localStorage.setItem("userData",JSON.stringify({
+name:inputs[0].value,
+email:inputs[3].value
+}))
+
+openPage("appPage")
+
+toast("Account Created ✅")
+
+}
+
+  <section id="loginPage" class="page hidden">
+
+<div class="authWrap">
+<div class="card">
+
+<div class="title">Login</div>
+
+<input id="loginEmail" class="input" placeholder="Gmail">
+
+<input id="loginPass" class="input" type="password" placeholder="Password">
+
+<button class="mainBtn" onclick="login()">Login</button>
+
+<button class="outlineBtn" onclick="forgot()">Forgot Password</button>
+
+</div>
+</div>
+
+</section>
+    
+<button class="outlineBtn" onclick="openPage('loginPage')">
+Login
+</button>
+  
 navigator.geolocation.getCurrentPosition(()=>{})
 
 openPage("appPage")
@@ -1160,6 +1250,7 @@ document.getElementById(id).style.display="flex"
 
 function closePopup(id){
 document.getElementById(id).style.display="none"
+openPage("appPage")
 }
 
 function toast(text){
@@ -1176,7 +1267,22 @@ t.style.opacity=0
 
 }
 
+  window.onload=function(){
+
+let msg=localStorage.getItem("lastMessage")
+
+if(msg){
+let m=document.createElement("div")
+m.className="me"
+m.innerText=msg
+document.getElementById("messages").appendChild(m)
+}
+
+}
+  
 function sendMessage(){
+
+localStorage.setItem("lastMessage",input.value)
 
 let input=document.getElementById("messageInput")
 
@@ -1209,6 +1315,8 @@ toast("New Message 💬")
 }
 
 function like(){
+
+localStorage.setItem("liked","true")
 
 document.getElementById("matchPopup").style.display="flex"
 
@@ -1310,6 +1418,48 @@ if(now-lastTap<300){
 like()
 }
 
+  history.pushState({}, "")
+
+window.onpopstate=function(){
+
+let openPopups = document.querySelectorAll(".popup")
+
+let anyOpen=false
+
+openPopups.forEach(p=>{
+if(p.style.display==="flex"){
+p.style.display="none"
+anyOpen=true
+}
+})
+
+if(!anyOpen){
+openPage("appPage")
+}
+
+history.pushState({}, "")
+}
+
+  <section id="loginPage" class="page hidden">
+
+<div class="authWrap">
+<div class="card">
+
+<div class="title">Login</div>
+
+<input id="loginEmail" class="input" placeholder="Gmail">
+
+<input id="loginPass" class="input" type="password" placeholder="Password">
+
+<button class="mainBtn" onclick="login()">Login</button>
+
+<button class="outlineBtn" onclick="forgot()">Forgot Password</button>
+
+</div>
+</div>
+
+</section>
+  
 lastTap=now
 
 })
