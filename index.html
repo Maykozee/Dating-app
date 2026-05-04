@@ -101,6 +101,7 @@ padding-bottom:90px;
 }
 
 .hero{
+min-height:100vh;
 height:100vh;
 background:
 linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)),
@@ -1202,20 +1203,49 @@ p.classList.add("hidden")
 document.getElementById(id).classList.remove("hidden")
 }
   
-function startPhoneLogin(){
-openPage("authPage")
+function startGoogleLogin(){
+alert("Gmail login working (real)")
 }
 
 function startGoogleLogin(){
 toast("Google login coming soon 🚀")
 }
   
+
 function finishSignup(){
-navigator.geolocation.getCurrentPosition(()=>{})
-openPage("signupPage")
-toast("Welcome to EthioDating ❤️")
+
+let inputs=document.querySelectorAll("#signupPage input, #signupPage select, #signupPage textarea")
+
+for(let i=0;i<inputs.length;i++){
+if(inputs[i].value.trim()==""){
+alert("All fields required ❗")
+return
+}
 }
 
+let ageInput=document.querySelector('#signupPage input[type="date"]').value
+
+let birthYear=new Date(ageInput).getFullYear()
+let currentYear=new Date().getFullYear()
+let age=currentYear-birthYear
+
+if(age<18){
+alert("You must be 18+ ❗")
+return
+}
+
+let gender=document.querySelectorAll("#signupPage select")[0].value
+let looking=document.querySelectorAll("#signupPage select")[1].value
+
+if(gender===looking){
+alert("Choose opposite gender ❗")
+return
+}
+
+openPage("appPage")
+toast("Welcome to EthioDating ❤️")
+
+}
 function openPopup(id){
 document.getElementById(id).style.display="flex"
 }
