@@ -165,34 +165,6 @@ border-radius:28px;
 padding:20px;
 box-shadow:var(--shadow);
 }
-
-  card.addEventListener("click",e=>{
-
-let img=document.getElementById("mainImage")
-
-let rect=img.getBoundingClientRect()
-
-if(e.clientY > rect.bottom) return
-
-if(e.clientX > window.innerWidth/2){
-
-current++
-if(current>=photos.length){current=0}
-
-}else{
-
-current--
-if(current<0){current=photos.length-1}
-
-}
-
-img.src=photos[current]
-
-document.querySelectorAll(".photoNav div").forEach((d,i)=>{
-d.classList.toggle("active",i===current)
-})
-
-})
   
 .title{
 font-size:28px;
@@ -617,6 +589,26 @@ margin-bottom:6px;
 
 <section id="welcomePage" class="page hidden">
 
+<section id="loginPage" class="page hidden">
+
+<div class="authWrap">
+<div class="card">
+
+<div class="title">Login</div>
+
+<input id="loginEmail" class="input" placeholder="Gmail">
+
+<input id="loginPass" class="input" type="password" placeholder="Password">
+
+<button class="mainBtn" onclick="login()">Login</button>
+
+<button class="outlineBtn" onclick="forgot()">Forgot Password</button>
+
+</div>
+</div>
+
+</section>
+
 <div class="hero">
 
 <div class="heroCard">
@@ -770,7 +762,7 @@ Verify & Continue
 
 <div class="swipeCard" id="swipeCard">
 
-<div class="photoNav">
+<div class="photoNav" id="photoNav"></div>
 <div class="active"></div>
 <div></div>
 <div></div>
@@ -1212,26 +1204,6 @@ openPage("appPage")
 toast("Account Created ✅")
 
 }
-
-  <section id="loginPage" class="page hidden">
-
-<div class="authWrap">
-<div class="card">
-
-<div class="title">Login</div>
-
-<input id="loginEmail" class="input" placeholder="Gmail">
-
-<input id="loginPass" class="input" type="password" placeholder="Password">
-
-<button class="mainBtn" onclick="login()">Login</button>
-
-<button class="outlineBtn" onclick="forgot()">Forgot Password</button>
-
-</div>
-</div>
-
-</section>
     
 <button class="outlineBtn" onclick="openPage('loginPage')">
 Login
@@ -1239,9 +1211,6 @@ Login
   
 navigator.geolocation.getCurrentPosition(()=>{})
 
-openPage("appPage")
-
-toast("Welcome to EthioDating ❤️")
 }
 
 function openPopup(id){
@@ -1282,18 +1251,34 @@ document.getElementById("messages").appendChild(m)
   
 function sendMessage(){
 
-localStorage.setItem("lastMessage",input.value)
-
 let input=document.getElementById("messageInput")
 
 if(input.value.trim()=="") return
 
+localStorage.setItem("lastMessage",input.value)
+
 let msg=document.createElement("div")
-
 msg.className="me"
-
 msg.innerText=input.value
 
+document.getElementById("messages").appendChild(msg)
+
+input.value=""
+
+setTimeout(()=>{
+
+let reply=document.createElement("div")
+reply.className="them"
+reply.innerText="Nice to meet you ❤️"
+
+document.getElementById("messages").appendChild(reply)
+
+toast("New Message 💬")
+
+},1000)
+
+}
+  
 document.getElementById("messages").appendChild(msg)
 
 input.value=""
@@ -1306,13 +1291,7 @@ reply.className="them"
 
 reply.innerText="Nice to meet you ❤️"
 
-document.getElementById("messages").appendChild(reply)
-
-toast("New Message 💬")
-
-},1000)
-
-}
+document.getElementById("
 
 function like(){
 
@@ -1353,8 +1332,19 @@ document.getElementById("darkSwitch").classList.toggle("active")
 const photos=[
 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200',
 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200',
-'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200'
+'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?q=80&w=1200',
+'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1200',
+'https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200',
+'https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?q=80&w=1200'
 ]
+
+  const nav=document.getElementById("photoNav")
+
+photos.forEach((_,i)=>{
+let d=document.createElement("div")
+if(i===0) d.classList.add("active")
+nav.appendChild(d)
+})
 
 let current=0
 
@@ -1362,23 +1352,26 @@ const card=document.getElementById("swipeCard")
 
 card.addEventListener("click",e=>{
 
+let img=document.getElementById("mainImage")
+let rect=img.getBoundingClientRect()
+
+if(e.clientY > rect.bottom) return
+
 if(e.clientX > window.innerWidth/2){
-
 current++
-
-if(current>=photos.length){
-current=0
-}
-
+if(current>=photos.length){current=0}
 }else{
-
 current--
-
-if(current<0){
-current=photos.length-1
+if(current<0){current=photos.length-1}
 }
 
-}
+img.src=photos[current]
+
+document.querySelectorAll(".photoNav div").forEach((d,i)=>{
+d.classList.toggle("active",i===current)
+})
+
+})
 
 document.getElementById("mainImage").src=photos[current]
 
