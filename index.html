@@ -618,16 +618,15 @@ opacity:1;
 Premium Ethiopian dating experience with modern matching, stories, lifestyle filters, and realtime connections.
 </p>
 
-<button class="mainBtn slideUp" 
-onclick="openPage('authPage')">
+<button class="mainBtn" onclick="openPage('authPage')">
 Continue
 </button>
 
-<button class="outlineBtn">
+<button class="outlineBtn" onclick="startPhoneLogin()">
 Continue with Phone
 </button>
 
-<button class="outlineBtn">
+<button class="outlineBtn" onclick="startGoogleLogin()">
 Continue with Gmail
 </button>
 
@@ -642,13 +641,13 @@ Continue with Gmail
 <div class="authWrap">
 <div class="card">
 
-<div class="title">Welcome</div>
-<div class="sub">Sign up or log in to continue</div>
+<div class="title">Login</div>
+<div class="sub">Enter your phone to continue</div>
 
 <input id="phone" class="input" placeholder="Phone Number">
 
 <button class="mainBtn" onclick="sendCode()">
-Continue
+Send Code
 </button>
 
 <div id="codeBox" class="hidden">
@@ -656,9 +655,16 @@ Continue
 <input id="code" class="input" placeholder="Enter Code">
 
 <button class="mainBtn" onclick="verifyCode()">
-Verify
+Verify Code
 </button>
 
+</div>
+
+<div style="margin-top:15px;text-align:center;">
+<span style="color:var(--sub)">New user?</span>
+<button class="outlineBtn" onclick="openPage('signupPage')">
+Create Account
+</button>
 </div>
 
 </div>
@@ -1195,7 +1201,15 @@ p.classList.add("hidden")
 })
 document.getElementById(id).classList.remove("hidden")
 }
+  
+function startPhoneLogin(){
+openPage("authPage")
+}
 
+function startGoogleLogin(){
+toast("Google login coming soon 🚀")
+}
+  
 function finishSignup(){
 navigator.geolocation.getCurrentPosition(()=>{})
 openPage("signupPage")
@@ -1308,7 +1322,7 @@ return
 
 localStorage.setItem("user","logged")
 
-openPage("appPage")
+openPage("signupPage")
 
 toast("Welcome ❤️")
 
