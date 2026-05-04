@@ -651,6 +651,81 @@ opacity:1;
 
 <section id="welcomePage" class="page hidden">
 
+<section id="onboarding" class="page hidden">
+
+<div class="authWrap">
+<div class="card">
+
+<div id="step1" class="step">
+<h2 class="title">What's your first name?</h2>
+<input class="input" placeholder="Enter name">
+<button class="mainBtn" onclick="nextStep(2)">Next</button>
+</div>
+
+<div id="step2" class="step hidden">
+<h2 class="title">Your sexual orientation?</h2>
+<select class="input">
+<option>Straight</option>
+<option>Gay</option>
+<option>Lesbian</option>
+<option>Bisexual</option>
+</select>
+<button class="mainBtn" onclick="nextStep(3)">Next</button>
+</div>
+
+<div id="step3" class="step hidden">
+<h2 class="title">What are you looking for?</h2>
+<select class="input">
+<option>Long-term</option>
+<option>Short-term</option>
+<option>Friends</option>
+</select>
+<button class="mainBtn" onclick="nextStep(4)">Next</button>
+</div>
+
+<div id="step4" class="step hidden">
+<h2 class="title">Lifestyle habits</h2>
+<select class="input">
+<option>Drink: No</option>
+<option>Drink: Sometimes</option>
+<option>Drink: Yes</option>
+</select>
+
+<select class="input">
+<option>Smoke: No</option>
+<option>Smoke: Yes</option>
+</select>
+
+<button class="mainBtn" onclick="nextStep(5)">Next</button>
+</div>
+
+<div id="step5" class="step hidden">
+<h2 class="title">More about you</h2>
+<select class="input">
+<option>Texting</option>
+<option>Calling</option>
+</select>
+
+<select class="input">
+<option>Education</option>
+<option>Degree</option>
+<option>Masters</option>
+</select>
+
+<button class="mainBtn" onclick="nextStep(6)">Next</button>
+</div>
+
+<div id="step6" class="step hidden">
+<h2 class="title">Finish</h2>
+<p class="sub">You're ready 🎉</p>
+<button class="mainBtn" onclick="openPage('appPage')">Start App</button>
+</div>
+
+</div>
+</div>
+
+</section>
+  
 <div class="heroCard fadeIn">
 
 <div class="heroCard">
@@ -876,7 +951,7 @@ Create Account
 <option>Yes</option>
 <option>No</option>
 </select>
-<button class="mainBtn" onclick="finishSignup()">
+<button class="mainBtn" onclick="finishSignup(openPage("onboarding") )">
 Verify & Continue
 </button>
 
@@ -1520,6 +1595,16 @@ toast("New Message 💬")
 
 }
 
+function nextStep(step){
+
+document.querySelectorAll(".step").forEach(s=>{
+s.classList.add("hidden")
+})
+
+document.getElementById("step"+step).classList.remove("hidden")
+
+}
+  
 function like(){
 
 document.getElementById("matchPopup").style.display="flex"
