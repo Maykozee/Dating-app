@@ -740,7 +740,7 @@ Premium Ethiopian dating experience with modern matching, stories, lifestyle fil
 Continue
 </button>
 
-<button class="outlineBtn" onclick="sendCode()">
+<button class="outlineBtn" onclick="openPage('authPage')">
 Continue with Phone
 </button>
 
@@ -856,6 +856,19 @@ Create Account
 <input class="input" type="password" placeholder="Password">
 
 <input class="input" type="date">
+
+<input type="file" class="input">
+
+<div class="photoGrid">
+
+<input type="file">
+<input type="file">
+<input type="file">
+<input type="file">
+<input type="file">
+<input type="file">
+
+</div>
 
 <select class="input">
 <option>Gender</option>
@@ -1655,6 +1668,11 @@ toast("Enter code")
 return
 }
 
+openPage("onboarding") // 👈 ይህ ነው ትክክል
+
+toast("Phone verified ✅")
+}
+  
 localStorage.setItem("user","logged")
 
 openPage("signupPage")
@@ -1669,13 +1687,6 @@ document.body.classList.toggle("light")
 
 document.getElementById("darkSwitch").classList.toggle("active")
 
-}
-
-function googleLogin(){
-toast("Connecting to Gmail...")
-setTimeout(()=>{
-openPage("signupPage")
-},1000)
 }
   
 const photos=[
