@@ -102,15 +102,16 @@ padding-bottom:90px;
 }
 
 .hero{
-min-height:100vh;
 height:100vh;
-background:
-linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)),
-url('https://images.unsplash.com/photo-1524504388940-b1c1722653e1?q=80&w=1200') center/cover;
+min-height:100vh;
+width:100%;
 display:flex;
 justify-content:center;
-align-items:flex-end;
-padding:40px 20px;
+align-items:center;
+padding:20px;
+}
+  html,body{
+height:100%;
 }
 
 .heroCard{
@@ -123,6 +124,10 @@ border-radius:30px;
 border:1px solid rgba(255,255,255,.08);
 }
 
+  .heroCard{
+margin:auto;
+}
+  
 .hero h1{
 font-size:44px;
 line-height:1.1;
