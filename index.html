@@ -815,9 +815,9 @@ More Info
 
 </div>
 
-<div class="popup" id="chatPopup">
+<div class="popup" id="chatPopup" onclick="closePopup('chatPopup')">
 
-<div class="popupBox">
+<div class="popupBox" onclick="event.stopPropagation()">
 
   <button class="outlineBtn" onclick="closePopup('chatPopup')">
 ← Back
