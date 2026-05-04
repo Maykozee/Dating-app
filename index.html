@@ -1256,6 +1256,38 @@ toast("Super Like Sent ⭐")
 
 }
 
+function sendCode(){
+
+let phone=document.getElementById("phone").value
+
+if(phone.trim()==""){
+toast("Enter phone number")
+return
+}
+
+toast("Code sent 📩")
+
+document.getElementById("codeBox").classList.remove("hidden")
+
+}
+
+function verifyCode(){
+
+let code=document.getElementById("code").value
+
+if(code.trim()==""){
+toast("Enter code")
+return
+}
+
+localStorage.setItem("user","logged")
+
+openPage("appPage")
+
+toast("Welcome ❤️")
+
+}
+  
 function toggleTheme(){
 
 document.body.classList.toggle("light")
