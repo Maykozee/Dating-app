@@ -643,79 +643,6 @@ opacity:1;
 
 <section id="welcomePage" class="page hidden">
 
-<section id="onboarding" class="page hidden">
-
-<div class="authWrap">
-<div class="card">
-
-<div id="step1" class="step">
-<h2 class="title">Your Name</h2>
-<input class="input" placeholder="Enter name">
-<button class="mainBtn" onclick="nextStep(2)">Next</button>
-</div>
-
-<div id="step2" class="step hidden">
-<h2 class="title">Upload Photos</h2>
-
-<div class="photoGrid">
-<input type="file">
-<input type="file">
-<input type="file">
-<input type="file">
-<input type="file">
-<input type="file">
-</div>
-
-<button class="mainBtn" onclick="nextStep(3)">Next</button>
-</div>
-
-<div id="step3" class="step hidden">
-<h2 class="title">Gender</h2>
-<select class="input">
-<option>Male</option>
-<option>Female</option>
-</select>
-
-<button class="mainBtn" onclick="nextStep(4)">Next</button>
-</div>
-
-<div id="step4" class="step hidden">
-<h2 class="title">Looking For</h2>
-<select class="input">
-<option>Male</option>
-<option>Female</option>
-</select>
-
-<button class="mainBtn" onclick="nextStep(5)">Next</button>
-</div>
-
-<div id="step5" class="step hidden">
-<h2 class="title">Lifestyle</h2>
-<select class="input">
-<option>No drink</option>
-<option>Drink</option>
-</select>
-
-<select class="input">
-<option>No smoke</option>
-<option>Smoke</option>
-</select>
-
-<button class="mainBtn" onclick="nextStep(6)">Next</button>
-</div>
-
-<div id="step6" class="step hidden">
-<h2 class="title">Finish 🎉</h2>
-<button class="mainBtn" onclick="openPage('appPage')">
-Start App
-</button>
-</div>
-
-</div>
-</div>
-
-</section>
-  
 <div class="heroCard fadeIn">
 
 <div class="heroCard">
@@ -834,85 +761,6 @@ Create Account
 <div class="card">
 
 <div class="title">Create Account</div>
-
-<section id="onboarding" class="page hidden">
-
-<div class="authWrap">
-<div class="card">
-
-<!-- STEP 1 -->
-<div id="step1">
-<h2 class="title">What's your name?</h2>
-<input class="input" placeholder="Name">
-<button class="mainBtn" onclick="nextStep(2)">Next</button>
-</div>
-
-<!-- STEP 2 -->
-<div id="step2" class="hidden">
-<h2 class="title">Upload your photos</h2>
-
-<div class="photoGrid">
-<input type="file">
-<input type="file">
-<input type="file">
-<input type="file">
-<input type="file">
-<input type="file">
-</div>
-
-<button class="mainBtn" onclick="nextStep(3)">Next</button>
-</div>
-
-<!-- STEP 3 -->
-<div id="step3" class="hidden">
-<h2 class="title">Your gender</h2>
-<select class="input">
-<option>Male</option>
-<option>Female</option>
-</select>
-
-<button class="mainBtn" onclick="nextStep(4)">Next</button>
-</div>
-
-<!-- STEP 4 -->
-<div id="step4" class="hidden">
-<h2 class="title">Looking for</h2>
-<select class="input">
-<option>Male</option>
-<option>Female</option>
-</select>
-
-<button class="mainBtn" onclick="nextStep(5)">Next</button>
-</div>
-
-<!-- STEP 5 -->
-<div id="step5" class="hidden">
-<h2 class="title">Lifestyle</h2>
-<select class="input">
-<option>No drink</option>
-<option>Drink</option>
-</select>
-
-<select class="input">
-<option>No smoke</option>
-<option>Smoke</option>
-</select>
-
-<button class="mainBtn" onclick="nextStep(6)">Next</button>
-</div>
-
-<!-- STEP 6 -->
-<div id="step6" class="hidden">
-<h2 class="title">Finish 🎉</h2>
-<button class="mainBtn" onclick="openPage('appPage')">
-Start App
-</button>
-</div>
-
-</div>
-</div>
-
-</section>
   
 <div class="sub">
 18+ only. Real identity verification required.
@@ -1514,10 +1362,10 @@ alert("Gmail login working (real)")
 }
   
 function googleLogin(){
-toast("Connecting...")
-setTimeout(()=>{
-openPage("onboarding")
-},1000)
+  toast("Verifying Gmail...")
+  setTimeout(()=>{
+    openPage("signupStep1")
+  },1000)
 }
   
 function finishSignup(){
@@ -1728,6 +1576,7 @@ let phone=document.getElementById("phone").value
 
 if(phone.trim()==""){
 toast("Enter phone number")
+  openPage("signupStep1")
 return
 }
 
@@ -1831,6 +1680,109 @@ lastTap=now
 
 })
 
+function loadCities(){
+let c=document.getElementById("country").value
+let city=document.getElementById("city")
+
+if(c==="Ethiopia"){
+city.innerHTML="<option>Addis Ababa</option><option>Adama</option>"
+}else{
+city.innerHTML="<option>Main City</option>"
+}
+}
+
+function finishAll(){
+toast("Welcome ❤️")
+openPage("appPage")
+}
+  
+<!-- STEP 1 -->
+<section id="signupStep1" class="page hidden">
+<div class="authWrap"><div class="card">
+
+<h2 class="title">Basic Info</h2>
+
+<input class="input" placeholder="Full Name">
+<input type="date" class="input">
+
+<select class="input">
+<option>Gender</option>
+<option>Male</option>
+<option>Female</option>
+</select>
+
+<select id="country" class="input" onchange="loadCities()">
+<option>Select Country</option>
+<option>Ethiopia</option>
+<option>USA</option>
+</select>
+
+<select id="city" class="input">
+<option>Select City</option>
+</select>
+
+<button class="mainBtn" onclick="openPage('signupStep2')">Continue</button>
+
+</div></div>
+</section>
+
+<!-- STEP 2 -->
+<section id="signupStep2" class="page hidden">
+<div class="authWrap"><div class="card">
+
+<h2 class="title">Looking For</h2>
+
+<div class="grid">
+<div class="smallCard">❤️ Long-term</div>
+<div class="smallCard">🔥 Short-term</div>
+<div class="smallCard">👫 Friends</div>
+</div>
+
+<button class="mainBtn" onclick="openPage('signupStep3')">Continue</button>
+
+</div></div>
+</section>
+
+<!-- STEP 3 -->
+<section id="signupStep3" class="page hidden">
+<div class="authWrap"><div class="card">
+
+<h2 class="title">Lifestyle</h2>
+
+<select class="input"><option>Drink</option><option>No</option><option>Yes</option></select>
+<select class="input"><option>Smoke</option><option>No</option><option>Yes</option></select>
+
+<button class="mainBtn" onclick="openPage('signupStep4')">Continue</button>
+
+</div></div>
+</section>
+
+<!-- STEP 4 -->
+<section id="signupStep4" class="page hidden">
+<div class="authWrap"><div class="card">
+
+<h2 class="title">Preferences</h2>
+
+<input class="input" placeholder="Age range">
+
+<button class="mainBtn" onclick="openPage('signupStep5')">Continue</button>
+
+</div></div>
+</section>
+
+<!-- STEP 5 -->
+<section id="signupStep5" class="page hidden">
+<div class="authWrap"><div class="card">
+
+<h2 class="title">Add Photos</h2>
+
+<input type="file" class="input" multiple>
+
+<button class="mainBtn" onclick="finishAll()">Finish</button>
+
+</div></div>
+</section>
+  
 </script>
 
 </body>
