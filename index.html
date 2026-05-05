@@ -643,6 +643,16 @@ opacity:1;
 
 <section id="welcomePage" class="page hidden">
 
+<div class="hero">
+
+<div class="heroCard">
+...
+</div>
+
+</div>
+
+</section>
+
 <div class="heroCard fadeIn">
 
 <div class="heroCard">
@@ -653,95 +663,9 @@ opacity:1;
 Premium Ethiopian dating experience with modern matching, stories, lifestyle filters, and realtime connections.
 </p>
 
-  <!-- STEP 1 -->
-<section id="signupStep1" class="page hidden">
-<div class="authWrap"><div class="card">
-
-<h2 class="title">Basic Info</h2>
-
-<input class="input" placeholder="Full Name">
-<input type="date" class="input">
-
-<select class="input">
-<option>Gender</option>
-<option>Male</option>
-<option>Female</option>
-</select>
-
-<select id="country" class="input" onchange="loadCities()">
-<option>Select Country</option>
-<option>Ethiopia</option>
-<option>USA</option>
-</select>
-
-<select id="city" class="input">
-<option>Select City</option>
-</select>
-
-<button class="mainBtn" onclick="openPage('signupStep2')">Continue</button>
-
-</div></div>
-</section>
-
-<!-- STEP 2 -->
-<section id="signupStep2" class="page hidden">
-<div class="authWrap"><div class="card">
-
-<h2 class="title">Looking For</h2>
-
-<div class="grid">
-<div class="smallCard">❤️ Long-term</div>
-<div class="smallCard">🔥 Short-term</div>
-<div class="smallCard">👫 Friends</div>
-</div>
-
-<button class="mainBtn" onclick="openPage('signupStep3')">Continue</button>
-
-</div></div>
-</section>
-
-<!-- STEP 3 -->
-<section id="signupStep3" class="page hidden">
-<div class="authWrap"><div class="card">
-
-<h2 class="title">Lifestyle</h2>
-
-<select class="input"><option>Drink</option><option>No</option><option>Yes</option></select>
-<select class="input"><option>Smoke</option><option>No</option><option>Yes</option></select>
-
-<button class="mainBtn" onclick="openPage('signupStep4')">Continue</button>
-
-</div></div>
-</section>
-
-<!-- STEP 4 -->
-<section id="signupStep4" class="page hidden">
-<div class="authWrap"><div class="card">
-
-<h2 class="title">Preferences</h2>
-
-<input class="input" placeholder="Age range">
-
-<button class="mainBtn" onclick="openPage('signupStep5')">Continue</button>
-
-</div></div>
-</section>
-
-<!-- STEP 5 -->
-<section id="signupStep5" class="page hidden">
-<div class="authWrap"><div class="card">
-
-<h2 class="title">Add Photos</h2>
-
-<input type="file" class="input" multiple>
-
-<button class="mainBtn" onclick="finishAll()">Finish</button>
-
-</div></div>
-</section>
   
-<button class="mainBtn" onclick="openPage('loginPage')">
-Continue
+<button class="mainBtn" onclick="openPage('signupStep1')">
+Get Started
 </button>
 
 <button class="outlineBtn" onclick="openPage('authPage')">
@@ -1243,8 +1167,8 @@ Upgrade Now
 
 <div style="margin-top:25px;">
 
-<p style="font-size:12px;opacity:.6;margin-top:10px;">
-crafted by maykozee
+<p style="font-size:10px;opacity:.4;text-align:center;">
+maykozee
 </p>
   
 <p style="margin-bottom:8px;">Age Range</p>
@@ -1559,19 +1483,6 @@ toast("Password updated ✅")
 setTimeout(()=>{
 openPage("loginPage")
 },1000)
-}
-
-function savePass(){
-
-let pass=document.getElementById("newPass").value
-
-if(pass==""){
-toast("Enter new password")
-return
-}
-
-openPage("loginPage")
-toast("Password updated ✅")
 }
 
 function verifyFace(){
