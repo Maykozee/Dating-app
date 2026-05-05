@@ -1776,6 +1776,25 @@ function finishAll(){
 toast("Welcome ❤️")
 openPage("appPage")
 }
+
+function openPage(id){
+
+document.querySelectorAll(".page").forEach(p=>{
+p.classList.add("hidden")
+})
+
+document.getElementById(id).classList.remove("hidden")
+
+// ✅ ONLY THIS CONTROL BOT NAV
+const nav = document.querySelector(".bottomNav")
+
+if(id === "appPage"){
+nav.style.display = "flex"
+}else{
+nav.style.display = "none"
+}
+
+}
   
 </script>
 
