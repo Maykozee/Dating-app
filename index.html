@@ -713,6 +713,31 @@ Get Started
 
 </section>
 
+<section id="loginPage" class="page hidden">
+
+<div class="authWrap">
+<div class="card">
+
+<div class="title">Login</div>
+
+<input id="loginInput" class="input" placeholder="Phone or Gmail">
+<input id="loginPass" type="password" class="input" placeholder="Password">
+
+<button class="mainBtn" onclick="loginUser()">Login</button>
+
+<p onclick="openPage('forgotPage')" style="margin-top:10px;cursor:pointer;color:#aaa;">
+Forgot Password?
+</p>
+
+<p onclick="openPage('signupPage')" style="margin-top:10px;cursor:pointer;">
+Create Account
+</p>
+
+</div>
+</div>
+
+</section>
+
 <section id="forgotPage" class="page hidden">
 
 <div class="authWrap">
@@ -901,9 +926,7 @@ Create Account
 <option>No</option>
 </select>
 
-<button class="mainBtn" onclick="finishSignup(); 
-openPage('onboarding')">
-
+<button class="mainBtn" onclick="finishSignup()"
 Verify & Continue
 </button>
 
@@ -1469,7 +1492,6 @@ toast("Fill all fields ❗")
 return
 }
 
-// fake verification step
 toast("Verifying...")
 
 setTimeout(()=>{
@@ -1483,7 +1505,7 @@ openPage("appPage")
 },1500)
 
 }
-
+  
 function sendReset(){
 
 let input=document.getElementById("resetInput").value
