@@ -152,6 +152,9 @@ margin:auto;
 font-size:44px;
 line-height:1.1;
 margin-bottom:15px;
+background:var(--gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 .hero p{
@@ -642,30 +645,34 @@ opacity:1;
 <div class="loader"><span></span></div>
 </div>
   
-<section id="welcomePage" class="page hero hidden">
-  <div class="hero">
-    <div class="heroCard fadeIn">
+<section id="welcomePage" class="page hidden">
 
-      <h1 class="slideUp">Find Your Perfect Match</h1>
+<div class="hero">
 
-      <p class="slideUp">
-        Premium Ethiopian dating experience...
-      </p>
+<div class="heroCard fadeIn">
 
-      <button class="mainBtn" onclick="openPage('signupPage')">
-        Get Started
-      </button>
+<h1 class="slideUp">Find Your Perfect Match ❤️</h1>
 
-      <button class="outlineBtn" onclick="openPage('authPage')">
-        Continue with Phone
-      </button>
+<p class="slideUp">
+Meet Ethiopian singles, chat instantly, and build real connections.
+</p>
 
-      <button class="outlineBtn" onclick="googleLogin()">
-        Continue with Gmail
-      </button>
+<button class="mainBtn" onclick="openPage('loginPage')">
+Get Started
+</button>
 
-    </div>
-  </div>
+<button class="outlineBtn" onclick="openPage('signupPage')">
+Create Account
+</button>
+
+<button class="outlineBtn" onclick="googleLogin()">
+Continue with Gmail
+</button>
+
+</div>
+
+</div>
+
 </section>
   
 
