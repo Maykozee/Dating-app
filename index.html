@@ -64,6 +64,7 @@ align-items:center;
 justify-content:center;
 flex-direction:column;
 z-index:99999;
+transition:opacity .6s ease;
 }
 
 .logoHeart{
@@ -697,53 +698,6 @@ animation:loadPro 2.5s ease forwards;
 <div class="hero">
 
 <div class="heroCard fadeIn">
-
-<h1 class="slideUp">Find Your Perfect Match ❤️</h1>
-
-<p class="slideUp">
-Meet Ethiopian singles, chat instantly, and build real connections.
-</p>
-
-<button class="mainBtn" onclick="openPage('loginPage')">
-Get Started
-</button>
-
-<button class="outlineBtn" onclick="openPage('signupPage')">
-Create Account
-</button>
-
-<button class="outlineBtn" onclick="googleLogin()">
-Continue with Gmail
-</button>
-
-</div>
-
-</div>
-
-</section>
-  
-
-<h1 class="slideUp">Find Your Perfect Match</h1>
-<p class="slideUp">
-Premium Ethiopian dating experience with modern matching, stories, lifestyle filters, and realtime connections.
-</p>
-
-  
-<button class="mainBtn" onclick="openPage('signupStep1')">
-Get Started
-</button>
-
-<button class="outlineBtn" onclick="openPage('authPage')">
-Continue with Phone
-</button>
-
-<button class="outlineBtn" onclick="googleLogin()">
-Continue with Gmail
-</button>
-
-</div>
-</div>
-</section>
 
 <section id="loginPage" class="page hidden">
 
@@ -1666,7 +1620,7 @@ toast("Enter code")
 return
 }
 
-openPage("onboarding") // 👈 ይህ ነው ትክክል
+openPage("appPage")
 
 toast("Phone verified ✅")
 }
