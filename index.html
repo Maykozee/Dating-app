@@ -635,14 +635,61 @@ transform:translateY(0);
 opacity:1;
 }
 }
+
+.logoText{
+margin-top:10px;
+font-size:28px;
+font-weight:700;
+background:var(--gradient);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+}
+
+.loadingText{
+margin-top:8px;
+font-size:13px;
+color:#aaa;
+letter-spacing:1px;
+}
+
+.loaderPro{
+width:200px;
+height:6px;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+margin-top:25px;
+}
+
+.loaderPro span{
+display:block;
+height:100%;
+width:0;
+background:var(--gradient);
+animation:loadPro 2.5s ease forwards;
+}
+
+@keyframes loadPro{
+0%{width:0;}
+100%{width:100%;}
+}
+  
 </style>
 </head>
 <body>
 
 <div id="splash">
+
 <div class="logoHeart">❤️</div>
-<h1 style="margin-top:15px;">EthioDating</h1>
-<div class="loader"><span></span></div>
+
+<h1 class="logoText">EthioDating</h1>
+
+<p class="loadingText">Connecting hearts...</p>
+
+<div class="loaderPro">
+<span></span>
+</div>
+
 </div>
   
 <section id="welcomePage" class="page hidden">
@@ -1361,16 +1408,25 @@ Send Message
 
 <script>
 
+window.onload = () => {
+
 setTimeout(()=>{
+
 let splash=document.getElementById("splash")
+
 splash.style.opacity=0
 
 setTimeout(()=>{
-document.getElementById("splash").style.display="none"
-openPage("welcomePage")
-},2000)
 
-},2000);
+splash.style.display="none"
+
+openPage("welcomePage")
+
+},600)
+
+},2200)
+
+}
   
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>{
