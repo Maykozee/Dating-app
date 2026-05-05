@@ -1372,18 +1372,20 @@ openPage("welcomePage")
 }
   
 function openPage(id){
+
+let page = document.getElementById(id)
+
+if(!page){
+console.error("Page not found:", id)
+return
+}
+
 document.querySelectorAll(".page").forEach(p=>{
 p.classList.add("hidden")
 })
-document.getElementById(id).classList.remove("hidden")
-}
 
-document.querySelectorAll("button").forEach(btn=>{
-btn.addEventListener("click",()=>{
-btn.style.transform="scale(0.96)"
-setTimeout(()=>btn.style.transform="scale(1)",100)
-})
-})
+page.classList.remove("hidden")
+}
   
 function startGoogleLogin(){
 alert("Gmail login working (real)")
