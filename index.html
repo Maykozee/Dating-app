@@ -641,20 +641,33 @@ opacity:1;
 <h1 style="margin-top:15px;">EthioDating</h1>
 <div class="loader"><span></span></div>
 </div>
-
+  
 <section id="welcomePage" class="page hero hidden">
+  <div class="hero">
+    <div class="heroCard fadeIn">
 
-<div class="hero">
+      <h1 class="slideUp">Find Your Perfect Match</h1>
 
-<div class="heroCard">
-...
-</div>
+      <p class="slideUp">
+        Premium Ethiopian dating experience...
+      </p>
 
-</div>
+      <button class="mainBtn" onclick="openPage('signupPage')">
+        Get Started
+      </button>
 
+      <button class="outlineBtn" onclick="openPage('authPage')">
+        Continue with Phone
+      </button>
+
+      <button class="outlineBtn" onclick="googleLogin()">
+        Continue with Gmail
+      </button>
+
+    </div>
+  </div>
 </section>
-
-<div class="heroCard fadeIn">
+  
 
 <h1 class="slideUp">Find Your Perfect Match</h1>
 <p class="slideUp">
@@ -1571,9 +1584,8 @@ function sendCode(){
 let phone=document.getElementById("phone").value
 
 if(phone.trim()==""){
-toast("Enter phone number")
-  openPage("signupStep1")
-return
+  toast("Enter phone number")
+  return
 }
 
 toast("Code sent 📩")
