@@ -696,48 +696,17 @@ animation:loadPro 2.5s ease forwards;
 <section id="welcomePage" class="page hidden">
 
 <div class="hero">
-
 <div class="heroCard fadeIn">
 
-<h1>Find Your Perfect Match ❤️</h1>
+<h1 class="slideUp">Find Your Perfect Match ❤️</h1>
 
-<p>Meet Ethiopian singles, chat instantly, and build real connections.</p>
+<p class="slideUp">
+Meet Ethiopian singles, chat instantly, and build real connections.
+</p>
 
 <button class="mainBtn" onclick="openPage('loginPage')">
 Get Started
 </button>
-
-<button class="outlineBtn" onclick="openPage('signupPage')">
-Create Account
-</button>
-
-<button class="outlineBtn" onclick="googleLogin()">
-Continue with Gmail
-</button>
-
-</div> <!-- heroCard -->
-</div> <!-- hero -->
-</section> <!-- welcomePage -->
-
-<section id="loginPage" class="page hidden">
-
-<div class="authWrap">
-<div class="card">
-
-<div class="title">Welcome Back</div>
-
-<input id="loginInput" class="input" placeholder="Phone or Gmail">
-<input id="loginPass" type="password" class="input" placeholder="Password">
-
-<button class="mainBtn" onclick="loginUser()">Login</button>
-
-<p onclick="openPage('forgotPage')" style="margin-top:10px;cursor:pointer;color:#aaa;">
-Forgot Password?
-</p>
-
-<p onclick="openPage('signupPage')" style="margin-top:10px;cursor:pointer;">
-Create Account
-</p>
 
 </div>
 </div>
@@ -1498,10 +1467,19 @@ toast("Fill all fields ❗")
 return
 }
 
-localStorage.setItem("user","logged")
+// fake verification step
+toast("Verifying...")
 
+setTimeout(()=>{
+
+toast("Welcome Back ❤️")
+
+setTimeout(()=>{
 openPage("appPage")
-toast("Logged in ✅")
+},1000)
+
+},1500)
+
 }
 
 function sendReset(){
@@ -1621,8 +1599,8 @@ function sendCode(){
 let phone=document.getElementById("phone").value
 
 if(phone.trim()==""){
-  toast("Enter phone number")
-  return
+toast("Enter phone number")
+return
 }
 
 toast("Code sent 📩")
@@ -1640,9 +1618,12 @@ toast("Enter code")
 return
 }
 
-openPage("appPage")
+toast("Verified ✅")
 
-toast("Phone verified ✅")
+setTimeout(()=>{
+openPage("appPage")
+},1000)
+
 }
   
 function toggleTheme(){
