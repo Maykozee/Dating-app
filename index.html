@@ -120,11 +120,11 @@ height:100%;
 .heroCard{
 width:100%;
 max-width:430px;
-background:rgba(0,0,0,.4);
-backdrop-filter:blur(10px);
+margin:auto;
 padding:30px;
-border-radius:30px;
-border:1px solid rgba(255,255,255,.08);
+display:flex;
+flex-direction:column;
+justify-content:center;
 }
 
   .hero{
@@ -232,11 +232,12 @@ backdrop-filter:blur(12px);
 }
 
 .mainBtn{
-box-shadow:0 10px 25px rgba(255,47,109,.4);
+margin-top:10px;
+margin-bottom:12px;
 }
 
-.outlineBtn:hover{
-background:rgba(255,255,255,.05);
+.outlineBtn{
+margin-bottom:12px;
 }
   
 .light .topBar{
@@ -641,7 +642,7 @@ opacity:1;
 <div class="loader"><span></span></div>
 </div>
 
-<section id="welcomePage" class="page hidden">
+<section id="welcomePage" class="page hero hidden">
 
 <div class="hero">
 
@@ -655,10 +656,7 @@ opacity:1;
 
 <div class="heroCard fadeIn">
 
-<div class="heroCard">
-
 <h1 class="slideUp">Find Your Perfect Match</h1>
-
 <p class="slideUp">
 Premium Ethiopian dating experience with modern matching, stories, lifestyle filters, and realtime connections.
 </p>
