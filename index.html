@@ -1036,7 +1036,7 @@ Start App
 <option>Yes</option>
 <option>No</option>
 </select>
-<button class="mainBtn" onclick="finishSignup(openPage("onboarding") )">
+<button class="mainBtn" onclick="finishSignup()"
 Verify & Continue
 </button>
 
@@ -1492,6 +1492,8 @@ setTimeout(()=>{
 document.getElementById("splash").style.display="none"
 openPage("welcomePage")
 },2000)
+
+},2000);
   
 function openPage(id){
 document.querySelectorAll(".page").forEach(p=>{
@@ -1752,14 +1754,6 @@ return
 openPage("onboarding") // 👈 ይህ ነው ትክክል
 
 toast("Phone verified ✅")
-}
-  
-localStorage.setItem("user","logged")
-
-openPage("signupPage")
-
-toast("Welcome ❤️")
-
 }
   
 function toggleTheme(){
