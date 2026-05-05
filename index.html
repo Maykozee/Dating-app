@@ -1428,18 +1428,16 @@ openPage("welcomePage")
   
 function openPage(id){
 
-let page = document.getElementById(id)
-
-if(!page){
-console.error("Page not found:", id)
-return
-}
-
 document.querySelectorAll(".page").forEach(p=>{
 p.classList.add("hidden")
 })
 
+let page=document.getElementById(id)
+
+if(page){
 page.classList.remove("hidden")
+}
+
 }
   
 function startGoogleLogin(){
