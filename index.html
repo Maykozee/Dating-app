@@ -163,6 +163,38 @@ color:#ddd;
 margin-bottom:25px;
 }
 
+.hero{
+display:flex;
+align-items:flex-start;   /* ከመሀከል → ወደ ላይ */
+padding-top:80px;         /* space from top */
+}
+
+.heroCard{
+margin-top:40px;
+animation:fadeUp 0.8s ease;
+}
+
+@keyframes fadeUp{
+from{
+opacity:0;
+transform:translateY(30px);
+}
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+.hero h1{
+font-size:38px;
+font-weight:700;
+}
+
+.hero p{
+font-size:15px;
+opacity:.85;
+}
+  
 .mainBtn{
 width:100%;
 padding:16px;
@@ -704,8 +736,8 @@ animation:loadPro 2.5s ease forwards;
 Meet Ethiopian singles, chat instantly, and build real connections.
 </p>
 
-<button class="mainBtn" onclick="openPage('loginPage')">
-Get Started
+<button class="mainBtn" onclick=openPage("authPage")" style="margin-top:25px;font-size:18px;">
+🚀 Get Started
 </button>
 
 </div>
