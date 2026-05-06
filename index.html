@@ -774,7 +774,6 @@ Meet Ethiopian singles, chat instantly, and build real connections.
 </p>
 
 <button class="mainBtn" onclick="openPage('loginPage')">
-style="margin-top:25px;font-size:18px;">
 🚀 Get Started
 </button>
 
@@ -833,9 +832,19 @@ Forgot Password?
 
 <button class="mainBtn" onclick="sendReset()">Send Code</button>
 
-<div id="resetBox" class="hidden">
+<!-- STEP 2: CODE -->
+<div id="codeBox" class="hidden">
 
-<input id="newPass" type="password" class="input" placeholder="New Password">
+<input id="resetCode" class="input" placeholder="Enter Code">
+
+<button class="mainBtn" onclick="verifyResetCode()">Verify Code</button>
+
+</div>
+
+<!-- STEP 3: NEW PASSWORD -->
+<div id="newPassBox" class="hidden">
+
+<input id="newPass" type="password" class="input" placeholder="New Password (min 8)">
 
 <button class="mainBtn" onclick="savePass()">Save Password</button>
 
@@ -1575,15 +1584,16 @@ return
 }
 
 toast("Code sent 📩")
-document.getElementById("resetBox").classList.remove("hidden")
+
+document.getElementById("codeBox").classList.remove("hidden")
 }
 
 function savePass(){
 
 let pass=document.getElementById("newPass").value
 
-if(pass.length < 4){
-toast("Password too short ❗")
+if(pass.length < 8){
+toast("Minimum 8 characters ❗")
 return
 }
 
@@ -1592,8 +1602,23 @@ toast("Password updated ✅")
 setTimeout(()=>{
 openPage("loginPage")
 },1000)
+
 }
 
+function verifyResetCode(){
+
+let code=document.getElementById("resetCode").value
+
+if(code.length < 4){
+toast("Invalid code ❗")
+return
+}
+
+toast("Code verified ✅")
+
+document.getElementById("newPassBox").classList.remove("hidden")
+}
+ 
 function verifyFace(){
 
 alert("Move face up/down/left/right 👤")
