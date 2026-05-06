@@ -897,28 +897,19 @@ Create Account
 <div class="card">
 
 <div class="title">Create Account</div>
-<div class="sub">Step 1 of 1</div>
 
-<!-- FIRST NAME -->
 <input id="firstName" class="input" placeholder="First Name">
-
-<!-- LAST NAME -->
 <input id="lastName" class="input" placeholder="Last Name">
-
-<!-- NICK NAME -->
 <input id="nickName" class="input" placeholder="Nick Name">
 
-<!-- BIRTH DAY -->
-<div style="margin-bottom:6px;color:var(--sub);font-size:13px;">
-Birthday
-</div>
+<label style="font-size:13px;color:var(--sub);">Birthday</label>
+<input id="birthDate" type="date" class="input">
 
-<input id="birthDay" class="input" type="date">
-
-<!-- GENDER (only one select allowed) -->
-<div style="margin-bottom:10px;color:var(--sub);font-size:13px;">
-Gender
-</div>
+<select id="gender" class="input">
+<option value="">Select Gender</option>
+<option>Woman</option>
+<option>Man</option>
+</select>
 
 <div style="display:flex;gap:10px;margin-bottom:15px;">
 
@@ -1801,7 +1792,79 @@ nav.style.display = "none"
 }
 
 }
-  
+function nextSignup(){
+
+let first = document.getElementById("firstName").value.trim()
+let last = document.getElementById("lastName").value.trim()
+let nick = document.getElementById("nickName").value.trim()
+let birth = document.getElementById("birthDate").value
+let gender = document.getElementById("gender").value
+
+if(first === ""){
+toast("First name altemolam ❗")
+return
+}
+
+if(last === ""){
+toast("Last name altemolam ❗")
+return
+}
+
+if(nick === ""){
+toast("Nick name altemolam ❗")
+return
+}
+
+if(birth === ""){
+toast("Birthday altemolam ❗")
+return
+}
+
+if(gender === ""){
+toast("Gender mret ❗")
+return
+}
+
+if(first.length < 3){
+toast("First name ke 3 fidel belay yihun ❗")
+return
+}
+
+if(last.length < 3){
+toast("Last name ke 3 fidel belay yihun ❗")
+return
+}
+
+if(nick.length < 3){
+toast("Nick name ke 3 fidel belay yihun ❗")
+return
+}
+
+// AGE CHECK
+let today = new Date()
+let birthDate = new Date(birth)
+
+let age = today.getFullYear() - birthDate.getFullYear()
+let m = today.getMonth() - birthDate.getMonth()
+
+if(m < 0 || (m === 0 && today.getDate() < birthDate.getDate())){
+age--
+}
+
+if(age < 18){
+toast("18+ mehon alebet ❗")
+return
+}
+
+// SUCCESS
+toast("Step 1 complete ✅")
+
+setTimeout(()=>{
+openPage("appPage") // or next page later
+},800)
+
+}
+ 
 </script>
 
 </body>
