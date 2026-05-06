@@ -923,20 +923,6 @@ Man
 Next
 </button>
 
-<div style="display:flex;gap:10px;margin-bottom:15px;">
-
-<div onclick="selectGender('Woman')" id="womanBtn" 
-style="flex:1;padding:12px;border-radius:15px;text-align:center;background:var(--soft);cursor:pointer;">
-Woman
-</div>
-
-<div onclick="selectGender('Man')" id="manBtn"
-style="flex:1;padding:12px;border-radius:15px;text-align:center;background:var(--soft);cursor:pointer;">
-Man
-</div>
-
-</div>
-
 <input type="hidden" id="gender">
 
 <!-- NEXT BUTTON -->
@@ -1792,6 +1778,26 @@ openPage("loginPage")   // or appPage if you want
 },1000)
 
 }
+
+let selectedGender = ""
+
+function selectGender(gender){
+
+selectedGender = gender
+
+document.getElementById("femaleBtn").style.background = "transparent"
+document.getElementById("maleBtn").style.background = "transparent"
+
+document.getElementById("femaleBtn").style.color = "#fff"
+document.getElementById("maleBtn").style.color = "#fff"
+
+if(gender === "Woman"){
+document.getElementById("femaleBtn").style.background = "linear-gradient(135deg,#ff2f6d,#9b3dff)"
+}else{
+document.getElementById("maleBtn").style.background = "linear-gradient(135deg,#ff2f6d,#9b3dff)"
+}
+
+}
  
 function loadCities(){
 let c=document.getElementById("country").value
@@ -1901,23 +1907,6 @@ openPage("appPage")
 
 }
 
-let selectedGender = ""
-
-function selectGender(g){
-
-selectedGender = g
-
-document.getElementById("femaleBtn").style.border="1px solid rgba(255,255,255,.15)"
-document.getElementById("maleBtn").style.border="1px solid rgba(255,255,255,.15)"
-
-if(g === "Woman"){
-document.getElementById("femaleBtn").style.border="2px solid #ff2f6d"
-}else{
-document.getElementById("maleBtn").style.border="2px solid #ff2f6d"
-}
-
-}
- 
 </script>
 
 </body>
