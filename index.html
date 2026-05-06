@@ -1839,40 +1839,73 @@ let first = document.getElementById("firstName").value.trim()
 let last = document.getElementById("lastName").value.trim()
 let nick = document.getElementById("nickName").value.trim()
 let birth = document.getElementById("birthDate").value
+let gender = selectedGender
 
+// Empty check
+if(first === ""){
+toast("Please enter your first name")
+return
+}
+
+if(last === ""){
+toast("Please enter your last name")
+return
+}
+
+if(nick === ""){
+toast("Please enter your nickname")
+return
+}
+
+if(birth === ""){
+toast("Please select your birthday")
+return
+}
+
+if(gender === ""){
+toast("Please select your gender")
+return
+}
+
+// Minimum length
 if(first.length < 3){
-toast("First name must be at least 3 letters")
+toast("First name must be at least 3 characters")
 return
 }
 
 if(last.length < 3){
-toast("Last name must be at least 3 letters")
+toast("Last name must be at least 3 characters")
 return
 }
 
 if(nick.length < 3){
-toast("Nick name must be at least 3 letters")
+toast("Nickname must be at least 3 characters")
 return
 }
 
-if(!birth){
-toast("Select your birthday")
-return
-}
+// Age check (18+)
+let today = new Date()
+let birthDate = new Date(birth)
 
-let age = new Date().getFullYear() - new Date(birth).getFullYear()
+let age = today.getFullYear() - birthDate.getFullYear()
+let m = today.getMonth() - birthDate.getMonth()
+
+if(m < 0 || (m === 0 && today.getDate() < birthDate.getDate())){
+age--
+}
 
 if(age < 18){
-toast("You must be 18+")
+toast("You must be at least 18 years old")
 return
 }
 
-if(selectedGender === ""){
-toast("Select gender")
-return
-}
+// Success
+toast("Step completed")
 
-openPage("appPage") // ወደ next page
+setTimeout(()=>{
+openPage("appPage")
+},800)
+
 }
 
 </script>
