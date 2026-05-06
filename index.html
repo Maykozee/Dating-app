@@ -881,8 +881,8 @@ Verify Code
 
 <div style="margin-top:15px;text-align:center;">
 <span style="color:var(--sub)">New user?</span>
-<button class="outlineBtn" onclick="openPage('signupPage')">
-Create Account
+<button class="mainBtn" onclick="nextSignup()">
+Next
 </button>
 </div>
 
@@ -934,6 +934,32 @@ Man
 <!-- NEXT BUTTON -->
 <button class="mainBtn" onclick="goNextSignup()">
 Next 
+</button>
+
+</div>
+</div>
+
+</section>
+
+<section id="step2Page" class="page hidden">
+
+<div class="authWrap">
+<div class="card">
+
+<div class="title">More About You</div>
+
+<input class="input" placeholder="City">
+<input class="input" placeholder="Job">
+
+<select class="input">
+<option>Relationship Goal</option>
+<option>Marriage</option>
+<option>Serious Relationship</option>
+<option>Friendship</option>
+</select>
+
+<button class="mainBtn" onclick="finishSignup()">
+Finish
 </button>
 
 </div>
@@ -1776,7 +1802,7 @@ city.innerHTML="<option>Main City</option>"
 
 function finishAll(){
 toast("Welcome ❤️")
-openPage("appPage")
+openPage("step2Page")
 }
 
 function openPage(id){
