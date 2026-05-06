@@ -261,11 +261,26 @@ display:flex;
 justify-content:center;
 align-items:center;
 min-height:100vh;
-}
 
+background:
+linear-gradient(rgba(0,0,0,.65),rgba(0,0,0,.75)),
+url('https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1200') center/cover no-repeat;
+}
 .card{
 width:100%;
 max-width:430px;
+
+background:rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+border:1px solid rgba(255,255,255,.12);
+
+border-radius:30px;
+
+padding:25px;
+
+box-shadow:0 20px 60px rgba(0,0,0,.45);
 }
 
 .card{
@@ -955,13 +970,6 @@ Complete your profile ✨
 <label style="font-size:13px;color:var(--sub);">
 Country
 </label>
-
-<input 
-id="countrySearch"
-class="input"
-placeholder="Search country..."
-onkeyup="filterCountries()"
->
 
 <select 
 id="country"
@@ -1855,100 +1863,6 @@ document.getElementById("maleBtn").style.background = "linear-gradient(135deg,#f
 }
 
 }
- 
-function loadCities(){
-
-let country = document.getElementById("country").value
-
-let city = document.getElementById("city")
-
-if(country === "Ethiopia"){
-
-city.innerHTML = `
-
-<option value="">Select City</option>
-
-<option>Addis Ababa</option>
-<option>Adama</option>
-<option>Hawassa</option>
-<option>Bahir Dar</option>
-<option>Mekelle</option>
-<option>Dire Dawa</option>
-<option>Jimma</option>
-<option>Gondar</option>
-<option>Dessie</option>
-<option>kombolcha</option>
-<option>Bishoftu</option>
-<option>Shashamane</option>
-<option>Harar</option>
-<option>Arba Minch</option>
-<option>Debre Birhan</option>
-<option>Assosa</option>
-<option>Wolaita Sodo</option>
-<option>Jijiga</option>
-<option>Axum</option>
-<option>Nekemte</option>
-<option>Dilla</option>
-
-`
-
-}else if(country === "Eritrea"){
-
-city.innerHTML = `
-
-<option value="">Select City</option>
-
-<option>Asmara</option>
-<option>Keren</option>
-<option>Massawa</option>
-
-`
-
-}else if(country === "Dubai"){
-
-city.innerHTML = `
-
-<option value="">Select City</option>
-
-<option>Dubai City</option>
-
-`
-
-}else if(country === "Saudi Arabia"){
-
-city.innerHTML = `
-
-<option value="">Select City</option>
-
-<option>Riyadh</option>
-<option>Jeddah</option>
-<option>Mecca</option>
-<option>Medina</option>
-
-`
-
-}else if(country === "Kenya"){
-
-city.innerHTML = `
-
-<option value="">Select City</option>
-
-<option>Nairobi</option>
-<option>Mombasa</option>
-
-`
-
-}else{
-
-city.innerHTML = `
-
-<option value="">Select City</option>
-
-`
-
-}
-
-}
 
 function finishAll(){
 toast("Welcome ❤️")
@@ -2047,27 +1961,215 @@ openPage("step2Page")
 
 }
 
-function filterCountries(){
+function loadCities(){
 
-let input = document.getElementById("countrySearch").value.toLowerCase()
+let country = document.getElementById("country").value
+let city = document.getElementById("city")
 
-let select = document.getElementById("country")
+if(country === "Ethiopia"){
 
-let options = select.options
+city.innerHTML = `
 
-for(let i = 0; i < options.length; i++){
+<option value="">Select City</option>
 
-let txt = options[i].text.toLowerCase()
+<option>Addis Ababa</option>
+<option>Adama</option>
+<option>Hawassa</option>
+<option>Bahir Dar</option>
+<option>Mekelle</option>
+<option>Dire Dawa</option>
+<option>Jimma</option>
+<option>Gondar</option>
+<option>Dessie</option>
+<option>Bishoftu</option>
+<option>Shashamane</option>
+<option>Harar</option>
+<option>Arba Minch</option>
+<option>Debre Birhan</option>
+<option>Jijiga</option>
+<option>Nekemte</option>
+<option>Dilla</option>
+<option>Axum</option>
+<option>Wolaita Sodo</option>
+<option>Assosa</option>
 
-if(txt.includes(input)){
+`
 
-options[i].style.display = ""
+}else if(country === "Eritrea"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Asmara</option>
+<option>Keren</option>
+<option>Massawa</option>
+<option>Assab</option>
+<option>Mendefera</option>
+
+`
+
+}else if(country === "Saudi Arabia"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Riyadh</option>
+<option>Jeddah</option>
+<option>Mecca</option>
+<option>Medina</option>
+<option>Dammam</option>
+
+`
+
+}else if(country === "Dubai"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Dubai City</option>
+<option>Deira</option>
+<option>Bur Dubai</option>
+<option>Jumeirah</option>
+<option>Dubai Marina</option>
+
+`
+
+}else if(country === "USA"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>New York</option>
+<option>Los Angeles</option>
+<option>Chicago</option>
+<option>Houston</option>
+<option>Miami</option>
+
+`
+
+}else if(country === "Canada"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Toronto</option>
+<option>Vancouver</option>
+<option>Montreal</option>
+<option>Ottawa</option>
+<option>Calgary</option>
+
+`
+
+}else if(country === "Germany"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Berlin</option>
+<option>Hamburg</option>
+<option>Munich</option>
+<option>Frankfurt</option>
+<option>Cologne</option>
+
+`
+
+}else if(country === "France"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Paris</option>
+<option>Lyon</option>
+<option>Marseille</option>
+<option>Nice</option>
+<option>Toulouse</option>
+
+`
+
+}else if(country === "Italy"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Rome</option>
+<option>Milan</option>
+<option>Venice</option>
+<option>Naples</option>
+<option>Turin</option>
+
+`
+
+}else if(country === "China"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Beijing</option>
+<option>Shanghai</option>
+<option>Shenzhen</option>
+<option>Guangzhou</option>
+<option>Chengdu</option>
+
+`
+
+}else if(country === "Japan"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Tokyo</option>
+<option>Osaka</option>
+<option>Kyoto</option>
+<option>Nagoya</option>
+<option>Yokohama</option>
+
+`
+
+}else if(country === "India"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Mumbai</option>
+<option>Delhi</option>
+<option>Bangalore</option>
+<option>Hyderabad</option>
+<option>Chennai</option>
+
+`
+
+}else if(country === "Kenya"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Nairobi</option>
+<option>Mombasa</option>
+<option>Kisumu</option>
+<option>Nakuru</option>
+<option>Eldoret</option>
+
+`
 
 }else{
 
-options[i].style.display = "none"
+city.innerHTML = `
 
-}
+<option value="">Select City</option>
+
+`
 
 }
 
