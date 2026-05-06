@@ -736,7 +736,7 @@ animation:loadPro 2.5s ease forwards;
 Meet Ethiopian singles, chat instantly, and build real connections.
 </p>
 
-<button class="mainBtn" onclick='openPage("authPage")' 
+<button class="mainBtn" onclick="openPage('appPage')" 
 style="margin-top:25px;font-size:18px;">
 🚀 Get Started
 </button>
@@ -1463,32 +1463,9 @@ return
 }
 }
 
-let ageInput=document.querySelector('#signupPage input[type="date"]').value
-
-if(!ageInput){
-toast("Select your birth date ❗")
-return
-}
-
-let birthYear=new Date(ageInput).getFullYear()
-let currentYear=new Date().getFullYear()
-let age=currentYear-birthYear
-
-if(age<18){
-toast("You must be 18+ ❗")
-return
-}
-
-let gender=document.querySelectorAll("#signupPage select")[0].value
-let looking=document.querySelectorAll("#signupPage select")[1].value
-
-if(gender===looking){
-toast("Choose opposite gender ❗")
-return
-}
-
 openPage("appPage")
-toast("Welcome to EthioDating ❤️")
+toast("Welcome ❤️")
+
 }
   
 function openPopup(id){
