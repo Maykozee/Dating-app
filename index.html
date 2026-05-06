@@ -93,6 +93,43 @@ background:var(--gradient);
 animation:load 2s ease forwards;
 }
 
+/* 🔥 PRO LOGIN UI */
+
+.loginBg{
+min-height:100vh;
+display:flex;
+align-items:center;
+justify-content:center;
+background:
+linear-gradient(135deg, rgba(255,47,109,.25), rgba(155,61,255,.25)),
+url('https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=1200') center/cover no-repeat;
+}
+
+.glassCard{
+background:rgba(255,255,255,.08);
+backdrop-filter:blur(18px);
+border:1px solid rgba(255,255,255,.15);
+box-shadow:0 20px 60px rgba(0,0,0,.5);
+border-radius:30px;
+padding:25px;
+}
+
+.inputIcon{
+position:relative;
+}
+
+.inputIcon span{
+position:absolute;
+left:14px;
+top:50%;
+transform:translateY(-50%);
+opacity:.6;
+}
+
+.inputIcon input{
+padding-left:40px;
+}
+ 
 @keyframes load{
 0%{width:0;}
 100%{width:100%;}
@@ -736,7 +773,7 @@ animation:loadPro 2.5s ease forwards;
 Meet Ethiopian singles, chat instantly, and build real connections.
 </p>
 
-<button class="mainBtn" onclick="openPage('appPage')" 
+<button class="mainBtn" onclick="openPage('loginPage')">
 style="margin-top:25px;font-size:18px;">
 🚀 Get Started
 </button>
@@ -748,25 +785,39 @@ style="margin-top:25px;font-size:18px;">
 
 <section id="loginPage" class="page hidden">
 
-<div class="authWrap">
-<div class="card">
+<div class="loginBg">
 
-<div class="title">Login</div>
+<div class="glassCard" style="width:90%;max-width:400px;">
 
+<div class="title" style="text-align:center;">Welcome Back ❤️</div>
+<div class="sub" style="text-align:center;">Login to continue</div>
+
+<div class="inputIcon">
+<span>📱</span>
 <input id="loginInput" class="input" placeholder="Phone or Gmail">
+</div>
+
+<div class="inputIcon">
+<span>🔒</span>
 <input id="loginPass" type="password" class="input" placeholder="Password">
+</div>
 
 <button class="mainBtn" onclick="loginUser()">Login</button>
 
-<p onclick="openPage('forgotPage')" style="margin-top:10px;cursor:pointer;color:#aaa;">
+<p onclick="openPage('forgotPage')" 
+style="margin-top:10px;text-align:center;cursor:pointer;color:#aaa;">
 Forgot Password?
 </p>
 
-<p onclick="openPage('signupPage')" style="margin-top:10px;cursor:pointer;">
-Create Account
-</p>
+<div style="text-align:center;margin-top:15px;">
+<span style="color:#aaa;">No account?</span>
+<span onclick="openPage('signupPage')" style="cursor:pointer;color:#fff;">
+ Sign up
+</span>
+</div>
 
 </div>
+
 </div>
 
 </section>
