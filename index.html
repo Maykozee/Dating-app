@@ -944,17 +944,79 @@ Next
 <div class="authWrap">
 <div class="card">
 
-<div class="title">More About You</div>
+<div class="title">
+More About You
+</div>
 
-<input class="input" placeholder="City">
-<input class="input" placeholder="Job">
+<div class="sub">
+Complete your profile ✨
+</div>
 
-<select class="input">
-<option>Relationship Goal</option>
+<label style="font-size:13px;color:var(--sub);">
+City
+</label>
+
+<select id="city" class="input">
+
+<option value="">Select City</option>
+
+<option>Addis Ababa</option>
+<option>Adama</option>
+<option>Hawassa</option>
+<option>Bahir Dar</option>
+<option>Mekelle</option>
+
+</select>
+
+<label style="font-size:13px;color:var(--sub);">
+Job
+</label>
+
+<input id="job" class="input" placeholder="Your Job">
+
+<label style="font-size:13px;color:var(--sub);">
+Education
+</label>
+
+<select id="education" class="input">
+
+<option value="">Education Level</option>
+
+<option>High School</option>
+<option>College</option>
+<option>Degree</option>
+<option>Masters</option>
+
+</select>
+
+<label style="font-size:13px;color:var(--sub);">
+Relationship Goal
+</label>
+
+<select id="goal" class="input">
+
+<option value="">Select Goal</option>
+
 <option>Marriage</option>
 <option>Serious Relationship</option>
 <option>Friendship</option>
+
 </select>
+
+<label style="font-size:13px;color:var(--sub);">
+About You
+</label>
+
+<textarea 
+id="bio"
+class="input"
+placeholder="Write something about yourself..."
+style="height:120px;resize:none;"
+></textarea>
+
+<button class="mainBtn" onclick="finishProfile()">
+Finish
+</button>
 
 </div>
 </div>
@@ -1870,11 +1932,43 @@ return
 toast("Step completed")
 
 setTimeout(()=>{
-openPage("appPage")
+openPage("step2Page")
 },800)
 
 }
 
+function finishProfile(){
+
+let city = document.getElementById("city").value
+let job = document.getElementById("job").value.trim()
+let education = document.getElementById("education").value
+let goal = document.getElementById("goal").value
+let bio = document.getElementById("bio").value.trim()
+
+if(city=="" || job=="" || education=="" || goal=="" || bio==""){
+
+toast("Please complete your profile ✨")
+
+return
+}
+
+if(bio.length < 10){
+
+toast("Bio must be at least 10 characters")
+
+return
+}
+
+toast("Profile completed ❤️")
+
+setTimeout(()=>{
+
+openPage("appPage")
+
+},1000)
+
+}
+ 
 </script>
 
 </body>
