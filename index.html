@@ -899,13 +899,20 @@ Create Account
 <div class="title">Create Account</div>
 <div class="sub">Step 1 of 1</div>
 
-<!-- FULL NAME -->
-<input id="fullName" class="input" placeholder="Full Name">
+<!-- FIRST NAME -->
+<input id="firstName" class="input" placeholder="First Name">
+
+<!-- LAST NAME -->
+<input id="lastName" class="input" placeholder="Last Name">
 
 <!-- NICK NAME -->
 <input id="nickName" class="input" placeholder="Nick Name">
 
 <!-- BIRTH DAY -->
+<div style="margin-bottom:6px;color:var(--sub);font-size:13px;">
+Birthday
+</div>
+
 <input id="birthDay" class="input" type="date">
 
 <!-- GENDER (only one select allowed) -->
@@ -931,7 +938,7 @@ Man
 
 <!-- NEXT BUTTON -->
 <button class="mainBtn" onclick="goNextSignup()">
-Next ➜
+Next 
 </button>
 
 </div>
@@ -1741,12 +1748,13 @@ document.getElementById("manBtn").style.background = "var(--gradient)"
 
 function goNextSignup(){
 
-let name=document.getElementById("fullName").value
+let first=document.getElementById("firstName").value
+let last=document.getElementById("lastName").value
 let nick=document.getElementById("nickName").value
 let birth=document.getElementById("birthDay").value
 let gender=document.getElementById("gender").value
 
-if(name=="" || nick=="" || birth=="" || gender==""){
+if(first=="" || last=="" || nick=="" || birth=="" || gender==""){
 toast("Fill all fields ❗")
 return
 }
