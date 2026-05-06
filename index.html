@@ -894,137 +894,47 @@ Create Account
 <section id="signupPage" class="page hidden">
 
 <div class="authWrap">
-
 <div class="card">
 
 <div class="title">Create Account</div>
-  
-<div class="sub">
-18+ only. Real identity verification required.
+<div class="sub">Step 1 of 1</div>
+
+<!-- FULL NAME -->
+<input id="fullName" class="input" placeholder="Full Name">
+
+<!-- NICK NAME -->
+<input id="nickName" class="input" placeholder="Nick Name">
+
+<!-- BIRTH DAY -->
+<input id="birthDay" class="input" type="date">
+
+<!-- GENDER (only one select allowed) -->
+<div style="margin-bottom:10px;color:var(--sub);font-size:13px;">
+Gender
 </div>
 
-<input class="input" placeholder="First Name">
-<input class="input" placeholder="Last Name">
-<input class="input" placeholder="Phone Number">
-<input class="input" placeholder="Gmail">
-<input class="input" type="password" placeholder="Password">
+<div style="display:flex;gap:10px;margin-bottom:15px;">
 
-<input class="input" type="date">
+<div onclick="selectGender('Woman')" id="womanBtn" 
+style="flex:1;padding:12px;border-radius:15px;text-align:center;background:var(--soft);cursor:pointer;">
+Woman
+</div>
 
-<input type="file" class="input">
-
-<div class="photoGrid">
-
-<input type="file">
-<input type="file">
-<input type="file">
-<input type="file">
-<input type="file">
-<input type="file">
+<div onclick="selectGender('Man')" id="manBtn"
+style="flex:1;padding:12px;border-radius:15px;text-align:center;background:var(--soft);cursor:pointer;">
+Man
+</div>
 
 </div>
 
-<select class="input">
-<option>Gender</option>
-<option>Male</option>
-<option>Female</option>
-</select>
+<input type="hidden" id="gender">
 
-<select class="input">
-<option>Looking For</option>
-<option>Male</option>
-<option>Female</option>
-</select>
-
-<select class="input">
-<option>Religion</option>
-<option>Orthodox</option>
-<option>Muslim</option>
-<option>Protestant</option>
-<option>Catholic</option>
-</select>
-
-<select class="input">
-<option>City</option>
-<option>Addis Ababa</option>
-<option>Adama</option>
-<option>Hawassa</option>
-<option>Bahir Dar</option>
-<option>Dire Dawa</option>
-<option>Mekelle</option>
-</select>
-
-<select class="input">
-<option>Relationship Goal</option>
-<option>Marriage</option>
-<option>Serious Relationship</option>
-<option>Friendship</option>
-</select>
-
-<select class="input">
-<option>Do you drink?</option>
-<option>No</option>
-<option>Sometimes</option>
-<option>Yes</option>
-</select>
-
-<select class="input">
-<option>Do you smoke?</option>
-<option>No</option>
-<option>Sometimes</option>
-<option>Yes</option>
-</select>
-
-<select class="input">
-<option>Want Kids?</option>
-<option>Yes</option>
-<option>No</option>
-<option>Maybe</option>
-</select>
-
-<textarea class="input" rows="4" placeholder="Bio"></textarea>
-
-
-<select class="input">
-<option>Education</option>
-<option>High School</option>
-<option>Degree</option>
-<option>Masters</option>
-</select>
-
-<select class="input">
-<option>Job</option>
-<option>Student</option>
-<option>Business</option>
-<option>Employee</option>
-</select>
-
-<select class="input">
-<option>Workout</option>
-<option>Gym</option>
-<option>Home</option>
-<option>No</option>
-</select>
-
-<select class="input">
-<option>Hobby</option>
-<option>Music</option>
-<option>Travel</option>
-<option>Sports</option>
-</select>
-
-<select class="input">
-<option>Night Life</option>
-<option>Yes</option>
-<option>No</option>
-</select>
-
-<button class="mainBtn" onclick="finishSignup()"
-Verify & Continue
+<!-- NEXT BUTTON -->
+<button class="mainBtn" onclick="goNextSignup()">
+Next ➜
 </button>
 
 </div>
-
 </div>
 
 </section>
@@ -1814,6 +1724,42 @@ lastTap=now
 
 })
 
+function selectGender(type){
+
+document.getElementById("gender").value = type
+
+document.getElementById("womanBtn").style.background = "var(--soft)"
+document.getElementById("manBtn").style.background = "var(--soft)"
+
+if(type === "Woman"){
+document.getElementById("womanBtn").style.background = "var(--gradient)"
+}else{
+document.getElementById("manBtn").style.background = "var(--gradient)"
+}
+
+}
+
+function goNextSignup(){
+
+let name=document.getElementById("fullName").value
+let nick=document.getElementById("nickName").value
+let birth=document.getElementById("birthDay").value
+let gender=document.getElementById("gender").value
+
+if(name=="" || nick=="" || birth=="" || gender==""){
+toast("Fill all fields ❗")
+return
+}
+
+toast("Saved ✅")
+
+// 👉 next page (for now go appPage or loginPage)
+setTimeout(()=>{
+openPage("loginPage")   // or appPage if you want
+},1000)
+
+}
+ 
 function loadCities(){
 let c=document.getElementById("country").value
 let city=document.getElementById("city")
