@@ -1804,47 +1804,49 @@ let nick = document.getElementById("nickName").value.trim()
 let birth = document.getElementById("birthDate").value
 let gender = document.getElementById("gender").value
 
+// Empty check
 if(first === ""){
-toast("First name altemolam ❗")
+toast("Please enter your first name")
 return
 }
 
 if(last === ""){
-toast("Last name altemolam ❗")
+toast("Please enter your last name")
 return
 }
 
 if(nick === ""){
-toast("Nick name altemolam ❗")
+toast("Please enter your nickname")
 return
 }
 
 if(birth === ""){
-toast("Birthday altemolam ❗")
+toast("Please select your birthday")
 return
 }
 
 if(gender === ""){
-toast("Gender mret ❗")
+toast("Please select your gender")
 return
 }
 
+// Minimum length
 if(first.length < 3){
-toast("First name ke 3 fidel belay yihun ❗")
+toast("First name must be at least 3 characters")
 return
 }
 
 if(last.length < 3){
-toast("Last name ke 3 fidel belay yihun ❗")
+toast("Last name must be at least 3 characters")
 return
 }
 
 if(nick.length < 3){
-toast("Nick name ke 3 fidel belay yihun ❗")
+toast("Nickname must be at least 3 characters")
 return
 }
 
-// AGE CHECK
+// Age check (18+)
 let today = new Date()
 let birthDate = new Date(birth)
 
@@ -1856,15 +1858,15 @@ age--
 }
 
 if(age < 18){
-toast("18+ mehon alebet ❗")
+toast("You must be at least 18 years old")
 return
 }
 
-// SUCCESS
-toast("Step 1 complete ✅")
+// Success
+toast("Step completed")
 
 setTimeout(()=>{
-openPage("appPage") // or next page later
+openPage("appPage")
 },800)
 
 }
