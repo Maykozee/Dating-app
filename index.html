@@ -256,7 +256,16 @@ cursor:pointer;
 }
 
 .authWrap{
-padding:25px;
+padding:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+min-height:100vh;
+}
+
+.card{
+width:100%;
+max-width:430px;
 }
 
 .card{
@@ -924,11 +933,6 @@ Next
 </button>
 
 <input type="hidden" id="gender">
-
-<!-- NEXT BUTTON -->
-<button class="mainBtn" onclick="goNextSignup()">
-Next 
-</button>
 
 </div>
 </div>
@@ -1742,43 +1746,6 @@ lastTap=now
 
 })
 
-function selectGender(type){
-
-document.getElementById("gender").value = type
-
-document.getElementById("womanBtn").style.background = "var(--soft)"
-document.getElementById("manBtn").style.background = "var(--soft)"
-
-if(type === "Woman"){
-document.getElementById("womanBtn").style.background = "var(--gradient)"
-}else{
-document.getElementById("manBtn").style.background = "var(--gradient)"
-}
-
-}
-
-function goNextSignup(){
-
-let first=document.getElementById("firstName").value
-let last=document.getElementById("lastName").value
-let nick=document.getElementById("nickName").value
-let birth=document.getElementById("birthDay").value
-let gender=document.getElementById("gender").value
-
-if(first=="" || last=="" || nick=="" || birth=="" || gender==""){
-toast("Fill all fields ❗")
-return
-}
-
-toast("Saved ✅")
-
-// 👉 next page (for now go appPage or loginPage)
-setTimeout(()=>{
-openPage("loginPage")   // or appPage if you want
-},1000)
-
-}
-
 let selectedGender = ""
 
 function selectGender(gender){
@@ -1843,7 +1810,7 @@ let gender = selectedGender
 
 // Empty check
 if(first === ""){
-toast("Please enter your first name")
+toast("Please fill in all required fields ✨")
 return
 }
 
