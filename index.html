@@ -953,6 +953,44 @@ Complete your profile ✨
 </div>
 
 <label style="font-size:13px;color:var(--sub);">
+Country
+</label>
+
+<input 
+id="countrySearch"
+class="input"
+placeholder="Search country..."
+onkeyup="filterCountries()"
+>
+
+<select 
+id="country"
+class="input"
+onchange="loadCities()"
+>
+
+<option value="">Select Country</option>
+
+<option value="Ethiopia">Ethiopia</option>
+<option value="Eritrea">Eritrea</option>
+<option value="Dubai">Dubai</option>
+<option value="Saudi Arabia">Saudi Arabia</option>
+<option value="Kenya">Kenya</option>
+<option value="Sudan">Sudan</option>
+<option value="USA">USA</option>
+<option value="Canada">Canada</option>
+<option value="Germany">Germany</option>
+<option value="France">France</option>
+<option value="Italy">Italy</option>
+<option value="China">China</option>
+<option value="Japan">Japan</option>
+<option value="India">India</option>
+<option value="Brazil">Brazil</option>
+<option value="South Africa">South Africa</option>
+
+</select>
+
+<label style="font-size:13px;color:var(--sub);">
 City
 </label>
 
@@ -960,19 +998,23 @@ City
 
 <option value="">Select City</option>
 
-<option>Addis Ababa</option>
-<option>Adama</option>
-<option>Hawassa</option>
-<option>Bahir Dar</option>
-<option>Mekelle</option>
-
 </select>
 
 <label style="font-size:13px;color:var(--sub);">
 Job
 </label>
 
-<input id="job" class="input" placeholder="Your Job">
+<select id="job" class="input">
+
+<option value="">Select Your Job</option>
+
+<option>Business Owner</option>
+<option>Employee</option>
+<option>Investor</option>
+<option>Student</option>
+<option>Other</option>
+
+</select>
 
 <label style="font-size:13px;color:var(--sub);">
 Education
@@ -986,20 +1028,6 @@ Education
 <option>College</option>
 <option>Degree</option>
 <option>Masters</option>
-
-</select>
-
-<label style="font-size:13px;color:var(--sub);">
-Relationship Goal
-</label>
-
-<select id="goal" class="input">
-
-<option value="">Select Goal</option>
-
-<option>Marriage</option>
-<option>Serious Relationship</option>
-<option>Friendship</option>
 
 </select>
 
@@ -1829,14 +1857,97 @@ document.getElementById("maleBtn").style.background = "linear-gradient(135deg,#f
 }
  
 function loadCities(){
-let c=document.getElementById("country").value
-let city=document.getElementById("city")
 
-if(c==="Ethiopia"){
-city.innerHTML="<option>Addis Ababa</option><option>Adama</option>"
+let country = document.getElementById("country").value
+
+let city = document.getElementById("city")
+
+if(country === "Ethiopia"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Addis Ababa</option>
+<option>Adama</option>
+<option>Hawassa</option>
+<option>Bahir Dar</option>
+<option>Mekelle</option>
+<option>Dire Dawa</option>
+<option>Jimma</option>
+<option>Gondar</option>
+<option>Dessie</option>
+<option>kombolcha</option>
+<option>Bishoftu</option>
+<option>Shashamane</option>
+<option>Harar</option>
+<option>Arba Minch</option>
+<option>Debre Birhan</option>
+<option>Assosa</option>
+<option>Wolaita Sodo</option>
+<option>Jijiga</option>
+<option>Axum</option>
+<option>Nekemte</option>
+<option>Dilla</option>
+
+`
+
+}else if(country === "Eritrea"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Asmara</option>
+<option>Keren</option>
+<option>Massawa</option>
+
+`
+
+}else if(country === "Dubai"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Dubai City</option>
+
+`
+
+}else if(country === "Saudi Arabia"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Riyadh</option>
+<option>Jeddah</option>
+<option>Mecca</option>
+<option>Medina</option>
+
+`
+
+}else if(country === "Kenya"){
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+<option>Nairobi</option>
+<option>Mombasa</option>
+
+`
+
 }else{
-city.innerHTML="<option>Main City</option>"
+
+city.innerHTML = `
+
+<option value="">Select City</option>
+
+`
+
 }
+
 }
 
 function finishAll(){
@@ -1929,7 +2040,6 @@ return
 }
 
 // Success
-toast("Step completed")
 
 setTimeout(()=>{
 openPage("step2Page")
@@ -1937,15 +2047,41 @@ openPage("step2Page")
 
 }
 
+function filterCountries(){
+
+let input = document.getElementById("countrySearch").value.toLowerCase()
+
+let select = document.getElementById("country")
+
+let options = select.options
+
+for(let i = 0; i < options.length; i++){
+
+let txt = options[i].text.toLowerCase()
+
+if(txt.includes(input)){
+
+options[i].style.display = ""
+
+}else{
+
+options[i].style.display = "none"
+
+}
+
+}
+
+}
+ 
  function finishProfile(){
 
 let city = document.getElementById("city").value
 let job = document.getElementById("job").value.trim()
 let education = document.getElementById("education").value
-let goal = document.getElementById("goal").value
 let bio = document.getElementById("bio").value.trim()
-
-if(city=="" || job=="" || education=="" || goal=="" || bio==""){
+let country = document.getElementById("country").value
+  
+if(country=="" || city=="" || job=="" || education=="" || bio==""){
 
 toast("Please complete your profile ✨")
 
