@@ -3,33 +3,34 @@ import React, { useState, useEffect } from "react";
 export default function App() {
   const [page, setPage] = useState("loading");
   const [user, setUser] = useState(null);
+  const [otpInput, setOtpInput] = useState("");
   const [otp, setOtp] = useState("");
-  const [realOtp, setRealOtp] = useState("");
 
   // loading → welcome
   useEffect(() => {
-    setTimeout(() => setPage("welcome"), 2000);
+    setTimeout(() => setPage("welcome"), 1800);
   }, []);
 
-  const genOtp = () => {
+  // OTP generator
+  const generateOTP = () => {
     const code = Math.floor(1000 + Math.random() * 9000).toString();
-    setRealOtp(code);
+    setOtp(code);
     alert("OTP CODE: " + code);
   };
 
   const login = () => {
-    setUser({ name: "AURA USER" });
+    setUser({ name: "User" });
     setPage("home");
   };
 
   const signup = () => {
-    genOtp();
+    generateOTP();
     setPage("otp");
   };
 
-  const verifyOtp = () => {
-    if (otp === realOtp) {
-      setUser({ name: "NEW USER" });
+  const verify = () => {
+    if (otpInput === otp) {
+      setUser({ name: "New User" });
       setPage("home");
     } else {
       alert("Wrong OTP");
@@ -39,8 +40,8 @@ export default function App() {
   // ================= LOADING =================
   if (page === "loading") {
     return (
-      <div style={s.center}>
-        <h1 style={s.logo}>AURA</h1>
+      <div style={styles.center}>
+        <div style={styles.logo}>AURA</div>
         <p>Loading...</p>
       </div>
     );
@@ -49,9 +50,9 @@ export default function App() {
   // ================= WELCOME =================
   if (page === "welcome") {
     return (
-      <div style={s.center}>
-        <h1 style={s.title}>Welcome to AURA 💫</h1>
-        <button style={s.btn} onClick={() => setPage("auth")}>
+      <div style={styles.center}>
+        <h1 style={styles.title}>Welcome 💫</h1>
+        <button style={styles.btn} onClick={() => setPage("auth")}>
           Start
         </button>
       </div>
@@ -61,19 +62,19 @@ export default function App() {
   // ================= AUTH =================
   if (page === "auth") {
     return (
-      <div style={s.container}>
+      <div style={styles.container}>
         <h2>Login</h2>
-        <input placeholder="username" style={s.input} />
-        <input type="password" placeholder="password" style={s.input} />
-        <button style={s.btn} onClick={login}>Login</button>
+        <input placeholder="username" style={styles.input} />
+        <input placeholder="password" type="password" style={styles.input} />
+        <button style={styles.btn} onClick={login}>Login</button>
 
         <hr />
 
         <h2>Signup</h2>
-        <input placeholder="username" style={s.input} />
-        <input placeholder="email" style={s.input} />
-        <input type="password" placeholder="password" style={s.input} />
-        <button style={s.btn} onClick={signup}>Signup</button>
+        <input placeholder="username" style={styles.input} />
+        <input placeholder="email" style={styles.input} />
+        <input placeholder="password" type="password" style={styles.input} />
+        <button style={styles.btn} onClick={signup}>Signup</button>
       </div>
     );
   }
@@ -81,42 +82,42 @@ export default function App() {
   // ================= OTP =================
   if (page === "otp") {
     return (
-      <div style={s.center}>
-        <h2>OTP Verification</h2>
+      <div style={styles.center}>
+        <h2>OTP VERIFY</h2>
         <input
-          style={s.input}
-          placeholder="Enter OTP"
-          onChange={(e) => setOtp(e.target.value)}
+          style={styles.input}
+          onChange={(e) => setOtpInput(e.target.value)}
         />
-        <button style={s.btn} onClick={verifyOtp}>
+        <button style={styles.btn} onClick={verify}>
           Verify
         </button>
       </div>
     );
   }
 
-  // ================= HOME (TIKTOK STYLE FEED) =================
+  // ================= HOME (TIKTOK STYLE) =================
   if (page === "home") {
     return (
-      <div style={s.feed}>
-        <div style={s.topbar}>
+      <div style={styles.feed}>
+        <div style={styles.topbar}>
           <h3>AURA</h3>
           <button onClick={() => setPage("options")}>⚙</button>
         </div>
 
-        <div style={s.videoCard}>
-          <h2>#love</h2>
-          <p>Someone is online ❤️</p>
+        <div style={styles.card}>
+          🔥 #ethiopia love match
         </div>
 
-        <div style={s.videoCard}>
-          <h2>#ethiopia</h2>
-          <p>New match found 🔥</p>
+        <div style={styles.card}>
+          ❤️ Someone liked you
         </div>
 
-        <div style={s.videoCard}>
-          <h2>#chat</h2>
-          <p>Message received 💬</p>
+        <div style={styles.card}>
+          💬 New message received
+        </div>
+
+        <div style={styles.card}>
+          💎 Premium users online
         </div>
       </div>
     );
@@ -125,13 +126,13 @@ export default function App() {
   // ================= OPTIONS =================
   if (page === "options") {
     return (
-      <div style={s.container}>
+      <div style={styles.container}>
         <h2>Settings</h2>
 
-        <button style={s.btn}>Profile</button>
-        <button style={s.btn}>Privacy</button>
-        <button style={s.btn}>Premium 💎</button>
-        <button style={s.btn} onClick={() => setPage("home")}>
+        <button style={styles.btn}>Profile</button>
+        <button style={styles.btn}>Privacy</button>
+        <button style={styles.btn}>Notifications</button>
+        <button style={styles.btn} onClick={() => setPage("home")}>
           Back
         </button>
       </div>
@@ -142,10 +143,10 @@ export default function App() {
 }
 
 // ================= STYLES =================
-const s = {
+const styles = {
   center: {
     height: "100vh",
-    background: "#0b0b1a",
+    background: "#0a0a1a",
     color: "white",
     display: "flex",
     flexDirection: "column",
@@ -154,12 +155,13 @@ const s = {
   },
   container: {
     padding: 20,
-    background: "#0b0b1a",
+    background: "#0a0a1a",
     color: "white",
     height: "100vh"
   },
   logo: {
-    fontSize: 50,
+    fontSize: 55,
+    fontWeight: "bold",
     letterSpacing: 5
   },
   title: {
@@ -175,11 +177,11 @@ const s = {
     padding: 10,
     margin: 5,
     background: "#6c5ce7",
-    color: "white",
-    border: "none"
+    border: "none",
+    color: "white"
   },
   feed: {
-    background: "#0b0b1a",
+    background: "#0a0a1a",
     minHeight: "100vh",
     color: "white"
   },
@@ -189,7 +191,7 @@ const s = {
     padding: 15,
     background: "#111"
   },
-  videoCard: {
+  card: {
     margin: 10,
     padding: 20,
     background: "#1c1c2e",
