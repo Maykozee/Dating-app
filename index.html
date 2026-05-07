@@ -1,200 +1,449 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function App() {
+export default function AuraApp() {
   const [page, setPage] = useState("loading");
-  const [user, setUser] = useState(null);
-  const [otpInput, setOtpInput] = useState("");
-  const [otp, setOtp] = useState("");
 
-  // loading → welcome
   useEffect(() => {
-    setTimeout(() => setPage("welcome"), 1800);
+    const timer = setTimeout(() => {
+      setPage("welcome");
+    }, 2500);
+
+    return () => clearTimeout(timer);
   }, []);
 
-  // OTP generator
-  const generateOTP = () => {
-    const code = Math.floor(1000 + Math.random() * 9000).toString();
-    setOtp(code);
-    alert("OTP CODE: " + code);
-  };
+  return (
+    <div className="min-h-screen bg-black text-white overflow-hidden">
+      {page === "loading" && <LoadingScreen />}
+      {page === "welcome" && <WelcomeScreen setPage={setPage} />}
+      {page === "auth" && <AuthScreen setPage={setPage} />}
+      {page === "home" && <HomeFeed setPage={setPage} />}
+      {page === "profile" && <ProfilePage setPage={setPage} />}
+      {page === "messages" && <MessagesPage setPage={setPage} />}
+      {page === "live" && <LivePage setPage={setPage} />}
+      {page === "search" && <SearchPage setPage={setPage} />}
+      {page === "settings" && <SettingsPage setPage={setPage} />}
+      {page === "premium" && <PremiumPage setPage={setPage} />}
+    </div>
+  );
+}
 
-  const login = () => {
-    setUser({ name: "User" });
-    setPage("home");
-  };
+function LoadingScreen() {
+  return (
+    <div className="h-screen flex flex-col items-center justify-center bg-gradient-to-b from-black to-zinc-900">
+      <div className="text-6xl font-black tracking-[10px] animate-pulse text-violet-500">
+        AURA
+      </div>
+      <p className="mt-6 text-zinc-400">Loading experience...</p>
+    </div>
+  );
+}
 
-  const signup = () => {
-    generateOTP();
-    setPage("otp");
-  };
+function WelcomeScreen({ setPage }) {
+  return (
+    <div className="h-screen relative flex flex-col justify-center items-center px-6 text-center bg-gradient-to-b from-black via-zinc-950 to-black">
+      <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top,rgba(139,92,246,0.5),transparent_50%)]" />
 
-  const verify = () => {
-    if (otpInput === otp) {
-      setUser({ name: "New User" });
-      setPage("home");
-    } else {
-      alert("Wrong OTP");
+      <h1 className="text-6xl font-black mb-5">AURA</h1>
+      <p className="text-zinc-400 max-w-md text-lg">
+        Viral videos, live streams, dating, creators, premium features,
+        social feed and real-time chat.
+      </p>
+
+      <div className="mt-10 flex gap-4">
+        <button
+          onClick={() => setPage("auth")}
+          className="px-8 py-4 rounded-2xl bg-violet-600 hover:bg-violet-500 transition"
+        >
+          Get Started
+        </button>
+
+        <button className="px-8 py-4 rounded-2xl border border-zinc-700 bg-zinc-900/50">
+          Explore
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function AuthScreen({ setPage }) {
+  return (
+    <div className="min-h-screen flex items-center justify-center p-6 bg-black">
+      <div className="w-full max-w-md bg-zinc-950 border border-zinc-800 rounded-3xl p-8 shadow-2xl">
+        <h2 className="text-3xl font-bold mb-6">Welcome Back</h2>
+
+        <div className="space-y-4">
+          <input
+            placeholder="Email"
+            className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-4 outline-none"
+          />
+
+          <input
+            type="password"
+            placeholder="Password"
+            className="w-full bg-zinc-900 border border-zinc-800 rounded-xl px-4 py-4 outline-none"
+          />
+
+          <button
+            onClick={() => setPage("home")}
+            className="w-full bg-violet-600 py-4 rounded-xl font-semibold"
+          >
+            Login
+          </button>
+
+          <button className="w-full bg-zinc-900 py-4 rounded-xl border border-zinc-800">
+            Continue with Google
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HomeFeed({ setPage }) {
+  const posts = [
+    {
+      title: "#ethiopia",
+      desc: "Trending creators are live now 🔥"
+    },
+    {
+      title: "#dating",
+      desc: "Someone matched with your profile ❤️"
+    },
+    {
+      title: "#viral",
+      desc: "Your video reached 20K views 🚀"
     }
-  };
+  ];
 
-  // ================= LOADING =================
-  if (page === "loading") {
-    return (
-      <div style={styles.center}>
-        <div style={styles.logo}>AURA</div>
-        <p>Loading...</p>
+  return (
+    <div className="pb-28 bg-black min-h-screen">
+      <div className="sticky top-0 z-50 backdrop-blur-xl border-b border-zinc-900 bg-black/70 px-5 py-4 flex justify-between items-center">
+        <div className="text-2xl font-black">AURA</div>
+
+        <div className="flex gap-3">
+          <button onClick={() => setPage("search")}>🔍</button>
+          <button onClick={() => setPage("messages")}>💬</button>
+          <button onClick={() => setPage("profile")}>👤</button>
+        </div>
       </div>
-    );
-  }
 
-  // ================= WELCOME =================
-  if (page === "welcome") {
-    return (
-      <div style={styles.center}>
-        <h1 style={styles.title}>Welcome 💫</h1>
-        <button style={styles.btn} onClick={() => setPage("auth")}>
-          Start
+      <div className="space-y-6 p-4">
+        {posts.map((post, i) => (
+          <div
+            key={i}
+            className="rounded-3xl overflow-hidden border border-zinc-900 bg-zinc-950"
+          >
+            <div className="h-[500px] bg-gradient-to-br from-violet-700 to-fuchsia-500 flex items-end p-6">
+              <div>
+                <h2 className="text-4xl font-black">{post.title}</h2>
+                <p className="text-zinc-100 mt-2">{post.desc}</p>
+              </div>
+            </div>
+
+            <div className="flex justify-between items-center p-5">
+              <div className="flex gap-6 text-xl">
+                <button>❤️</button>
+                <button>💬</button>
+                <button>📤</button>
+                <button>🔖</button>
+              </div>
+
+              <button className="bg-violet-600 px-5 py-2 rounded-full">
+                Follow
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div className="fixed bottom-0 left-0 right-0 border-t border-zinc-900 bg-black flex justify-around py-4 text-xl">
+        <button>🏠</button>
+        <button onClick={() => setPage("live")}>📡</button>
+        <button>➕</button>
+        <button>❤️</button>
+        <button onClick={() => setPage("settings")}>⚙️</button>
+      </div>
+    </div>
+  );
+}
+
+function ProfilePage({ setPage }) {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <div className="h-52 bg-gradient-to-r from-violet-700 to-fuchsia-500" />
+
+      <div className="px-6 -mt-16">
+        <div className="w-32 h-32 rounded-full border-4 border-black bg-zinc-900" />
+
+        <h1 className="text-3xl font-bold mt-4">@AuraUser</h1>
+        <p className="text-zinc-400 mt-2">
+          Creator • Viral videos • Premium member
+        </p>
+
+        <div className="flex gap-8 mt-6">
+          <div>
+            <h3 className="font-bold text-2xl">120K</h3>
+            <p className="text-zinc-500">Followers</p>
+          </div>
+
+          <div>
+            <h3 className="font-bold text-2xl">2.4M</h3>
+            <p className="text-zinc-500">Likes</p>
+          </div>
+        </div>
+
+        <button
+          onClick={() => setPage("home")}
+          className="mt-8 bg-violet-600 px-8 py-4 rounded-2xl"
+        >
+          Back Home
         </button>
       </div>
-    );
-  }
+    </div>
+  );
+}
 
-  // ================= AUTH =================
-  if (page === "auth") {
-    return (
-      <div style={styles.container}>
-        <h2>Login</h2>
-        <input placeholder="username" style={styles.input} />
-        <input placeholder="password" type="password" style={styles.input} />
-        <button style={styles.btn} onClick={login}>Login</button>
-
-        <hr />
-
-        <h2>Signup</h2>
-        <input placeholder="username" style={styles.input} />
-        <input placeholder="email" style={styles.input} />
-        <input placeholder="password" type="password" style={styles.input} />
-        <button style={styles.btn} onClick={signup}>Signup</button>
+function MessagesPage({ setPage }) {
+  return (
+    <div className="min-h-screen bg-black p-6">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Messages</h1>
+        <button onClick={() => setPage("home")}>✖</button>
       </div>
-    );
-  }
 
-  // ================= OTP =================
-  if (page === "otp") {
-    return (
-      <div style={styles.center}>
-        <h2>OTP VERIFY</h2>
-        <input
-          style={styles.input}
-          onChange={(e) => setOtpInput(e.target.value)}
-        />
-        <button style={styles.btn} onClick={verify}>
-          Verify
-        </button>
+      <div className="space-y-4">
+        {[1,2,3].map((item)=>(
+          <div key={item} className="bg-zinc-950 border border-zinc-900 rounded-2xl p-5 flex justify-between">
+            <div>
+              <h3 className="font-semibold">Aura Friend {item}</h3>
+              <p className="text-zinc-500">Typing...</p>
+            </div>
+            <span>💬</span>
+          </div>
+        ))}
       </div>
-    );
-  }
+    </div>
+  );
+}
 
-  // ================= HOME (TIKTOK STYLE) =================
-  if (page === "home") {
-    return (
-      <div style={styles.feed}>
-        <div style={styles.topbar}>
-          <h3>AURA</h3>
-          <button onClick={() => setPage("options")}>⚙</button>
-        </div>
-
-        <div style={styles.card}>
-          🔥 #ethiopia love match
-        </div>
-
-        <div style={styles.card}>
-          ❤️ Someone liked you
-        </div>
-
-        <div style={styles.card}>
-          💬 New message received
-        </div>
-
-        <div style={styles.card}>
-          💎 Premium users online
-        </div>
+function LivePage({ setPage }) {
+  return (
+    <div className="min-h-screen bg-black text-white">
+      <div className="h-[70vh] bg-gradient-to-br from-red-600 to-pink-600 flex items-center justify-center text-5xl font-black">
+        LIVE 🔴
       </div>
-    );
-  }
 
-  // ================= OPTIONS =================
-  if (page === "options") {
-    return (
-      <div style={styles.container}>
-        <h2>Settings</h2>
+      <div className="p-6">
+        <div className="flex justify-between items-center">
+          <div>
+            <h2 className="text-2xl font-bold">Aura Live</h2>
+            <p className="text-zinc-400">12.4K watching</p>
+          </div>
 
-        <button style={styles.btn}>Profile</button>
-        <button style={styles.btn}>Privacy</button>
-        <button style={styles.btn}>Notifications</button>
-        <button style={styles.btn} onClick={() => setPage("home")}>
+          <button className="bg-red-600 px-6 py-3 rounded-full">
+            Gift 🎁
+          </button>
+        </div>
+
+        <button
+          onClick={() => setPage("home")}
+          className="mt-8 bg-violet-600 px-6 py-3 rounded-xl"
+        >
           Back
         </button>
       </div>
-    );
-  }
-
-  return null;
+    </div>
+  );
 }
 
-// ================= STYLES =================
-const styles = {
-  center: {
-    height: "100vh",
-    background: "#0a0a1a",
-    color: "white",
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
-    alignItems: "center"
-  },
-  container: {
-    padding: 20,
-    background: "#0a0a1a",
-    color: "white",
-    height: "100vh"
-  },
-  logo: {
-    fontSize: 55,
-    fontWeight: "bold",
-    letterSpacing: 5
-  },
-  title: {
-    fontSize: 28
-  },
-  input: {
-    display: "block",
-    margin: 10,
-    padding: 10,
-    width: "100%"
-  },
-  btn: {
-    padding: 10,
-    margin: 5,
-    background: "#6c5ce7",
-    border: "none",
-    color: "white"
-  },
-  feed: {
-    background: "#0a0a1a",
-    minHeight: "100vh",
-    color: "white"
-  },
-  topbar: {
-    display: "flex",
-    justifyContent: "space-between",
-    padding: 15,
-    background: "#111"
-  },
-  card: {
-    margin: 10,
-    padding: 20,
-    background: "#1c1c2e",
-    borderRadius: 10
-  }
-};
+function SearchPage({ setPage }) {
+  return (
+    <div className="min-h-screen bg-black text-white p-6">
+      <div className="flex gap-3 mb-6">
+        <input
+          placeholder="Search creators, hashtags, music..."
+          className="flex-1 bg-zinc-950 border border-zinc-800 rounded-2xl px-5 py-4"
+        />
+
+        <button onClick={() => setPage("home")}>✖</button>
+      </div>
+
+      <div className="grid grid-cols-2 gap-4">
+        {[1,2,3,4].map((i)=>(
+          <div key={i} className="h-44 rounded-3xl bg-gradient-to-br from-violet-700 to-fuchsia-500 p-4 font-bold text-2xl">
+            #viral
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function SettingsPage({ setPage }) {
+  return (
+    <div className="min-h-screen bg-black text-white p-6">
+      <div className="flex justify-between items-center mb-8">
+        <h1 className="text-3xl font-bold">Settings</h1>
+        <button onClick={() => setPage("home")}>✖</button>
+      </div>
+
+      <div className="space-y-4">
+        {[
+          "Profile",
+          "Notifications",
+          "Privacy",
+          "Security",
+          "Dark Mode",
+          "Language",
+          "Blocked Users",
+          "Logout"
+        ].map((item) => (
+          <button
+            key={item}
+            className="w-full bg-zinc-950 border border-zinc-900 rounded-2xl p-5 text-left"
+          >
+            {item}
+          </button>
+        ))}
+      </div>
+
+      <button
+        onClick={() => setPage("premium")}
+        className="w-full mt-8 bg-gradient-to-r from-violet-600 to-fuchsia-500 rounded-2xl p-5 font-bold"
+      >
+        Upgrade Premium 💎
+      </button>
+    </div>
+  );
+}
+
+function StoriesSection() {
+  return (
+    <div className="flex gap-4 overflow-x-auto pb-4">
+      {[1,2,3,4,5].map((story)=>(
+        <div key={story} className="flex flex-col items-center min-w-[80px]">
+          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-violet-600 border-2 border-white" />
+          <span className="text-xs mt-2">user{story}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function NotificationsPanel() {
+  return (
+    <div className="bg-zinc-950 border border-zinc-900 rounded-3xl p-5 mt-6">
+      <h3 className="font-bold text-xl mb-4">Notifications</h3>
+
+      <div className="space-y-3 text-sm text-zinc-300">
+        <div>❤️ Someone liked your video</div>
+        <div>💬 New message received</div>
+        <div>📡 Your favorite creator is live</div>
+        <div>🔥 #viral reached trending</div>
+      </div>
+    </div>
+  )
+}
+
+function UploadStudio() {
+  return (
+    <div className="bg-zinc-950 border border-zinc-900 rounded-3xl p-5 mt-6">
+      <h3 className="font-bold text-xl mb-5">Creator Studio</h3>
+
+      <div className="grid grid-cols-2 gap-4">
+        {[
+          "Upload Video",
+          "Beauty Filter",
+          "Trim Video",
+          "Music",
+          "Voice Effects",
+          "Drafts",
+          "HD Export",
+          "Camera"
+        ].map((item)=>(
+          <button key={item} className="bg-zinc-900 rounded-2xl p-4 text-sm">
+            {item}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
+
+function AiFeatures() {
+  return (
+    <div className="bg-zinc-950 border border-zinc-900 rounded-3xl p-5 mt-6">
+      <h3 className="font-bold text-xl mb-5">AI Features</h3>
+
+      <div className="grid grid-cols-2 gap-4 text-sm">
+        <div className="bg-zinc-900 rounded-2xl p-4">AI Recommendations</div>
+        <div className="bg-zinc-900 rounded-2xl p-4">AI Moderation</div>
+        <div className="bg-zinc-900 rounded-2xl p-4">AI Captions</div>
+        <div className="bg-zinc-900 rounded-2xl p-4">AI Translation</div>
+      </div>
+    </div>
+  )
+}
+
+function AdminPanel() {
+  return (
+    <div className="bg-zinc-950 border border-zinc-900 rounded-3xl p-5 mt-6">
+      <h3 className="font-bold text-xl mb-5">Admin Dashboard</h3>
+
+      <div className="grid grid-cols-2 gap-4 text-sm">
+        <div className="bg-zinc-900 rounded-2xl p-4">User Management</div>
+        <div className="bg-zinc-900 rounded-2xl p-4">Video Moderation</div>
+        <div className="bg-zinc-900 rounded-2xl p-4">Revenue Tracking</div>
+        <div className="bg-zinc-900 rounded-2xl p-4">Reports Handling</div>
+      </div>
+    </div>
+  )
+}
+
+function PremiumPage({ setPage }) {
+  return (
+    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center p-6 text-center">
+      <div className="text-7xl mb-5">💎</div>
+
+      <h1 className="text-5xl font-black">AURA PRO</h1>
+
+      <p className="text-zinc-400 mt-6 max-w-lg text-lg">
+        Ad-free experience, profile boost, premium verification, exclusive
+        filters, analytics and priority discovery.
+      </p>
+
+      <div className="mt-10 space-y-4 w-full max-w-md">
+        <button className="w-full bg-violet-600 py-5 rounded-2xl text-xl font-bold">
+          Monthly Plan
+        </button>
+
+        <button className="w-full bg-fuchsia-600 py-5 rounded-2xl text-xl font-bold">
+          Yearly Plan
+        </button>
+      </div>
+
+      <button
+        onClick={() => setPage("home")}
+        className="mt-10 border border-zinc-700 px-8 py-4 rounded-2xl"
+      >
+        Back Home
+      </button>
+    </div>
+  );
+}
+
+
+🔥 1–20 ያሉትን features በተጨማሪ:
+
+Stories
+
+Notifications
+
+Upload Studio
+
+AI Features
+
+Admin Dashboard
+
+
+ወደ AURA MVP structure ተጨምረዋል።
