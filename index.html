@@ -1,174 +1,161 @@
 <!DOCTYPE html>
-<html lang="am">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Short Video App</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family: Arial, sans-serif;
-}
+  <title>TokBoost</title>
 
-body{
-  background:#000;
-  overflow:hidden;
-}
+  <style>
 
-/* Main container */
-.app{
-  height:100vh;
-  overflow-y:scroll;
-  scroll-snap-type:y mandatory;
-}
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
 
-/* Video card */
-.video{
-  height:100vh;
-  position:relative;
-  scroll-snap-align:start;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  background:#111;
-}
+    body{
+      height:100vh;
+      background:#0f0f0f;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      overflow:hidden;
+      color:white;
+    }
 
-/* Video placeholder */
-video{
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
+    .bg{
+      position:absolute;
+      width:300px;
+      height:300px;
+      background:#ff0050;
+      filter:blur(120px);
+      border-radius:50%;
+      top:-80px;
+      left:-80px;
+      opacity:0.5;
+      animation:move 6s infinite alternate;
+    }
 
-/* Overlay UI */
-.overlay{
-  position:absolute;
-  bottom:80px;
-  left:20px;
-  color:#fff;
-}
+    .bg2{
+      position:absolute;
+      width:300px;
+      height:300px;
+      background:#00f2ea;
+      filter:blur(120px);
+      border-radius:50%;
+      bottom:-100px;
+      right:-100px;
+      opacity:0.5;
+      animation:move2 7s infinite alternate;
+    }
 
-.username{
-  font-weight:bold;
-  margin-bottom:10px;
-}
+    @keyframes move{
+      0%{
+        transform:translate(0,0);
+      }
+      100%{
+        transform:translate(60px,40px);
+      }
+    }
 
-.caption{
-  font-size:14px;
-  opacity:0.8;
-}
+    @keyframes move2{
+      0%{
+        transform:translate(0,0);
+      }
+      100%{
+        transform:translate(-50px,-30px);
+      }
+    }
 
-/* Right actions */
-.actions{
-  position:absolute;
-  right:15px;
-  bottom:120px;
-  display:flex;
-  flex-direction:column;
-  gap:15px;
-}
+    .card{
+      width:90%;
+      max-width:380px;
+      padding:40px 30px;
+      background:rgba(255,255,255,0.08);
+      border:1px solid rgba(255,255,255,0.1);
+      backdrop-filter:blur(20px);
+      border-radius:30px;
+      text-align:center;
+      z-index:10;
+      box-shadow:0 0 40px rgba(0,0,0,0.4);
+    }
 
-.btn{
-  width:45px;
-  height:45px;
-  border-radius:50%;
-  background:rgba(255,255,255,0.15);
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  cursor:pointer;
-  color:#fff;
-  user-select:none;
-  transition:0.2s;
-}
+    .logo{
+      font-size:42px;
+      font-weight:bold;
+      margin-bottom:15px;
+      background:linear-gradient(90deg,#ff0050,#00f2ea);
+      -webkit-background-clip:text;
+      -webkit-text-fill-color:transparent;
+    }
 
-.btn:hover{
-  background:rgba(255,255,255,0.3);
-}
+    .title{
+      font-size:28px;
+      font-weight:bold;
+      margin-bottom:12px;
+    }
 
-/* Follow button */
-.follow{
-  background:#ff0050;
-}
+    .subtitle{
+      font-size:15px;
+      color:#cfcfcf;
+      line-height:1.6;
+      margin-bottom:35px;
+    }
 
-/* Top bar */
-.topbar{
-  position:fixed;
-  top:10px;
-  width:100%;
-  text-align:center;
-  color:#fff;
-  font-weight:bold;
-  z-index:10;
-}
-</style>
+    .btn{
+      width:100%;
+      padding:16px;
+      border:none;
+      border-radius:18px;
+      background:linear-gradient(90deg,#ff0050,#00f2ea);
+      color:white;
+      font-size:18px;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.3s;
+      box-shadow:0 0 20px rgba(255,0,80,0.5);
+    }
+
+    .btn:hover{
+      transform:scale(1.03);
+    }
+
+    .mini{
+      margin-top:22px;
+      font-size:13px;
+      color:#aaaaaa;
+    }
+
+  </style>
 </head>
-
 <body>
 
-<div class="topbar">🔥 Short Video App</div>
+  <div class="bg"></div>
+  <div class="bg2"></div>
 
-<div class="app">
+  <div class="card">
 
-  <!-- Video 1 -->
-  <div class="video">
-    <video autoplay muted loop>
-      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
-    </video>
+    <div class="logo">TokBoost</div>
 
-    <div class="overlay">
-      <div class="username">@user1</div>
-      <div class="caption">Amazing video 🔥</div>
+    <div class="title">
+      Grow Faster On TikTok
     </div>
 
-    <div class="actions">
-      <div class="btn">❤</div>
-      <div class="btn">💬</div>
-      <div class="btn follow">+</div>
+    <div class="subtitle">
+      Discover creators, grow your audience, earn coins, and boost your TikTok profile professionally.
     </div>
+
+    <button class="btn">
+      Get Started
+    </button>
+
+    <div class="mini">
+      Creator Growth Community
+    </div>
+
   </div>
-
-  <!-- Video 2 -->
-  <div class="video">
-    <video autoplay muted loop>
-      <source src="https://www.w3schools.com/html/movie.mp4" type="video/mp4">
-    </video>
-
-    <div class="overlay">
-      <div class="username">@user2</div>
-      <div class="caption">Cool moment 😎</div>
-    </div>
-
-    <div class="actions">
-      <div class="btn">❤</div>
-      <div class="btn">💬</div>
-      <div class="btn follow">+</div>
-    </div>
-  </div>
-
-</div>
-
-<script>
-// defensive coding
-document.querySelectorAll(".btn").forEach(btn=>{
-  btn.addEventListener("click",()=>{
-    try{
-      if(btn.innerText==="❤"){
-        btn.style.background="red";
-      }
-      if(btn.innerText==="+"){
-        btn.innerText="✔";
-        btn.style.background="green";
-      }
-    }catch(err){
-      console.log("error:",err);
-    }
-  });
-});
-</script>
 
 </body>
 </html>
