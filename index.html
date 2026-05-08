@@ -148,9 +148,33 @@ top:18px;
 right:18px;
 display:flex;
 gap:10px;
-z-index:100;
+z-index:9999;
 }
 
+/* light mode top buttons */
+
+body.light .top-btn{
+background:white;
+color:black;
+border:1px solid rgba(0,0,0,0.08);
+box-shadow:0 5px 20px rgba(0,0,0,0.08);
+}
+
+/* light mode dropdown */
+
+body.light .dropdown{
+background:white;
+box-shadow:0 10px 30px rgba(0,0,0,0.12);
+}
+
+body.light .drop-item{
+color:black;
+}
+
+body.light .drop-item:hover{
+background:#f1f1f1;
+}
+  
 .top-btn{
 padding:11px 16px;
 border:none;
@@ -220,17 +244,18 @@ transform:translateY(0);
 }
 
 .logo{
-font-size:64px;
+font-size:68px;
 font-weight:900;
-margin-bottom:20px;
-letter-spacing:-4px;
-font-family:Impact,sans-serif;
-background:linear-gradient(90deg,#ff0050,#ff8ad8,#00f2ea);
+font-style:italic;
+letter-spacing:-3px;
+margin-bottom:18px;
+background:linear-gradient(90deg,#ff0050,#ff4da6,#8b5cf6,#00f2ea);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-text-shadow:0 0 30px rgba(255,0,90,0.25);
+text-shadow:
+0 0 10px rgba(255,0,80,0.25),
+0 0 25px rgba(0,242,234,0.15);
 transform:skew(-6deg);
-animation:logoGlow 3s infinite alternate;
 }
 
 @keyframes logoGlow{
@@ -349,6 +374,8 @@ English
 
 <div class="card">
 
+<title>Etorika</title>
+  
 <div class="logo">
 <span>Eto</span>rika
 </div>
