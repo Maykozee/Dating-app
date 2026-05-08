@@ -43,9 +43,8 @@ color:#444;
 body.light .top-btn{
 background:white;
 color:black;
-border:1px solid rgba(0,0,0,0.08);
-box-shadow:0 8px 18px rgba(0,0,0,0.08);
 }
+
 /* ================= MAIN ================= */
 
 .main{
@@ -145,31 +144,7 @@ top:18px;
 right:18px;
 display:flex;
 gap:10px;
-z-index:9999;
-}
-
-/* light mode top buttons */
-
-body.light .top-btn{
-background:white;
-color:black;
-border:1px solid rgba(0,0,0,0.08);
-box-shadow:0 5px 20px rgba(0,0,0,0.08);
-}
-
-/* light mode dropdown */
-
-body.light .dropdown{
-background:white;
-box-shadow:0 10px 30px rgba(0,0,0,0.12);
-}
-
-body.light .drop-item{
-color:black;
-}
-
-body.light .drop-item:hover{
-background:#f1f1f1;
+z-index:100;
 }
 
 .top-btn{
@@ -196,7 +171,6 @@ border-radius:18px;
 padding:10px;
 display:none;
 backdrop-filter:blur(20px);
-z-index:999;
 }
 
 .drop-item{
@@ -239,28 +213,14 @@ transform:translateY(0);
 }
 
 .logo{
-font-size:64px;
-font-weight:900;
-margin-bottom:20px;
-letter-spacing:-4px;
-font-family:Impact,sans-serif;
-background:linear-gradient(90deg,#ff0050,#ff8ad8,#00f2ea);
+font-size:48px;
+font-weight:bold;
+margin-bottom:14px;
+background:linear-gradient(90deg,#ff0050,#00f2ea);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-text-shadow:0 0 30px rgba(255,0,90,0.25);
-transform:skew(-6deg);
-animation:logoGlow 3s infinite alternate;
 }
 
-@keyframes logoGlow{
-
-100%{
-transform:skew(-6deg) scale(1.03);
-text-shadow:0 0 45px rgba(0,242,234,0.35);
-}
-
-}
-  
 .title{
 font-size:31px;
 font-weight:bold;
@@ -356,6 +316,14 @@ English
 አማርኛ
 </div>
 
+<div class="drop-item" onclick="changeLang('ti')">
+ትግርኛ
+</div>
+
+<div class="drop-item" onclick="changeLang('or')">
+Afaan Oromo
+</div>
+
 </div>
 
 </div>
@@ -365,7 +333,7 @@ English
 <div class="card">
 
 <div class="logo">
-Etorika
+ETORIKA
 </div>
 
 <div class="title" id="title">
@@ -434,8 +402,6 @@ menu.style.display = "none";
 
 menu.style.display = "block";
 
-menu.style.pointerEvents = "auto";
-
 }
 
 }
@@ -456,11 +422,27 @@ subtitle.innerHTML = "ፈጣን እድገት፣ ክሬይተሮችን ማግኘ�
 
 }
 
+if(lang === "ti"){
+
+title.innerHTML = "TikTok ናብ Viral Brand ቀይሮ";
+
+subtitle.innerHTML = "ፈጣን ዕብየት፣ creator discovery፣ engagement ከምኡውን audience growth።";
+
+}
+
+if(lang === "or"){
+
+title.innerHTML = "TikTok Kee Gara Viral Brand Jijjiiri";
+
+subtitle.innerHTML = "Guddina saffisaa, creators argachuu, engagement dabalu fi audience guddisuu.";
+
+}
+
 if(lang === "en"){
 
-title.innerHTML = "Go Viral Faster On TikTok";
+title.innerHTML = "Turn Your TikTok Into A Viral Brand";
 
-subtitle.innerHTML = "Boost followers, increase views, and grow your TikTok audience with smart creator tools.";
+subtitle.innerHTML = "Grow faster, discover creators, increase engagement, and build your audience with modern creator tools.";
 
 }
 
@@ -471,6 +453,26 @@ menu.style.display = "none";
 /* dark mode */
 
 let dark = true;
+
+function toggleDark(){
+
+dark = !dark;
+
+if(dark){
+
+document.body.classList.remove("light");
+
+document.querySelectorAll(".top-btn")[1].innerHTML = "Dark";
+
+}else{
+
+document.body.classList.add("light");
+
+document.querySelectorAll(".top-btn")[1].innerHTML = "Light";
+
+}
+
+}
 
 </script>
 
