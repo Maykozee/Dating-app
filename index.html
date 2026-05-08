@@ -151,12 +151,14 @@ z-index:100;
 padding:11px 16px;
 border:none;
 border-radius:14px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(10px);
+background:rgba(255,255,255,0.12);
+backdrop-filter:blur(12px);
 color:white;
 font-size:14px;
+font-weight:bold;
 cursor:pointer;
-border:1px solid rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.18);
+box-shadow:0 0 15px rgba(0,0,0,0.2);
 }
 
 /* dropdown */
@@ -416,36 +418,67 @@ let subtitle = document.getElementById("subtitle");
 
 if(lang === "am"){
 
-title.innerHTML = "ቲክቶክህን ወደ ቫይራል ብራንድ ቀይር";
+document.documentElement.lang = "am";
 
-subtitle.innerHTML = "ፈጣን እድገት፣ ክሬይተሮችን ማግኘት፣ ኢንጌጅመንት መጨመር እና ታዳሚዎችህን ማሳደግ።";
+document.querySelector(".btn").innerHTML = "ጀምር";
+
+document.querySelector(".mini").innerHTML = "ዘመናዊ የክሬይተሮች ማህበረሰብ";
+
+document.querySelectorAll(".top-btn")[0].innerHTML = "ቋንቋ";
+
+title.innerHTML = "ቲክቶክህን ሁሉም እንዲያስተውለው አድርግ";
+
+subtitle.innerHTML = "በዘመናዊ የክሬይተር መሳሪያዎች ታዳሚዎችህን አሳድግ፣ ተከታዮችን ጨምር እና ፈጣን እድገት አግኝ።";
 
 }
 
 if(lang === "ti"){
 
-title.innerHTML = "TikTok ናብ Viral Brand ቀይሮ";
+document.documentElement.lang = "ti";
 
-subtitle.innerHTML = "ፈጣን ዕብየት፣ creator discovery፣ engagement ከምኡውን audience growth።";
+document.querySelector(".btn").innerHTML = "ጀምር";
+
+document.querySelector(".mini").innerHTML = "ዘመናዊ ማሕበረሰብ ክሬይተሮች";
+
+document.querySelectorAll(".top-btn")[0].innerHTML = "ቋንቋ";
+
+title.innerHTML = "TikTok ኩሉ ሰብ ክርእዮ ግበሮ";
+
+subtitle.innerHTML = "ብዘመናዊ creator tools ተኸታተልቲ ኣዕብይ እና engagement ወስኽ።";
 
 }
 
 if(lang === "or"){
 
-title.innerHTML = "TikTok Kee Gara Viral Brand Jijjiiri";
+document.documentElement.lang = "or";
 
-subtitle.innerHTML = "Guddina saffisaa, creators argachuu, engagement dabalu fi audience guddisuu.";
+document.querySelector(".btn").innerHTML = "Jalqabi";
+
+document.querySelector(".mini").innerHTML = "Hawaasa Creator Ammayyaa";
+
+document.querySelectorAll(".top-btn")[0].innerHTML = "Afaan";
+
+title.innerHTML = "TikTok Kee Nama Hundaaf Adda Godhi";
+
+subtitle.innerHTML = "Followers dabali, audience guddisi fi guddina saffisaa argadhu.";
 
 }
 
 if(lang === "en"){
 
-title.innerHTML = "Turn Your TikTok Into A Viral Brand";
+document.documentElement.lang = "en";
 
-subtitle.innerHTML = "Grow faster, discover creators, increase engagement, and build your audience with modern creator tools.";
+document.querySelector(".btn").innerHTML = "Get Started";
+
+document.querySelector(".mini").innerHTML = "Modern Creator Community Platform";
+
+document.querySelectorAll(".top-btn")[0].innerHTML = "Language";
+
+title.innerHTML = "Make Your TikTok Impossible To Ignore";
+
+subtitle.innerHTML = "Grow faster, attract attention, and build a powerful audience using modern creator tools.";
 
 }
-
 menu.style.display = "none";
 
 }
@@ -463,12 +496,14 @@ if(dark){
 document.body.classList.remove("light");
 
 document.querySelectorAll(".top-btn")[1].innerHTML = "Dark";
+document.querySelectorAll(".top-btn")[1].style.color = "white";
 
 }else{
 
 document.body.classList.add("light");
 
 document.querySelectorAll(".top-btn")[1].innerHTML = "Light";
+document.querySelectorAll(".top-btn")[1].style.color = "black";
 
 }
 
