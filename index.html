@@ -25,9 +25,11 @@ color:white;
 
 /* ================= THEMES ================= */
 
-body.light{
-background:#f3f3f3;
-color:black;
+body.light .top-btn{
+background:#ffffff;
+color:#111111;
+border:1px solid rgba(0,0,0,0.08);
+box-shadow:0 8px 20px rgba(0,0,0,0.08);
 }
 
 body.light .card{
@@ -215,12 +217,20 @@ transform:translateY(0);
 }
 
 .logo{
-font-size:48px;
-font-weight:bold;
-margin-bottom:14px;
-background:linear-gradient(90deg,#ff0050,#00f2ea);
+font-size:58px;
+font-weight:900;
+margin-bottom:18px;
+letter-spacing:-3px;
+font-family:Arial Black,sans-serif;
+background:linear-gradient(90deg,#ff0050,#ff7ad9,#00f2ea);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+text-shadow:0 0 25px rgba(255,0,120,0.25);
+transform:skew(-4deg);
+}
+
+.logo span{
+font-style:italic;
 }
 
 .title{
@@ -318,14 +328,6 @@ English
 አማርኛ
 </div>
 
-<div class="drop-item" onclick="changeLang('ti')">
-ትግርኛ
-</div>
-
-<div class="drop-item" onclick="changeLang('or')">
-Afaan Oromo
-</div>
-
 </div>
 
 </div>
@@ -335,15 +337,15 @@ Afaan Oromo
 <div class="card">
 
 <div class="logo">
-  Etorika
+<span>Eto</span>rika
 </div>
 
 <div class="title" id="title">
-Turn Your TikTok Into A Viral Brand
+Go Viral Faster On TikTok
 </div>
 
 <div class="subtitle" id="subtitle">
-Grow faster, discover creators, increase engagement, and build your audience with modern creator tools.
+Boost followers, increase views, and grow your TikTok audience with smart creator tools.
 </div>
 
 <button class="btn" onclick="goSignup()">
@@ -426,43 +428,9 @@ document.querySelector(".mini").innerHTML = "ዘመናዊ የክሬይተሮች 
 
 document.querySelectorAll(".top-btn")[0].innerHTML = "ቋንቋ";
 
-title.innerHTML = "ቲክቶክህን ሁሉም እንዲያስተውለው አድርግ";
+title.innerHTML = "በቀላሉ ከኛ ጋር በቲክቶክ ቫይራል ይሁኑ";
 
-subtitle.innerHTML = "በዘመናዊ የክሬይተር መሳሪያዎች ታዳሚዎችህን አሳድግ፣ ተከታዮችን ጨምር እና ፈጣን እድገት አግኝ።";
-
-}
-
-if(lang === "ti"){
-
-document.documentElement.lang = "ti";
-
-document.querySelector(".btn").innerHTML = "ጀምር";
-
-document.querySelector(".mini").innerHTML = "ዘመናዊ ማሕበረሰብ ክሬይተሮች";
-
-document.querySelectorAll(".top-btn")[0].innerHTML = "ቋንቋ";
-
-title.innerHTML = "TikTok ኩሉ ሰብ ክርእዮ ግበሮ";
-
-subtitle.innerHTML = "ብዘመናዊ creator tools ተኸታተልቲ ኣዕብይ እና engagement ወስኽ።";
-
-}
-
-if(lang === "or"){
-
-document.documentElement.lang = "or";
-
-document.querySelector(".btn").innerHTML = "Jalqabi";
-
-document.querySelector(".mini").innerHTML = "Hawaasa Creator Ammayyaa";
-
-document.querySelectorAll(".top-btn")[0].innerHTML = "Afaan";
-
-title.innerHTML = "TikTok Kee Nama Hundaaf Adda Godhi";
-
-subtitle.innerHTML = "Followers dabali, audience guddisi fi guddina saffisaa argadhu.";
-
-}
+subtitle.innerHTML = "ተከታዮችን ጨምር፣ ቪዲዮዎችህን አሳድግ እና ቲክቶክህን በፍጥነት አሳድግ።";
 
 if(lang === "en"){
 
@@ -474,11 +442,9 @@ document.querySelector(".mini").innerHTML = "Modern Creator Community Platform";
 
 document.querySelectorAll(".top-btn")[0].innerHTML = "Language";
 
-title.innerHTML = "Make Your TikTok Impossible To Ignore";
+title.innerHTML = "Go Viral Faster On TikTok";
 
-subtitle.innerHTML = "Grow faster, attract attention, and build a powerful audience using modern creator tools.";
-
-}
+subtitle.innerHTML = "Boost followers, increase views, and grow your TikTok audience with smart creator tools.";
 menu.style.display = "none";
 
 }
