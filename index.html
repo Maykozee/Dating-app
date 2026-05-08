@@ -45,6 +45,8 @@ color:#444;
 body.light .top-btn{
 background:white;
 color:black;
+border:1px solid rgba(0,0,0,0.08);
+box-shadow:0 8px 18px rgba(0,0,0,0.08);
 }
 
 /* ================= MAIN ================= */
@@ -175,6 +177,7 @@ border-radius:18px;
 padding:10px;
 display:none;
 backdrop-filter:blur(20px);
+z-index:999;
 }
 
 .drop-item{
@@ -217,16 +220,26 @@ transform:translateY(0);
 }
 
 .logo{
-font-size:58px;
+font-size:64px;
 font-weight:900;
-margin-bottom:18px;
-letter-spacing:-3px;
-font-family:Arial Black,sans-serif;
-background:linear-gradient(90deg,#ff0050,#ff7ad9,#00f2ea);
+margin-bottom:20px;
+letter-spacing:-4px;
+font-family:Impact,sans-serif;
+background:linear-gradient(90deg,#ff0050,#ff8ad8,#00f2ea);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-text-shadow:0 0 25px rgba(255,0,120,0.25);
-transform:skew(-4deg);
+text-shadow:0 0 30px rgba(255,0,90,0.25);
+transform:skew(-6deg);
+animation:logoGlow 3s infinite alternate;
+}
+
+@keyframes logoGlow{
+
+100%{
+transform:skew(-6deg) scale(1.03);
+text-shadow:0 0 45px rgba(0,242,234,0.35);
+}
+
 }
 
 .logo span{
@@ -405,6 +418,8 @@ menu.style.display = "none";
 }else{
 
 menu.style.display = "block";
+
+menu.style.pointerEvents = "auto";
 
 }
 
