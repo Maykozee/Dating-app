@@ -45,7 +45,7 @@ visibility:hidden;
 
 .loader-logo{
 
-font-size:60px;
+font-size:88px;
 font-weight:900;
 font-style:italic;
 letter-spacing:-4px;
@@ -132,14 +132,37 @@ color:black;
 
 body.light .subtitle,
 body.light .mini{
-color:#444;
+color:#222;
+}
+
+body.light .title{
+color:#000;
 }
 
 body.light .top-btn{
-background:white;
-color:black;
-}
 
+background:white;
+
+color:#111;
+
+border:1px solid rgba(0,0,0,0.08);
+
+box-shadow:
+0 5px 18px rgba(0,0,0,0.08);
+
+}
+  
+body{
+background:
+radial-gradient(circle at top left,#320014 0%,#050505 45%),
+radial-gradient(circle at bottom right,#001f24 0%,#050505 40%),
+#050505;
+
+overflow:hidden;
+height:100vh;
+color:white;
+}
+  
 /* ================= MAIN ================= */
 
 .main{
@@ -243,15 +266,30 @@ z-index:100;
 }
 
 .top-btn{
-padding:11px 16px;
+
+padding:13px 18px;
+
 border:none;
-border-radius:14px;
-background:rgba(255,255,255,0.08);
-backdrop-filter:blur(10px);
+
+border-radius:16px;
+
+background:rgba(255,255,255,0.12);
+
+backdrop-filter:blur(18px);
+
 color:white;
+
 font-size:14px;
+
+font-weight:700;
+
 cursor:pointer;
-border:1px solid rgba(255,255,255,0.08);
+
+border:1px solid rgba(255,255,255,0.14);
+
+box-shadow:
+0 5px 20px rgba(0,0,0,0.25);
+
 }
 
 /* dropdown */
@@ -419,11 +457,11 @@ line-height:1.7;
 <div class="loader" id="loader">
 
 <div class="loader-logo">
-Etorika
+ETORIKA
 </div>
 
 <div class="loader-text">
-Loading Experience...
+Preparing Your Creator Space...
 </div>
 
 <div class="loader-bar">
@@ -451,14 +489,13 @@ Loading Experience...
 
 <div class="top-area">
 
-<button class="top-btn" onclick="toggleLang()">
+<button class="top-btn" id="langBtn" onclick="toggleLang()">
 Language
 </button>
-
-<button class="top-btn" onclick="toggleDark()">
+  
+<button class="top-btn" id="themeBtn" onclick="toggleDark()">
 Dark
 </button>
-
 <div class="dropdown" id="langMenu">
 
 <div class="drop-item" onclick="changeLang('en')">
@@ -561,10 +598,15 @@ let subtitle = document.getElementById("subtitle");
 
 if(lang === "am"){
 
+document.getElementById("langBtn").innerHTML = "English";
+
 title.innerHTML = "ቲክቶክህን ፈጣን ቫይራል አድርግ";
 
 subtitle.innerHTML = "ተከታዮችን ጨምር፣ ቪዲዮዎችህን አሳድግ እና በዘመናዊ creator tools ፈጣን እድገት አግኝ።";
+
 if(lang === "en"){
+
+document.getElementById("langBtn").innerHTML = "አማርኛ";
 
 title.innerHTML = "Go Viral Faster On TikTok";
 
@@ -585,14 +627,13 @@ if(dark){
 
 document.body.classList.remove("light");
 
-document.querySelectorAll(".top-btn")[1].innerHTML = "Dark";
+document.getElementById("themeBtn").innerHTML = "Dark";
 
 }else{
 
 document.body.classList.add("light");
 
-document.querySelectorAll(".top-btn")[1].innerHTML = "Light";
-
+document.getElementById("themeBtn").innerHTML = "Light";
 }
 
 }
