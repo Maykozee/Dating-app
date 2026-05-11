@@ -6,18 +6,19 @@
 
 <title>EYORIKA</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
 
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
-transition:0.35s;
+font-family:'Poppins',sans-serif;
 }
 
 body{
-background:#060606;
+background:#050505;
 overflow:hidden;
 height:100vh;
 color:white;
@@ -25,113 +26,124 @@ color:white;
 
 /* ================= LOADING ================= */
 
-.loader{
+.loading-screen{
 position:fixed;
+top:0;
+left:0;
 width:100%;
-height:100vh;
-background:
-linear-gradient(
-145deg,
-#050505,
-#111111,
-#1a1208
-);
-
+height:100%;
+background:linear-gradient(180deg,#050505,#16110b,#050505);
 display:flex;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 z-index:99999;
-animation:hideLoader 2.8s forwards;
+animation:hideLoading 2.8s forwards;
 }
 
-@keyframes hideLoader{
-
+@keyframes hideLoading{
 0%,85%{
 opacity:1;
 visibility:visible;
 }
-
 100%{
 opacity:0;
 visibility:hidden;
 }
-
 }
 
-.logo-icon{
-
-width:120px;
-height:120px;
-border-radius:32px;
-
-background:
-linear-gradient(
-145deg,
-#f7d58a,
-#9c6b2f,
-#f7d58a
-);
-
+.loading-logo{
+width:110px;
+height:110px;
+border-radius:28px;
 display:flex;
 justify-content:center;
 align-items:center;
-
-font-size:72px;
+font-size:55px;
 font-weight:900;
-
-color:#050505;
-
+font-family:'Orbitron',sans-serif;
+background:linear-gradient(135deg,#d4a574,#8b5e34,#f5d2a0);
+color:#fff;
 box-shadow:
-0 0 40px rgba(247,213,138,0.5),
-0 0 80px rgba(247,213,138,0.2);
-
-animation:pulse 2s infinite;
+0 0 20px rgba(212,165,116,0.5),
+0 0 60px rgba(212,165,116,0.3);
+position:relative;
+overflow:hidden;
 }
 
-@keyframes pulse{
-
-50%{
-transform:scale(1.08);
+.loading-logo::before{
+content:"";
+position:absolute;
+width:180%;
+height:180%;
+background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+animation:shine 2s linear infinite;
 }
 
+@keyframes shine{
+0%{
+transform:translateX(-100%) rotate(25deg);
+}
+100%{
+transform:translateX(100%) rotate(25deg);
+}
+}
+
+.loading-logo span{
+position:relative;
+z-index:2;
 }
 
 .loading-title{
-
-margin-top:30px;
-font-size:54px;
+margin-top:25px;
+font-size:42px;
+font-family:'Orbitron',sans-serif;
 font-weight:900;
 letter-spacing:7px;
-
-background:
-linear-gradient(
-90deg,
-#f7d58a,
-#ffffff,
-#f7d58a
-);
-
+background:linear-gradient(90deg,#f7d4aa,#ffffff,#c58b52);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
 }
 
 .loading-sub{
-
 margin-top:10px;
-font-size:17px;
-color:#c9b07a;
-letter-spacing:2px;
+font-size:14px;
+letter-spacing:4px;
+color:#d0b08b;
 }
 
-.maykozee{
+.loading-bar{
+width:220px;
+height:7px;
+background:rgba(255,255,255,0.08);
+border-radius:50px;
+margin-top:35px;
+overflow:hidden;
+position:relative;
+}
 
+.loading-fill{
 position:absolute;
-bottom:40px;
-font-size:14px;
-letter-spacing:6px;
-color:#8a6a35;
+left:-100%;
+top:0;
+width:100%;
+height:100%;
+background:linear-gradient(90deg,#d4a574,#fff,#8b5e34);
+border-radius:50px;
+animation:loadMove 1.8s linear infinite;
+}
+
+@keyframes loadMove{
+100%{
+left:100%;
+}
+}
+
+.loading-name{
+margin-top:24px;
+font-size:12px;
+letter-spacing:5px;
+color:#9f7d5c;
 }
 
 /* ================= MAIN ================= */
@@ -145,436 +157,312 @@ justify-content:center;
 align-items:center;
 overflow:hidden;
 background:
-linear-gradient(
-145deg,
-#050505,
-#0c0c0c,
-#1a1208
-);
+radial-gradient(circle at top left,#3b220d 0%,transparent 35%),
+radial-gradient(circle at bottom right,#7c5528 0%,transparent 35%),
+#050505;
 }
 
-/* backgrounds */
+/* background icons */
 
-.bg1{
+.bg-icons{
 position:absolute;
-width:420px;
-height:420px;
-background:#d4a24d;
-filter:blur(170px);
-border-radius:50%;
-top:-150px;
-left:-150px;
-opacity:0.18;
+width:100%;
+height:100%;
+overflow:hidden;
+z-index:1;
 }
 
-.bg2{
+.icon{
 position:absolute;
-width:420px;
-height:420px;
-background:#f7d58a;
-filter:blur(170px);
-border-radius:50%;
-bottom:-160px;
-right:-160px;
-opacity:0.12;
+font-size:34px;
+opacity:0.07;
+animation:float 16s linear infinite;
 }
 
-/* floating icons */
-
-.float{
-position:absolute;
-font-size:22px;
-opacity:0.13;
-animation:floatUp 13s linear infinite;
-color:#f7d58a;
-font-weight:bold;
+.icon:nth-child(1){
+left:10%;
+top:80%;
+animation-delay:0s;
 }
 
-@keyframes floatUp{
+.icon:nth-child(2){
+left:75%;
+top:85%;
+animation-delay:4s;
+}
 
+.icon:nth-child(3){
+left:55%;
+top:90%;
+animation-delay:8s;
+}
+
+.icon:nth-child(4){
+left:25%;
+top:88%;
+animation-delay:11s;
+}
+
+@keyframes float{
 0%{
-transform:translateY(120vh);
+transform:translateY(0) rotate(0deg);
 opacity:0;
 }
-
 10%{
-opacity:0.15;
+opacity:0.08;
 }
-
 100%{
-transform:translateY(-120vh);
+transform:translateY(-120vh) rotate(360deg);
 opacity:0;
 }
-
 }
 
-/* top buttons */
+/* ================= TOP BUTTONS ================= */
 
 .top-area{
 position:absolute;
-top:22px;
-right:20px;
+top:18px;
+right:18px;
 display:flex;
-gap:12px;
-z-index:100;
+gap:10px;
+z-index:50;
 }
 
 .top-btn{
-
-padding:14px 22px;
+padding:13px 18px;
 border:none;
 border-radius:18px;
-
-background:rgba(255,255,255,0.08);
-
-backdrop-filter:blur(15px);
-
-color:#f7d58a;
-
-font-size:15px;
-font-weight:bold;
-
-border:1px solid rgba(247,213,138,0.18);
-
+background:rgba(255,255,255,0.07);
+color:#f5d2a0;
+font-weight:600;
+font-size:14px;
 cursor:pointer;
+backdrop-filter:blur(16px);
+border:1px solid rgba(255,255,255,0.08);
+box-shadow:0 0 15px rgba(0,0,0,0.3);
 }
 
-/* dropdown */
-
-.dropdown{
-
-position:absolute;
-top:70px;
-right:0;
-
-width:170px;
-
-background:#111111;
-
-border-radius:20px;
-
-padding:10px;
-
-display:none;
-
-border:1px solid rgba(247,213,138,0.2);
+body.light .top-btn{
+background:white;
+color:#111;
 }
 
-.drop-item{
-
-padding:14px;
-border-radius:12px;
-cursor:pointer;
-font-size:15px;
-color:#f7d58a;
-}
-
-.drop-item:hover{
-background:rgba(247,213,138,0.08);
-}
-
-/* card */
+/* ================= CARD ================= */
 
 .card{
-
 position:relative;
-
 width:92%;
-max-width:450px;
-
-padding:70px 35px;
-
-border-radius:40px;
-
-background:
-rgba(255,255,255,0.04);
-
-border:
-1px solid rgba(247,213,138,0.12);
-
-backdrop-filter:blur(24px);
-
+max-width:430px;
+padding:45px 30px;
+border-radius:38px;
+background:rgba(255,255,255,0.05);
+border:1px solid rgba(255,255,255,0.08);
+backdrop-filter:blur(25px);
 text-align:center;
-
-box-shadow:
-0 0 50px rgba(0,0,0,0.5);
-
 z-index:5;
+overflow:hidden;
+box-shadow:
+0 0 40px rgba(0,0,0,0.45),
+0 0 80px rgba(212,165,116,0.08);
 }
 
-/* logo */
+.card::before{
+content:"";
+position:absolute;
+inset:0;
+background:linear-gradient(135deg,rgba(212,165,116,0.12),transparent,rgba(255,255,255,0.03));
+pointer-events:none;
+}
+
+/* ================= LOGO ================= */
 
 .logo-wrap{
-
-display:flex;
-justify-content:center;
-margin-bottom:25px;
+position:relative;
+z-index:2;
 }
 
-.logo-mini{
-
-width:78px;
-height:78px;
-
-border-radius:24px;
-
-background:
-linear-gradient(
-145deg,
-#f7d58a,
-#8d6327,
-#f7d58a
-);
-
+.logo-icon{
+width:90px;
+height:90px;
+margin:auto;
+border-radius:28px;
 display:flex;
 justify-content:center;
 align-items:center;
-
-font-size:42px;
+font-size:44px;
 font-weight:900;
-
-color:#050505;
-
+font-family:'Orbitron',sans-serif;
+background:linear-gradient(135deg,#d4a574,#8b5e34,#f5d2a0);
 box-shadow:
-0 0 25px rgba(247,213,138,0.4);
+0 0 20px rgba(212,165,116,0.45),
+0 0 50px rgba(212,165,116,0.2);
+margin-bottom:20px;
 }
 
-.logo{
-
-margin-top:18px;
-
-font-size:64px;
+.logo-text{
+font-size:52px;
+font-family:'Orbitron',sans-serif;
 font-weight:900;
+letter-spacing:4px;
+background:linear-gradient(90deg,#ffffff,#d4a574,#f5d2a0);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+margin-bottom:18px;
+}
 
-letter-spacing:5px;
+.title{
+font-size:38px;
+font-weight:800;
+line-height:1.3;
+margin-bottom:18px;
+}
 
+.subtitle{
+font-size:16px;
+line-height:1.9;
+color:#d8d8d8;
+margin-bottom:35px;
+}
+
+/* ================= BUTTON ================= */
+
+.btn{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+background:linear-gradient(90deg,#8b5e34,#d4a574,#f5d2a0);
+font-size:18px;
+font-weight:700;
+cursor:pointer;
+color:#111;
+box-shadow:
+0 0 25px rgba(212,165,116,0.35);
+}
+
+.btn:hover{
+transform:translateY(-3px);
+}
+
+.mini{
+margin-top:20px;
+font-size:13px;
+color:#b7b7b7;
+line-height:1.7;
+}
+
+/* ================= LIGHT MODE ================= */
+
+body.light{
+background:#f3f3f3;
+color:#111;
+}
+
+body.light .main{
 background:
-linear-gradient(
-90deg,
-#f7d58a,
-#ffffff,
-#c08b37
-);
+radial-gradient(circle at top left,#f7d8bb 0%,transparent 35%),
+radial-gradient(circle at bottom right,#fff0de 0%,transparent 35%),
+#f4f4f4;
+}
 
+body.light .card{
+background:rgba(255,255,255,0.9);
+}
+
+body.light .subtitle,
+body.light .mini{
+color:#444;
+}
+
+body.light .logo-text{
+background:linear-gradient(90deg,#8b5e34,#d4a574,#111);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
-/* text */
-
-.title{
-
-margin-top:25px;
-
-font-size:44px;
-font-weight:900;
-
-line-height:1.2;
+body.light .title{
+color:#111;
 }
 
-.subtitle{
-
-margin-top:22px;
-
-font-size:18px;
-line-height:1.9;
-
-color:#d8d8d8;
-}
-
-/* button */
-
-.btn{
-
-margin-top:42px;
-
-width:100%;
-
-padding:20px;
-
-border:none;
-
-border-radius:22px;
-
-background:
-linear-gradient(
-90deg,
-#f7d58a,
-#b8863b
-);
-
-color:#050505;
-
-font-size:20px;
-font-weight:900;
-
-cursor:pointer;
-
-box-shadow:
-0 0 35px rgba(247,213,138,0.35);
-}
-
-/* mini */
-
-.mini{
-
-margin-top:24px;
-
-font-size:13px;
-letter-spacing:2px;
-
-color:#9e9e9e;
-}
-
-/* signup */
+/* ================= SIGNUP PAGE ================= */
 
 .signup-page{
-
 position:fixed;
 top:0;
-left:0;
-
+left:100%;
 width:100%;
-height:100vh;
+height:100%;
+background:#070707;
+z-index:5000;
+overflow-y:auto;
+padding:25px;
+transition:0.7s;
+}
 
-background:
-linear-gradient(
-145deg,
-#050505,
-#111111,
-#1a1208
-);
-
-display:none;
-
-justify-content:center;
-align-items:center;
-
-z-index:9999;
+.signup-page.active{
+left:0;
 }
 
 .signup-card{
+max-width:450px;
+margin:auto;
+background:rgba(255,255,255,0.05);
+padding:30px;
+border-radius:30px;
+border:1px solid rgba(255,255,255,0.08);
+}
 
-width:92%;
-max-width:430px;
-
-padding:45px 30px;
-
-border-radius:35px;
-
-background:
-rgba(255,255,255,0.05);
-
-border:
-1px solid rgba(247,213,138,0.15);
-
-backdrop-filter:blur(20px);
+.signup-logo{
+text-align:center;
+font-size:38px;
+font-family:'Orbitron',sans-serif;
+font-weight:900;
+margin-bottom:10px;
+background:linear-gradient(90deg,#fff,#d4a574,#f5d2a0);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 .signup-title{
-
-font-size:38px;
-font-weight:900;
-margin-bottom:30px;
-
-color:#f7d58a;
 text-align:center;
+font-size:24px;
+margin-bottom:25px;
 }
 
 .input{
-
 width:100%;
-
-padding:18px;
-
-margin-bottom:18px;
-
+padding:16px;
+margin-bottom:16px;
 border:none;
-
-border-radius:18px;
-
-background:#111111;
-
+border-radius:16px;
+background:rgba(255,255,255,0.08);
 color:white;
-
-font-size:16px;
-
+font-size:15px;
 outline:none;
-
-border:1px solid rgba(247,213,138,0.12);
 }
 
-.signup-btn{
+.row{
+display:flex;
+gap:12px;
+}
 
+.social-btn{
 width:100%;
-
-padding:18px;
-
+padding:15px;
 border:none;
-
-border-radius:18px;
-
-background:
-linear-gradient(
-90deg,
-#f7d58a,
-#b8863b
-);
-
-font-size:18px;
-font-weight:900;
-
-color:#050505;
-
+border-radius:16px;
+margin-top:12px;
+background:rgba(255,255,255,0.08);
+color:white;
+font-weight:600;
 cursor:pointer;
 }
 
-/* light mode */
-
-body.light{
-
-background:#f6f1e7;
-color:black;
-}
-
-body.light .main{
-
-background:
-linear-gradient(
-145deg,
-#f6f1e7,
-#ffffff,
-#f0dfc2
-);
-
-}
-
-body.light .card{
-
-background:rgba(255,255,255,0.8);
-
-}
-
-body.light .title{
-color:black;
-}
-
-body.light .subtitle{
-color:#444;
-}
-
-body.light .top-btn{
-
-background:white;
-color:black;
-}
-
-body.light .dropdown{
-background:white;
-}
-
-body.light .drop-item{
-color:black;
+.switch{
+margin-top:18px;
+text-align:center;
+font-size:14px;
+color:#aaa;
 }
 
 </style>
@@ -582,12 +470,12 @@ color:black;
 
 <body>
 
-<!-- loading -->
+<!-- LOADING -->
 
-<div class="loader">
+<div class="loading-screen">
 
-<div class="logo-icon">
-E
+<div class="loading-logo">
+<span>E</span>
 </div>
 
 <div class="loading-title">
@@ -595,117 +483,137 @@ EYORIKA
 </div>
 
 <div class="loading-sub">
-WELCOME TO THE FUTURE
+WELCOME TO EYORIKA
 </div>
 
-<div class="maykozee">
+<div class="loading-bar">
+<div class="loading-fill"></div>
+</div>
+
+<div class="loading-name">
 MAYKOZEE
 </div>
 
 </div>
 
-<!-- signup -->
-
-<div class="signup-page" id="signupPage">
-
-<div class="signup-card">
-
-<div class="signup-title">
-Create Account
-</div>
-
-<input class="input" placeholder="Username">
-
-<input class="input" placeholder="Email">
-
-<input class="input" placeholder="Password" type="password">
-
-<button class="signup-btn">
-Continue
-</button>
-
-</div>
-
-</div>
-
-<!-- main -->
+<!-- MAIN -->
 
 <div class="main">
 
-<div class="bg1"></div>
-<div class="bg2"></div>
-
-<!-- floating -->
-
-<div class="float" style="left:12%">
-TikTok
+<div class="bg-icons">
+<div class="icon">🎵</div>
+<div class="icon">📸</div>
+<div class="icon">🎬</div>
+<div class="icon">🔥</div>
 </div>
 
-<div class="float" style="left:70%;animation-delay:2s">
-Instagram
-</div>
-
-<div class="float" style="left:40%;animation-delay:4s">
-Followers
-</div>
-
-<div class="float" style="left:85%;animation-delay:6s">
-Views
-</div>
-
-<!-- top -->
+<!-- TOP BUTTONS -->
 
 <div class="top-area">
 
-<button class="top-btn" onclick="toggleLang()" id="langBtn">
-አማርኛ
+<button class="top-btn" id="langBtn" onclick="toggleLanguage()">
+AM
 </button>
 
-<button class="top-btn" onclick="toggleDark()" id="darkBtn">
-Dark
+<button class="top-btn" id="themeBtn" onclick="toggleTheme()">
+LIGHT
 </button>
 
-<div class="dropdown" id="langMenu">
-
-<div class="drop-item" onclick="changeLang()">
-Switch Language
 </div>
 
-</div>
-
-</div>
-
-<!-- card -->
+<!-- CARD -->
 
 <div class="card">
 
 <div class="logo-wrap">
 
-<div class="logo-mini">
+<div class="logo-icon">
 E
 </div>
 
-</div>
-
-<div class="logo" id="logoText">
+<div class="logo-text">
 EYORIKA
 </div>
 
+</div>
+
 <div class="title" id="title">
-Grow Faster. Go Viral.
+Grow Faster.<br>
+Go Viral.
 </div>
 
 <div class="subtitle" id="subtitle">
-Smart premium tools for TikTok and Instagram creators.
+Smart creator tools for TikTok and Instagram growth.
 </div>
 
-<button class="btn" id="startBtn" onclick="goSignup()">
+<button class="btn" onclick="openSignup()" id="startBtn">
 Get Started
 </button>
 
 <div class="mini" id="miniText">
-PREMIUM CREATOR PLATFORM
+Premium Creator Growth Platform
 </div>
+
+</div>
+
+</div>
+
+<!-- SIGNUP -->
+
+<div class="signup-page" id="signupPage">
+
+<div class="signup-card">
+
+<div class="signup-logo">
+EYORIKA
+</div>
+
+<div class="signup-title" id="signupTitle">
+Create Your Account
+</div>
+
+<input class="input" type="text" placeholder="🎵 TikTok Username">
+
+<input class="input" type="email" placeholder="📧 Email Address">
+
+<div class="row">
+<input class="input" type="text" placeholder="First Name">
+<input class="input" type="text" placeholder="Last Name">
+</div>
+
+<input class="input" type="date">
+
+<select class="input">
+<option>🌍 Country</option>
+<option>🇪🇹 Ethiopia</option>
+<option>🇺🇸 United States</option>
+<option>🇬🇧 United Kingdom</option>
+<option>🇨🇦 Canada</option>
+<option>🇩🇪 Germany</option>
+<option>🇰🇪 Kenya</option>
+<option>🇫🇷 France</option>
+<option>🇦🇪 UAE</option>
+</select>
+
+<button class="btn">
+Continue
+</button>
+
+<div class="switch">
+Already have an account? Log In
+</div>
+
+<button class="social-btn">
+Continue with Google
+</button>
+
+<button class="social-btn">
+Continue with TikTok
+</button>
+
+<button class="social-btn">
+Continue with Instagram
+</button>
 
 </div>
 
@@ -713,112 +621,83 @@ PREMIUM CREATOR PLATFORM
 
 <script>
 
-/* language */
+/* ================= SIGNUP ================= */
+
+function openSignup(){
+document.getElementById("signupPage").classList.add("active");
+}
+
+/* ================= LANGUAGE ================= */
 
 let amharic = false;
 
-function changeLang(){
+function toggleLanguage(){
 
 amharic = !amharic;
 
 if(amharic){
 
-document.getElementById("logoText").innerHTML =
-"ኢዮሪካ";
+document.getElementById("langBtn").innerHTML = "EN";
 
 document.getElementById("title").innerHTML =
-"ፈጣን እድገት እና ቫይራል ስኬት";
+"በፍጥነት እደግ<br>ቫይራል ሁን";
 
 document.getElementById("subtitle").innerHTML =
-"ለTikTok እና Instagram ክሬይተሮች ዘመናዊ premium መሳሪያዎች።";
+"ለTikTok እና Instagram ክሬይተሮች ዘመናዊ የእድገት መሳሪያዎች።";
 
 document.getElementById("startBtn").innerHTML =
 "ጀምር";
 
 document.getElementById("miniText").innerHTML =
-"ዘመናዊ የክሬይተር መድረክ";
+"ፕሪሚየም የክሬይተር እድገት ፕላትፎርም";
 
-document.getElementById("langBtn").innerHTML =
-"English";
+document.getElementById("signupTitle").innerHTML =
+"አካውንት ይፍጠሩ";
 
 }else{
 
-document.getElementById("logoText").innerHTML =
-"EYORIKA";
+document.getElementById("langBtn").innerHTML = "AM";
 
 document.getElementById("title").innerHTML =
-"Grow Faster. Go Viral.";
+"Grow Faster.<br>Go Viral.";
 
 document.getElementById("subtitle").innerHTML =
-"Smart premium tools for TikTok and Instagram creators.";
+"Smart creator tools for TikTok and Instagram growth.";
 
 document.getElementById("startBtn").innerHTML =
 "Get Started";
 
 document.getElementById("miniText").innerHTML =
-"PREMIUM CREATOR PLATFORM";
+"Premium Creator Growth Platform";
 
-document.getElementById("langBtn").innerHTML =
-"አማርኛ";
-
-}
-
-document.getElementById("langMenu").style.display =
-"none";
-
-}
-
-/* language menu */
-
-function toggleLang(){
-
-let menu =
-document.getElementById("langMenu");
-
-if(menu.style.display === "block"){
-
-menu.style.display = "none";
-
-}else{
-
-menu.style.display = "block";
+document.getElementById("signupTitle").innerHTML =
+"Create Your Account";
 
 }
 
 }
 
-/* dark mode */
+/* ================= THEME ================= */
 
-let dark = true;
+let lightMode = false;
 
-function toggleDark(){
+function toggleTheme(){
 
-dark = !dark;
+lightMode = !lightMode;
 
-if(dark){
-
-document.body.classList.remove("light");
-
-document.getElementById("darkBtn").innerHTML =
-"Dark";
-
-}else{
+if(lightMode){
 
 document.body.classList.add("light");
 
-document.getElementById("darkBtn").innerHTML =
-"Light";
+document.getElementById("themeBtn").innerHTML = "DARK";
+
+}else{
+
+document.body.classList.remove("light");
+
+document.getElementById("themeBtn").innerHTML = "LIGHT";
 
 }
-
-}
-
-/* signup */
-
-function goSignup(){
-
-document.getElementById("signupPage").style.display =
-"flex";
 
 }
 
