@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Doro Wet</title>
+<title>EYORIKA</title>
 
 <style>
 
@@ -13,156 +13,127 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 font-family:Arial,sans-serif;
-transition:0.3s;
+transition:0.35s;
 }
 
-/* ================= LOADER ================= */
+body{
+background:#060606;
+overflow:hidden;
+height:100vh;
+color:white;
+}
+
+/* ================= LOADING ================= */
 
 .loader{
 position:fixed;
-top:0;
-left:0;
 width:100%;
 height:100vh;
-background:#050505;
+background:
+linear-gradient(
+145deg,
+#050505,
+#111111,
+#1a1208
+);
+
 display:flex;
-flex-direction:column;
 justify-content:center;
 align-items:center;
+flex-direction:column;
 z-index:99999;
-animation:hideLoader 0.7s ease forwards;
-animation-delay:2s;
+animation:hideLoader 2.8s forwards;
 }
 
 @keyframes hideLoader{
 
-to{
+0%,85%{
+opacity:1;
+visibility:visible;
+}
+
+100%{
 opacity:0;
 visibility:hidden;
 }
 
 }
 
-.loader-logo{
+.logo-icon{
 
-font-size:88px;
+width:120px;
+height:120px;
+border-radius:32px;
+
+background:
+linear-gradient(
+145deg,
+#f7d58a,
+#9c6b2f,
+#f7d58a
+);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:72px;
 font-weight:900;
-font-style:italic;
-letter-spacing:-4px;
 
-background:linear-gradient(
+color:#050505;
+
+box-shadow:
+0 0 40px rgba(247,213,138,0.5),
+0 0 80px rgba(247,213,138,0.2);
+
+animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+
+50%{
+transform:scale(1.08);
+}
+
+}
+
+.loading-title{
+
+margin-top:30px;
+font-size:54px;
+font-weight:900;
+letter-spacing:7px;
+
+background:
+linear-gradient(
 90deg,
-#ff00a8,
-#8b5cf6,
-#00f2ea
+#f7d58a,
+#ffffff,
+#f7d58a
 );
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
-text-shadow:
-0 0 20px rgba(255,0,168,0.4),
-0 0 40px rgba(0,242,234,0.2);
-
-animation:loaderGlow 1.4s infinite alternate;
 }
 
-@keyframes loaderGlow{
+.loading-sub{
 
-100%{
-transform:scale(1.06);
-filter:brightness(1.2);
-}
-
-}
-
-.loader-text{
-
-margin-top:16px;
-font-size:15px;
+margin-top:10px;
+font-size:17px;
+color:#c9b07a;
 letter-spacing:2px;
-color:#bdbdbd;
 }
 
-.loader-bar{
+.maykozee{
 
-width:220px;
-height:8px;
-background:rgba(255,255,255,0.13);
-border-radius:20px;
-overflow:hidden;
-margin-top:30px;
+position:absolute;
+bottom:40px;
+font-size:14px;
+letter-spacing:6px;
+color:#8a6a35;
 }
 
-.loader-fill{
-
-width:0%;
-height:100%;
-border-radius:20px;
-
-background:linear-gradient(
-90deg,
-#ff0050,
-#8b5cf6,
-#00f2ea
-);
-
-animation:loading 2s linear forwards;
-}
-
-@keyframes loading{
-
-100%{
-width:100%;
-}
-
-}
-
-/* ================= THEMES ================= */
-
-body.light{
-background:#f3f3f3;
-color:black;
-}
-
-body.light .card{
-background:rgba(255,255,255,0.8);
-color:black;
-}
-
-body.light .subtitle,
-body.light .mini{
-color:#222;
-}
-
-body.light .title{
-color:#000;
-}
-
-body.light .top-btn{
-
-background:white;
-
-color:#111;
-
-border:1px solid rgba(0,0,0,0.08);
-
-box-shadow:
-0 5px 18px rgba(0,0,0,0.08);
-
-}
-  
-body{
-background:
-radial-gradient(circle at top left,#320014 0%,#050505 45%),
-radial-gradient(circle at bottom right,#001f24 0%,#050505 40%),
-#050505;
-
-overflow:hidden;
-height:100vh;
-color:white;
-}
-  
 /* ================= MAIN ================= */
 
 .main{
@@ -173,380 +144,531 @@ display:flex;
 justify-content:center;
 align-items:center;
 overflow:hidden;
+background:
+linear-gradient(
+145deg,
+#050505,
+#0c0c0c,
+#1a1208
+);
 }
 
 /* backgrounds */
 
 .bg1{
 position:absolute;
-width:350px;
-height:350px;
-background:#ff0050;
-filter:blur(140px);
+width:420px;
+height:420px;
+background:#d4a24d;
+filter:blur(170px);
 border-radius:50%;
-top:-120px;
-left:-120px;
-opacity:0.45;
-animation:move1 7s infinite alternate;
+top:-150px;
+left:-150px;
+opacity:0.18;
 }
 
 .bg2{
 position:absolute;
-width:350px;
-height:350px;
-background:#00f2ea;
-filter:blur(140px);
+width:420px;
+height:420px;
+background:#f7d58a;
+filter:blur(170px);
 border-radius:50%;
-bottom:-120px;
-right:-120px;
-opacity:0.45;
-animation:move2 8s infinite alternate;
+bottom:-160px;
+right:-160px;
+opacity:0.12;
 }
 
-@keyframes move1{
-100%{
-transform:translate(70px,40px);
-}
-}
-
-@keyframes move2{
-100%{
-transform:translate(-60px,-50px);
-}
-}
-
-/* floating */
+/* floating icons */
 
 .float{
 position:absolute;
-font-size:14px;
-opacity:0.14;
-animation:floatUp 10s linear infinite;
+font-size:22px;
+opacity:0.13;
+animation:floatUp 13s linear infinite;
+color:#f7d58a;
+font-weight:bold;
 }
 
 @keyframes floatUp{
+
 0%{
 transform:translateY(120vh);
 opacity:0;
 }
+
 10%{
-opacity:0.14;
+opacity:0.15;
 }
+
 100%{
 transform:translateY(-120vh);
 opacity:0;
 }
-}
 
-/* counter */
-
-.counter{
-position:absolute;
-font-size:80px;
-font-weight:bold;
-opacity:0.06;
-animation:pulse 2s infinite;
-}
-
-@keyframes pulse{
-50%{
-transform:scale(1.08);
-}
 }
 
 /* top buttons */
 
 .top-area{
 position:absolute;
-top:18px;
-right:18px;
+top:22px;
+right:20px;
 display:flex;
-gap:10px;
+gap:12px;
 z-index:100;
 }
 
 .top-btn{
-padding:13px 20px;
 
+padding:14px 22px;
 border:none;
+border-radius:18px;
 
-border-radius:16px;
+background:rgba(255,255,255,0.08);
 
-background:rgba(255,255,255,0.12);
+backdrop-filter:blur(15px);
 
-backdrop-filter:blur(18px);
+color:#f7d58a;
 
-color:white;
+font-size:15px;
+font-weight:bold;
 
-font-size:14px;
-
-font-weight:700;
+border:1px solid rgba(247,213,138,0.18);
 
 cursor:pointer;
-
-border:1px solid rgba(255,255,255,0.14);
-
-box-shadow:
-0 5px 20px rgba(0,0,0,0.25);
-
 }
 
 /* dropdown */
 
 .dropdown{
+
 position:absolute;
-top:60px;
+top:70px;
 right:0;
+
 width:170px;
-background:rgba(20,20,20,0.95);
-border-radius:18px;
+
+background:#111111;
+
+border-radius:20px;
+
 padding:10px;
+
 display:none;
-backdrop-filter:blur(20px);
+
+border:1px solid rgba(247,213,138,0.2);
 }
 
 .drop-item{
+
 padding:14px;
 border-radius:12px;
-font-size:14px;
 cursor:pointer;
+font-size:15px;
+color:#f7d58a;
 }
 
 .drop-item:hover{
-background:rgba(255,255,255,0.08);
+background:rgba(247,213,138,0.08);
 }
 
 /* card */
 
 .card{
+
 position:relative;
+
 width:92%;
-max-width:430px;
-padding:60px 34px;
+max-width:450px;
 
-background:rgba(15,15,25,0.55);
+padding:70px 35px;
 
-border:1px solid rgba(255,255,255,0.16);
+border-radius:40px;
 
-backdrop-filter:blur(30px);
+background:
+rgba(255,255,255,0.04);
 
-border-radius:36px;
+border:
+1px solid rgba(247,213,138,0.12);
+
+backdrop-filter:blur(24px);
 
 text-align:center;
 
+box-shadow:
+0 0 50px rgba(0,0,0,0.5);
+
 z-index:5;
+}
+
+/* logo */
+
+.logo-wrap{
+
+display:flex;
+justify-content:center;
+margin-bottom:25px;
+}
+
+.logo-mini{
+
+width:78px;
+height:78px;
+
+border-radius:24px;
+
+background:
+linear-gradient(
+145deg,
+#f7d58a,
+#8d6327,
+#f7d58a
+);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+font-size:42px;
+font-weight:900;
+
+color:#050505;
 
 box-shadow:
-0 0 50px rgba(0,0,0,0.5),
-0 0 25px rgba(255,0,120,0.08);
-
-animation:show 1.1s ease;
-
-overflow:hidden;
-}
-
-@keyframes show{
-from{
-opacity:0;
-transform:translateY(40px);
-}
-to{
-opacity:1;
-transform:translateY(0);
-}
+0 0 25px rgba(247,213,138,0.4);
 }
 
 .logo{
-font-size:72px;
+
+margin-top:18px;
+
+font-size:64px;
 font-weight:900;
-letter-spacing:4px;
-margin-bottom:22px;
-font-family:Impact,sans-serif;
-text-transform:uppercase;
 
-background:linear-gradient(
+letter-spacing:5px;
+
+background:
+linear-gradient(
 90deg,
-#ff00a8,
-#ff66d9,
-#7df9ff,
-#00f2ea
+#f7d58a,
+#ffffff,
+#c08b37
 );
-
-background-size:300% 300%;
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
-animation:logoGlow 5s ease infinite;
-
-filter:
-drop-shadow(0 0 12px rgba(255,0,170,0.6))
-drop-shadow(0 0 20px rgba(0,242,234,0.5));
 }
 
-@keyframes logoGlow{
-
-0%{
-background-position:0% 50%;
-transform:scale(1);
-}
-
-50%{
-background-position:100% 50%;
-transform:scale(1.03);
-}
-
-100%{
-background-position:0% 50%;
-transform:scale(1);
-}
-
-}
-@keyframes logoGlow{
-
-100%{
-transform:scale(1.03);
-filter:brightness(1.15);
-}
-
-}
-
-.subtitle{
-font-size:18px;
-line-height:1.8;
-color:#cfcfcf;
-margin-bottom:38px;
-opacity:0.9;
-}
-
-.subtitle{
-font-size:19px;
-line-height:1.9;
-color:#dcdcdc;
-margin-bottom:42px;
-font-weight:500;
-}
+/* text */
 
 .title{
-font-size:46px;
+
+margin-top:25px;
+
+font-size:44px;
 font-weight:900;
+
 line-height:1.2;
-margin-bottom:22px;
-letter-spacing:-1px;
 }
-  
+
+.subtitle{
+
+margin-top:22px;
+
+font-size:18px;
+line-height:1.9;
+
+color:#d8d8d8;
+}
+
 /* button */
 
 .btn{
-position:relative;
+
+margin-top:42px;
+
 width:100%;
-padding:17px;
+
+padding:20px;
+
 border:none;
-border-radius:18px;
-background:linear-gradient(90deg,#ff0050,#00f2ea);
-color:white;
-font-size:18px;
-font-weight:bold;
+
+border-radius:22px;
+
+background:
+linear-gradient(
+90deg,
+#f7d58a,
+#b8863b
+);
+
+color:#050505;
+
+font-size:20px;
+font-weight:900;
+
 cursor:pointer;
-overflow:hidden;
-box-shadow:0 0 25px rgba(255,0,80,0.45);
+
+box-shadow:
+0 0 35px rgba(247,213,138,0.35);
 }
 
-.btn::before{
-content:"";
-position:absolute;
-top:0;
-left:-120%;
-width:60%;
-height:100%;
-background:rgba(255,255,255,0.3);
-transform:skewX(-20deg);
-animation:shine 2.4s infinite;
-}
-
-@keyframes shine{
-100%{
-left:170%;
-}
-}
+/* mini */
 
 .mini{
-margin-top:18px;
-font-size:12px;
-color:#aaaaaa;
-line-height:1.7;
+
+margin-top:24px;
+
+font-size:13px;
+letter-spacing:2px;
+
+color:#9e9e9e;
+}
+
+/* signup */
+
+.signup-page{
+
+position:fixed;
+top:0;
+left:0;
+
+width:100%;
+height:100vh;
+
+background:
+linear-gradient(
+145deg,
+#050505,
+#111111,
+#1a1208
+);
+
+display:none;
+
+justify-content:center;
+align-items:center;
+
+z-index:9999;
+}
+
+.signup-card{
+
+width:92%;
+max-width:430px;
+
+padding:45px 30px;
+
+border-radius:35px;
+
+background:
+rgba(255,255,255,0.05);
+
+border:
+1px solid rgba(247,213,138,0.15);
+
+backdrop-filter:blur(20px);
+}
+
+.signup-title{
+
+font-size:38px;
+font-weight:900;
+margin-bottom:30px;
+
+color:#f7d58a;
+text-align:center;
+}
+
+.input{
+
+width:100%;
+
+padding:18px;
+
+margin-bottom:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:#111111;
+
+color:white;
+
+font-size:16px;
+
+outline:none;
+
+border:1px solid rgba(247,213,138,0.12);
+}
+
+.signup-btn{
+
+width:100%;
+
+padding:18px;
+
+border:none;
+
+border-radius:18px;
+
+background:
+linear-gradient(
+90deg,
+#f7d58a,
+#b8863b
+);
+
+font-size:18px;
+font-weight:900;
+
+color:#050505;
+
+cursor:pointer;
+}
+
+/* light mode */
+
+body.light{
+
+background:#f6f1e7;
+color:black;
+}
+
+body.light .main{
+
+background:
+linear-gradient(
+145deg,
+#f6f1e7,
+#ffffff,
+#f0dfc2
+);
+
+}
+
+body.light .card{
+
+background:rgba(255,255,255,0.8);
+
+}
+
+body.light .title{
+color:black;
+}
+
+body.light .subtitle{
+color:#444;
+}
+
+body.light .top-btn{
+
+background:white;
+color:black;
+}
+
+body.light .dropdown{
+background:white;
+}
+
+body.light .drop-item{
+color:black;
 }
 
 </style>
 </head>
+
 <body>
 
-<div class="loader" id="loader">
+<!-- loading -->
 
-<div class="loader-logo">
-ETORIKA
+<div class="loader">
+
+<div class="logo-icon">
+E
 </div>
 
-<div class="loader-text">
-Preparing Your Creator Space...
+<div class="loading-title">
+EYORIKA
 </div>
 
-<div class="loader-bar">
+<div class="loading-sub">
+WELCOME TO THE FUTURE
+</div>
 
-<div class="loader-fill"></div>
+<div class="maykozee">
+MAYKOZEE
+</div>
+
+</div>
+
+<!-- signup -->
+
+<div class="signup-page" id="signupPage">
+
+<div class="signup-card">
+
+<div class="signup-title">
+Create Account
+</div>
+
+<input class="input" placeholder="Username">
+
+<input class="input" placeholder="Email">
+
+<input class="input" placeholder="Password" type="password">
+
+<button class="signup-btn">
+Continue
+</button>
 
 </div>
 
 </div>
+
+<!-- main -->
 
 <div class="main">
 
 <div class="bg1"></div>
 <div class="bg2"></div>
 
-<div class="counter" id="counter">
-0
-</div>
+<!-- floating -->
 
-<div class="float" style="left:10%">+25 Followers</div>
-<div class="float" style="left:75%;animation-delay:2s">Trending</div>
-<div class="float" style="left:50%;animation-delay:4s">Viral Video</div>
-  
-<div class="float" style="left:18%;animation-delay:1s">
+<div class="float" style="left:12%">
 TikTok
 </div>
 
-<div class="float" style="left:82%;animation-delay:3s">
+<div class="float" style="left:70%;animation-delay:2s">
 Instagram
 </div>
 
-<div class="float" style="left:35%;animation-delay:5s">
-YouTube
+<div class="float" style="left:40%;animation-delay:4s">
+Followers
 </div>
 
-<div class="float" style="left:60%;animation-delay:7s">
-Followers +
+<div class="float" style="left:85%;animation-delay:6s">
+Views
 </div>
 
-<!-- top buttons -->
+<!-- top -->
 
 <div class="top-area">
 
-<button class="top-btn" id="langBtn" onclick="toggleLang()">
-Language
+<button class="top-btn" onclick="toggleLang()" id="langBtn">
+አማርኛ
 </button>
-  
-<button class="top-btn" id="themeBtn" onclick="toggleDark()">
+
+<button class="top-btn" onclick="toggleDark()" id="darkBtn">
 Dark
 </button>
+
 <div class="dropdown" id="langMenu">
 
-<div class="drop-item" onclick="changeLang('en')">
-English
-</div>
-
-<div class="drop-item" onclick="changeLang('am')">
-አማርኛ
+<div class="drop-item" onclick="changeLang()">
+Switch Language
 </div>
 
 </div>
@@ -557,24 +679,32 @@ English
 
 <div class="card">
 
-<div class="logo">
+<div class="logo-wrap">
+
+<div class="logo-mini">
+E
+</div>
+
+</div>
+
+<div class="logo" id="logoText">
 EYORIKA
 </div>
 
 <div class="title" id="title">
-Go Viral Faster On TikTok
-</div>
-  
-<div class="subtitle" id="subtitle">
-Boost followers, increase views, and grow your TikTok audience with smart creator tools.
+Grow Faster. Go Viral.
 </div>
 
-<button class="btn" onclick="goSignup()">
+<div class="subtitle" id="subtitle">
+Smart premium tools for TikTok and Instagram creators.
+</div>
+
+<button class="btn" id="startBtn" onclick="goSignup()">
 Get Started
 </button>
 
-<div class="mini">
-Modern Creator Community Platform
+<div class="mini" id="miniText">
+PREMIUM CREATOR PLATFORM
 </div>
 
 </div>
@@ -583,41 +713,67 @@ Modern Creator Community Platform
 
 <script>
 
-/* counter */
-
-let count = 0;
-
-let counter = document.getElementById("counter");
-
-let inter = setInterval(()=>{
-
-count += 7;
-
-counter.innerHTML = count + "+";
-
-if(count >= 1000){
-
-clearInterval(inter);
-
-counter.innerHTML = "1000+";
-
-}
-
-},25);
-
-/* signup */
-
-function goSignup(){
-
-alert("Signup Page Coming Next");
-
-}
-
 /* language */
 
-let menu = document.getElementById("langMenu");
+let amharic = false;
+
+function changeLang(){
+
+amharic = !amharic;
+
+if(amharic){
+
+document.getElementById("logoText").innerHTML =
+"ኢዮሪካ";
+
+document.getElementById("title").innerHTML =
+"ፈጣን እድገት እና ቫይራል ስኬት";
+
+document.getElementById("subtitle").innerHTML =
+"ለTikTok እና Instagram ክሬይተሮች ዘመናዊ premium መሳሪያዎች።";
+
+document.getElementById("startBtn").innerHTML =
+"ጀምር";
+
+document.getElementById("miniText").innerHTML =
+"ዘመናዊ የክሬይተር መድረክ";
+
+document.getElementById("langBtn").innerHTML =
+"English";
+
+}else{
+
+document.getElementById("logoText").innerHTML =
+"EYORIKA";
+
+document.getElementById("title").innerHTML =
+"Grow Faster. Go Viral.";
+
+document.getElementById("subtitle").innerHTML =
+"Smart premium tools for TikTok and Instagram creators.";
+
+document.getElementById("startBtn").innerHTML =
+"Get Started";
+
+document.getElementById("miniText").innerHTML =
+"PREMIUM CREATOR PLATFORM";
+
+document.getElementById("langBtn").innerHTML =
+"አማርኛ";
+
+}
+
+document.getElementById("langMenu").style.display =
+"none";
+
+}
+
+/* language menu */
 
 function toggleLang(){
+
+let menu =
+document.getElementById("langMenu");
 
 if(menu.style.display === "block"){
 
@@ -631,57 +787,6 @@ menu.style.display = "block";
 
 }
 
-/* language data */
-
-function changeLang(lang){
-
-let title = document.getElementById("title");
-
-let subtitle = document.getElementById("subtitle");
-
-if(lang === "am"){
-
-document.querySelector(".logo").innerHTML =
-"ኢዮሪካ";
-
-document.querySelector(".btn").innerHTML =
-"ጀምር";
-
-document.querySelector(".mini").innerHTML =
-"ዘመናዊ የክሬይተር መድረክ";
-
-document.querySelectorAll(".top-btn")[0].innerHTML =
-"English";
-
-document.getElementById("langBtn").innerHTML = "English";
-
-title.innerHTML = "ቲክቶክህን ፈጣን ቫይራል አድርግ";
-
-subtitle.innerHTML = "ተከታዮችን ጨምር፣ ቪዲዮዎችህን አሳድግ እና በዘመናዊ creator tools ፈጣን እድገት አግኝ።";
-
-if(lang === "en"){
-
-document.querySelector(".logo").innerHTML =
-"EYORIKA";
-
-document.querySelector(".btn").innerHTML =
-"Get Started";
-
-document.querySelector(".mini").innerHTML =
-"Modern Creator Community Platform";
-
-document.querySelectorAll(".top-btn")[0].innerHTML =
-"አማርኛ";
-  
-document.getElementById("langBtn").innerHTML = "አማርኛ";
-
-title.innerHTML = "Go Viral Faster On TikTok";
-
-subtitle.innerHTML = "Boost followers, increase views, and grow your TikTok audience with smart creator tools.";
-menu.style.display = "none";
-
-}
-
 /* dark mode */
 
 let dark = true;
@@ -690,33 +795,33 @@ function toggleDark(){
 
 dark = !dark;
 
-const darkBtn = document.querySelectorAll(".top-btn")[1];
-
 if(dark){
 
 document.body.classList.remove("light");
 
-darkBtn.innerHTML = "Dark";
-
-darkBtn.style.background =
-"rgba(255,255,255,0.13)";
-
-darkBtn.style.color = "white";
+document.getElementById("darkBtn").innerHTML =
+"Dark";
 
 }else{
 
 document.body.classList.add("light");
 
-darkBtn.innerHTML = "Light";
-
-darkBtn.style.background = "white";
-
-darkBtn.style.color = "black";
+document.getElementById("darkBtn").innerHTML =
+"Light";
 
 }
 
 }
-  
+
+/* signup */
+
+function goSignup(){
+
+document.getElementById("signupPage").style.display =
+"flex";
+
+}
+
 </script>
 
 </body>
