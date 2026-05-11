@@ -16,11 +16,106 @@ font-family:Arial,sans-serif;
 transition:0.3s;
 }
 
-body{
-background:#050505;
-overflow:hidden;
+/* ================= LOADER ================= */
+
+.loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
 height:100vh;
-color:white;
+background:#050505;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:99999;
+animation:hideLoader 0.7s ease forwards;
+animation-delay:2s;
+}
+
+@keyframes hideLoader{
+
+to{
+opacity:0;
+visibility:hidden;
+}
+
+}
+
+.loader-logo{
+
+font-size:60px;
+font-weight:900;
+font-style:italic;
+letter-spacing:-4px;
+
+background:linear-gradient(
+90deg,
+#ff00a8,
+#8b5cf6,
+#00f2ea
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+text-shadow:
+0 0 20px rgba(255,0,168,0.4),
+0 0 40px rgba(0,242,234,0.2);
+
+animation:loaderGlow 1.4s infinite alternate;
+}
+
+@keyframes loaderGlow{
+
+100%{
+transform:scale(1.06);
+filter:brightness(1.2);
+}
+
+}
+
+.loader-text{
+
+margin-top:16px;
+font-size:15px;
+letter-spacing:2px;
+color:#bdbdbd;
+}
+
+.loader-bar{
+
+width:220px;
+height:8px;
+background:rgba(255,255,255,0.08);
+border-radius:20px;
+overflow:hidden;
+margin-top:30px;
+}
+
+.loader-fill{
+
+width:0%;
+height:100%;
+border-radius:20px;
+
+background:linear-gradient(
+90deg,
+#ff0050,
+#8b5cf6,
+#00f2ea
+);
+
+animation:loading 2s linear forwards;
+}
+
+@keyframes loading{
+
+100%{
+width:100%;
+}
+
 }
 
 /* ================= THEMES ================= */
@@ -320,6 +415,24 @@ line-height:1.7;
 </style>
 </head>
 <body>
+
+<div class="loader" id="loader">
+
+<div class="loader-logo">
+Etorika
+</div>
+
+<div class="loader-text">
+Loading Experience...
+</div>
+
+<div class="loader-bar">
+
+<div class="loader-fill"></div>
+
+</div>
+
+</div>
 
 <div class="main">
 
