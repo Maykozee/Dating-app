@@ -88,7 +88,7 @@ color:#bdbdbd;
 
 width:220px;
 height:8px;
-background:rgba(255,255,255,0.08);
+background:rgba(255,255,255,0.13);
 border-radius:20px;
 overflow:hidden;
 margin-top:30px;
@@ -266,8 +266,7 @@ z-index:100;
 }
 
 .top-btn{
-
-padding:13px 18px;
+padding:13px 20px;
 
 border:none;
 
@@ -321,13 +320,13 @@ background:rgba(255,255,255,0.08);
 
 .card{
 position:relative;
-width:90%;
-max-width:410px;
-padding:55px 30px;
+width:92%;
+max-width:430px;
+padding:60px 34px;
 
 background:rgba(15,15,25,0.55);
 
-border:1px solid rgba(255,255,255,0.08);
+border:1px solid rgba(255,255,255,0.16);
 
 backdrop-filter:blur(30px);
 
@@ -360,30 +359,49 @@ transform:translateY(0);
 .logo{
 font-size:72px;
 font-weight:900;
-letter-spacing:-4px;
-margin-bottom:20px;
-font-style:italic;
+letter-spacing:4px;
+margin-bottom:22px;
+font-family:Impact,sans-serif;
 text-transform:uppercase;
 
 background:linear-gradient(
 90deg,
 #ff00a8,
-#ff4fd8,
-#8b5cf6,
+#ff66d9,
+#7df9ff,
 #00f2ea
 );
+
+background-size:300% 300%;
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 
-text-shadow:
-0 0 10px rgba(255,0,168,0.4),
-0 0 20px rgba(0,242,234,0.3),
-0 0 40px rgba(255,0,168,0.2);
+animation:logoGlow 5s ease infinite;
 
-animation:logoGlow 3s infinite alternate;
+filter:
+drop-shadow(0 0 12px rgba(255,0,170,0.6))
+drop-shadow(0 0 20px rgba(0,242,234,0.5));
 }
 
+@keyframes logoGlow{
+
+0%{
+background-position:0% 50%;
+transform:scale(1);
+}
+
+50%{
+background-position:100% 50%;
+transform:scale(1.03);
+}
+
+100%{
+background-position:0% 50%;
+transform:scale(1);
+}
+
+}
 @keyframes logoGlow{
 
 100%{
@@ -402,12 +420,21 @@ opacity:0.9;
 }
 
 .subtitle{
-font-size:15px;
-line-height:1.8;
-color:#d5d5d5;
-margin-bottom:34px;
+font-size:19px;
+line-height:1.9;
+color:#dcdcdc;
+margin-bottom:42px;
+font-weight:500;
 }
 
+.title{
+font-size:46px;
+font-weight:900;
+line-height:1.2;
+margin-bottom:22px;
+letter-spacing:-1px;
+}
+  
 /* button */
 
 .btn{
@@ -484,6 +511,22 @@ Preparing Your Creator Space...
 <div class="float" style="left:10%">+25 Followers</div>
 <div class="float" style="left:75%;animation-delay:2s">Trending</div>
 <div class="float" style="left:50%;animation-delay:4s">Viral Video</div>
+  
+<div class="float" style="left:18%;animation-delay:1s">
+TikTok
+</div>
+
+<div class="float" style="left:82%;animation-delay:3s">
+Instagram
+</div>
+
+<div class="float" style="left:35%;animation-delay:5s">
+YouTube
+</div>
+
+<div class="float" style="left:60%;animation-delay:7s">
+Followers +
+</div>
 
 <!-- top buttons -->
 
@@ -598,6 +641,18 @@ let subtitle = document.getElementById("subtitle");
 
 if(lang === "am"){
 
+document.querySelector(".logo").innerHTML =
+"ኢዮሪካ";
+
+document.querySelector(".btn").innerHTML =
+"ጀምር";
+
+document.querySelector(".mini").innerHTML =
+"ዘመናዊ የክሬይተር መድረክ";
+
+document.querySelectorAll(".top-btn")[0].innerHTML =
+"English";
+
 document.getElementById("langBtn").innerHTML = "English";
 
 title.innerHTML = "ቲክቶክህን ፈጣን ቫይራል አድርግ";
@@ -606,6 +661,18 @@ subtitle.innerHTML = "ተከታዮችን ጨምር፣ ቪዲዮዎችህን አ�
 
 if(lang === "en"){
 
+document.querySelector(".logo").innerHTML =
+"EYORIKA";
+
+document.querySelector(".btn").innerHTML =
+"Get Started";
+
+document.querySelector(".mini").innerHTML =
+"Modern Creator Community Platform";
+
+document.querySelectorAll(".top-btn")[0].innerHTML =
+"አማርኛ";
+  
 document.getElementById("langBtn").innerHTML = "አማርኛ";
 
 title.innerHTML = "Go Viral Faster On TikTok";
@@ -623,21 +690,33 @@ function toggleDark(){
 
 dark = !dark;
 
+const darkBtn = document.querySelectorAll(".top-btn")[1];
+
 if(dark){
 
 document.body.classList.remove("light");
 
-document.getElementById("themeBtn").innerHTML = "Dark";
+darkBtn.innerHTML = "Dark";
+
+darkBtn.style.background =
+"rgba(255,255,255,0.13)";
+
+darkBtn.style.color = "white";
 
 }else{
 
 document.body.classList.add("light");
 
-document.getElementById("themeBtn").innerHTML = "Light";
-}
+darkBtn.innerHTML = "Light";
+
+darkBtn.style.background = "white";
+
+darkBtn.style.color = "black";
 
 }
 
+}
+  
 </script>
 
 </body>
