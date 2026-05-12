@@ -85,8 +85,14 @@ overflow:auto;
 #loadingPage{
 
 background:
-radial-gradient(circle at top,#5b3218 0%,transparent 30%),
-linear-gradient(180deg,#050505,#120a06,#1f130d);
+linear-gradient(
+rgba(0,0,0,.45),
+rgba(0,0,0,.55)
+),
+url('bg.jpg');
+
+background-size:cover;
+background-position:center;
 
 display:flex;
 justify-content:center;
@@ -97,10 +103,10 @@ flex-direction:column;
 
 .loading-logo{
 
-width:130px;
-height:130px;
+width:120px;
+height:120px;
 
-border-radius:38px;
+border-radius:35px;
 
 background:
 linear-gradient(
@@ -114,13 +120,15 @@ display:flex;
 justify-content:center;
 align-items:center;
 
-font-size:60px;
+font-size:55px;
 font-weight:800;
 
 color:#fff7e8;
 
 box-shadow:
-0 0 35px rgba(255,210,120,.25);
+0 0 30px rgba(255,210,120,.3);
+
+backdrop-filter:blur(10px);
 
 animation:pulse 2s infinite;
 
@@ -191,7 +199,7 @@ linear-gradient(
 box-shadow:
 0 0 15px rgba(255,220,170,.35);
 
-animation:load 2s linear forwards;
+animation:load 2s linear forwards;j
 
 }
 .maykozee{
