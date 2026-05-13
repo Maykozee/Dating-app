@@ -6,7 +6,7 @@
 
 <title>EYORIKA</title>
   
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -68,6 +68,9 @@ overflow:hidden;
 
 }
 
+transform-style:preserve-3d;
+animation:floatIcon 4s ease-in-out infinite;
+  
 .small-app-icon{
 width:82px;
 height:82px;
@@ -386,6 +389,9 @@ animation:loadBar 1.4s ease forwards;
 display:flex;
 gap:24px;
 
+align-items:center;
+justify-content:center;
+  
 margin-top:34px;
 
 }
@@ -436,12 +442,17 @@ linear-gradient(
 #1f120b 100%
 );
 
-overflow:hidden;
+display:flex;
+justify-content:center;
+align-items:center;
+padding:24px;
+  
+overflow-x:hidden;
 position:relative;
 
 }
 
-#welcomePage::before{
+.welcome-card::before{
 
 content:"";
 
@@ -449,14 +460,14 @@ position:absolute;
 inset:0;
 
 background:
-url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop');
+linear-gradient(
+130deg,
+transparent 20%,
+rgba(255,255,255,.04) 50%,
+transparent 80%
+);
 
-background-size:cover;
-background-position:center;
-
-opacity:.06;
-
-filter:blur(2px);
+pointer-events:none;
 
 }
 
@@ -469,6 +480,9 @@ padding:42px 28px;
 
 border-radius:36px;
 
+position:relative;
+overflow:hidden;
+  
 background:
 linear-gradient(
 180deg,
@@ -522,7 +536,8 @@ box-shadow:
 
 font-size:58px;
 font-weight:900;
-
+font-family:'Syne',sans-serif;
+  
 letter-spacing:8px;
 
 margin-top:24px;
@@ -551,40 +566,7 @@ font-size:36px;
 font-weight:700;
 line-height:1.3;
 
-}
-
-.card{
-
-width:90%;
-max-width:430px;
-
-margin:80px auto 40px;
-
-background:
-linear-gradient(
-180deg,
-rgba(255,255,255,.10),
-rgba(255,255,255,.04)
-);
-
-border:1px solid rgba(255,255,255,.08);
-
-backdrop-filter:blur(24px);
-
-border-radius:42px;
-
-padding:42px 28px;
-
-text-align:center;
-
-position:relative;
-
-box-shadow:
-0 20px 80px rgba(0,0,0,.70),
-0 0 40px rgba(255,180,90,.10);
-
-z-index:2;
-
+font-family:'Syne',sans-serif;  
 }
   
 .subtitle{
@@ -623,6 +605,9 @@ linear-gradient(
 #fff6e7
 );
 
+position:relative;
+overflow:hidden;
+  
 color:#050505;
 
 box-shadow:
@@ -632,8 +617,40 @@ transition:.35s;
 
 }
 
+.main-btn::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+left:-120%;
+
+width:80%;
+height:100%;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.45),
+transparent
+);
+
+transform:skewX(-25deg);
+
+transition:.8s;
+
+}
+
+.main-btn:hover::before{
+left:130%;
+}
+  
 .main-btn:hover{
-transform:translateY(-2px);
+transform:translateY(-3px) scale(1.01);
+box-shadow:
+0 14px 40px rgba(255,210,120,.35);
 }
 
 .light-mode .title,
@@ -759,6 +776,22 @@ transform:rotate(35deg) translateX(550px);
 }
 }
 
+@keyframes floatIcon{
+
+0%{
+transform:translateY(0px);
+}
+
+50%{
+transform:translateY(-10px);
+}
+
+100%{
+transform:translateY(0px);
+}
+
+}
+  
 @keyframes cardShow{
 
 from{
@@ -779,6 +812,8 @@ transform:translateY(0);
 
 .loading-title{
 font-size:46px;
+
+filter:drop-shadow(0 0 18px rgba(255,210,140,.12));
 }
 
 .brand{
@@ -927,64 +962,6 @@ Premium creator platform designed for modern TikTok & Instagram creators.
 </section>
 
 <select id="country">
-<option value="">🌍 Country</option>
-<option>🇪🇹 Ethiopia</option>
-<option>🇺🇸 United States</option>
-<option>🇬🇧 United Kingdom</option>
-<option>🇨🇦 Canada</option>
-<option>🇩🇪 Germany</option>
-<option>🇫🇷 France</option>
-<option>🇮🇹 Italy</option>
-<option>🇪🇸 Spain</option>
-<option>🇳🇱 Netherlands</option>
-<option>🇸🇪 Sweden</option>
-<option>🇳🇴 Norway</option>
-<option>🇫🇮 Finland</option>
-<option>🇨🇭 Switzerland</option>
-<option>🇧🇪 Belgium</option>
-<option>🇵🇹 Portugal</option>
-<option>🇵🇱 Poland</option>
-<option>🇹🇷 Turkey</option>
-<option>🇷🇺 Russia</option>
-<option>🇺🇦 Ukraine</option>
-<option>🇯🇵 Japan</option>
-<option>🇨🇳 China</option>
-<option>🇰🇷 South Korea</option>
-<option>🇮🇳 India</option>
-<option>🇵🇰 Pakistan</option>
-<option>🇧🇩 Bangladesh</option>
-<option>🇮🇩 Indonesia</option>
-<option>🇵🇭 Philippines</option>
-<option>🇹🇭 Thailand</option>
-<option>🇻🇳 Vietnam</option>
-<option>🇸🇬 Singapore</option>
-<option>🇲🇾 Malaysia</option>
-<option>🇦🇪 UAE</option>
-<option>🇸🇦 Saudi Arabia</option>
-<option>🇶🇦 Qatar</option>
-<option>🇰🇼 Kuwait</option>
-<option>🇪🇬 Egypt</option>
-<option>🇲🇦 Morocco</option>
-<option>🇿🇦 South Africa</option>
-<option>🇰🇪 Kenya</option>
-<option>🇳🇬 Nigeria</option>
-<option>🇹🇿 Tanzania</option>
-<option>🇬🇭 Ghana</option>
-<option>🇧🇷 Brazil</option>
-<option>🇦🇷 Argentina</option>
-<option>🇲🇽 Mexico</option>
-<option>🇨🇱 Chile</option>
-<option>🇦🇺 Australia</option>
-<option>🇳🇿 New Zealand</option>
-<option>🇮🇪 Ireland</option>
-<option>🇦🇹 Austria</option>
-<option>🇩🇰 Denmark</option>
-<option>🇨🇿 Czech Republic</option>
-<option>🇬🇷 Greece</option>
-<option>🇭🇺 Hungary</option>
-<option>🇷🇴 Romania</option>
-<option>🇮🇱 Israel</option>
-</select>
   
 <script>
 
