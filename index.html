@@ -212,6 +212,39 @@ animation:shineMove 2.8s linear infinite;
 
 }
 
+.card{
+
+position:relative;
+z-index:2;
+
+width:90%;
+max-width:430px;
+
+margin:90px auto 40px;
+
+padding:55px 30px;
+
+border-radius:42px;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.06),
+rgba(255,255,255,.02)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(18px);
+
+box-shadow:
+0 0 60px rgba(0,0,0,.7),
+0 0 30px rgba(255,180,90,.08);
+
+overflow:hidden;
+
+}
+  
 /* title */
 
 .loading-title{
@@ -332,21 +365,18 @@ transform:scale(1.12);
 
 #welcomePage{
 
-display:flex;
-justify-content:center;
-align-items:center;
+overflow:hidden;
+position:relative;
 
 background:
-radial-gradient(circle at top,#6f3d19 0%,transparent 35%),
+radial-gradient(circle at top,#6b3918 0%,transparent 35%),
 radial-gradient(circle at bottom,#2a1408 0%,transparent 35%),
 linear-gradient(
 180deg,
 #050505 0%,
-#120904 50%,
-#1c1008 100%
+#120904 45%,
+#1f120b 100%
 );
-
-position:relative;
 
 }
 
@@ -365,7 +395,8 @@ url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&au
 background-size:cover;
 background-position:center;
 
-opacity:.05;
+opacity:.06;
+
 filter:blur(2px);
 
 }
@@ -389,23 +420,28 @@ padding:30px;
 
 .brand{
 
-margin-top:34px;
+margin-top:28px;
 
 font-size:58px;
 font-weight:800;
 
-letter-spacing:8px;
+letter-spacing:7px;
+
+text-transform:uppercase;
 
 background:
 linear-gradient(
 90deg,
-#fff6e8,
+#fff6e7,
 #f7d49a,
 #8f5b2e
 );
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+
+text-shadow:
+0 0 20px rgba(255,220,170,.12);
 
 }
 
@@ -428,26 +464,26 @@ color:#d4c5b4;
 
 .main-btn{
 
+width:100%;
+
 margin-top:38px;
 
-width:260px;
-
-padding:18px;
+padding:19px;
 
 border:none;
-outline:none;
-
-border-radius:18px;
+border-radius:20px;
 
 font-size:17px;
 font-weight:800;
+
+letter-spacing:1px;
 
 cursor:pointer;
 
 background:
 linear-gradient(
 135deg,
-#5b3516,
+#8f5b2e,
 #f7d49a,
 #fff6e7
 );
@@ -455,12 +491,25 @@ linear-gradient(
 color:#050505;
 
 box-shadow:
-0 10px 30px rgba(255,210,120,.22);
+0 12px 30px rgba(255,210,120,.22);
 
-transition:.35s;
+transition:.4s ease;
 
 }
 
+.main-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 18px 40px rgba(255,210,120,.28);
+
+}
+
+.top-btn{
+
+padding:10px 16px;
+  
 .main-btn:hover{
 transform:translateY(-3px);
 }
@@ -598,8 +647,12 @@ class="social-icon"
 EYORIKA
 </div>
 
-<div class="subtitle">
-Silence Creates Presence.
+<div class="subtitle" id="mainSub">
+
+Build your digital presence with premium creator tools,
+viral growth systems, audience insights,
+and luxury social branding experiences.
+
 </div>
 
 <button class="main-btn" onclick="openSignup()">
