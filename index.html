@@ -5,8 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>EYORIKA</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 
 <style>
 
@@ -33,6 +33,127 @@ overflow:hidden;
 
 }
 
+/* ================= GLOBAL PREMIUM ICON ================= */
+
+.app-icon{
+
+width:120px;
+height:120px;
+
+margin:auto;
+
+border-radius:38px;
+
+position:relative;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+linear-gradient(
+145deg,
+#fff3d8,
+#d39b58,
+#2d1809
+);
+
+border:1px solid rgba(255,255,255,.16);
+
+box-shadow:
+0 0 40px rgba(255,190,120,.20),
+0 20px 60px rgba(0,0,0,.65);
+
+overflow:hidden;
+
+}
+
+.small-app-icon{
+width:82px;
+height:82px;
+border-radius:28px;
+}
+
+.small-e-icon{
+width:56px;
+height:56px;
+gap:7px;
+}
+
+.small-e-icon .e-bar{
+height:9px;
+}
+
+.small-e-icon .e-top,
+.small-e-icon .e-bottom{
+width:52px;
+}
+
+.small-e-icon .e-middle{
+width:34px;
+}
+  
+.app-icon::before{
+
+content:"";
+
+position:absolute;
+inset:0;
+
+background:
+linear-gradient(
+135deg,
+transparent,
+rgba(255,255,255,.18),
+transparent
+);
+
+}
+
+.e-icon{
+
+position:relative;
+
+width:78px;
+height:78px;
+
+display:flex;
+flex-direction:column;
+justify-content:center;
+gap:10px;
+
+z-index:2;
+
+}
+
+.e-bar{
+
+height:12px;
+
+border-radius:40px;
+
+background:
+linear-gradient(
+90deg,
+#ffffff,
+#ffe2b2,
+#8f5b2e
+);
+
+box-shadow:
+0 0 14px rgba(255,220,170,.55);
+
+}
+
+.e-top,
+.e-bottom{
+width:76px;
+}
+
+.e-middle{
+width:52px;
+}
+  
 /* ========= GLOBAL ========= */
 
 .hidden{
@@ -257,8 +378,7 @@ linear-gradient(
 #fff8ef
 );
 
-animation:loading 1.3s linear forwards;
-
+animation:loadBar 1.4s ease forwards;
 }
 
 .socials{
@@ -306,11 +426,37 @@ color:#8d7158;
 
 #welcomePage{
 
-display:flex;
-justify-content:center;
-align-items:center;
+background:
+radial-gradient(circle at top,#6e3f1d 0%,transparent 30%),
+radial-gradient(circle at bottom,#2a1408 0%,transparent 35%),
+linear-gradient(
+180deg,
+#050505 0%,
+#120904 45%,
+#1f120b 100%
+);
 
-padding:24px;
+overflow:hidden;
+position:relative;
+
+}
+
+#welcomePage::before{
+
+content:"";
+
+position:absolute;
+inset:0;
+
+background:
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop');
+
+background-size:cover;
+background-position:center;
+
+opacity:.06;
+
+filter:blur(2px);
 
 }
 
@@ -374,22 +520,26 @@ box-shadow:
 
 .brand{
 
-margin-top:22px;
+font-size:58px;
+font-weight:900;
 
-font-size:52px;
-font-weight:800;
-letter-spacing:6px;
+letter-spacing:8px;
+
+margin-top:24px;
 
 background:
 linear-gradient(
 90deg,
-#fff7ec,
-#f7d49a,
+#fff7ea,
+#f6cd90,
 #8f5b2e
 );
 
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+
+text-shadow:
+0 0 22px rgba(255,220,170,.18);
 
 }
 
@@ -403,50 +553,142 @@ line-height:1.3;
 
 }
 
+.card{
+
+width:90%;
+max-width:430px;
+
+margin:80px auto 40px;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.10),
+rgba(255,255,255,.04)
+);
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(24px);
+
+border-radius:42px;
+
+padding:42px 28px;
+
+text-align:center;
+
+position:relative;
+
+box-shadow:
+0 20px 80px rgba(0,0,0,.70),
+0 0 40px rgba(255,180,90,.10);
+
+z-index:2;
+
+}
+  
 .subtitle{
 
-margin-top:18px;
+margin-top:22px;
 
 font-size:16px;
-line-height:1.8;
+line-height:1.9;
 
-color:#cfcfcf;
+color:#d6cfc7;
+
+font-weight:400;
 
 }
 
 .main-btn{
 
+margin-top:36px;
+
 width:100%;
 
-margin-top:34px;
-
-padding:18px;
+padding:19px;
 
 border:none;
-border-radius:18px;
 
-font-size:17px;
-font-weight:700;
+border-radius:20px;
 
-cursor:pointer;
+font-size:18px;
+font-weight:800;
 
 background:
 linear-gradient(
 135deg,
-#7c4a23,
-#f6cf93,
-#fff6ea
+#7a4821,
+#f7d49a,
+#fff6e7
 );
 
 color:#050505;
 
 box-shadow:
-0 10px 30px rgba(255,200,120,.18);
+0 10px 35px rgba(255,190,120,.24);
 
-transition:.3s;
+transition:.35s;
 
 }
 
+.main-btn:hover{
+transform:translateY(-2px);
+}
+
+.light-mode .title,
+.light-mode .form-title,
+.light-mode .home-card h2{
+color:#111;
+}
+
+.light-mode .subtitle,
+.light-mode .small-text,
+.light-mode .form-sub,
+.light-mode .link-text,
+.light-mode .home-card p{
+color:#444;
+}
+
+.light-mode input,
+.light-mode select{
+background:#ffffff !important;
+color:#111 !important;
+border:1px solid #dddddd !important;
+}
+
+.light-mode .social-btn{
+background:#ffffff;
+color:#111;
+border:1px solid #dddddd;
+}
+
+.form-card{
+
+max-width:460px;
+
+margin:30px auto;
+
+background:
+linear-gradient(
+180deg,
+rgba(255,255,255,.08),
+rgba(255,255,255,.03)
+);
+
+border-radius:36px;
+
+padding:34px 24px 42px;
+
+border:1px solid rgba(255,255,255,.08);
+
+backdrop-filter:blur(20px);
+
+box-shadow:
+0 20px 70px rgba(0,0,0,.55);
+
+}
+  
 .main-btn:hover{
 
 transform:translateY(-3px);
@@ -464,6 +706,39 @@ color:#9e9e9e;
 
 }
 
+.input-box input,
+.input-box select{
+
+width:100%;
+
+padding:18px;
+
+border-radius:18px;
+
+background:rgba(255,255,255,.04);
+
+color:white;
+
+border:1px solid rgba(255,255,255,.08);
+
+font-size:15px;
+
+outline:none;
+
+transition:.3s;
+
+}
+
+.input-box input:focus,
+.input-box select:focus{
+
+border:1px solid #d7a25c;
+
+box-shadow:
+0 0 18px rgba(255,190,120,.16);
+
+}
+                      
 /* ========= ANIMATIONS ========= */
 
 @keyframes loading{
@@ -516,6 +791,32 @@ font-size:30px;
 
 }
 
+html{
+scroll-behavior:smooth;
+}
+
+button,
+input,
+select{
+-webkit-tap-highlight-color:transparent;
+}
+
+.page{
+animation:fadePage .5s ease;
+}
+
+@keyframes fadePage{
+from{
+opacity:0;
+transform:translateY(10px);
+}
+
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+  
 </style>
 </head>
 
@@ -532,14 +833,12 @@ font-size:30px;
 
 <div class="light-beam"></div>
 
-<div class="logo-box">
+<div class="app-icon">
 
-<div class="e-logo">
-
-<div class="e-line e1"></div>
-<div class="e-line e2"></div>
-<div class="e-line e3"></div>
-
+<div class="e-icon">
+<div class="e-bar e-top"></div>
+<div class="e-bar e-middle"></div>
+<div class="e-bar e-bottom"></div>
 </div>
 
 </div>
@@ -564,8 +863,14 @@ WELCOME TO EYORIKA
 
 </div>
 
-<div class="signature">
-MAYKOZEE
+<div class="profile-mini">
+
+<div class="e-icon small-e-icon">
+<div class="e-bar e-top"></div>
+<div class="e-bar e-middle"></div>
+<div class="e-bar e-bottom"></div>
+</div>
+
 </div>
 
 </section>
@@ -576,10 +881,16 @@ MAYKOZEE
 
 <div class="welcome-card">
 
-<div class="hero-logo">
-E
+<div class="app-icon">
+
+<div class="e-icon">
+<div class="e-bar e-top"></div>
+<div class="e-bar e-middle"></div>
+<div class="e-bar e-bottom"></div>
 </div>
 
+</div>
+  
 <div class="brand">
 EYORIKA
 </div>
@@ -593,6 +904,16 @@ Go Viral.
 Smart tools for TikTok and Instagram creators with premium growth experience.
 </div>
 
+<div class="app-icon small-app-icon">
+
+<div class="e-icon small-e-icon">
+<div class="e-bar e-top"></div>
+<div class="e-bar e-middle"></div>
+<div class="e-bar e-bottom"></div>
+</div>
+
+</div>
+  
 <button class="main-btn">
 Get Started
 </button>
@@ -605,6 +926,66 @@ Premium creator platform designed for modern TikTok & Instagram creators.
 
 </section>
 
+<select id="country">
+<option value="">🌍 Country</option>
+<option>🇪🇹 Ethiopia</option>
+<option>🇺🇸 United States</option>
+<option>🇬🇧 United Kingdom</option>
+<option>🇨🇦 Canada</option>
+<option>🇩🇪 Germany</option>
+<option>🇫🇷 France</option>
+<option>🇮🇹 Italy</option>
+<option>🇪🇸 Spain</option>
+<option>🇳🇱 Netherlands</option>
+<option>🇸🇪 Sweden</option>
+<option>🇳🇴 Norway</option>
+<option>🇫🇮 Finland</option>
+<option>🇨🇭 Switzerland</option>
+<option>🇧🇪 Belgium</option>
+<option>🇵🇹 Portugal</option>
+<option>🇵🇱 Poland</option>
+<option>🇹🇷 Turkey</option>
+<option>🇷🇺 Russia</option>
+<option>🇺🇦 Ukraine</option>
+<option>🇯🇵 Japan</option>
+<option>🇨🇳 China</option>
+<option>🇰🇷 South Korea</option>
+<option>🇮🇳 India</option>
+<option>🇵🇰 Pakistan</option>
+<option>🇧🇩 Bangladesh</option>
+<option>🇮🇩 Indonesia</option>
+<option>🇵🇭 Philippines</option>
+<option>🇹🇭 Thailand</option>
+<option>🇻🇳 Vietnam</option>
+<option>🇸🇬 Singapore</option>
+<option>🇲🇾 Malaysia</option>
+<option>🇦🇪 UAE</option>
+<option>🇸🇦 Saudi Arabia</option>
+<option>🇶🇦 Qatar</option>
+<option>🇰🇼 Kuwait</option>
+<option>🇪🇬 Egypt</option>
+<option>🇲🇦 Morocco</option>
+<option>🇿🇦 South Africa</option>
+<option>🇰🇪 Kenya</option>
+<option>🇳🇬 Nigeria</option>
+<option>🇹🇿 Tanzania</option>
+<option>🇬🇭 Ghana</option>
+<option>🇧🇷 Brazil</option>
+<option>🇦🇷 Argentina</option>
+<option>🇲🇽 Mexico</option>
+<option>🇨🇱 Chile</option>
+<option>🇦🇺 Australia</option>
+<option>🇳🇿 New Zealand</option>
+<option>🇮🇪 Ireland</option>
+<option>🇦🇹 Austria</option>
+<option>🇩🇰 Denmark</option>
+<option>🇨🇿 Czech Republic</option>
+<option>🇬🇷 Greece</option>
+<option>🇭🇺 Hungary</option>
+<option>🇷🇴 Romania</option>
+<option>🇮🇱 Israel</option>
+</select>
+  
 <script>
 
 setTimeout(()=>{
