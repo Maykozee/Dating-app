@@ -608,32 +608,59 @@ linear-gradient(180deg,#050505,#120a06,#1f130d);
 
 }
 
-/* phone container */
+/* ================= CINEMATIC LOADING ================= */
 
-.loading-phone{
+#loadingPage{
 
 position:relative;
 
-width:360px;
-height:760px;
+display:flex;
+justify-content:center;
+align-items:center;
 
-border-radius:42px;
-border:2px solid rgba(255,220,170,.15);
+overflow:hidden;
 
-backdrop-filter:blur(14px);
-  
 background:
+radial-gradient(circle at top,#6b3918 0%,transparent 35%),
+radial-gradient(circle at bottom,#2a1408 0%,transparent 35%),
 linear-gradient(
 180deg,
-rgba(20,20,20,.95),
-rgba(5,5,5,.98)
+#050505 0%,
+#120904 45%,
+#1f120b 100%
 );
 
-border:1px solid rgba(255,255,255,.08);
+}
 
-box-shadow:
-0 0 80px rgba(0,0,0,.9),
-0 0 40px rgba(255,180,90,.12);
+/* cinematic texture */
+
+#loadingPage::before{
+
+content:"";
+
+position:absolute;
+inset:0;
+
+background:
+url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop');
+
+background-size:cover;
+background-position:center;
+
+opacity:.08;
+
+filter:blur(2px);
+
+}
+
+/* main content */
+
+.premium-loading-content{
+
+position:relative;
+
+width:100%;
+height:100vh;
 
 display:flex;
 flex-direction:column;
@@ -644,6 +671,297 @@ overflow:hidden;
 
 }
 
+/* moving luxury light */
+
+.cinematic-light{
+
+position:absolute;
+
+width:260px;
+height:1200px;
+
+background:
+linear-gradient(
+180deg,
+transparent,
+rgba(255,210,140,.12),
+transparent
+);
+
+transform:rotate(35deg);
+
+left:-220px;
+
+animation:lightMove 5s linear infinite;
+
+}
+
+/* premium logo */
+
+.loading-logo{
+
+width:140px;
+height:140px;
+
+border-radius:42px;
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+background:
+linear-gradient(
+145deg,
+#f8e7c2,
+#b9783f,
+#2b1609
+);
+
+border:1px solid rgba(255,255,255,.15);
+
+box-shadow:
+0 0 40px rgba(255,210,120,.25),
+0 0 120px rgba(255,180,80,.15);
+
+z-index:2;
+
+}
+
+/* E logo */
+
+.premium-e-logo{
+
+display:flex;
+flex-direction:column;
+gap:12px;
+
+}
+
+.e-line{
+
+height:12px;
+
+border-radius:30px;
+
+background:
+linear-gradient(
+90deg,
+#fff6e7,
+#f7d49a,
+#8f5b2e
+);
+
+box-shadow:
+0 0 14px rgba(255,220,170,.4);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.e1{
+width:82px;
+}
+
+.e2{
+width:58px;
+}
+
+.e3{
+width:82px;
+}
+
+.e-line::after{
+
+content:"";
+
+position:absolute;
+inset:0;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.8),
+transparent
+);
+
+animation:shineMove 3s linear infinite;
+
+}
+
+/* title */
+
+.loading-title{
+
+margin-top:34px;
+
+font-size:62px;
+font-weight:800;
+letter-spacing:7px;
+
+background:
+linear-gradient(
+90deg,
+#fff6e7,
+#f7d49a,
+#8f5b2e
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+text-shadow:
+0 0 20px rgba(255,220,170,.15);
+
+z-index:2;
+
+}
+
+/* subtitle */
+
+.loading-sub{
+
+margin-top:14px;
+
+font-size:15px;
+letter-spacing:5px;
+
+text-transform:uppercase;
+
+color:#d4b18a;
+
+z-index:2;
+
+}
+
+/* loader */
+
+.loader-line{
+
+width:240px;
+height:8px;
+
+margin-top:45px;
+
+background:rgba(255,255,255,.08);
+
+border-radius:30px;
+
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,.05);
+
+z-index:2;
+
+}
+
+.loader-fill{
+
+width:0%;
+height:100%;
+
+border-radius:30px;
+
+background:
+linear-gradient(
+90deg,
+#8f5b2e,
+#f7d49a,
+#fff6e7
+);
+
+box-shadow:
+0 0 20px rgba(255,220,170,.35);
+
+animation:loadBar 2.4s linear forwards;
+
+}
+
+/* social icons */
+
+.social-icons{
+
+display:flex;
+gap:28px;
+
+margin-top:35px;
+
+z-index:2;
+
+}
+
+.social-icon{
+
+width:38px;
+height:38px;
+
+object-fit:contain;
+
+filter:
+drop-shadow(0 0 12px rgba(255,220,170,.3));
+
+transition:.4s;
+
+}
+
+.social-icon:hover{
+
+transform:scale(1.12);
+
+}
+
+/* signature */
+
+.maykozee{
+
+position:absolute;
+
+bottom:28px;
+right:30px;
+
+font-size:15px;
+
+font-family:cursive;
+
+letter-spacing:3px;
+
+font-style:italic;
+
+color:rgba(255,220,170,.55);
+
+transform:rotate(-5deg);
+
+opacity:.9;
+
+}
+
+/* animations */
+
+@keyframes loadBar{
+
+100%{
+width:100%;
+}
+
+}
+
+@keyframes shineMove{
+
+100%{
+transform:translateX(120px);
+}
+
+}
+
+@keyframes lightMove{
+
+100%{
+transform:rotate(35deg) translateX(700px);
+}
+
+}
 /* moving light */
 
 .phone-light{
@@ -1231,9 +1549,9 @@ transform:rotate(35deg) translateX(400px);
 
 <div class="luxury-bg"></div>
 
-<div class="loading-phone">
+<div class="premium-loading-content">
 
-<div class="phone-light"></div>
+<div class="cinematic-light"></div>
 
 <div class="loading-logo">
 
@@ -1244,8 +1562,41 @@ transform:rotate(35deg) translateX(400px);
 <div class="e-line e3"></div>
 
 </div>
+
 </div>
 
+<div class="loading-title">
+EYORIKA
+</div>
+
+<div class="loading-sub">
+Silence Creates Presence.
+</div>
+
+<div class="loader-line">
+<div class="loader-fill"></div>
+</div>
+
+<div class="social-icons">
+
+<img 
+src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png"
+class="social-icon"
+>
+
+<img 
+src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png"
+class="social-icon"
+>
+
+</div>
+
+<div class="maykozee">
+Maykozee
+</div>
+
+</div>
+  
 <div class="loading-title">
 EYORIKA
 </div>
