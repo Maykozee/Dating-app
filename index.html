@@ -614,11 +614,14 @@ linear-gradient(180deg,#050505,#120a06,#1f130d);
 
 position:relative;
 
-width:320px;
-height:650px;
+width:360px;
+height:760px;
 
 border-radius:42px;
+border:2px solid rgba(255,220,170,.15);
 
+backdrop-filter:blur(14px);
+  
 background:
 linear-gradient(
 180deg,
@@ -683,15 +686,80 @@ linear-gradient(
 #2e1a0d
 );
 
-.logo-image{
+.premium-e-logo{
 
-width:82px;
-height:82px;
+position:relative;
 
-object-fit:contain;
+width:90px;
+height:90px;
 
-filter:
-drop-shadow(0 0 18px rgba(255,220,170,.35));
+display:flex;
+flex-direction:column;
+justify-content:center;
+gap:10px;
+
+}
+
+.e-line{
+
+height:12px;
+
+border-radius:30px;
+
+background:
+linear-gradient(
+90deg,
+#fff4dc,
+#f2c98a,
+#8f5b2e
+);
+
+box-shadow:
+0 0 18px rgba(255,210,120,.45);
+
+position:relative;
+
+overflow:hidden;
+
+}
+
+.e-line::after{
+
+content:"";
+
+position:absolute;
+
+inset:0;
+
+background:
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.7),
+transparent
+);
+
+animation:shineMove 3s linear infinite;
+
+}
+
+.e1{
+width:78px;
+}
+
+.e2{
+width:58px;
+}
+
+.e3{
+width:78px;
+}
+
+@keyframes shineMove{
+
+100%{
+transform:translateX(120px);
+}
 
 }
   
@@ -812,16 +880,24 @@ z-index:2;
 
 position:absolute;
 
-bottom:20px;
-left:22px;
+bottom:18px;
+left:20px;
 
-font-size:13px;
-letter-spacing:4px;
+font-size:12px;
 
-color:#9c7a5d;
+font-family:cursive;
+
+letter-spacing:2px;
+
+color:rgba(255,230,190,.45);
+
+font-style:italic;
+
+transform:rotate(-4deg);
+
+opacity:.8;
 
 }
-
 /* animations */
 
 @keyframes loadBar{
@@ -1011,12 +1087,20 @@ z-index:2;
 
 margin-top:14px;
 
-font-size:15px;
-letter-spacing:3px;
+font-size:14px;
 
-color:#d0b08a;
+letter-spacing:4px;
+
+text-transform:uppercase;
+
+color:#d7b485;
+
+font-weight:600;
 
 z-index:2;
+
+text-shadow:
+0 0 12px rgba(255,210,120,.2);
 
 }
 
@@ -1153,11 +1237,13 @@ transform:rotate(35deg) translateX(400px);
 
 <div class="loading-logo">
 
-<img
-src="https://i.imgur.com/zYxDCQT.png"
-class="logo-image"
->
+<div class="premium-e-logo">
 
+<div class="e-line e1"></div>
+<div class="e-line e2"></div>
+<div class="e-line e3"></div>
+
+</div>
 </div>
 
 <div class="loading-title">
@@ -1165,7 +1251,7 @@ EYORIKA
 </div>
 
 <div class="loading-sub">
-Silence Creates Presence.
+  WELCOME TO EYORIKA
 </div>
 
 <div class="loader-line">
