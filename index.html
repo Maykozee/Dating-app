@@ -502,6 +502,195 @@ color:#8d7158;
 
 }
 
+/* ========= NEW PREMIUM WELCOME ========= */
+
+.welcome-overlay{
+
+position:absolute;
+inset:0;
+
+background:
+radial-gradient(circle at top,
+rgba(255,170,70,.16),
+transparent 35%);
+
+}
+
+.hero-glow{
+
+position:absolute;
+
+top:-120px;
+left:50%;
+
+transform:translateX(-50%);
+
+width:260px;
+height:260px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+circle,
+rgba(255,190,120,.22),
+transparent 70%
+);
+
+filter:blur(30px);
+
+}
+
+.hero-icon{
+
+width:130px;
+height:130px;
+
+margin:auto auto 26px;
+
+box-shadow:
+0 0 50px rgba(255,190,120,.28),
+0 20px 80px rgba(0,0,0,.75);
+
+}
+
+.welcome-card{
+
+width:100%;
+max-width:430px;
+
+padding:56px 28px 42px;
+
+border-radius:42px;
+
+position:relative;
+overflow:hidden;
+
+background:
+linear-gradient(
+180deg,
+rgba(18,12,8,.96),
+rgba(8,8,8,.98)
+);
+
+border:1px solid rgba(255,210,140,.10);
+
+backdrop-filter:blur(24px);
+
+box-shadow:
+0 25px 80px rgba(0,0,0,.78),
+0 0 40px rgba(255,170,70,.10);
+
+text-align:center;
+
+}
+
+.brand{
+
+font-size:54px;
+font-weight:900;
+
+letter-spacing:6px;
+
+margin-top:10px;
+
+font-family:'Syne',sans-serif;
+
+background:
+linear-gradient(
+90deg,
+#fff7ea,
+#f4c988,
+#8f5b2e
+);
+
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+
+filter:
+drop-shadow(0 0 18px rgba(255,210,140,.12));
+
+}
+
+.title{
+
+margin-top:26px;
+
+font-size:40px;
+font-weight:800;
+line-height:1.2;
+
+font-family:'Syne',sans-serif;
+
+color:white;
+
+}
+
+.subtitle{
+
+margin-top:20px;
+
+font-size:16px;
+line-height:1.9;
+
+color:#b7aa9c;
+
+}
+
+.main-btn{
+
+margin-top:34px;
+
+width:100%;
+
+padding:20px;
+
+border:none;
+
+border-radius:24px;
+
+font-size:18px;
+font-weight:800;
+
+letter-spacing:.5px;
+
+background:
+linear-gradient(
+135deg,
+#7a4821,
+#f7d49a,
+#fff7eb
+);
+
+color:#050505;
+
+box-shadow:
+0 12px 40px rgba(255,190,120,.24);
+
+transition:.35s;
+
+}
+
+.main-btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 16px 45px rgba(255,210,120,.34);
+
+}
+
+.small-text{
+
+margin-top:22px;
+
+font-size:13px;
+line-height:1.7;
+
+color:#8f8479;
+
+}
+  
 /* ========= WELCOME ========= */
 
 #welcomePage{
@@ -1058,9 +1247,13 @@ WELCOME TO EYORIKA
 
 <section id="welcomePage" class="page hidden">
 
+<div class="welcome-overlay"></div>
+
 <div class="welcome-card">
 
-<div class="app-icon">
+<div class="hero-glow"></div>
+
+<div class="app-icon hero-icon">
 
 <div class="e-icon">
 <div class="e-bar e-top"></div>
@@ -1069,7 +1262,7 @@ WELCOME TO EYORIKA
 </div>
 
 </div>
-  
+
 <div class="brand">
 EYORIKA
 </div>
@@ -1080,25 +1273,15 @@ Go Viral.
 </div>
 
 <div class="subtitle">
-Smart tools for TikTok and Instagram creators with premium growth experience.
+Smart tools for TikTok and Instagram creators with a premium creator experience.
 </div>
 
-<div class="app-icon small-app-icon">
-
-<div class="e-icon small-e-icon">
-<div class="e-bar e-top"></div>
-<div class="e-bar e-middle"></div>
-<div class="e-bar e-bottom"></div>
-</div>
-
-</div>
-  
 <button class="main-btn">
 Get Started
 </button>
 
 <div class="small-text">
-Premium creator platform designed for modern TikTok & Instagram creators.
+Premium creator platform for modern social growth.
 </div>
 
 </div>
@@ -1112,9 +1295,8 @@ setTimeout(()=>{
 const loading =
 document.getElementById("loadingPage");
 
-loading.style.opacity="0";
-
 loading.style.transition=".6s ease";
+loading.style.opacity="0";
 
 setTimeout(()=>{
 
