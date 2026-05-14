@@ -195,61 +195,90 @@ box-shadow:0 0 20px rgba(255,190,120,.12);
 /* ================= WELCOME PAGE ================= */
 
 #welcomePage{
+
 display:flex;
 align-items:center;
 justify-content:center;
-padding:24px;
+
+padding:40px 24px;
+
+overflow:hidden;
+position:relative;
+
 }
 
-.welcome-glow{
+.welcome-light{
+
 position:absolute;
-top:-120px;
-left:50%;
-transform:translateX(-50%);
-width:320px;
-height:320px;
-border-radius:50%;
-background:radial-gradient(circle,rgba(255,180,90,.18),transparent 70%);
-filter:blur(40px);
+
+left:-180px;
+
+width:220px;
+height:130vh;
+
+background:
+linear-gradient(
+180deg,
+transparent,
+rgba(255,210,120,.10),
+transparent
+);
+
+filter:blur(10px);
+
+transform:rotate(28deg);
+
+animation:beamMove 7s linear infinite;
+
 }
 
 .welcome-card{
-width:100%;
-max-width:430px;
-padding:56px 28px 42px;
-position:relative;
-overflow:hidden;
-border-radius:42px;
-text-align:center;
-background:linear-gradient(180deg,rgba(20,12,8,.95),rgba(8,8,8,.98));
-border:1px solid rgba(255,210,140,.10);
-backdrop-filter:blur(24px);
-box-shadow:
-0 25px 90px rgba(0,0,0,.82),
-0 0 40px rgba(255,170,70,.10);
-animation:cardShow .7s ease;
-}
 
-.welcome-card::before{
-content:"";
-position:absolute;
-inset:0;
-background:linear-gradient(130deg,transparent 20%,rgba(255,255,255,.04) 50%,transparent 80%);
-pointer-events:none;
+width:100%;
+max-width:500px;
+
+text-align:center;
+
+position:relative;
+z-index:2;
+
+animation:cardShow .7s ease;
+
 }
 
 .hero-icon{
-margin-bottom:28px;
+
+margin-bottom:34px;
+
+transform:scale(1.08);
+
 }
 
 .brand{
-font-size:56px;
-font-weight:900;
-letter-spacing:6px;
+
+font-size:64px;
+font-weight:800;
+
+letter-spacing:8px;
+
 font-family:'Syne',sans-serif;
-background:linear-gradient(90deg,#fff7ea,#f4c988,#8f5b2e);
+
+text-transform:uppercase;
+
+background:
+linear-gradient(
+90deg,
+#fff8ef,
+#f5d098,
+#8f5b2e
+);
+
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
+
+text-shadow:
+0 0 20px rgba(255,210,120,.12);
+
 }
 
 .title{
@@ -415,6 +444,8 @@ WELCOME TO EYORIKA
 
 <div class="welcome-glow"></div>
 
+<div class="welcome-light"></div>
+  
 <div class="welcome-card">
 
 <div class="app-icon hero-icon">
@@ -439,10 +470,6 @@ Smart tools for TikTok and Instagram creators with premium creator experience.
 <button class="main-btn">
 Get Started
 </button>
-
-<div class="small-text">
-Premium creator platform for modern social growth.
-</div>
 
 </div>
 
