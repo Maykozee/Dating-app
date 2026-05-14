@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>EYORIKA</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -19,177 +18,98 @@ font-family:'Outfit',sans-serif;
 }
 
 body{
-
-background:
-linear-gradient(
-180deg,
-#050505 0%,
-#0e0906 45%,
-#1b120d 100%
-);
-
-color:white;
+background:#050505;
 overflow:hidden;
-
+color:white;
 }
-
-/* ===== BACKGROUND ===== */
-
-.main-bg{
-
-position:absolute;
-inset:0;
-
-background:
-radial-gradient(circle at top left,#6d3d18 0%,transparent 30%),
-radial-gradient(circle at bottom right,#2c160b 0%,transparent 30%),
-linear-gradient(180deg,#050505,#120904,#1d120c);
-
-z-index:-5;
-
-}
-
-.noise{
-
-position:absolute;
-inset:0;
-
-background:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop');
-
-background-size:cover;
-background-position:center;
-
-opacity:.04;
-filter:blur(2px);
-
-z-index:-4;
-
-}
-
-/* ===== GLOBAL ===== */
 
 .hidden{
 display:none !important;
 }
 
 .page{
-
+position:absolute;
+inset:0;
 width:100%;
 height:100vh;
-
-position:absolute;
-top:0;
-left:0;
-
 }
 
-/* ===== ICON ===== */
+/* ================= BACKGROUND ================= */
+
+.main-bg{
+position:absolute;
+inset:0;
+background:
+radial-gradient(circle at top left, rgba(170,90,30,.35), transparent 35%),
+radial-gradient(circle at bottom right, rgba(80,30,10,.30), transparent 35%),
+linear-gradient(180deg,#050505 0%,#120904 55%,#1b120d 100%);
+z-index:-3;
+}
+
+.noise{
+position:absolute;
+inset:0;
+background:url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop');
+background-size:cover;
+background-position:center;
+opacity:.04;
+filter:blur(2px);
+z-index:-2;
+}
+
+/* ================= ICON ================= */
 
 .app-icon{
-
 width:120px;
 height:120px;
-
-margin:auto;
-
 border-radius:38px;
-
+margin:auto;
 position:relative;
-
 display:flex;
-justify-content:center;
 align-items:center;
-
-background:
-linear-gradient(
-145deg,
-#fff3d8,
-#d39b58,
-#2d1809
-);
-
-border:1px solid rgba(255,255,255,.14);
-
-box-shadow:
-0 0 50px rgba(255,190,120,.22),
-0 20px 70px rgba(0,0,0,.72);
-
+justify-content:center;
 overflow:hidden;
-
+background:linear-gradient(145deg,#fff4dd,#d89b57,#2d1809);
+border:1px solid rgba(255,255,255,.14);
+box-shadow:
+0 0 40px rgba(255,190,120,.22),
+0 20px 60px rgba(0,0,0,.70);
 animation:floatIcon 4s ease-in-out infinite;
-
 }
 
 .app-icon::before{
-
 content:"";
-
 position:absolute;
 inset:0;
-
-background:
-linear-gradient(
-135deg,
-transparent,
-rgba(255,255,255,.18),
-transparent
-);
-
+background:linear-gradient(135deg,transparent,rgba(255,255,255,.16),transparent);
 }
 
 .app-icon::after{
-
 content:"";
-
 position:absolute;
-
-width:180%;
-height:45px;
-
-background:rgba(255,255,255,.16);
-
-transform:
-rotate(-35deg)
-translateY(-160px);
-
+width:160%;
+height:40px;
+background:rgba(255,255,255,.18);
+transform:rotate(-35deg) translateY(-140px);
 animation:iconShine 4s linear infinite;
-
 }
 
 .e-icon{
-
-position:relative;
-
 width:78px;
 height:78px;
-
 display:flex;
 flex-direction:column;
 justify-content:center;
-
 gap:10px;
-
+position:relative;
 z-index:2;
-
 }
 
 .e-bar{
-
 height:12px;
-
 border-radius:40px;
-
-background:
-linear-gradient(
-90deg,
-#ffffff,
-#ffe2b2,
-#8f5b2e
-);
-
-box-shadow:
-0 0 14px rgba(255,220,170,.55);
-
+background:linear-gradient(90deg,#ffffff,#ffe0b0,#8f5b2e);
+box-shadow:0 0 14px rgba(255,220,170,.50);
 }
 
 .e-top,
@@ -201,408 +121,205 @@ width:76px;
 width:52px;
 }
 
-/* ===== LOADING ===== */
+/* ================= LOADING PAGE ================= */
 
 #loadingPage{
-
 display:flex;
-justify-content:center;
-align-items:center;
 flex-direction:column;
-
+align-items:center;
+justify-content:center;
 }
 
 .light-beam{
-
 position:absolute;
-
-width:160px;
-height:130vh;
-
-background:
-linear-gradient(
-180deg,
-transparent,
-rgba(255,210,120,.08),
-transparent
-);
-
-filter:blur(10px);
-
-transform:rotate(28deg);
-
 left:-140px;
-
+width:180px;
+height:130vh;
+background:linear-gradient(180deg,transparent,rgba(255,210,120,.10),transparent);
+filter:blur(10px);
+transform:rotate(28deg);
 animation:beamMove 6s linear infinite;
-
 }
 
 .loading-title{
-
-margin-top:32px;
-
+margin-top:34px;
 font-size:58px;
 font-weight:800;
-
 letter-spacing:7px;
-
 font-family:'Syne',sans-serif;
-
-background:
-linear-gradient(
-90deg,
-#fff6e6,
-#f5cc92,
-#8f5b2e
-);
-
+background:linear-gradient(90deg,#fff6e7,#f5ca8d,#8f5b2e);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
-filter:
-drop-shadow(0 0 18px rgba(255,210,140,.12));
-
 }
 
 .loading-sub{
-
-margin-top:12px;
-
+margin-top:14px;
 font-size:13px;
 letter-spacing:5px;
-
-color:#d8b58f;
-
+color:#d4b18c;
 }
 
 .loader{
-
-width:220px;
+width:230px;
 height:7px;
-
 margin-top:38px;
-
-border-radius:30px;
-
-overflow:hidden;
-
 background:rgba(255,255,255,.08);
-
+border-radius:30px;
+overflow:hidden;
 }
 
 .loader-fill{
-
-height:100%;
 width:0%;
-
+height:100%;
 border-radius:30px;
-
-background:
-linear-gradient(
-90deg,
-#8f5b2e,
-#f7d49a,
-#fff8ef
-);
-
-animation:loadBar 1.5s ease forwards;
-
+background:linear-gradient(90deg,#8f5b2e,#f5cf96,#fff8ee);
+animation:loadBar 1.8s ease forwards;
 }
 
 .socials{
-
 display:flex;
-gap:24px;
-
+gap:22px;
 margin-top:34px;
-
 }
 
 .socials img{
-
-width:52px;
-height:52px;
-
-padding:10px;
-
-border-radius:18px;
-
+width:54px;
+height:54px;
+padding:12px;
+border-radius:20px;
 background:rgba(255,255,255,.04);
-
-border:1px solid rgba(255,255,255,.06);
-
+border:1px solid rgba(255,255,255,.08);
+box-shadow:0 0 20px rgba(255,190,120,.12);
 }
 
-/* ===== WELCOME ===== */
+/* ================= WELCOME PAGE ================= */
 
 #welcomePage{
-
 display:flex;
-justify-content:center;
 align-items:center;
-
+justify-content:center;
 padding:24px;
-
-overflow:hidden;
-
-background:
-radial-gradient(circle at top,
-rgba(120,70,30,.35),
-transparent 35%),
-
-linear-gradient(
-180deg,
-#050505 0%,
-#120904 50%,
-#1b120d 100%
-);
-
 }
 
-.welcome-overlay{
-
+.welcome-glow{
 position:absolute;
-inset:0;
-
-background:
-radial-gradient(circle at top,
-rgba(255,170,70,.12),
-transparent 35%);
-
-}
-
-.hero-glow{
-
-position:absolute;
-
 top:-120px;
 left:50%;
-
 transform:translateX(-50%);
-
-width:300px;
-height:300px;
-
+width:320px;
+height:320px;
 border-radius:50%;
-
-background:
-radial-gradient(
-circle,
-rgba(255,190,120,.20),
-transparent 70%
-);
-
+background:radial-gradient(circle,rgba(255,180,90,.18),transparent 70%);
 filter:blur(40px);
-
 }
 
 .welcome-card{
-
 width:100%;
 max-width:430px;
-
-padding:58px 28px 42px;
-
-border-radius:42px;
-
+padding:56px 28px 42px;
 position:relative;
 overflow:hidden;
-
-background:
-linear-gradient(
-180deg,
-rgba(18,12,8,.96),
-rgba(8,8,8,.98)
-);
-
+border-radius:42px;
+text-align:center;
+background:linear-gradient(180deg,rgba(20,12,8,.95),rgba(8,8,8,.98));
 border:1px solid rgba(255,210,140,.10);
-
 backdrop-filter:blur(24px);
-
 box-shadow:
 0 25px 90px rgba(0,0,0,.82),
-0 0 50px rgba(255,170,70,.10);
-
-text-align:center;
-
+0 0 40px rgba(255,170,70,.10);
 animation:cardShow .7s ease;
-
 }
 
 .welcome-card::before{
-
 content:"";
-
 position:absolute;
 inset:0;
-
-background:
-linear-gradient(
-130deg,
-transparent 20%,
-rgba(255,255,255,.04) 50%,
-transparent 80%
-);
-
+background:linear-gradient(130deg,transparent 20%,rgba(255,255,255,.04) 50%,transparent 80%);
+pointer-events:none;
 }
 
 .hero-icon{
-
-width:130px;
-height:130px;
-
-margin:auto auto 28px;
-
+margin-bottom:28px;
 }
 
 .brand{
-
 font-size:56px;
 font-weight:900;
-
 letter-spacing:6px;
-
 font-family:'Syne',sans-serif;
-
-background:
-linear-gradient(
-90deg,
-#fff7ea,
-#f4c988,
-#8f5b2e
-);
-
+background:linear-gradient(90deg,#fff7ea,#f4c988,#8f5b2e);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
-
 }
 
 .title{
-
-margin-top:24px;
-
+margin-top:22px;
 font-size:40px;
-font-weight:800;
 line-height:1.2;
-
+font-weight:800;
 font-family:'Syne',sans-serif;
-
 }
 
 .subtitle{
-
 margin-top:20px;
-
 font-size:16px;
 line-height:1.9;
-
-color:#b7aa9c;
-
+color:#b8ada1;
 }
 
 .main-btn{
-
-margin-top:34px;
-
 width:100%;
-
+margin-top:34px;
 padding:20px;
-
 border:none;
-
 border-radius:24px;
-
 font-size:18px;
 font-weight:800;
-
-cursor:pointer;
-
-background:
-linear-gradient(
-135deg,
-#7a4821,
-#f7d49a,
-#fff7eb
-);
-
 color:#050505;
-
-box-shadow:
-0 12px 40px rgba(255,190,120,.24);
-
+cursor:pointer;
+background:linear-gradient(135deg,#7a4821,#f7d49a,#fff7eb);
+box-shadow:0 12px 40px rgba(255,190,120,.24);
 transition:.35s;
-
 }
 
 .main-btn:hover{
-
 transform:translateY(-3px);
-
+box-shadow:0 16px 45px rgba(255,210,120,.34);
 }
 
 .small-text{
-
 margin-top:22px;
-
 font-size:13px;
 line-height:1.7;
-
 color:#8f8479;
-
 }
 
-/* ===== ANIMATION ===== */
+/* ================= ANIMATIONS ================= */
 
 @keyframes loadBar{
-
-0%{
-width:0%;
-}
-
-100%{
-width:100%;
-}
-
+0%{width:0%;}
+100%{width:100%;}
 }
 
 @keyframes beamMove{
-
 100%{
 transform:rotate(28deg) translateX(650px);
 }
-
 }
 
 @keyframes floatIcon{
-
-0%{
-transform:translateY(0px);
-}
-
-50%{
-transform:translateY(-10px);
-}
-
-100%{
-transform:translateY(0px);
-}
-
+0%{transform:translateY(0px);}
+50%{transform:translateY(-10px);}
+100%{transform:translateY(0px);}
 }
 
 @keyframes iconShine{
-
 100%{
-
-transform:
-rotate(-35deg)
-translateY(260px);
-
+transform:rotate(-35deg) translateY(260px);
 }
-
 }
 
 @keyframes cardShow{
-
 from{
 opacity:0;
 transform:translateY(30px);
@@ -612,10 +329,9 @@ to{
 opacity:1;
 transform:translateY(0);
 }
-
 }
 
-/* ===== MOBILE ===== */
+/* ================= MOBILE ================= */
 
 @media(max-width:480px){
 
@@ -648,7 +364,7 @@ line-height:1.7;
 }
 
 .main-btn{
-padding:17px;
+padding:18px;
 font-size:17px;
 }
 
@@ -662,25 +378,21 @@ font-size:17px;
 <div class="main-bg"></div>
 <div class="noise"></div>
 
-<!-- ===== LOADING ===== -->
+<!-- LOADING -->
 
 <section id="loadingPage" class="page">
 
 <div class="light-beam"></div>
 
 <div class="app-icon">
-
 <div class="e-icon">
 <div class="e-bar e-top"></div>
 <div class="e-bar e-middle"></div>
 <div class="e-bar e-bottom"></div>
 </div>
-
 </div>
 
-<div class="loading-title">
-EYORIKA
-</div>
+<div class="loading-title">EYORIKA</div>
 
 <div class="loading-sub">
 WELCOME TO EYORIKA
@@ -691,38 +403,29 @@ WELCOME TO EYORIKA
 </div>
 
 <div class="socials">
-
 <img src="https://cdn-icons-png.flaticon.com/512/3046/3046121.png">
-
 <img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png">
-
 </div>
 
 </section>
 
-<!-- ===== WELCOME ===== -->
+<!-- WELCOME -->
 
 <section id="welcomePage" class="page hidden">
 
-<div class="welcome-overlay"></div>
+<div class="welcome-glow"></div>
 
 <div class="welcome-card">
 
-<div class="hero-glow"></div>
-
 <div class="app-icon hero-icon">
-
 <div class="e-icon">
 <div class="e-bar e-top"></div>
 <div class="e-bar e-middle"></div>
 <div class="e-bar e-bottom"></div>
 </div>
-
 </div>
 
-<div class="brand">
-EYORIKA
-</div>
+<div class="brand">EYORIKA</div>
 
 <div class="title">
 Grow Faster.<br>
@@ -749,23 +452,18 @@ Premium creator platform for modern social growth.
 
 setTimeout(()=>{
 
-const loading =
-document.getElementById("loadingPage");
+const loadingPage = document.getElementById("loadingPage");
+const welcomePage = document.getElementById("welcomePage");
 
-loading.style.transition=".6s ease";
-loading.style.opacity="0";
+loadingPage.style.transition = ".7s ease";
+loadingPage.style.opacity = "0";
 
 setTimeout(()=>{
+loadingPage.classList.add("hidden");
+welcomePage.classList.remove("hidden");
+},700);
 
-loading.classList.add("hidden");
-
-document
-.getElementById("welcomePage")
-.classList.remove("hidden");
-
-},600);
-
-},1800);
+},2000);
 
 </script>
 
